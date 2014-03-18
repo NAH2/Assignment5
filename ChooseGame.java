@@ -81,22 +81,19 @@ public class ChooseGame {
 		Container panel = getChooseFrame().getContentPane();
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 10));	
 		
-		Image connect4Image = null;
-		Image othelloImage = null;
+		ImageIcon connect4Image = null;
+		ImageIcon othelloImage = null;
 		try {
-			connect4Image = ImageIO.read(new File("connect4.jpg"));
-			othelloImage = ImageIO.read(new File("othello.jpg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			connect4Image = new ImageIcon(getClass().getResource("connect4.jpg"));
+			othelloImage = new ImageIcon(getClass().getResource("othello.jpg"));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		
-		connect4Image = connect4Image.getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH);
-		othelloImage = othelloImage.getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH);
 		
-		ImageIcon connect4ImageIcon = new ImageIcon(connect4Image);
-		ImageIcon othelloImageIcon = new ImageIcon(othelloImage);
+		ImageIcon connect4ImageIcon = connect4Image;
+		ImageIcon othelloImageIcon = othelloImage;
 		
 		JButton connect4 = new JButton("Connect 4");
 		JButton othello = new JButton("Othello");
@@ -137,9 +134,11 @@ public class ChooseGame {
 			Game game;
 			if (event.getSource() == getOthelloButton()) {
 				game = new Othello();
+                SaveTest savetest = new SaveTest(game);
 				PlayerSettings playerSettings = new PlayerSettings(game, true);
 			} else {
 				game = new ConnectFour();
+				SaveTest savetest = new SaveTest(game);
 				PlayerSettings playerSettings = new PlayerSettings(game, false);
 			}
 			
