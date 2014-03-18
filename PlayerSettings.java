@@ -25,8 +25,8 @@ public class PlayerSettings  extends JFrame{
 	private final JRadioButton AI = new JRadioButton("AI");
 	private final JRadioButton AI2 = new JRadioButton("AI");
 	private final JButton STARTBUTTON = new JButton("Start");
-	private final TextField PLAYERNAME1 = new TextField();
-	private final TextField PLAYERNAME2 = new TextField();
+	private final TextField PLAYERNAME1 = new TextField("Player One");
+	private final TextField PLAYERNAME2 = new TextField("Player Two");
 	private final JRadioButton PLAYERCOLOUR_A1;
 	private final JRadioButton PLAYERCOLOUR_B1;
 	private final JRadioButton PLAYERCOLOUR_A2;
@@ -78,6 +78,9 @@ public class PlayerSettings  extends JFrame{
 		windowInitialise();
 		buttonGroups();
 		listeners();
+		PLAYERCOLOUR_A1.doClick();
+		HUMAN.doClick();
+		HUMAN2.doClick();
 		pack();
 	}
 	/**
