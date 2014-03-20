@@ -80,6 +80,10 @@ public class Loader extends FileManager{
             player1.setPlayerName(playerInfo[1]); //FIX hardcode
             player1.setPlayerColour(new Color(Integer.parseInt(playerInfo[2])));
             player1.setYourTurn(Boolean.parseBoolean(playerInfo[3]));
+            
+            if (Boolean.parseBoolean(playerInfo[3])) {
+                getGame().setPlayerTurn(Game.PlayerTurn.PLAYER1);
+            }
         } else {
             allValid = false;
             System.err.println("Error with player 1");
@@ -97,6 +101,10 @@ public class Loader extends FileManager{
             player2.setPlayerName(playerInfo[1]); //FIX hardcode
             player2.setPlayerColour(new Color(Integer.parseInt(playerInfo[2])));
             player2.setYourTurn(Boolean.parseBoolean(playerInfo[3]));
+            
+            if (Boolean.parseBoolean(playerInfo[3])) {
+                getGame().setPlayerTurn(Game.PlayerTurn.PLAYER2);
+            }
         } else {
             allValid = false;
             System.err.println("Error with player 1");

@@ -116,6 +116,7 @@ public class EndNewGame extends JFrame implements ActionListener {
 	    NO_BUTTON.addActionListener(this);
 	    setVisible(true);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+	    setLocationRelativeTo(null);
 	    pack();
 	}
 

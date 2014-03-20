@@ -104,7 +104,7 @@ public abstract class Game {
 	 * 
 	 * @return Returns TRUE if successful.
 	 */
-	private boolean setPlayerTurn(PlayerTurn turn) {
+	public boolean setPlayerTurn(PlayerTurn turn) {
 		m_playerTurn = turn;
 		return true;
 	}
