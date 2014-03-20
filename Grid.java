@@ -73,6 +73,17 @@ public class Grid {
 		}
 	}
 	
+	public String toString() {
+	    String gridString = "";
+	    for (int y = 0; y < getGridHeight(); ++y) {
+	        for (int x = 0; x < getGridWidth(); ++x) {
+	            gridString += m_Grid[x][y] + ",";
+	        }
+	    }
+	    
+	    return gridString;
+	}
+	
 	/**
 	 * Global variables
 	 */

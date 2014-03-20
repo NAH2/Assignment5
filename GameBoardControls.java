@@ -90,7 +90,7 @@ public class GameBoardControls extends MouseAdapter {
 	 * mouseClicked method within the MouseAdapter class that this extends.
 	 */
 	public void mouseClicked(MouseEvent e) {
-		boolean m_Trace = true;
+		boolean m_Trace = false;
 		
 		int gridX = e.getX() / getCellWidth();
 		int gridY = e.getY() / getCellHeight();

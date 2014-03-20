@@ -96,7 +96,7 @@ public class GameWindow extends JFrame {
 	 * this Gamewindow.
 	 */
 	public GameWindow(Game game) {
-		boolean m_Trace = true;
+		boolean m_Trace = false;
 		
 		if(m_Trace) System.out.println("GameWindow::GameWindow() - window initializing");
 		if(m_Trace) System.out.println("GameWindow::GameWindow() - Linked game is " + game.getClass());
@@ -122,9 +122,11 @@ public class GameWindow extends JFrame {
 
 		setTitle("Boardgame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 		setVisible(true);
 		pack();
 		if(m_Trace) { System.out.println("GameWindow::GameWindow() - window initialized");}
+		
 	}
 	
 	/**

@@ -155,7 +155,7 @@ public abstract class Game {
 	 * @return Returns true if successful
 	 */
 	public boolean setPlayer2(Player player) {
-		boolean m_Trace = true;
+		boolean m_Trace = false;
 		
 		if(player == null) {
 			throw new IllegalArgumentException("Game::SetPlayer2 - Invalid player type(null) for player2");
@@ -230,7 +230,7 @@ public abstract class Game {
 	 * Main method which is called whenever the game is first started.
 	 */
 	public void start() {
-		boolean m_Trace = true;
+		boolean m_Trace = false;
 		
 		if(m_Trace) { System.out.println("Game::Start() - Game has started");}
 		setWindow(new GameWindow(this));
@@ -245,7 +245,7 @@ public abstract class Game {
 	 * @param move The move which the player has made as a Coordinate class.
 	 */
 	public void moveMade(Coordinate move) {
-		boolean m_Trace = true;
+		boolean m_Trace = false;
 		
 		if(m_Trace) System.out.println("Game::MoveMade() - Called");
 		if(validateMove(move)) {
@@ -286,6 +286,7 @@ public abstract class Game {
 				getPlayer2().isYourMove();
 			}
 		}
+		System.out.println("Grid:\n" + m_grid.toString() + "\n");
 	}
 	
 	/**

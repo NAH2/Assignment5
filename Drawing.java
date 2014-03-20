@@ -212,8 +212,8 @@ public class Drawing {
 	 * @param Player1 This is an object which holds data for player 1.
 	 */
 	public void setPlayer1(Player Player1){
-		boolean m_Trace = true;
-		final int OVALSIZE = 30;
+		boolean m_Trace = false;
+		final int OVALSIZE = 60;
 		
 		getPlayer1Name().setText(Player1.getPlayerName());
 		BufferedImage Piece = new BufferedImage
@@ -231,9 +231,9 @@ public class Drawing {
 	 * @param Player2 This is an object which holds data for player 2.
 	 */
 	public void setPlayer2(Player Player2){
-		boolean m_Trace = true;
+		boolean m_Trace = false;
 		
-		final int OVALSIZE = 30;
+		final int OVALSIZE = 60;
 		
 		getPlayer2Name().setText(Player2.getPlayerName());
 		BufferedImage Piece = new BufferedImage
@@ -266,7 +266,7 @@ public class Drawing {
 	 * @param grid  Holds information on the grid,.
 	 */
 	public void setGrid(Grid grid){
-		boolean m_Trace = true;
+		boolean m_Trace = false;
 		
 		if(m_Trace) System.out.println
 		("Drawing::SetGrid() - Grid has been updated");
@@ -279,7 +279,7 @@ public class Drawing {
 	 * on, and adds the relevant information.
 	 */
 	public Drawing(Game game) {
-		boolean m_Trace = true;
+		boolean m_Trace = false;
 		
 		final int P1SCOREY = 1;
 		final int P1PIECEY = 2;

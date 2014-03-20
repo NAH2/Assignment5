@@ -71,7 +71,7 @@ public class ConnectFour extends Game {
 	 *   @return true if there is a move available
 	 */
 	protected boolean isValidMove(Coordinate xy) {
-		boolean m_Trace = true;
+		boolean m_Trace = false;
 	
 		Grid grid = getGrid();
 		

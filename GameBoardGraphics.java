@@ -134,8 +134,8 @@ public class GameBoardGraphics extends JComponent{
 	private final int X_SQUARES;
 	private final Color PLAYER1_COLOUR;
 	private final Color PLAYER2_COLOUR;
-	private final int SQUARE_WIDTH = 30;
-	private final int SQUARE_HEIGHT = 30;
+	private final int SQUARE_WIDTH = 60;
+	private final int SQUARE_HEIGHT = 60;
 	private final int GRID_WIDTH;
 	private final int GRID_HEIGHT;
 }

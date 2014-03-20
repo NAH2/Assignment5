@@ -25,6 +25,7 @@ public class PlayerSettings  extends JFrame{
 	private final JRadioButton AI = new JRadioButton("AI");
 	private final JRadioButton AI2 = new JRadioButton("AI");
 	private final JButton STARTBUTTON = new JButton("Start");
+	private final JButton RESUME_BUTTON = new JButton("Resume");
 	private final TextField PLAYERNAME1 = new TextField("Player One");
 	private final TextField PLAYERNAME2 = new TextField("Player Two");
 	private final JRadioButton PLAYERCOLOUR_A1;
@@ -41,6 +42,8 @@ public class PlayerSettings  extends JFrame{
 	private final int YLINE3 =2;
 	private final int YLINE4 =3;
 	private final boolean ISOTHELLO;
+	private Container player;
+
 	/*
 	 * Sets the game class with which player settings is to send its player data
 	 * @param the instance of the game class
@@ -81,6 +84,7 @@ public class PlayerSettings  extends JFrame{
 		PLAYERCOLOUR_A1.doClick();
 		HUMAN.doClick();
 		HUMAN2.doClick();
+		
 		pack();
 	}
 	/**
@@ -101,12 +105,13 @@ public class PlayerSettings  extends JFrame{
 		PLAYERCOLOUR_A2.addActionListener(buttonListener);
 		PLAYERCOLOUR_B2.addActionListener(buttonListener);
 		STARTBUTTON.addActionListener(buttonListener);
+	    RESUME_BUTTON.addActionListener(buttonListener);
+
 	}
 /**
  * Sets out the main window and where the panels are placed on it
  */
 	private void windowInitialise() {
-		Container player;
 		GridBagConstraints a = new GridBagConstraints();
 		
 		player = getContentPane();
@@ -124,10 +129,14 @@ public class PlayerSettings  extends JFrame{
 		
 		a.gridx = XLINE1;
 		a.gridy = YLINE2;
-		a.gridwidth = GridBagConstraints.REMAINDER;
+		//a.gridwidth = GridBagConstraints.REMAINDER;
 		a.fill = GridBagConstraints.HORIZONTAL;
+		
 		player.add(STARTBUTTON,a);
-			
+		a.gridx = XLINE2;
+        a.gridy = YLINE2;
+		player.add(RESUME_BUTTON,a);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -407,7 +416,36 @@ public class PlayerSettings  extends JFrame{
 				setVisible(false);
 				m_game.start();
 			}
+			
+			if (e.getSource() == RESUME_BUTTON) {
+			    
+                if (ISOTHELLO) {
+                    OthelloLoader loader = new OthelloLoader(m_game);
+                    loader.loadGrid();
+                    player1 = loader.loadPlayer1(player1);
+                    player2 = loader.loadPlayer2(player2);
+                    checkValid(loader);
+                } else {
+                    ConnectFourLoader loader = new ConnectFourLoader(m_game);
+                    loader.loadGrid();
+                    player1 = loader.loadPlayer1(player1);
+                    player2 = loader.loadPlayer2(player2);
+                    checkValid(loader);
+                }
+			}
 		}
-		
+		public void checkValid(Loader l) {
+		    if (l.getValid()) {
+                m_game.setPlayer1(player1);
+                m_game.setPlayer2(player2);
+                setVisible(false);
+                m_game.start();
+            }else {
+                JOptionPane.showMessageDialog(player, "ERROR Laoding File",
+                        "Load ERROR",JOptionPane.ERROR_MESSAGE);
+                dispose();
+                new ChooseGame();
+            }
+		}
 	}
 }

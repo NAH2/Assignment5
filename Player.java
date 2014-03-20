@@ -81,6 +81,7 @@ public abstract class Player {
 	 * @return colour
 	 */
 	public Color getPlayerColour(){
+	    //System.out.println(m_playerColour.getRGB());
 		return m_playerColour;
 	}	
 	/**
@@ -93,4 +94,7 @@ public abstract class Player {
 	 * @param move that was made
 	 */
 	public abstract void sendMove(Coordinate move);
+	
+	public abstract String toString();
+
 }
