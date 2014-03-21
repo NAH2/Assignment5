@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-
+import java.util.*;
 import javax.swing.*;
 /**
  * @file GameBoardGraphics.java
@@ -126,6 +126,27 @@ public class GameBoardGraphics extends JComponent{
 				
 			}
 		}
+		if(m_isOver){
+			paintWin(g2);
+		}
+	}
+	
+	public void setIsOver(boolean over, Set<Coordinate> win){
+		m_isOver = over;
+		this.win = new HashSet<Coordinate>(win);
+		//System.out.println("win is empty?"+win.isEmpty());
+	}
+	
+	public void paintWin(Graphics g){
+		Iterator<Coordinate> iterator = win.iterator();
+		while (iterator.hasNext()){
+			//System.out.println(iterator.next()+"SSS");
+			g.setColor(Color.GREEN);  
+			m_next = iterator.next();
+			//System.out.println(m_next);
+			g.fillOval((SQUARE_WIDTH*m_next.getX()+middlePosition), (SQUARE_HEIGHT*m_next.getY()+middlePosition), smallSize, smallSize);
+		}
+		win.clear();
 	}
 	
 	//private member variables
@@ -138,4 +159,9 @@ public class GameBoardGraphics extends JComponent{
 	private final int SQUARE_HEIGHT = 60;
 	private final int GRID_WIDTH;
 	private final int GRID_HEIGHT;
+	private boolean m_isOver = false;
+	private Set<Coordinate> win;
+	private Coordinate m_next;
+	private final int middlePosition = (SQUARE_WIDTH+SQUARE_HEIGHT)/6;
+	private final int smallSize = (SQUARE_WIDTH+SQUARE_HEIGHT)/6;
 }
