@@ -19,11 +19,18 @@ public class Othello extends Game
 	private final static int GAME_WIDTH  = 8;
 	private final static int GAME_HEIGHT = 8;
 
+	/* 
+	* Return the winning piece coordinates
+	* @return the set which stores the winning piece coordinates
+	*/
 	public Set<Coordinate> getWin(){// should be GetWin()
 		//System.out.println("win is empty?"+m_win.isEmpty());
 		return m_win;
 	}
 	
+	/* 
+	* Empty the set which stores the winning piece coordinates
+	*/
 	protected void emptyWin(){
 		m_win.clear();
 	}
