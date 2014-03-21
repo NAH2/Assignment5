@@ -277,6 +277,7 @@ public abstract class Game {
 		if(isOver()) {
 			if(m_Trace) System.out.println("Game::MoveMade() - Game is finished");
 			new EndNewGame(this);
+			emptyWin();
 		} else {
 			if (getPlayerTurn() == PlayerTurn.PLAYER1) {
 				if(m_Trace) System.out.println("Game::MoveMade() - Player1 next");
@@ -378,6 +379,18 @@ public abstract class Game {
 	 */
 	protected abstract ArrayList<Coordinate> takeMove(Coordinate move);
 	
+	/**
+	 * Abstract method which is used to empty the set that 
+	 * stores the winning piece coordinates for opening a new game
+	 */
+	protected abstract void emptyWin();
+	
+	/**
+	 * Abstract method which is used to return the set that 
+	 * stores the winning piece coordinates for showing the winning pieces graphically
+	 * @return Returns the set containing the winning piece coordinates
+	 */
+	protected abstract Set<Coordinate> getWin();
 	
 	/*
 	 * Global Variables
