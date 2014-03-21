@@ -254,6 +254,15 @@ public abstract class Game {
 			}
 			
 			getWindow().displayGrid(getGrid());
+			//**********************
+			if(this instanceof ConnectFour){
+				//System.out.println("con4----");
+				getWindow().SetAnimation("fall", changes);
+			} else {
+				//System.out.println("othello----");
+			getWindow().SetAnimation("flip", changes);
+			}
+			//**********************
 			setPlayer1Score(0);
 			setPlayer2Score(0);
 			for (int i = 0; i < getGrid().getGridWidth(); i++) {
