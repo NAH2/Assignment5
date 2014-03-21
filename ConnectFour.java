@@ -17,8 +17,24 @@ public class ConnectFour extends Game {
 
 	private final static int GAME_WIDTH = 10;
 	private final static int GAME_HEIGHT = 7;
-	private Game.PlayerTurn m_Winner ;	
-
+	private Game.PlayerTurn m_Winner ;
+	private Set<Coordinate> m_win = new HashSet<Coordinate>();
+	
+	/* 
+	* Return the winning piece coordinates
+	* @return the set which stores the winning piece coordinates
+	*/
+	public Set<Coordinate> getWin(){//should be GetWin()
+		return m_win;
+	}
+	
+	/* 
+	* Empty the set which stores the winning piece coordinates
+	*/
+	protected void emptyWin(){
+		m_win.clear();
+	}
+	
 	/**
 	 * Returns the winner of the game.
 	 * @return The winner of the game as a enumerator Game.PlayerTurn.
@@ -132,6 +148,10 @@ public class ConnectFour extends Game {
 		boolean m_Trace = true;
 		
 		checkWinner();
+		Iterator<Coordinate> iterator = m_win.iterator();
+		while (iterator.hasNext()){
+			  System.out.println(iterator.next());  
+		}
 		if(getWinner() == Game.PlayerTurn.PLAYER1 || 
 				getWinner() == Game.PlayerTurn.PLAYER2) {
 			if(m_Trace) System.out.println
@@ -175,6 +195,10 @@ public class ConnectFour extends Game {
 				if ((grid.getCoordinate(x + 1, y).getValue() == Player) 
 				&& (grid.getCoordinate(x + 2, y).getValue() == Player)
 				&& (grid.getCoordinate(x + 3, y).getValue() == Player)) {
+					m_win.add(new Coordinate(x, y));
+					m_win.add(new Coordinate(x + 1, y));
+					m_win.add(new Coordinate(x + 2, y));
+					m_win.add(new Coordinate(x + 3, y));
 					setWinner(Player);
 				}
 			}
@@ -197,6 +221,10 @@ public class ConnectFour extends Game {
 				if ((grid.getCoordinate(x, y + 1).getValue() == Player)
 				&& (grid.getCoordinate(x, y + 2).getValue() == Player)
 				&& (grid.getCoordinate(x, y + 3).getValue() == Player)) {
+					m_win.add(new Coordinate(x, y));
+					m_win.add(new Coordinate(x, y + 1));
+					m_win.add(new Coordinate(x, y + 2));
+					m_win.add(new Coordinate(x, y + 3));
 					setWinner(Player);
 				}
 			}
@@ -220,6 +248,10 @@ public class ConnectFour extends Game {
 				if ((grid.getCoordinate(x+1, y+1).getValue() == Player)
 				&& (grid.getCoordinate(x+2, y+2).getValue() == Player)
 				&& (grid.getCoordinate(x+3, y+3).getValue() == Player)) {
+					m_win.add(new Coordinate(x, y));
+					m_win.add(new Coordinate(x+1, y+1));
+					m_win.add(new Coordinate(x+2, y+2));
+					m_win.add(new Coordinate(x+3, y+3));
 					setWinner(Player);
 				}
 			}
@@ -243,6 +275,10 @@ public class ConnectFour extends Game {
 				if ((grid.getCoordinate(x+1, y-1).getValue() == Player)
 				&& (grid.getCoordinate(x+2, y-2).getValue() == Player)
 				&& (grid.getCoordinate(x+3, y-3).getValue() == Player)) {
+					m_win.add(new Coordinate(x, y));
+					m_win.add(new Coordinate(x+1, y-1));
+					m_win.add(new Coordinate(x+2, y-2));
+					m_win.add(new Coordinate(x+3, y-3));
 					setWinner(Player);
 				}
 			}
