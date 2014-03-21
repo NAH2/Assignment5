@@ -150,7 +150,7 @@ public class GameWindow extends JFrame {
 	 * @return Returns TRUE if successful.
 	 */
 	public boolean displayGrid(Grid grid) {
-		getDrawing().setGrid(grid);
+		getDrawing().setGrid(grid, m_gameControl);
 		return true;
 	}
 	
