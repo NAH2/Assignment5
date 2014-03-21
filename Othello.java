@@ -18,6 +18,15 @@ public class Othello extends Game
 {
 	private final static int GAME_WIDTH  = 8;
 	private final static int GAME_HEIGHT = 8;
+
+	public Set<Coordinate> getWin(){// should be GetWin()
+		//System.out.println("win is empty?"+m_win.isEmpty());
+		return m_win;
+	}
+	
+	protected void emptyWin(){
+		m_win.clear();
+	}
 	
 	/**
 	 * Construtor for a game of Othello
@@ -269,6 +278,24 @@ public class Othello extends Game
 	 */
 	public boolean isOver() {
 		// this concretely implements from the abstract game class
+		if(!isAnyValidMove()){
+			for (int i = 0; i < getGrid().getGridWidth(); i++) {
+				for (int j = 0; j< getGrid().getGridHeight(); j++) {
+					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
+						m_p1.add(new Coordinate(i, j));
+					} else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
+						m_p2.add(new Coordinate(i, j));
+					}
+				}
+			}
+			if(m_p1.size() > m_p2.size()){
+				m_win = new HashSet<Coordinate>(m_p1);
+			} else if(m_p2.size() > m_p1.size()){
+				m_win = new HashSet<Coordinate>(m_p2);
+			}
+			m_p1.clear();
+			m_p2.clear();
+		}
 		return (!isAnyValidMove());
 	}
 	
@@ -337,5 +364,8 @@ public class Othello extends Game
 		debug(method, "", msg);
 	}
 	
+	private Set<Coordinate> m_win = new HashSet<Coordinate>();
+	private Set<Coordinate> m_p1 = new HashSet<Coordinate>();
+	private Set<Coordinate> m_p2 = new HashSet<Coordinate>();
 	private boolean m_Trace = true;
 }
