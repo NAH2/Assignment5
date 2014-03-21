@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-
-import javax.swing.JFrame;
+import java.util.*;
 
 /**
  *  @file	Game.Java
