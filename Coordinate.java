@@ -155,4 +155,25 @@ public class Coordinate
 	public String toString() {
 		return "Coordinate(" + m_X + ", " + m_Y + ", " + m_Value + ")";
 	}
+	
+	/**
+	 * Override hashCode to modify the equality definition of Coordinate objects
+	 * @return Any integer do not affect the testing of equality
+	 */
+	@Override
+	public int hashCode() {
+		return m_X + m_Y;
+	}
+	
+	/**
+	 * Override equals to modify the equality definition of Coordinate objects for storing in a set
+	 * @return true if the XY position of two coordinates are the same, otherwise return false
+	 */
+	@Override
+	public boolean equals(Object obj)
+	{
+		if(obj instanceof Coordinate && m_Y == ((Coordinate) obj).getY() && m_X == ((Coordinate) obj).getX())
+		return true;
+		else return false;
+	}
 }
