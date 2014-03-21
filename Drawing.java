@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
@@ -265,9 +264,13 @@ public class Drawing {
 	 * This method sets the grid.
 	 * @param grid  Holds information on the grid,.
 	 */
-	public void setGrid(Grid grid){
+	public void setGrid(Grid grid, Game game){
 		boolean m_Trace = false;
-		
+		if(game.isOver()){
+			System.out.println("paintwin");
+			//System.out.println("win is empty?"+game.getWin().isEmpty());
+			gameBoardGraphics.setIsOver(true, game.getWin());
+		}
 		if(m_Trace) System.out.println
 		("Drawing::SetGrid() - Grid has been updated");
 		getGridPanel().setGrid(grid);
