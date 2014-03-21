@@ -92,6 +92,43 @@ public class GameBoardGraphics extends JComponent{
 		setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));		
 	}
 	
+	
+	
+	//*********************************
+	/**
+	* Method responsible for generating animation of pieces in both game(Connect4 only atm)
+	* @param type - type of animation that is either flip or fall
+	* @param changes - the list stores the pieces which need the animation
+	*/
+	public void SetAnimation(String type, ArrayList<Coordinate> changes){
+		m_type = type;
+		m_changes = changes;
+		m_start = true;
+		new Thread(
+				new Runnable() {
+					public void run() {
+					for(m_y = -30; m_y <=  m_changes.get(0).getY()*getSquareHeight(); m_y = m_y+30){
+						//System.out.println("drop:"+m_y);
+						try{
+							if(!m_isOver){
+								repaint();
+								//updateUI();
+								Thread.sleep(20);
+							} else {
+								repaint();
+								Thread.sleep(20);
+								m_isOver = true;
+							}
+						} catch (Exception e){e.printStackTrace();}	
+					}
+					m_changes.clear();
+				}
+			}
+		).start();
+		
+	}
+	//**********************	
+	
 	/**
 	* Method to update all the GUI elements and paint them to the screen.
 	* @param g - graphics object to handle all the data for creating
@@ -113,6 +150,13 @@ public class GameBoardGraphics extends JComponent{
 				g2.setColor(Color.WHITE);
 				g2.setStroke(new BasicStroke(2));
 				g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+				//**********************
+				if(m_type.equals("fall")&&m_changes.size()>0){
+					if(i == m_changes.get(0).getX()*getSquareWidth() && j == m_changes.get(0).getY()*getSquareHeight()){
+					continue;
+					}
+				}
+				//**********************
 				
 				if (getGrid().getCoordinate(i/getSquareWidth(),j/
 						getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER1) {
@@ -126,6 +170,17 @@ public class GameBoardGraphics extends JComponent{
 				
 			}
 		}
+		//*****************		
+		if(m_type.equals("fall")&&m_start&&m_changes.size()>0){
+			int m_x = m_changes.get(0).getX()*getSquareWidth();
+			if (m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1){
+				g.setColor(PLAYER1_COLOUR);
+			} else {
+				g.setColor(PLAYER2_COLOUR);
+			}
+			//System.out.println(m_y);
+				g.fillOval(m_x, m_y, getSquareWidth(), getSquareHeight());
+		}//********************
 		if(m_isOver){
 			paintWin(g2);
 		}
@@ -139,7 +194,6 @@ public class GameBoardGraphics extends JComponent{
 	public void setIsOver(boolean over, Set<Coordinate> win){
 		m_isOver = over;
 		m_win = new HashSet<Coordinate>(win);
-		//System.out.println("win is empty?"+win.isEmpty());
 	}
 	
 	/**
@@ -155,7 +209,7 @@ public class GameBoardGraphics extends JComponent{
 			//System.out.println(m_next);
 			g.fillOval((SQUARE_WIDTH*m_next.getX()+middlePosition), (SQUARE_HEIGHT*m_next.getY()+middlePosition), smallSize, smallSize);
 		}
-		m_win.clear();
+		//m_win.clear();
 	}
 	
 	//private member variables
@@ -173,4 +227,10 @@ public class GameBoardGraphics extends JComponent{
 	private Coordinate m_next;
 	private final int middlePosition = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	private final int smallSize = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
+	//********************
+	private String m_type = "";
+	private ArrayList<Coordinate> m_changes;
+	private int m_y =0;
+	private boolean m_start = false;
+	//********************
 }
