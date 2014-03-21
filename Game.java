@@ -388,6 +388,7 @@ public abstract class Game {
 	/**
 	 * Abstract method which is used to return the set that 
 	 * stores the winning piece coordinates for showing the winning pieces graphically
+	 * 
 	 * @return Returns the set containing the winning piece coordinates
 	 */
 	protected abstract Set<Coordinate> getWin();
