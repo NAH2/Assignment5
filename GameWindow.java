@@ -122,9 +122,9 @@ public class GameWindow extends JFrame {
 
 		setTitle("Boardgame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    pack();
         setLocationRelativeTo(null);
 		setVisible(true);
-		pack();
 		if(m_Trace) { System.out.println("GameWindow::GameWindow() - window initialized");}
 		
 	}

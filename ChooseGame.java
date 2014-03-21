@@ -117,9 +117,9 @@ public class ChooseGame {
 		
 		getOthelloButton().setHorizontalTextPosition(SwingConstants.LEADING);
 		getOthelloButton().setVerticalAlignment(SwingConstants.BOTTOM);
-		
+
+	    getChooseFrame().pack();
 		getChooseFrame().setLocationRelativeTo(null);
-		getChooseFrame().pack();
         getChooseFrame().setVisible(true);
 	}
 	

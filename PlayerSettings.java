@@ -86,6 +86,7 @@ public class PlayerSettings  extends JFrame{
 		HUMAN2.doClick();
 		
 		pack();
+		setLocationRelativeTo(null);
 	}
 	/**
 	 * Adds listeners to react when buttons are pressed
@@ -136,7 +137,6 @@ public class PlayerSettings  extends JFrame{
 		a.gridx = XLINE2;
         a.gridy = YLINE2;
 		player.add(RESUME_BUTTON,a);
-		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
