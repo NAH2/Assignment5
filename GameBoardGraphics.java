@@ -162,6 +162,6 @@ public class GameBoardGraphics extends JComponent{
 	private boolean m_isOver = false;
 	private Set<Coordinate> win;
 	private Coordinate m_next;
-	private final int middlePosition = (SQUARE_WIDTH+SQUARE_HEIGHT)/6;
-	private final int smallSize = (SQUARE_WIDTH+SQUARE_HEIGHT)/6;
+	private final int middlePosition = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
+	private final int smallSize = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 }
