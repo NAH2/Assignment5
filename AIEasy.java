@@ -3,10 +3,14 @@ import java.util.ArrayList;
 
 class AIEasy {
 	
-	public ArrayList moves (ArrayList a, Grid b){
+	public ArrayList getMoves (ArrayList a){
+		
+		Othello b = new Othello ();
+		
 		for (int x=0; x<8;x++){
 			for (int y=0; y<8;y++){
-				a.add(b.getCoordinate( x, y));
+				Coordinate  c1 =	new Coordinate (x, y, Game.PlayerTurn.PLAYER1);
+				a.add(c1);
 			}
 		}
 		return a;
