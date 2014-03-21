@@ -131,12 +131,21 @@ public class GameBoardGraphics extends JComponent{
 		}
 	}
 	
+	/**
+	* Method to get the winning piece coordinates for showing the winning pieces graphically,
+	* signal the game is over
+	* @param win - a set of winning piece coordinates without repetition
+	*/
 	public void setIsOver(boolean over, Set<Coordinate> win){
 		m_isOver = over;
 		m_win = new HashSet<Coordinate>(win);
 		//System.out.println("win is empty?"+win.isEmpty());
 	}
 	
+	/**
+	* Method to show green dots on the winning pieces when the game ends
+	* @param g - graphics object to handle all the data for creating
+	*/
 	public void paintWin(Graphics g){
 		Iterator<Coordinate> iterator = m_win.iterator();
 		while (iterator.hasNext()){
