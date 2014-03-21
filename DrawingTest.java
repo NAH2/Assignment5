@@ -87,7 +87,7 @@ public class DrawingTest {
 		
 		Drawing drawing = game.getWindow().getDrawing();
 		Grid grid = new Grid(10, 10);
-		drawing.setGrid(grid);
+		drawing.setGrid(grid, game);
 		assertEquals(grid, drawing.getGridPanel().getGrid());
 	}
 	@Test
