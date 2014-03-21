@@ -4,7 +4,9 @@ import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.image.BufferedImage;
-
+//******************
+import java.util.ArrayList;
+//******************
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -40,7 +42,18 @@ public class Drawing {
 
 	private JPanel m_barPlayer1 = new JPanel();
 	private JPanel m_barPlayer2 = new JPanel();
-		
+	
+	//******************************
+	/**
+	* Method responsible for passing animation data to GameBoardGraphics class
+	* @param type - type of animation that is either flip or fall
+	* @param changes - the list stores the pieces which need the animation
+	*/
+	public void SetAnimation(String type, ArrayList<Coordinate> changes){
+		gameBoardGraphics.SetAnimation(type, changes);
+	}
+	//******************************
+	
 	/**
 	 * This method sets the player 1 score on the side bar.
 	 * @param Score This hold the score for player 1 in an integer form.
