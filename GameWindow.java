@@ -3,7 +3,9 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-
+//***************************
+import java.util.*;
+//***************************
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -51,6 +53,20 @@ public class GameWindow extends JFrame {
 	public Drawing getDrawing() {
 		return m_drawingControl;
 	}
+	
+	//******************************
+	/**
+	* Method responsible for passing animation data to Drawing class
+	* @param type - type of animation that is either flip or fall
+	* @param changes - the list stores the pieces which need the animation
+	*/
+	public void SetAnimation(String type, ArrayList<Coordinate> changes){
+		getDrawing().SetAnimation(type, changes);
+	}
+	//******************************
+	
+	
+	
 	
 	/**
 	 * Sets the drawing class which controls all the graphical systems in the
