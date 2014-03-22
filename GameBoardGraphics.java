@@ -107,16 +107,16 @@ public class GameBoardGraphics extends JComponent{
 		new Thread(
 				new Runnable() {
 					public void run() {
-					for(m_y = -30; m_y <=  m_changes.get(0).getY()*getSquareHeight(); m_y = m_y+30){
+					for(m_y = m_dropPoint; m_y <=  m_changes.get(0).getY()*getSquareHeight(); m_y = m_y+m_fallDistance){
 						//System.out.println("drop:"+m_y);
 						try{
 							if(!m_isOver){
 								repaint();
 								//updateUI();
-								Thread.sleep(20);
+								Thread.sleep(m_sleepTime);
 							} else {
 								repaint();
-								Thread.sleep(20);
+								Thread.sleep(m_sleepTime);
 								m_isOver = true;
 							}
 						} catch (Exception e){e.printStackTrace();}	
@@ -228,6 +228,9 @@ public class GameBoardGraphics extends JComponent{
 	private final int middlePosition = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	private final int smallSize = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	//********************
+	private int m_dropPoint = -30;
+	private int m_sleepTime = 20;
+	private int m_fallDistance = 30;
 	private String m_type = "";
 	private ArrayList<Coordinate> m_changes;
 	private int m_y =0;
