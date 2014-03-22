@@ -104,11 +104,12 @@ public class GameBoardGraphics extends JComponent{
 		m_type = type;
 		m_changes = changes;
 		m_start = true;
+		m_lowestY = m_changes.get(0).getY()*getSquareHeight();
 		if(m_type.equals("fall")){
 			new Thread(
-					new Runnable() {
-						public void run() {
-						for(m_y = m_dropPoint; m_y <=  m_changes.get(0).getY()*getSquareHeight(); m_y = m_y+m_fallDistance){
+				new Runnable() {
+					public void run() {
+						for(m_y = m_dropPoint; m_y <= m_lowestY ; m_y = m_y+m_fallDistance){
 							//System.out.println("drop:"+m_y);
 							try{
 								if(!m_isOver){
@@ -127,20 +128,20 @@ public class GameBoardGraphics extends JComponent{
 			).start();
 		} else {
 			new Thread(
-					new Runnable() {
-						public void run() {
+				new Runnable() {
+					public void run() {
 						try{
 							m_i = 0;
 							for(m_w = getSquareHeight(); m_w > 0; m_w=m_w-2){							
-									repaint();
-									m_i = m_i + 1;
-									Thread.sleep(m_flipTime);			
+								repaint();
+								m_i = m_i + 1;
+								Thread.sleep(m_flipTime);			
 							}
 							m_flip = true;
 							for(m_w = 0; m_w < getSquareHeight(); m_w=m_w+2){
-									repaint();
-									m_i = m_i - 1;
-									Thread.sleep(m_flipTime);	
+								repaint();
+								m_i = m_i - 1;
+								Thread.sleep(m_flipTime);	
 							} 		
 						} catch (Exception e){e.printStackTrace();}		
 						m_changes.clear();
@@ -169,13 +170,13 @@ public class GameBoardGraphics extends JComponent{
 		for (int i = 0; i < GRID_WIDTH; i+=getSquareWidth()) {
 			for (int j = 0; j < GRID_HEIGHT; j+=getSquareHeight()) {
 				//************************
-				m_status = true;
+				m_flipPiece = false;
 				if(m_type.equals("flip")&&m_changes.size()>0&&m_start){
 					Iterator<Coordinate> s = m_changes.iterator();
 					for(s = m_changes.iterator(); s.hasNext(); ) {
-					    Coordinate item = s.next();
-					    if(item.getX()*getSquareWidth() == i && item.getY()*getSquareHeight() == j){
-					    	m_status = false;
+						Coordinate item = s.next();
+						if(item.getX()*getSquareWidth() == i && item.getY()*getSquareHeight() == j){
+						    	m_flipPiece = true;
 							g2.setColor(new Color(RED,GREEN,BLUE));
 							g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 							g2.setColor(Color.WHITE);
@@ -205,7 +206,7 @@ public class GameBoardGraphics extends JComponent{
 					}
 				}
 				//************************
-				if (m_status){
+				if (!m_flipPiece){
 					g2.setColor(new Color(RED,GREEN,BLUE));
 					g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 				
@@ -220,9 +221,9 @@ public class GameBoardGraphics extends JComponent{
 					}
 				}
 				//**********************
-				if(m_status){
+				if(!m_flipPiece){
 					if (getGrid().getCoordinate(i/getSquareWidth(),j/
-							getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER1) {
+						getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER1) {
 						g2.setColor(PLAYER1_COLOUR);
 						g2.fillOval(i , j, getSquareWidth(), getSquareHeight());
 					} else if (getGrid().getCoordinate(i/getSquareWidth(),j/
@@ -242,7 +243,7 @@ public class GameBoardGraphics extends JComponent{
 				g.setColor(PLAYER2_COLOUR);
 			}
 			//System.out.println(m_y);
-				g.fillOval(m_x, m_y, getSquareWidth(), getSquareHeight());
+			g.fillOval(m_x, m_y, getSquareWidth(), getSquareHeight());
 		}
 		//********************
 		if(m_isOver){
@@ -293,7 +294,7 @@ public class GameBoardGraphics extends JComponent{
 	private final int smallSize = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	//********************
 	private int m_i = 0;
-	private boolean m_status;
+	private boolean m_flipPiece;
 	private boolean m_flip = false;
 	private int m_dropPoint = -30;
 	private int m_fallTime = 20;
@@ -304,5 +305,6 @@ public class GameBoardGraphics extends JComponent{
 	private int m_w = 0;
 	private int m_y = 0;
 	private boolean m_start = false;
+	private int m_lowestY;
 	//********************
 }
