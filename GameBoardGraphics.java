@@ -104,27 +104,51 @@ public class GameBoardGraphics extends JComponent{
 		m_type = type;
 		m_changes = changes;
 		m_start = true;
-		new Thread(
-				new Runnable() {
-					public void run() {
-					for(m_y = m_dropPoint; m_y <=  m_changes.get(0).getY()*getSquareHeight(); m_y = m_y+m_fallDistance){
-						//System.out.println("drop:"+m_y);
-						try{
-							if(!m_isOver){
-								repaint();
-								//updateUI();
-								Thread.sleep(m_sleepTime);
-							} else {
-								repaint();
-								Thread.sleep(m_sleepTime);
-								m_isOver = true;
-							}
-						} catch (Exception e){e.printStackTrace();}	
+		if(m_type.equals("fall")){
+			new Thread(
+					new Runnable() {
+						public void run() {
+						for(m_y = m_dropPoint; m_y <=  m_changes.get(0).getY()*getSquareHeight(); m_y = m_y+m_fallDistance){
+							//System.out.println("drop:"+m_y);
+							try{
+								if(!m_isOver){
+									repaint();
+									Thread.sleep(m_fallTime);
+								} else {
+									repaint();
+									Thread.sleep(m_fallTime);
+									m_isOver = true;
+								}
+							} catch (Exception e){e.printStackTrace();}	
+						}
+						m_changes.clear();
 					}
-					m_changes.clear();
 				}
-			}
-		).start();
+			).start();
+		} else {
+			new Thread(
+					new Runnable() {
+						public void run() {
+						try{
+							m_i = 0;
+							for(m_w = getSquareHeight(); m_w > 0; m_w=m_w-2){							
+									repaint();
+									m_i = m_i + 1;
+									Thread.sleep(m_flipTime);			
+							}
+							m_flip = true;
+							for(m_w = 0; m_w < getSquareHeight(); m_w=m_w+2){
+									repaint();
+									m_i = m_i - 1;
+									Thread.sleep(m_flipTime);	
+							} 		
+						} catch (Exception e){e.printStackTrace();}		
+						m_changes.clear();
+						m_flip = false;
+					}
+				}
+			).start();
+		}
 		
 	}
 	//**********************	
@@ -143,13 +167,52 @@ public class GameBoardGraphics extends JComponent{
 		final int BLUE = 214;
 		
 		for (int i = 0; i < GRID_WIDTH; i+=getSquareWidth()) {
-			for (int j = 0; j < GRID_HEIGHT; j+=getSquareHeight()) {				
-				g2.setColor(new Color(RED,GREEN,BLUE));
-				g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+			for (int j = 0; j < GRID_HEIGHT; j+=getSquareHeight()) {
+				//************************
+				m_status = true;
+				if(m_type.equals("flip")&&m_changes.size()>0&&m_start){
+					Iterator<Coordinate> s = m_changes.iterator();
+					for(s = m_changes.iterator(); s.hasNext(); ) {
+					    Coordinate item = s.next();
+					    if(item.getX()*getSquareWidth() == i && item.getY()*getSquareHeight() == j){
+					    	m_status = false;
+							g2.setColor(new Color(RED,GREEN,BLUE));
+							g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+							g2.setColor(Color.WHITE);
+							g2.setStroke(new BasicStroke(2));
+							g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+							//System.out.println("FLIPPING");
+							if(item.getValue()==Game.PlayerTurn.PLAYER1){
+								if (!m_flip){
+									//System.out.println("FLIPPING");
+									g2.setColor(PLAYER2_COLOUR);
+									g2.fillOval(i + m_i, j, m_w, getSquareHeight());
+								} else {
+									g2.setColor(PLAYER1_COLOUR);
+									g2.fillOval(i + m_i, j, m_w, getSquareHeight());
+								}
+							} else {
+								if (!m_flip){
+									//System.out.println("FLIPPING");
+									g2.setColor(PLAYER1_COLOUR);
+									g2.fillOval(i + m_i, j, m_w, getSquareHeight());
+								} else {
+									g2.setColor(PLAYER2_COLOUR);
+									g2.fillOval(i + m_i, j, m_w, getSquareHeight());
+								}
+							}
+						}
+					}
+				}
+				//************************
+				if (m_status){
+					g2.setColor(new Color(RED,GREEN,BLUE));
+					g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 				
-				g2.setColor(Color.WHITE);
-				g2.setStroke(new BasicStroke(2));
-				g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+					g2.setColor(Color.WHITE);
+					g2.setStroke(new BasicStroke(2));
+					g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+				}
 				//**********************
 				if(m_type.equals("fall")&&m_changes.size()>0){
 					if(i == m_changes.get(0).getX()*getSquareWidth() && j == m_changes.get(0).getY()*getSquareHeight()){
@@ -157,17 +220,17 @@ public class GameBoardGraphics extends JComponent{
 					}
 				}
 				//**********************
-				
-				if (getGrid().getCoordinate(i/getSquareWidth(),j/
-						getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER1) {
-					g2.setColor(PLAYER1_COLOUR);
-					g2.fillOval(i, j, getSquareWidth(), getSquareHeight());
-				} else if (getGrid().getCoordinate(i/getSquareWidth(),j/
+				if(m_status){
+					if (getGrid().getCoordinate(i/getSquareWidth(),j/
+							getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER1) {
+						g2.setColor(PLAYER1_COLOUR);
+						g2.fillOval(i , j, getSquareWidth(), getSquareHeight());
+					} else if (getGrid().getCoordinate(i/getSquareWidth(),j/
 						getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER2) {
-					g2.setColor(PLAYER2_COLOUR);
-					g2.fillOval(i, j, getSquareWidth(), getSquareHeight());
+						g2.setColor(PLAYER2_COLOUR);
+						g2.fillOval(i, j, getSquareWidth(), getSquareHeight());
+					}
 				}
-				
 			}
 		}
 		//*****************		
@@ -180,7 +243,8 @@ public class GameBoardGraphics extends JComponent{
 			}
 			//System.out.println(m_y);
 				g.fillOval(m_x, m_y, getSquareWidth(), getSquareHeight());
-		}//********************
+		}
+		//********************
 		if(m_isOver){
 			paintWin(g2);
 		}
@@ -228,12 +292,17 @@ public class GameBoardGraphics extends JComponent{
 	private final int middlePosition = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	private final int smallSize = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	//********************
+	private int m_i = 0;
+	private boolean m_status;
+	private boolean m_flip = false;
 	private int m_dropPoint = -30;
-	private int m_sleepTime = 20;
+	private int m_fallTime = 20;
+	private int m_flipTime = 10;
 	private int m_fallDistance = 30;
 	private String m_type = "";
 	private ArrayList<Coordinate> m_changes;
-	private int m_y =0;
+	private int m_w = 0;
+	private int m_y = 0;
 	private boolean m_start = false;
 	//********************
 }
