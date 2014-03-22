@@ -235,7 +235,12 @@ public abstract class Game {
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(m_playerTurn);
 	}
-	
+	//**********************
+	//private ArrayList<Coordinate> changes;
+	//public ArrayList<Coordinate> getMove(){
+	//	return changes;
+	//}
+	//**********************
 	/**
 	 * Called whenever a player has made a move. Processes the move and calls
 	 * the GUI and storage classes to store the processed move's data.
@@ -251,16 +256,16 @@ public abstract class Game {
 			ArrayList<Coordinate> changes = takeMove(move);
 			for(int i = 0; i < changes.size(); i++) {
 				getGrid().setCoordinate(changes.get(i));
-			}
-			
+			}	
 			getWindow().displayGrid(getGrid());
 			//**********************
 			if(this instanceof ConnectFour){
-				//System.out.println("con4----");
+				System.out.println("con4----");
 				getWindow().SetAnimation("fall", changes);
 			} else {
-				//System.out.println("othello----");
-			getWindow().SetAnimation("flip", changes);
+				System.out.println("othello----");
+				changes.remove(0);
+				getWindow().SetAnimation("flip", changes);
 			}
 			//**********************
 			setPlayer1Score(0);
