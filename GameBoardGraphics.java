@@ -232,11 +232,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 				g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 			} else {
-				Dimension d = this.getSize();
 				g2.setColor(Color.BLACK);
-				g2.drawLine(m_colX,0,m_colX,d.height);
+				g2.drawLine(m_colX, 0, m_colX, m_d.height);
 				g2.setColor(Color.BLACK);
-				g2.drawLine(m_nextColX,0,m_nextColX,d.height);
+				g2.drawLine(m_nextColX, 0, m_nextColX, m_d.height);
 				//g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
 			}	
 		} else {
@@ -278,11 +277,17 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				Coordinate item = s.next();
 				if(item.getX()*getSquareWidth() == i && item.getY()*getSquareHeight() == j){
 				    m_flipPiece = true;
-					g2.setColor(new Color(RED,GREEN,BLUE));
+					if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
+						g2.setColor(new Color(RED,GREEN,BLUE));
+					} else {
+						g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
+					}
 					g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 					g2.setColor(Color.WHITE);
-					g2.setStroke(new BasicStroke(2));
-					g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+					if(!m_isOver){
+						g2.setStroke(new BasicStroke(2));
+						g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+					}
 					//System.out.println("FLIPPING");
 					if(item.getValue()==Game.PlayerTurn.PLAYER1){
 						m_player = Game.PlayerTurn.PLAYER1;
@@ -397,5 +402,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2;
 	private int m_nextColX;
 	private int m_colX;
+	private Dimension m_d = this.getSize();
 	//********************
 }
