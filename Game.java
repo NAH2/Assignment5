@@ -338,6 +338,7 @@ public abstract class Game {
 		getWindow().displayGrid(getGrid());
 		getWindow().updateScore(getPlayer1Score(), getPlayer2Score());
 		getWindow().displayPlayerTurn(getPlayerTurn());
+		getWindow().SetOver(false);
 		resetGame();
 	}
 	
