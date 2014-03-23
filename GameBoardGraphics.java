@@ -74,29 +74,16 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	public int getXSquares() {
 		return X_SQUARES;
 	}
+	//********
 	
 	/**
-	* Class Constructor for GameBoardGraphics, initialises all 
-	* necessary variables.
-	* @param grid - object storing data for the game grid
-	* @param player1 - object containing the data for player 1
-	* @param player2 - object containing the data for player 2
-	*/
-	public GameBoardGraphics(Grid grid, Player player1, Player player2) {
-		addMouseMotionListener(this);
-		setGrid(grid);
-		Y_SQUARES = getGrid().getGridHeight();
-		X_SQUARES = getGrid().getGridWidth();
-		GRID_WIDTH = (getXSquares() * getSquareWidth());
-		GRID_HEIGHT = (getYSquares() * getSquareHeight());
-		PLAYER1_COLOUR = player1.getPlayerColour();
-		PLAYER2_COLOUR = player2.getPlayerColour();
-		setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));		
+	 * Method to set the game is not over after the game restarts
+	 * @param isOver - the boolean true means the game is over
+	 */
+	public void SetOver(boolean isOver){
+		m_isOver = isOver;
 	}
 	
-	
-	
-	//*********************************
 	/**
 	* Method responsible for generating animation of pieces in both game(Connect4 only atm)
 	* @param type - type of animation that is either flip or fall
@@ -153,7 +140,25 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		}
 		
 	}
-	//**********************	
+	//*********
+	/**
+	* Class Constructor for GameBoardGraphics, initialises all 
+	* necessary variables.
+	* @param grid - object storing data for the game grid
+	* @param player1 - object containing the data for player 1
+	* @param player2 - object containing the data for player 2
+	*/
+	public GameBoardGraphics(Grid grid, Player player1, Player player2) {
+		addMouseMotionListener(this);
+		setGrid(grid);
+		Y_SQUARES = getGrid().getGridHeight();
+		X_SQUARES = getGrid().getGridWidth();
+		GRID_WIDTH = (getXSquares() * getSquareWidth());
+		GRID_HEIGHT = (getYSquares() * getSquareHeight());
+		PLAYER1_COLOUR = player1.getPlayerColour();
+		PLAYER2_COLOUR = player2.getPlayerColour();
+		setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));		
+	}
 	
 	/**
 	* Method to update all the GUI elements and paint them to the screen.
@@ -202,7 +207,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		paintFall(g2);
 		//********************
 		if(!m_isOver){	
-			if(player == Game.PlayerTurn.PLAYER1) {
+			if(m_player == Game.PlayerTurn.PLAYER1) {
 				g2.setColor(PLAYER2_COLOUR);
 				g2.fillOval(m_posX , m_posY, getSquareWidth(), getSquareHeight());//if(m_type.equals("flip")&&m_changes.size()>0){
 			} else {
@@ -211,7 +216,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			}
 		} else {
 			paintWin(g2);
-			player = Game.PlayerTurn.PLAYER2;
+			m_player = Game.PlayerTurn.PLAYER2;
 		}
 	}
 	
@@ -223,10 +228,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		if(m_type.equals("fall") && m_start && m_changes.size() > 0){
 			int m_x = m_changes.get(0).getX()*getSquareWidth();
 			if (m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1){
-				player = Game.PlayerTurn.PLAYER1;
+				m_player = Game.PlayerTurn.PLAYER1;
 				g2.setColor(PLAYER1_COLOUR);
 			} else {
-				player = Game.PlayerTurn.PLAYER2;
+				m_player = Game.PlayerTurn.PLAYER2;
 				g2.setColor(PLAYER2_COLOUR);
 			}
 			//System.out.println(m_y);
@@ -255,7 +260,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
 					//System.out.println("FLIPPING");
 					if(item.getValue()==Game.PlayerTurn.PLAYER1){
-						player = Game.PlayerTurn.PLAYER1;
+						m_player = Game.PlayerTurn.PLAYER1;
 						if (!m_flip){
 							//System.out.println("FLIPPING");
 							g2.setColor(PLAYER2_COLOUR);
@@ -265,7 +270,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 							g2.fillOval(i + m_x, j, m_w, getSquareHeight());
 						}
 					} else {
-						player = Game.PlayerTurn.PLAYER2;
+						m_player = Game.PlayerTurn.PLAYER2;
 						if (!m_flip){
 							//System.out.println("FLIPPING");
 							g2.setColor(PLAYER1_COLOUR);
@@ -316,9 +321,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		m_posX = e.getX() - getSquareWidth()/2;
 		m_posY = e.getY() - getSquareHeight()/2;
 		repaint();
-		if(m_isOver){
-			m_isOver = false;
-		}
 	}
 	
 	/**
@@ -359,7 +361,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private int m_y = 0;
 	private boolean m_start = false;
 	private int m_lowestY;
-	private Game.PlayerTurn player;
+	private Game.PlayerTurn m_player;
 	private final int RED = 122;
 	private final int GREEN = 129;
 	private final int BLUE = 214;
