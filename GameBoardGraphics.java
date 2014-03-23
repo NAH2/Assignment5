@@ -222,12 +222,17 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		}
 		//********************
 		if(!m_isOver){	
-			if(m_player == Game.PlayerTurn.PLAYER1) {
-				g2.setColor(PLAYER2_COLOUR);
-			} else {
-				g2.setColor(PLAYER1_COLOUR);
-			}
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
+				if(!m_flip){
+					g2.setColor(Color.BLACK);
+					g2.setStroke(new BasicStroke(2));
+					g2.drawRect(m_colX, m_colY, getSquareWidth(), getSquareHeight());
+				}
+				if(m_player == Game.PlayerTurn.PLAYER1) {
+					g2.setColor(PLAYER2_COLOUR);
+				} else {
+					g2.setColor(PLAYER1_COLOUR);
+				}
 				g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 			} else {
 				m_d = this.getSize();
@@ -235,6 +240,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				g2.drawLine(m_colX - ADJUST_POINT, 0, m_colX - ADJUST_POINT, m_d.height);
 				g2.setColor(Color.BLACK);
 				g2.drawLine(m_nextColX - ADJUST_POINT, 0, m_nextColX - ADJUST_POINT, m_d.height);
+				
 				//g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
 			}	
 		} else {
@@ -360,6 +366,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		m_posX = e.getX() - getSquareWidth()/2;
 		m_posY = e.getY() - getSquareHeight()/2;
 		m_colX = (e.getX()/getSquareWidth())*getSquareWidth();
+		m_colY = (e.getY()/getSquareHeight())*getSquareHeight();
 		m_nextColX = (e.getX()/getSquareWidth())*getSquareWidth()+getSquareWidth();
 		repaint();
 	}
@@ -413,6 +420,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2;
 	private int m_nextColX;
 	private int m_colX;
+	private int m_colY;
 	private final int ADJUST_POINT = 1;
 	private int m_starX;
 	private int m_starY;
