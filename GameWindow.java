@@ -63,6 +63,14 @@ public class GameWindow extends JFrame {
 	public void SetAnimation(String type, ArrayList<Coordinate> changes){
 		getDrawing().SetAnimation(type, changes);
 	}
+	
+	/**
+	 * Method to set the game is not over after the game restarts
+	 * @param isOver - the boolean true means the game is over
+	 */
+	public void SetOver(boolean isOver){
+		getDrawing().SetOver(isOver);
+	}
 	//******************************
 	
 	
