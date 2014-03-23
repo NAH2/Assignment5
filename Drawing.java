@@ -323,8 +323,10 @@ public class Drawing {
 		if(m_Trace) { System.out.println("Drawing::Drawing() - Players = " +
 			game.getPlayer2().getPlayerName() + ":" + 
 				game.getPlayer1().getPlayerName());}
-		gameBoardGraphics = new GameBoardGraphics
-				(game.getGrid(), game.getPlayer1(), game.getPlayer2());
+		try {
+			gameBoardGraphics = new GameBoardGraphics
+				(game.getGrid(), game.getPlayer1(), game.getPlayer2()); 
+		}catch(java.io.IOException e){} 
 		
 		setPlayer1(game.getPlayer1());
 		setPlayer2(game.getPlayer2());
