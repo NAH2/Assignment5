@@ -327,8 +327,6 @@ public abstract class Game {
 		setPlayer1Score(0);
 		setPlayer2Score(0);
 		setTurnCount(0);
-		setPlayerTurn(PlayerTurn.PLAYER1);
-		getPlayer1().isYourMove();
 		getWindow().displayGrid(getGrid());
 		getWindow().updateScore(getPlayer1Score(), getPlayer2Score());
 		getWindow().displayPlayerTurn(getPlayerTurn());

@@ -1,5 +1,5 @@
-import java.util.*;
 import java.awt.Color;
+import java.util.*;
 
 /*
  *  @file	-Othello.Java
@@ -29,6 +29,13 @@ public class Othello extends Game
 		return m_win;
 	}
 	
+	public boolean[][] Getavailablemov(){
+		return m_availableMov;
+	}
+	
+	public void Setavailablemov (boolean[][] availableMov){
+		m_availableMov = availableMov;
+	}
 	/* 
 	* Empty the set which stores the winning piece coordinates
 	*/
@@ -82,10 +89,27 @@ public class Othello extends Game
 		Grid grid = super.getGrid();
 		
 		// Initialise starting peices
+		if (super.getPlayer1().getPlayerColour() == Color.BLACK)
+		{
 		grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER1));
 		grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER2));
 		grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER2));
 		grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER1));
+		getPlayer1().isYourMove();
+		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
+		System.out.println("P1 Black");
+		}
+		else 
+		{
+			super.setPlayerTurn(Game.PlayerTurn.PLAYER2);
+			System.out.println("P2 Black");
+			grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER2));
+			grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER1));
+			grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER1));
+			grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER2));
+			getPlayer2().isYourMove();
+			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
+		}
 	}
 
 	/**
@@ -93,13 +117,14 @@ public class Othello extends Game
 	 * for either player.
 	 * @return	True if a move can be made, false otherwise.
 	 */
-	private boolean isAnyValidMove() {
+	public boolean isAnyValidMove() {
 		Grid grid = getGrid();
-		
+		boolean isAvailableMove = false;
+		m_availableMov = new boolean[GAME_WIDTH][GAME_HEIGHT];
 		// The game may end when the board is completely filled
 		if (super.getTurnCount() == GAME_WIDTH * GAME_HEIGHT) {
 			debug("IsAnyValidMove()", "board filled");
-			return false;
+			isAvailableMove = false;
 		}
 		
 		// Or when no valid moves remain (which may happen BEFORE the board
@@ -110,14 +135,23 @@ public class Othello extends Game
 				 Coordinate c1 = new Coordinate(x, y, Game.PlayerTurn.PLAYER1);
 				 Coordinate c2 = new Coordinate(x, y, Game.PlayerTurn.PLAYER2);
 				 
-				 if (isValidMove(c1)) { return true; }
-				 if (isValidMove(c2)) { return true; }
+				 if (isValidMove(c1) && getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
+					 m_availableMov[x][y] = true;
+					 isAvailableMove = true;
+					  }
+				 else if (isValidMove(c2) && getPlayerTurn() == Game.PlayerTurn.PLAYER2) { 
+					 m_availableMov[x][y] = true;
+					 isAvailableMove = true;
+					 }
+				 else 
+					 m_availableMov[x][y]  = false;
 			}
 		}
 		m_Trace = true;
 		
 		// Otherwise...
-		return false;
+		System.out.println(isAvailableMove);
+		return isAvailableMove;
 	}
 
 	/**
@@ -404,5 +438,7 @@ public class Othello extends Game
 	private Set<Coordinate> m_win = new HashSet<Coordinate>();
 	private Set<Coordinate> m_p1 = new HashSet<Coordinate>();
 	private Set<Coordinate> m_p2 = new HashSet<Coordinate>();
+	private boolean[][] m_availableMov; 
+	
 	private boolean m_Trace = true;
 }

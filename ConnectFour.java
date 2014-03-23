@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.*;
 
 /**
@@ -70,7 +69,8 @@ public class ConnectFour extends Game {
 	 */
 	public void resetGame() {
 		setWinner(Game.PlayerTurn.NONE);
-		
+		setPlayerTurn(PlayerTurn.PLAYER1);
+		getPlayer1().isYourMove();
 	}
 	
 	/**
