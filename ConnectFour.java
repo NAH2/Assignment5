@@ -56,6 +56,15 @@ public class ConnectFour extends Game {
 		super(GAME_WIDTH, GAME_HEIGHT);
 	}
 	
+	public void start() {
+		boolean m_Trace = false;
+		
+		if(m_Trace) { System.out.println("Game::Start() - Game has started");}
+		setWindow(new GameWindow(this));
+		getPlayer1().isYourMove();
+		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
+	}
+	
 	/**
 	 * Resets the starting pieces.
 	 */
