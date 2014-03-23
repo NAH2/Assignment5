@@ -42,7 +42,36 @@ public class Othello extends Game
 		// If the game class can initialse a grid of this size, that would be
 		// great :-)
 		super(GAME_WIDTH, GAME_HEIGHT);
-		resetGame();
+		//resetGame();
+	}
+	
+	public void start() {
+		boolean m_Trace = false;
+		Grid grid = super.getGrid();
+		
+		if(m_Trace) { System.out.println("Game::Start() - Game has started");}
+		setWindow(new GameWindow(this));
+		if (super.getPlayer1().getPlayerColour() == Color.BLACK)
+		{
+		grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER1));
+		grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER2));
+		grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER2));
+		grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER1));
+		getPlayer1().isYourMove();
+		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
+		System.out.println("P1 Black");
+		}
+		else 
+		{
+			super.setPlayerTurn(Game.PlayerTurn.PLAYER2);
+			System.out.println("P2 Black");
+			grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER2));
+			grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER1));
+			grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER1));
+			grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER2));
+			getPlayer2().isYourMove();
+			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
+		}
 	}
 	
 	/**
