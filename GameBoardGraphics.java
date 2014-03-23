@@ -232,15 +232,20 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 				g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 			} else {
-				Dimension m_d = this.getSize();
+				m_d = this.getSize();
 				g2.setColor(Color.BLACK);
-				g2.drawLine(m_colX, 0, m_colX, m_d.height);
+				g2.drawLine(m_colX - ADJUST_POINT, 0, m_colX - ADJUST_POINT, m_d.height);
 				g2.setColor(Color.BLACK);
-				g2.drawLine(m_nextColX, 0, m_nextColX, m_d.height);
+				g2.drawLine(m_nextColX - ADJUST_POINT, 0, m_nextColX - ADJUST_POINT, m_d.height);
 				//g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
 			}	
 		} else {
 			paintWin(g2);
+			/*if(PLAYER1_COLOUR.equals(Color.WHITE)){
+				m_player = Game.PlayerTurn.PLAYER1;
+			} else {
+				m_player = Game.PlayerTurn.PLAYER2;
+			}*/
 			m_player = Game.PlayerTurn.PLAYER2;
 		}
 	}
@@ -334,7 +339,16 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			g.setColor(Color.GREEN);  
 			m_next = iterator.next();
 			//System.out.println(m_next);
-			g.fillOval((SQUARE_WIDTH*m_next.getX()+MID_POSITION), (SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE);
+			//g.fillOval((SQUARE_HEIGHT*m_next.getX()+MID_POSITION), (SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE);
+			try{
+				BufferedImage image = ImageIO.read(getClass().getResource("star.png"));				if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
+					g.drawImage(image, (SQUARE_WIDTH*m_next.getX()+MID_POSITION), (SQUARE_HEIGHT*m_next.getY()+MID_POSITION), null);
+				} else {
+					m_starX = SQUARE_WIDTH*m_next.getX()+MID_POSITION - ADJUST_POINT - ADJUST_POINT;
+					m_starY = SQUARE_HEIGHT*m_next.getY()+MID_POSITION-ADJUST_POINT-ADJUST_POINT;
+					g.drawImage(image, m_starX, m_starY, null);
+				}
+			}catch (IOException e){}
 		}
 		//m_win.clear();
 	}
@@ -391,15 +405,19 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private boolean m_start = false;
 	private int m_lowestY;
 	private Game.PlayerTurn m_player;
-	private final int RED = 159;
-	private final int GREEN = 105;
-	private final int BLUE = 51;
+	private final int RED = 0;
+	private final int GREEN = 153;
+	private final int BLUE = 0;
 	private final int EVEN = 2;
-	private final int DARK_RED = 109;
-	private final int DARK_GREEN = 55;
-	private final int DARK_BLUE = 1;
+	private final int DARK_RED = 0;
+	private final int DARK_GREEN = 102;
+	private final int DARK_BLUE = 0;
 	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2;
 	private int m_nextColX;
 	private int m_colX;
+	private final int ADJUST_POINT = 1;
+	private int m_starX;
+	private int m_starY;
+	private Dimension m_d; 
 	//********************
 }
