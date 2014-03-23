@@ -154,18 +154,18 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	*/
 	public GameBoardGraphics(Grid grid, Player player1, Player player2) {
 		addMouseMotionListener(this);
+		PLAYER1_COLOUR = player1.getPlayerColour();
+		PLAYER2_COLOUR = player2.getPlayerColour();
+		if(PLAYER1_COLOUR == Color.black || PLAYER1_COLOUR == Color.white){
+			m_game = "othello";
+		} else {
+			m_game = "connect4";
+		}
 		setGrid(grid);
 		Y_SQUARES = getGrid().getGridHeight();
 		X_SQUARES = getGrid().getGridWidth();
 		GRID_WIDTH = (getXSquares() * getSquareWidth());
 		GRID_HEIGHT = (getYSquares() * getSquareHeight());
-		PLAYER1_COLOUR = player1.getPlayerColour();
-		PLAYER2_COLOUR = player2.getPlayerColour();
-		if(PLAYER1_COLOUR == Color.black || PLAYER1_COLOUR == Color.white){
-			GAME = "othello";
-		} else {
-			GAME = "connect4";
-		}
 		setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));		
 	}
 	
@@ -178,14 +178,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
-		
 		for (int i = 0; i < GRID_WIDTH; i+=getSquareWidth()) {
 			for (int j = 0; j < GRID_HEIGHT; j+=getSquareHeight()) {
 				//************************		
 				paintFlip(g2, i ,j);
 				//************************
 				if (!m_flipPiece){
-					if(GAME.equals("othello")){
+					if(m_game.equals("othello")){
 						g2.setColor(new Color(RED,GREEN,BLUE));
 						g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 						
@@ -218,7 +217,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		}
 		//*****************		
 		paintFall(g2);
-		if(GAME.equals("connect4")){
+		if(m_game.equals("connect4")){
 			try{
 				BufferedImage image = ImageIO.read(getClass().getResource("connect4board.png"));		
 				g2.drawImage(image, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
@@ -231,7 +230,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			} else {
 				g2.setColor(PLAYER1_COLOUR);
 			}
-			if(GAME.equals("othello")){
+			if(m_game.equals("othello")){
 				g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 			} else {
 				g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
@@ -387,6 +386,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final int BLUE = 51;
 	private final int CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2 - 10;
 	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2;
-	private final String GAME;
+	private String m_game;
 	//********************
 }
