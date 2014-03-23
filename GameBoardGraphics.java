@@ -105,13 +105,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						for(m_y = m_dropPoint; m_y <= m_lowestY ; m_y = m_y+m_fallDistance){
 							//System.out.println("drop:"+m_y);
 							try{
-								if(!m_isOver){
-									repaint();
-									Thread.sleep(m_fallTime);
-								} else {
-									repaint();
-									Thread.sleep(m_fallTime);
-								}
+								repaint();
+								Thread.sleep(m_fallTime);
 							} catch (Exception e){e.printStackTrace();}	
 						}
 						m_changes.clear();
