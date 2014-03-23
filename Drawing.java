@@ -52,6 +52,15 @@ public class Drawing {
 	public void SetAnimation(String type, ArrayList<Coordinate> changes){
 		gameBoardGraphics.SetAnimation(type, changes);
 	}
+	
+	/**
+	 * Method to set the game is not over after the game restarts
+	 * @param isOver - the boolean true means the game is over
+	 */
+	public void SetOver(boolean isOver){
+		gameBoardGraphics.SetOver(isOver);
+	}
+	
 	//******************************
 	
 	/**
