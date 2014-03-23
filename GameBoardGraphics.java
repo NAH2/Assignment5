@@ -285,10 +285,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					}
 					g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 					g2.setColor(Color.WHITE);
-					if(!m_isOver){
-						g2.setStroke(new BasicStroke(2));
-						g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
-					}
+					g2.setStroke(new BasicStroke(2));
+					g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
 					//System.out.println("FLIPPING");
 					if(item.getValue()==Game.PlayerTurn.PLAYER1){
 						m_player = Game.PlayerTurn.PLAYER1;
