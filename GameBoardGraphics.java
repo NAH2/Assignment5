@@ -1,4 +1,8 @@
 import java.awt.BasicStroke;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.File;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -157,6 +161,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		GRID_HEIGHT = (getYSquares() * getSquareHeight());
 		PLAYER1_COLOUR = player1.getPlayerColour();
 		PLAYER2_COLOUR = player2.getPlayerColour();
+		if(PLAYER1_COLOUR == Color.black || PLAYER1_COLOUR == Color.white){
+			GAME = "othello";
+		} else {
+			GAME = "connect4";
+		}
 		setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));		
 	}
 	
@@ -172,16 +181,20 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		
 		for (int i = 0; i < GRID_WIDTH; i+=getSquareWidth()) {
 			for (int j = 0; j < GRID_HEIGHT; j+=getSquareHeight()) {
-				//************************
+				//************************		
 				paintFlip(g2, i ,j);
 				//************************
 				if (!m_flipPiece){
-					g2.setColor(new Color(RED,GREEN,BLUE));
-					g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-				
-					g2.setColor(Color.WHITE);
-					g2.setStroke(new BasicStroke(2));
-					g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+					if(GAME.equals("othello")){
+						g2.setColor(new Color(RED,GREEN,BLUE));
+						g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+						
+						////g2.setColor(new Color(255,255,255,255));
+						////g2.fillOval(i+4 , j+4, getSquareWidth()-10, getSquareHeight()-10);
+						g2.setColor(Color.WHITE);
+						g2.setStroke(new BasicStroke(2));
+						g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+					}
 				}
 				//**********************
 				if(m_type.equals("fall") && m_changes.size() > 0){
@@ -205,15 +218,24 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		}
 		//*****************		
 		paintFall(g2);
+		if(GAME.equals("connect4")){
+			try{
+				BufferedImage image = ImageIO.read(getClass().getResource("connect4board.png"));		
+				g2.drawImage(image, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+			}catch (IOException e){}
+		}
 		//********************
 		if(!m_isOver){	
 			if(m_player == Game.PlayerTurn.PLAYER1) {
 				g2.setColor(PLAYER2_COLOUR);
-				g2.fillOval(m_posX , m_posY, getSquareWidth(), getSquareHeight());//if(m_type.equals("flip")&&m_changes.size()>0){
 			} else {
 				g2.setColor(PLAYER1_COLOUR);
-				g2.fillOval(m_posX , m_posY, getSquareWidth(), getSquareHeight());
 			}
+			if(GAME.equals("othello")){
+				g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+			} else {
+				g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
+			}	
 		} else {
 			paintWin(g2);
 			m_player = Game.PlayerTurn.PLAYER2;
@@ -263,22 +285,20 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						m_player = Game.PlayerTurn.PLAYER1;
 						if (!m_flip){
 							//System.out.println("FLIPPING");
-							g2.setColor(PLAYER2_COLOUR);
-							g2.fillOval(i + m_x, j, m_w, getSquareHeight());
+							g2.setColor(PLAYER2_COLOUR);							
 						} else {
 							g2.setColor(PLAYER1_COLOUR);
-							g2.fillOval(i + m_x, j, m_w, getSquareHeight());
 						}
+						g2.fillOval(i + m_x, j, m_w, getSquareHeight());
 					} else {
 						m_player = Game.PlayerTurn.PLAYER2;
 						if (!m_flip){
 							//System.out.println("FLIPPING");
 							g2.setColor(PLAYER1_COLOUR);
-							g2.fillOval(i + m_x, j, m_w, getSquareHeight());
 						} else {
 							g2.setColor(PLAYER2_COLOUR);
-							g2.fillOval(i + m_x, j, m_w, getSquareHeight());
 						}
+						g2.fillOval(i + m_x, j, m_w, getSquareHeight());
 					}
 				}
 			}
@@ -307,7 +327,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			g.setColor(Color.GREEN);  
 			m_next = iterator.next();
 			//System.out.println(m_next);
-			g.fillOval((SQUARE_WIDTH*m_next.getX()+middlePosition), (SQUARE_HEIGHT*m_next.getY()+middlePosition), smallSize, smallSize);
+			g.fillOval((SQUARE_WIDTH*m_next.getX()+MID_POSITION), (SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE);
 		}
 		//m_win.clear();
 	}
@@ -343,8 +363,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private boolean m_isOver = false;
 	private Set<Coordinate> m_win;
 	private Coordinate m_next;
-	private final int middlePosition = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
-	private final int smallSize = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
+	private final int MID_POSITION = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
+	private final int WINMARK_SIZE = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	//********************
 	private int m_posX;
 	private int m_posY;
@@ -362,8 +382,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private boolean m_start = false;
 	private int m_lowestY;
 	private Game.PlayerTurn m_player;
-	private final int RED = 122;
-	private final int GREEN = 129;
-	private final int BLUE = 214;
+	private final int RED = 159;
+	private final int GREEN = 105;
+	private final int BLUE = 51;
+	private final int CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2 - 10;
+	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2;
+	private final String GAME;
 	//********************
 }
