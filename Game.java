@@ -227,14 +227,8 @@ public abstract class Game {
 	/**
 	 * Main method which is called whenever the game is first started.
 	 */
-	public void start() {
-		boolean m_Trace = false;
-		
-		if(m_Trace) { System.out.println("Game::Start() - Game has started");}
-		setWindow(new GameWindow(this));
-		getPlayer1().isYourMove();
-		getWindow().displayPlayerTurn(m_playerTurn);
-	}
+	
+	public abstract void start();
 	//**********************
 	//private ArrayList<Coordinate> changes;
 	//public ArrayList<Coordinate> getMove(){
