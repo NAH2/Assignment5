@@ -181,14 +181,17 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				if (!m_flipPiece){
 					if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 						//System.out.println(PLAYER1_COLOUR == Color.BLACK || PLAYER1_COLOUR == Color.WHITE);
-						g2.setColor(new Color(RED,GREEN,BLUE));
+						if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
+							g2.setColor(new Color(RED,GREEN,BLUE));
+						} else {
+							g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
+						}
 						g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-						
 						////g2.setColor(new Color(255,255,255,255));
 						////g2.fillOval(i+4 , j+4, getSquareWidth()-10, getSquareHeight()-10);
-						g2.setColor(Color.WHITE);
-						g2.setStroke(new BasicStroke(2));
-						g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+						//g2.setColor(Color.WHITE);
+						//g2.setStroke(new BasicStroke(2));
+						//g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
 					}
 				}
 				//**********************
@@ -387,6 +390,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final int RED = 159;
 	private final int GREEN = 105;
 	private final int BLUE = 51;
+	private final int EVEN = 2;
+	private final int DARK_RED = 109;
+	private final int DARK_GREEN = 55;
+	private final int DARK_BLUE = 1;
 	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2;
 	private int m_nextColX;
 	private int m_colX;
