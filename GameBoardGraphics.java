@@ -232,6 +232,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 				g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 			} else {
+				Dimension m_d = this.getSize();
 				g2.setColor(Color.BLACK);
 				g2.drawLine(m_colX, 0, m_colX, m_d.height);
 				g2.setColor(Color.BLACK);
@@ -402,6 +403,5 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2;
 	private int m_nextColX;
 	private int m_colX;
-	private Dimension m_d = this.getSize();
 	//********************
 }
