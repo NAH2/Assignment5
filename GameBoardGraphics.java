@@ -156,11 +156,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		addMouseMotionListener(this);
 		PLAYER1_COLOUR = player1.getPlayerColour();
 		PLAYER2_COLOUR = player2.getPlayerColour();
-		if(PLAYER1_COLOUR == Color.black || PLAYER1_COLOUR == Color.white){
-			m_game = "othello";
-		} else {
-			m_game = "connect4";
-		}
 		setGrid(grid);
 		Y_SQUARES = getGrid().getGridHeight();
 		X_SQUARES = getGrid().getGridWidth();
@@ -184,7 +179,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				paintFlip(g2, i ,j);
 				//************************
 				if (!m_flipPiece){
-					if(m_game.equals("othello")){
+					if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
+						//System.out.println(PLAYER1_COLOUR == Color.BLACK || PLAYER1_COLOUR == Color.WHITE);
 						g2.setColor(new Color(RED,GREEN,BLUE));
 						g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 						
@@ -217,7 +213,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		}
 		//*****************		
 		paintFall(g2);
-		if(m_game.equals("connect4")){
+		if(PLAYER1_COLOUR.equals(Color.YELLOW) || PLAYER1_COLOUR.equals(Color.RED)){
 			try{
 				BufferedImage image = ImageIO.read(getClass().getResource("connect4board.png"));		
 				g2.drawImage(image, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
@@ -230,7 +226,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			} else {
 				g2.setColor(PLAYER1_COLOUR);
 			}
-			if(m_game.equals("othello")){
+			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 				g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 			} else {
 				g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
@@ -386,6 +382,5 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final int BLUE = 51;
 	private final int CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2 - 10;
 	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2;
-	private String m_game;
 	//********************
 }
