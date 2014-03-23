@@ -151,6 +151,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		addMouseMotionListener(this);
 		PLAYER1_COLOUR = player1.getPlayerColour();
 		PLAYER2_COLOUR = player2.getPlayerColour();
+		if(PLAYER1_COLOUR.equals(Color.WHITE)){
+			m_player = Game.PlayerTurn.PLAYER1;
+		} else {
+			m_player = Game.PlayerTurn.PLAYER2;
+		}
 		setGrid(grid);
 		Y_SQUARES = getGrid().getGridHeight();
 		X_SQUARES = getGrid().getGridWidth();
@@ -245,12 +250,12 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			}	
 		} else {
 			paintWin(g2);
-			/*if(PLAYER1_COLOUR.equals(Color.WHITE)){
+			if(PLAYER1_COLOUR.equals(Color.WHITE)){
 				m_player = Game.PlayerTurn.PLAYER1;
 			} else {
 				m_player = Game.PlayerTurn.PLAYER2;
-			}*/
-			m_player = Game.PlayerTurn.PLAYER2;
+			}
+			//m_player = Game.PlayerTurn.PLAYER2;
 		}
 	}
 	
