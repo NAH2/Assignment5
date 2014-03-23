@@ -229,7 +229,12 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 				g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 			} else {
-				g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
+				Dimension d = this.getSize();
+				g2.setColor(Color.BLACK);
+				g2.drawLine(m_colX,0,m_colX,d.height);
+				g2.setColor(Color.BLACK);
+				g2.drawLine(m_nextColX,0,m_nextColX,d.height);
+				//g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
 			}	
 		} else {
 			paintWin(g2);
@@ -335,6 +340,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		//System.out.println("x:"+e.getX()+", y:"+e.getY());
 		m_posX = e.getX() - getSquareWidth()/2;
 		m_posY = e.getY() - getSquareHeight()/2;
+		m_colX = (e.getX()/getSquareWidth())*getSquareWidth();
+		m_nextColX = (e.getX()/getSquareWidth())*getSquareWidth()+getSquareWidth();
 		repaint();
 	}
 	
@@ -380,7 +387,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final int RED = 159;
 	private final int GREEN = 105;
 	private final int BLUE = 51;
-	private final int CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2 - 10;
 	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2;
+	private int m_nextColX;
+	private int m_colX;
 	//********************
 }
