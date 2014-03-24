@@ -269,11 +269,6 @@ public abstract class Game {
 	 * @return Returns TRUE if it is a valid move, FALSE otherwise.
 	 */
 	protected boolean validateMove(Coordinate move) {
-<<<<<<< HEAD
-
-=======
-			
->>>>>>> FETCH_HEAD
 		if (isValidMove(move)) {
 			return true;
 		} else {
