@@ -119,18 +119,18 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					public void run() {
 						try{
 							m_x = 0;
-							for(m_w = getSquareHeight(); m_w > 0; m_w=m_w-2){							
+							for(m_w = OTHELLO_CURSOR_SIZE; m_w > 0; m_w=m_w-EVEN){							
 								repaint();
 								m_x = m_x + 1;
 								Thread.sleep(m_flipTime);			
 							}
 							m_flipSide = true;
-							for(m_w = 0; m_w < getSquareHeight(); m_w=m_w+2){
+							for(m_w = 0; m_w < OTHELLO_CURSOR_SIZE; m_w=m_w+EVEN){
 								repaint();
 								m_x = m_x - 1;
 								Thread.sleep(m_flipTime);	
 							} 		
-						} catch (Exception e){e.printStackTrace();}		
+						} catch (Exception e){e.printStackTrace();}
 						m_changes.clear();
 						m_flipSide = false;
 					}
@@ -211,11 +211,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					if (getGrid().getCoordinate(i/getSquareWidth(),j/
 						getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER1) {
 						g2.setColor(PLAYER1_COLOUR);
-						g2.fillOval(i , j, getSquareWidth(), getSquareHeight());
+						g2.fillOval(i + MID_DIFF, j + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 					} else if (getGrid().getCoordinate(i/getSquareWidth(),j/
 						getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER2) {
 						g2.setColor(PLAYER2_COLOUR);
-						g2.fillOval(i, j, getSquareWidth(), getSquareHeight());
+						g2.fillOval(i + MID_DIFF, j + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 					}
 				}
 			}
@@ -233,13 +233,15 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					g2.setStroke(new BasicStroke(2));
 					g2.drawRect(m_colX, m_colY, getSquareWidth(), getSquareHeight());
 				}*/
-				if(m_player == Game.PlayerTurn.PLAYER1) {
-					g2.setColor(PLAYER2_COLOUR);
-				} else {
-					g2.setColor(PLAYER1_COLOUR);
-				}
-				//g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
-				g2.fillOval(m_colX , m_colY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+				//When available move***************
+					if(m_player == Game.PlayerTurn.PLAYER1) {
+						g2.setColor(PLAYER2_COLOUR);
+					} else {
+						g2.setColor(PLAYER1_COLOUR);
+					}
+					//g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+					g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+				//When available move***************
 			} else {
 				m_d = this.getSize();
 				g2.setColor(Color.BLACK);
@@ -275,7 +277,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				g2.setColor(PLAYER2_COLOUR);
 			}
 			//System.out.println(m_y);
-			g2.fillOval(m_x, m_y, getSquareWidth(), getSquareHeight());
+			g2.fillOval(m_x + MID_DIFF, m_y + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 		}
 	}
 	
@@ -313,7 +315,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						} else {
 							g2.setColor(PLAYER1_COLOUR);
 						}
-						g2.fillOval(i + m_x, j, m_w, getSquareHeight());
+						g2.fillOval(i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_CURSOR_SIZE);
 					} else {
 						m_player = Game.PlayerTurn.PLAYER2;
 						if (!m_flipSide){
@@ -322,11 +324,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						} else {
 							g2.setColor(PLAYER2_COLOUR);
 						}
-						g2.fillOval(i + m_x, j, m_w, getSquareHeight());
+						g2.fillOval(i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_CURSOR_SIZE);
 					}
 				}
 			}
-		}
+		} 
 	}
 	
 	/**
@@ -423,7 +425,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	//private final int DARK_RED = 0;
 	//private final int DARK_GREEN = 102;
 	//private final int DARK_BLUE = 0;
-	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2;
+	private final int MID_DIFF = 3;
+	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2 - 2*MID_DIFF;
 	private int m_nextColX;
 	private int m_colX;
 	private int m_colY;
