@@ -61,6 +61,9 @@ public class Drawing {
 	private final int SLIDER_WIDTH = 80;
 	private final GUIEventHandler handler;
 	private JComboBox m_skin;
+	private final int V_GAP = 10;
+	private final int ROW = 4;
+	private final int SPEED_ROW = 2;
 	//******************************
 	/**
 	 * Method to set the connect4 game board
@@ -367,14 +370,14 @@ public class Drawing {
 		setPlayer1(game.getPlayer1());
 		setPlayer2(game.getPlayer2());
 		
-		GridBagLayout layout = new GridBagLayout();
+		GridLayout layout = new GridLayout(ROW, 1, 0, V_GAP);
 		GridBagLayout layoutP1 = new GridBagLayout();
 		GridBagLayout layoutP2 = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
 		GridBagConstraints pc1 = new GridBagConstraints();
 		GridBagConstraints pc2 = new GridBagConstraints();
 		//************************
-		GridLayout setting = new GridLayout(2,1);
+		GridLayout setting = new GridLayout(SPEED_ROW,1);
 		//************************
 		
 		SideBar = new JPanel(layout);
@@ -410,11 +413,11 @@ public class Drawing {
 	    BarTurn.add(getTurnsTaken());
 	    
 	    
-	    layout.setConstraints(getBarPlayer1(), c);
+	   // layout.setConstraints(getBarPlayer1(), c);
 	    SideBar.add(getBarPlayer1());
 	    
 	    c.gridy = BAR2GRIDY;
-	    layout.setConstraints(getBarPlayer2(), c);
+	    //layout.setConstraints(getBarPlayer2(), c);
 	    SideBar.add(getBarPlayer2());
 	
 	    if(game instanceof ConnectFour){
@@ -440,7 +443,7 @@ public class Drawing {
 		
 		m_setting.setBackground(Color.WHITE);
 		c.gridy = BAR3GRIDY;
-		layout.setConstraints(m_setting, c);
+		//layout.setConstraints(m_setting, c);
 		SideBar.add(m_setting);
 		
 		if(game instanceof ConnectFour){
@@ -454,7 +457,7 @@ public class Drawing {
 		m_skin.addActionListener(handler);
 		
 		c.gridy = BAR3GRIDY + 1;
-		layout.setConstraints(m_skin, c);
+		//layout.setConstraints(m_skin, c);
 		SideBar.add(m_skin);
 	}
 	
