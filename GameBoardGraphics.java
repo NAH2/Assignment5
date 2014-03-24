@@ -275,12 +275,20 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				}*/
 				//When available move***************
 					if(m_player == Game.PlayerTurn.PLAYER1) {
-						g2.setColor(PLAYER2_COLOUR);
+						if (getGrid().getCoordinate(m_posX/getSquareWidth(),m_posY/
+								getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER2_AM){
+							g2.setColor(PLAYER2_COLOUR);
+							g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+						}
 					} else {
-						g2.setColor(PLAYER1_COLOUR);
+						if (getGrid().getCoordinate(m_posX/getSquareWidth(),m_posY/
+								getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER1_AM){
+							g2.setColor(PLAYER1_COLOUR);
+							g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+						}
 					}
 					//g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
-					g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+					
 				//When available move***************
 			} else {
 				m_d = this.getSize();
@@ -419,8 +427,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	*/
 	public void mouseMoved(MouseEvent e) {
 		//System.out.println("x:"+e.getX()+", y:"+e.getY());
-		//m_posX = e.getX() - getSquareWidth()/2;
-		//m_posY = e.getY() - getSquareHeight()/2;
+		m_posX = e.getX();
+		m_posY = e.getY();
 		m_colX = (e.getX()/getSquareWidth())*getSquareWidth();
 		m_colY = (e.getY()/getSquareHeight())*getSquareHeight();
 		m_nextColX = (e.getX()/getSquareWidth())*getSquareWidth()+getSquareWidth();
@@ -450,8 +458,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final int MID_POSITION = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	private final int WINMARK_SIZE = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	//********************
-	//private int m_posX;
-	//private int m_posY;
+	private int m_posX;
+	private int m_posY;
 	private int m_x = 0;
 	private boolean m_flippingPiece;
 	private boolean m_flipSide = false;
