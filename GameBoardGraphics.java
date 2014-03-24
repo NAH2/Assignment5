@@ -178,8 +178,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));
 		//CONNECT4BOARD = ImageIO.read(getClass().getResource("connect4board.png"));
 		WIN_STAR = ImageIO.read(getClass().getResource("star.png"));
-		GRID1 = ImageIO.read(getClass().getResource("Oboard.png"));
-		GRID2 = ImageIO.read(getClass().getResource("Oboard1.png"));
+		//GRID1 = ImageIO.read(getClass().getResource("Oboard.png"));
+		//GRID2 = ImageIO.read(getClass().getResource("Oboard1.png"));
 	}
 	
 	/**
@@ -201,9 +201,17 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						//System.out.println(PLAYER1_COLOUR == Color.BLACK || PLAYER1_COLOUR == Color.WHITE);
 						if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
 							//g2.setColor(new Color(RED,GREEN,BLUE));
-							g2.drawImage(GRID2, i, j, null);
+							if(m_board == "board2"){
+								g2.drawImage(GRID4, i, j, null);
+							} else {
+								g2.drawImage(GRID2, i, j, null);
+							}
 						} else {
-							g2.drawImage(GRID1, i, j, null);
+							if(m_board == "board2"){
+								g2.drawImage(GRID3, i, j, null);
+							} else {
+								g2.drawImage(GRID1, i, j, null);
+							}
 							//g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
 						}
 						//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
@@ -317,10 +325,18 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				    m_flippingPiece = true;
 					if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
 						//g2.setColor(new Color(RED,GREEN,BLUE));
-						g2.drawImage(GRID2, i, j, null);
+						if(m_board == "board2"){
+							g2.drawImage(GRID4, i, j, null);
+						} else {
+							g2.drawImage(GRID2, i, j, null);
+						}
 					} else {
 						//g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
-						g2.drawImage(GRID1, i, j, null);
+						if(m_board == "board2"){
+							g2.drawImage(GRID3, i, j, null);
+						} else {
+							g2.drawImage(GRID1, i, j, null);
+						}
 					}
 					//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 					g2.setColor(Color.WHITE);
@@ -459,8 +475,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private Dimension m_d; 
 	private final BufferedImage CONNECT4BOARD = ImageIO.read(getClass().getResource("connect4board.png"));;
 	private final BufferedImage WIN_STAR;
-	private final BufferedImage GRID1;
-	private final BufferedImage GRID2;
+	private final BufferedImage GRID1 = ImageIO.read(getClass().getResource("Oboard.png"));
+	private final BufferedImage GRID2 = ImageIO.read(getClass().getResource("Oboard1.png"));
+	private final BufferedImage GRID3 = ImageIO.read(getClass().getResource("Oboard2.png"));
+	private final BufferedImage GRID4 = ImageIO.read(getClass().getResource("Oboard3.png"));
+	
 	private static final long serialVersionUID = 1L;
 	private final BufferedImage CONNECT4BOARD2 = ImageIO.read(getClass().getResource("connect4board2.png"));
 	private final BufferedImage CONNECT4BOARD3 = ImageIO.read(getClass().getResource("connect4board3.png"));

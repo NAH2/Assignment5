@@ -60,8 +60,7 @@ public class Drawing {
 	private final int DEFAULT_FLIP_SPEED = 10;
 	private final int SLIDER_WIDTH = 80;
 	private final GUIEventHandler handler;
-	private String[] boards = {"board1","board2","board3"};
-	private JComboBox m_skin = new JComboBox(boards);
+	private JComboBox m_skin;
 	//******************************
 	/**
 	 * Method to set the connect4 game board
@@ -445,12 +444,18 @@ public class Drawing {
 		SideBar.add(m_setting);
 		
 		if(game instanceof ConnectFour){
-			c.gridy = BAR3GRIDY + 1;
-			layout.setConstraints(m_skin, c);
-			m_skin.setSelectedIndex(0);
-			m_skin.addActionListener(handler);
-			SideBar.add(m_skin);
+			String m_boards[] = new String[]{"board1","board2","board3"};
+			m_skin = new JComboBox(m_boards);
+	    } else {
+			String m_boards[] = new String[]{"board1","board2"};
+			m_skin = new JComboBox(m_boards);
 	    }
+		m_skin.setSelectedIndex(0);
+		m_skin.addActionListener(handler);
+		
+		c.gridy = BAR3GRIDY + 1;
+		layout.setConstraints(m_skin, c);
+		SideBar.add(m_skin);
 	}
 	
 	private class GUIEventHandler implements ActionListener, ChangeListener {
@@ -480,6 +485,7 @@ public class Drawing {
 	 */
 	public static void main(String args[]) {
 		ConnectFour game = new ConnectFour();
+		//Othello game = new Othello();
 		Player player1 = new Human(game);
 		Player player2 = new Human(game);
 		player1.setPlayerName("Gavin");
