@@ -303,7 +303,9 @@ public class GameWindow extends JFrame {
             if (l.getValid()) {   
                 getGame().getGrid().setGrid(l.getGridArray());
                 getGame().setPlayer1(player1);
+                getDrawing().setPlayer1(player1);
                 getGame().setPlayer2(player2);
+                getDrawing().setPlayer2(player2);
                 getGame().setScores();
                 
                 int p1Score = getGame().getPlayer1Score();
