@@ -3,11 +3,11 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 //***************************
 import java.util.*;
-//***************************
-import javax.swing.JComponent;
-import javax.swing.JFrame;
+
 import javax.swing.*;
 
 /**
@@ -144,32 +144,28 @@ public class GameWindow extends JFrame {
 		c.gridx = 1;
 		layout.setConstraints(getDrawing().getSideBarPanel(), c);
 		add(getDrawing().getSideBarPanel());
-		
-		JMenuBar menubar;
-		JMenuItem exit;
-		JMenuItem save;
-		JMenuItem load;
-		JMenuItem newGame;
 			  
-		menubar = new JMenuBar();
-		add(menubar);
+		m_menubar = new JMenuBar();
+		add(m_menubar);
+		m_newGame = new JMenuItem("New Game");
+		m_menubar.add(m_newGame);
+		m_resetGame = new JMenuItem("Restart Game");
+		m_menubar.add(m_resetGame);
+        m_save = new JMenuItem("Save");
+		m_menubar.add(m_save);
+		m_load = new JMenuItem("Load");
+		m_menubar.add(m_load);
+		m_exit = new JMenuItem("Exit");
+		m_menubar.add(m_exit);
+		setJMenuBar(m_menubar);
 		
-		newGame = new JMenu("New Game");
-		menubar.add(newGame);
+		Handler handler = new Handler();
 		
-		      
-		save = new JMenu("Save");
-		menubar.add(save);
-		      
-		load = new JMenu("Load");
-		menubar.add(load);
-		
-		
-		
-		exit = new JMenu ("Exit");
-		menubar.add(exit);
-	
-		setJMenuBar(menubar);
+		m_newGame.addActionListener(handler);
+	    m_resetGame.addActionListener(handler);
+		m_save.addActionListener(handler);
+        m_load.addActionListener(handler);
+        m_exit.addActionListener(handler);
 
 
 		setTitle("Boardgame");
@@ -252,6 +248,80 @@ public class GameWindow extends JFrame {
 		return true;
 	}
 	
+	private class Handler implements ActionListener {
+	    private Player player1;
+        private Player player2;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == m_newGame) {
+                dispose();
+                new ChooseGame();
+            }
+            
+            if (e.getSource() == m_resetGame) {
+                getGame().reset();
+            }
+            
+            if (e.getSource() == m_save) {
+                System.out.println("Save");
+                if (getGame() instanceof Othello) {
+                    OthelloSaver os = new OthelloSaver(getGame());
+                    os.saveGrid(getGame().getGrid().toString());
+                    os.savePlayer1(getGame().getPlayer1().toString());
+                    os.savePlayer2(getGame().getPlayer2().toString());
+                } else {
+                    ConnectFourSaver c4s = new ConnectFourSaver(getGame());
+                    c4s.saveGrid(getGame().getGrid().toString());
+                    c4s.savePlayer1(getGame().getPlayer1().toString());
+                    c4s.savePlayer2(getGame().getPlayer2().toString());
+                }
+            }
+            
+            if (e.getSource() == m_load) {
+                if (getGame() instanceof Othello) {
+                    OthelloLoader loader = new OthelloLoader(getGame());
+                    loader.loadGrid();
+                    player1 = loader.loadPlayer1(player1);
+                    player2 = loader.loadPlayer2(player2);
+                    checkValid(loader);
+                } else {
+                    ConnectFourLoader loader = new ConnectFourLoader(getGame());
+                    loader.loadGrid();
+                    player1 = loader.loadPlayer1(player1);
+                    player2 = loader.loadPlayer2(player2);
+                    checkValid(loader);
+                }
+            }
+            
+            if (e.getSource() == m_exit) {
+                System.exit(0);
+            }
+        }
+        
+        private void checkValid(Loader l) {
+            if (l.getValid()) {   
+                getGame().getGrid().setGrid(l.getGridArray());
+                getGame().setPlayer1(player1);
+                getGame().setPlayer2(player2);
+                getGame().setScores();
+                
+                int p1Score = getGame().getPlayer1Score();
+                int p2Score = getGame().getPlayer2Score();
+                
+                displayPlayerTurn(getGame().getPlayerTurn());
+                updateScore(p1Score, p2Score);
+                getGame().setTurnCount(p1Score + p2Score);
+                m_drawingControl.getGridPanel().repaint();
+            }else {
+                JOptionPane.showMessageDialog(null, "ERROR Laoding File",
+                        "Load ERROR",JOptionPane.ERROR_MESSAGE);
+                
+                // WHAT DO WE DO HERE??
+            }
+        }
+	}
+	
 	/**
 	 * Test method.
 	 * 
@@ -273,4 +343,10 @@ public class GameWindow extends JFrame {
 	private Game m_gameControl;
 	private Drawing m_drawingControl;
 	private Controls m_controlsControl;
+	private JMenuBar m_menubar;
+	private JMenuItem m_exit;
+	private JMenuItem m_save;
+	private JMenuItem m_load;
+	private JMenuItem m_newGame;
+	private JMenuItem m_resetGame;
 }

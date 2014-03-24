@@ -136,15 +136,13 @@ public class ChooseGame {
 			Game game;
 			if (event.getSource() == getOthelloButton()) {
 				game = new Othello();
-                SaveTest savetest = new SaveTest(game, true);
 				PlayerSettings playerSettings = new PlayerSettings(game, true);
 			} else {
 				game = new ConnectFour();
-				SaveTest savetest = new SaveTest(game,false);
 				PlayerSettings playerSettings = new PlayerSettings(game, false);
 			}
 			
-			getChooseFrame().setVisible(false);
+			getChooseFrame().dispose();
 		}
 	}
 	

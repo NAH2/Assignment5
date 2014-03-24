@@ -123,7 +123,7 @@ public abstract class Game {
 	 * 
 	 * @return Returns TRUE if successful.
 	 */
-	private boolean setTurnCount(int count) {
+	public boolean setTurnCount(int count) {
 		m_turnCount = count;
 		return true;
 	}
@@ -298,6 +298,9 @@ public abstract class Game {
 	}
 	
 	public boolean setScores() {
+	    setPlayer1Score(0);
+	    setPlayer2Score(0);
+	    
 	    for (int i = 0; i < getGrid().getGridWidth(); i++) {
             for (int j = 0; j< getGrid().getGridHeight(); j++) {
                 if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {

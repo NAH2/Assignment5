@@ -62,9 +62,6 @@ public class Loader extends FileManager{
         
         
         if (valid) {
-            getGridObj().setGrid(getGridArray());
-            getGame().setScores();
-            System.out.println("LOAD :: " + getGridObj().toString());
             return true;
         } else {
             System.err.println("File Corrupt");

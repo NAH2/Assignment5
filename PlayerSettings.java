@@ -138,6 +138,7 @@ public class PlayerSettings  extends JFrame{
         a.gridy = YLINE2;
 		player.add(RESUME_BUTTON,a);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	/**
@@ -436,8 +437,10 @@ public class PlayerSettings  extends JFrame{
 		}
 		public void checkValid(Loader l) {
 		    if (l.getValid()) {
+                getGame().getGrid().setGrid(l.getGridArray());
                 m_game.setPlayer1(player1);
                 m_game.setPlayer2(player2);
+                m_game.setScores();
                 setVisible(false);
                 m_game.resumeGame();
             }else {
