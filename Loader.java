@@ -60,8 +60,10 @@ public class Loader extends FileManager{
             System.err.println("Error Reading File");
         }
         
+        
         if (valid) {
             getGridObj().setGrid(getGridArray());
+            getGame().setScores();
             System.out.println("LOAD :: " + getGridObj().toString());
             return true;
         } else {
@@ -80,7 +82,7 @@ public class Loader extends FileManager{
             player1.setPlayerName(playerInfo[1]); //FIX hardcode
             player1.setPlayerColour(new Color(Integer.parseInt(playerInfo[2])));
             player1.setYourTurn(Boolean.parseBoolean(playerInfo[3]));
-            
+            System.out.println("Player 1 Colour: " + player1.getPlayerColour());
             if (Boolean.parseBoolean(playerInfo[3])) {
                 getGame().setPlayerTurn(Game.PlayerTurn.PLAYER1);
             }
@@ -101,6 +103,8 @@ public class Loader extends FileManager{
             player2.setPlayerName(playerInfo[1]); //FIX hardcode
             player2.setPlayerColour(new Color(Integer.parseInt(playerInfo[2])));
             player2.setYourTurn(Boolean.parseBoolean(playerInfo[3]));
+            System.out.println("Player 2 Colour: " + player2.getPlayerColour());
+
             
             if (Boolean.parseBoolean(playerInfo[3])) {
                 getGame().setPlayerTurn(Game.PlayerTurn.PLAYER2);

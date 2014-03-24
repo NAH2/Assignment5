@@ -264,7 +264,8 @@ public abstract class Game {
 			//**********************
 			setPlayer1Score(0);
 			setPlayer2Score(0);
-			for (int i = 0; i < getGrid().getGridWidth(); i++) {
+			setScores();
+			/*for (int i = 0; i < getGrid().getGridWidth(); i++) {
 				for (int j = 0; j< getGrid().getGridHeight(); j++) {
 					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
 						setPlayer1Score(getPlayer1Score() + 1);
@@ -272,7 +273,7 @@ public abstract class Game {
 						setPlayer2Score(getPlayer2Score() + 1);
 					}
 				}
-			}
+			}*/
 			
 			getWindow().updateScore(getPlayer1Score(), getPlayer2Score());
 			setPlayerTurn(nextPlayer());
@@ -294,6 +295,20 @@ public abstract class Game {
 			}
 		}
 		System.out.println("Grid:\n" + m_grid.toString() + "\n");
+	}
+	
+	public boolean setScores() {
+	    for (int i = 0; i < getGrid().getGridWidth(); i++) {
+            for (int j = 0; j< getGrid().getGridHeight(); j++) {
+                if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
+                    setPlayer1Score(getPlayer1Score() + 1);
+                } else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
+                    setPlayer2Score(getPlayer2Score() + 1);
+                }
+            }
+        }
+	    
+	    return true;
 	}
 	
 	/**
@@ -340,6 +355,8 @@ public abstract class Game {
         if(m_Trace) { System.out.println("Game::resumeGame() - Game has resumed");}
         setWindow(new GameWindow(this));
         getWindow().displayPlayerTurn(m_playerTurn);
+        getWindow().updateScore(m_player1Score, m_player2Score);
+        setTurnCount(m_player1Score + m_player2Score);
     }
 	
 	protected abstract void resetGame();
