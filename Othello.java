@@ -288,7 +288,7 @@ public class Othello extends Game
 		Grid grid = getGrid();
 		
 		// "Capture" the current peice
-		capture.add(new Coordinate(xy.getX(), xy.getY(), getPlayerTurn()));
+		capture.add(xy);
 		
 		// Capture peices in each direction
 		capture.addAll(take(xy, -1,  0)); // left
@@ -309,7 +309,7 @@ public class Othello extends Game
 	 * @param xy A coordinate specifying x and y values into the grid.
 	 * @return	The score of the move.
 	 */
-	public int moveScore(Player player, Coordinate xy) {
+	public int moveScore(Coordinate xy) {
 		// Hint to whoever implements the Hard AI - just iterate over the
 		// grid, then pick the best moveScore result. Your AI doesn't need to
 		// know how to play Othello, it just needs to have a strategy that uses

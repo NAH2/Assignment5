@@ -371,6 +371,17 @@ public abstract class Game {
 	 * @return Returns the set containing the winning piece coordinates
 	 */
 	protected abstract Set<Coordinate> getWin();
+	
+	/**
+	 * Change by Mathew Lloyd 711293
+	 * abstract method to check the total score for number of positions 
+	 * taken. Used in OthelloAI to calculate the move that creates the most
+	 * changes.
+	 * 
+	 * @param xy - The coordinate of the piece on the grid
+	 * @return int of the score from all changes that would be made
+	 */
+	public abstract int moveScore(Coordinate xy);
 
 	/*
 	 * Global Variables
