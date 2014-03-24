@@ -239,19 +239,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						g2.setColor(PLAYER2_COLOUR);
 						g2.fillOval(i + MID_DIFF, j + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 					}
-					 else if (getGrid().getCoordinate(i/getSquareWidth(),j/
-							getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER1_AM){
-					    	g2.setColor(Color.RED);
-					    	g2.setStroke(new BasicStroke(2));
-					    	g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-					}
-					else if (getGrid().getCoordinate(i/getSquareWidth(),j/
-							getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER2_AM){
-					    	g2.setColor(Color.BLUE);
-					    	g2.setStroke(new BasicStroke(2));
-					    	g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 				}
-				}
+				paintAvailableMove(g2, i, j);
 			}
 		}
 		//*****************		
@@ -307,6 +296,34 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				m_player = Game.PlayerTurn.PLAYER2;
 			}
 			//m_player = Game.PlayerTurn.PLAYER2;
+		}
+	}
+	
+	/**
+	* Method to paint the available moves in othello
+	* @param g2 - graphics object to handle all the data for creating
+	* @param i - point X of the board
+	* @param j - point Y of the board
+	*/
+	private void paintAvailableMove(Graphics2D g2, int i, int j){
+		if(!m_flippingPiece){
+			if (getGrid().getCoordinate(i/getSquareWidth(),j/
+				getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER1_AM){
+				g2.drawImage(CROSS, getGrid().getCoordinate(i/getSquareWidth(),j/
+				getSquareHeight()).getX()*getSquareWidth() + MID_POSITION, getGrid().getCoordinate(i/getSquareWidth(),j/
+						getSquareHeight()).getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
+					    	//g2.setColor(Color.RED);
+					    	//g2.setStroke(new BasicStroke(2));
+					    	//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+			} else if (getGrid().getCoordinate(i/getSquareWidth(),j/
+				getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER2_AM){
+				g2.drawImage(CROSS, getGrid().getCoordinate(i/getSquareWidth(),j/
+				getSquareHeight()).getX()*getSquareWidth() + MID_POSITION, getGrid().getCoordinate(i/getSquareWidth(),j/
+					getSquareHeight()).getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
+					    	//g2.setColor(Color.BLUE);
+					    	//g2.setStroke(new BasicStroke(2));
+					    	//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+			}
 		}
 	}
 	
@@ -406,7 +423,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		Iterator<Coordinate> iterator = m_win.iterator();
 		while (iterator.hasNext()){
 			//System.out.println(iterator.next()+"SSS");
-			g.setColor(Color.GREEN);  
+			//g.setColor(Color.GREEN);  
 			m_next = iterator.next();
 			//System.out.println(m_next);
 			//g.fillOval((SQUARE_HEIGHT*m_next.getX()+MID_POSITION), (SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE);
@@ -503,6 +520,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private static final long serialVersionUID = 1L;
 	private final BufferedImage CONNECT4BOARD2 = ImageIO.read(getClass().getResource("connect4board2.png"));
 	private final BufferedImage CONNECT4BOARD3 = ImageIO.read(getClass().getResource("connect4board3.png"));
+	private final BufferedImage CROSS = ImageIO.read(getClass().getResource("cross.png"));
 	private String m_board;
 	//********************
 }
