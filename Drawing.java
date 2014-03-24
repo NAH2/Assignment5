@@ -51,8 +51,19 @@ public class Drawing {
 	private JPanel m_setting = new JPanel();
 	private JLabel m_speed = new JLabel("Animation speed", JLabel.CENTER);
 	private JSlider m_slider;
+	private Dimension m_d;
+	private final int MINSPEED = 1;
+	private final int MAX_FALL_SPEED = 40;
+	private final int DEFAULT_FALL_SPEED = 20;
+	private final int MAX_FLIP_SPEED = 20;
+	private final int DEFAULT_FLIP_SPEED = 10;
+	private final int SLIDER_WIDTH = 80;
+	private final GUIEventHandler handler;
 	//******************************
-	
+	/**
+	 * Method to set the animation speed
+	 * @param the animation speed ,an integer, represents millisecond time delay per movement
+	 */
 	private void setSpeed(int speed){
 		gameBoardGraphics.SetSpeed(speed);
 	}
@@ -399,24 +410,29 @@ public class Drawing {
 	
 	    if(game instanceof ConnectFour){
 	    	m_speed.setText("Fall speed");
-	    	gameBoardGraphics.SetSpeed(20);
-			m_slider = new JSlider (0, 40, 20);
+	    	gameBoardGraphics.SetSpeed(DEFAULT_FALL_SPEED);
+			m_slider = new JSlider (MINSPEED, MAX_FALL_SPEED, DEFAULT_FALL_SPEED);
 	    } else {
 	    	m_speed.setText("Flip speed");
-	    	gameBoardGraphics.SetSpeed(10);
-	    	m_slider = new JSlider (0, 20, 10);
+	    	gameBoardGraphics.SetSpeed(DEFAULT_FLIP_SPEED);
+	    	m_slider = new JSlider (MINSPEED, MAX_FLIP_SPEED, DEFAULT_FLIP_SPEED);
 	    }
-	    Dimension d = m_slider.getPreferredSize();
-	    d.width = 80;
-	    m_slider.setPreferredSize(d);
+	    
+	    m_d = m_slider.getPreferredSize();
+	    m_d.width = SLIDER_WIDTH;
+	    m_slider.setPreferredSize(m_d);
+		handler = new GUIEventHandler();
+		m_slider.addChangeListener(handler);
+		m_slider.setInverted(true);
+	    
 	    m_setting.setLayout(setting);
 		m_setting.add(m_speed);
 		m_setting.add(m_slider);
+		
+		m_setting .setBackground(Color.WHITE);
 		c.gridy = BAR3GRIDY;
 		layout.setConstraints(m_setting, c);
 		SideBar.add(m_setting);
-		GUIEventHandler handler = new GUIEventHandler();
-		m_slider.addChangeListener(handler);
 	}
 	
 	private class GUIEventHandler implements ChangeListener {

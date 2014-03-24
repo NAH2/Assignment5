@@ -21,6 +21,10 @@ import java.awt.event.*;
  */
 public class GameBoardGraphics extends JComponent implements MouseMotionListener{
 	//******************************
+	/**
+	 * Method to set the animation speed
+	 * @param the animation speed ,an integer, represents millisecond time delay per movement
+	 */
 	public void SetSpeed(int speed){
 		m_speed = speed;
 	}
