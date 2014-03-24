@@ -36,6 +36,10 @@ public class Loader extends FileManager{
                                 setGridArray(x,y,Game.PlayerTurn.PLAYER2);
                             } else if (player.equals("NONE")) {                                
                                 setGridArray(x,y,Game.PlayerTurn.NONE);
+                            } else if (player.equals("PLAYER1_AM")) {                                
+                                setGridArray(x,y,Game.PlayerTurn.PLAYER1_AM);
+                            } else if (player.equals("PLAYER2_AM")) {                                
+                                setGridArray(x,y,Game.PlayerTurn.PLAYER2_AM);
                             } else {
                                 System.out.println("Invalid");
                                 //do something here to as it is an error
