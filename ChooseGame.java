@@ -77,6 +77,7 @@ public class ChooseGame {
 		JFrame newChoose = new JFrame();
 		setChooseFrame(newChoose);
 		getChooseFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		newChoose.setTitle("Select Game");
 		
 		Container panel = getChooseFrame().getContentPane();
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 10));	
@@ -146,6 +147,11 @@ public class ChooseGame {
 			getChooseFrame().setVisible(false);
 		}
 	}
+	
+	public static void main(String[] args) {
+		new ChooseGame();
+	}
+	
 	//private variables
 	private JButton m_connect4;
 	private JButton m_othello;
