@@ -13,9 +13,9 @@ import java.util.*;
  */
 
 public abstract class Game {
-	
-	public enum PlayerTurn {PLAYER1, PLAYER2, NONE, PLAYER1_AM , PLAYER2_AM}
-	
+
+	public enum PlayerTurn {PLAYER1, PLAYER2, NONE, PLAYER1_AM, PLAYER2_AM}
+
 	/**
 	 * Retrieves the window class containing the program's GUI.
 	 * 
@@ -25,7 +25,7 @@ public abstract class Game {
 	public GameWindow getWindow() {
 		return m_gameWindow;
 	}
-	
+
 	/**
 	 * Set's the window class in which this class will control and process.
 	 * 
@@ -34,7 +34,7 @@ public abstract class Game {
 	public void setWindow(GameWindow window) {
 		m_gameWindow = window;
 	}
-	
+
 	/**
 	 * Retrieves a pointer to the class containing the data of the gameboard.
 	 * 
@@ -43,7 +43,7 @@ public abstract class Game {
 	public Grid getGrid() {
 		return m_grid;
 	}
-	
+
 	/**
 	 * Set's the grid class which will contain the gameboard's data.
 	 * 
@@ -53,7 +53,7 @@ public abstract class Game {
 	public void setGrid(Grid grid) {
 		m_grid = grid;
 	}
-	
+
 	/**
 	 * Retrieves the Player class of player 1 but throws NullPointerException
 	 * if empty.
@@ -68,7 +68,7 @@ public abstract class Game {
 			return m_player1;
 		}
 	}
-	
+
 	/**
 	 * Retrieves the Player class of player 2 but throws NullPointerException
 	 * if empty.
@@ -83,7 +83,7 @@ public abstract class Game {
 			return m_player2;
 		}
 	}
-	
+
 	/**
 	 * Retrieves the which player's turn it currently is.
 	 * 
@@ -93,7 +93,7 @@ public abstract class Game {
 	public Game.PlayerTurn getPlayerTurn() {
 		return m_playerTurn;
 	}
-	
+
 	/**
 	 * Set's a variable which indicates which player's turn it currently is.
 	 * 
@@ -106,7 +106,7 @@ public abstract class Game {
 		m_playerTurn = turn;
 		return true;
 	}
-	
+
 	/**
 	 * Retrieves the amount of turns which have occurred in a single game.
 	 * 
@@ -115,7 +115,7 @@ public abstract class Game {
 	public int getTurnCount() {
 		return m_turnCount;
 	}
-	
+
 	/**
 	 * Set's the amount of turns which have occurred currently in a game.
 	 * 
@@ -127,7 +127,7 @@ public abstract class Game {
 		m_turnCount = count;
 		return true;
 	}
-	
+
 	/**
 	 * Stores the Player class for player 1 but throws IllegalArgumentException
 	 * if empty
@@ -143,7 +143,7 @@ public abstract class Game {
 		m_player1 = player;
 		return true;
 	}
-	
+
 	/**
 	 * Stores the Player class for player 2 but throws IllegalArgumentException
 	 * if empty
@@ -154,14 +154,14 @@ public abstract class Game {
 	 */
 	public boolean setPlayer2(Player player) {
 		boolean m_Trace = false;
-		
+
 		if(player == null) {
 			throw new IllegalArgumentException("Game::SetPlayer2 - Invalid player type(null) for player2");
 		}
 		m_player2 = player;
 		return true;
 	}
-	
+
 	/**
 	 * Returns the score for player 1 as an integer.
 	 * 
@@ -170,7 +170,7 @@ public abstract class Game {
 	public int getPlayer1Score() {
 		return m_player1Score;
 	}
-	
+
 	/**
 	 * Returns the score for player2 as an integer.
 	 * 
@@ -179,7 +179,7 @@ public abstract class Game {
 	public int getPlayer2Score() {
 		return m_player2Score;
 	}
-	
+
 	/**
 	 * Sets player 1's score to a certain integer.
 	 * 
@@ -194,7 +194,7 @@ public abstract class Game {
 		m_player1Score = score;
 		return true;
 	}
-	
+
 	/**
 	 * Sets player 1's score to a certain integer.
 	 * 
@@ -209,10 +209,10 @@ public abstract class Game {
 		m_player2Score = score;
 		return true;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Constructor which initialises this class.
 	 * 
@@ -223,11 +223,11 @@ public abstract class Game {
 	public Game(int x, int y) {
 		setGrid(new Grid(x, y));
 	}
-	
+
 	/**
 	 * Main method which is called whenever the game is first started.
 	 */
-	
+
 	public abstract void start();
 	//**********************
 	//private ArrayList<Coordinate> changes;
@@ -242,7 +242,23 @@ public abstract class Game {
 	 * @param move The move which the player has made as a Coordinate class.
 	 */
 	public abstract void moveMade(Coordinate move);
-	
+
+	public boolean setScores() {
+		setPlayer1Score(0);
+	    setPlayer2Score(0);
+	    for (int i = 0; i < getGrid().getGridWidth(); i++) {
+            for (int j = 0; j< getGrid().getGridHeight(); j++) {
+                if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
+                    setPlayer1Score(getPlayer1Score() + 1);
+                } else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
+                    setPlayer2Score(getPlayer2Score() + 1);
+                }
+            }
+        }
+
+	    return true;
+	}
+
 	/**
 	 * Used to check whether the move is valid within set game rules, and if not,
 	 * calls the GUI to display an error message.
@@ -253,17 +269,21 @@ public abstract class Game {
 	 * @return Returns TRUE if it is a valid move, FALSE otherwise.
 	 */
 	protected boolean validateMove(Coordinate move) {
+<<<<<<< HEAD
+
+=======
 			
+>>>>>>> FETCH_HEAD
 		if (isValidMove(move)) {
 			return true;
 		} else {
 			getWindow().displayInvalidMove();
 			return false;
 		}
-		
-		
+
+
 	}
-	
+
 	/**
 	 * Called whenever a game is to be reset to it's state at turn 0.
 	 */
@@ -280,7 +300,7 @@ public abstract class Game {
 		getWindow().SetOver(false);
 		resetGame();
 	}
-	
+
 	public void resumeGame() {
         boolean m_Trace = false;
         
@@ -289,10 +309,12 @@ public abstract class Game {
         getWindow().displayPlayerTurn(m_playerTurn);
         getWindow().updateScore(m_player1Score, m_player2Score);
         setTurnCount(m_player1Score + m_player2Score);
+        getWindow().updateScore(m_player1Score, m_player2Score);
+        setTurnCount(m_player1Score + m_player2Score);
     }
-	
+
 	protected abstract void resetGame();
-	
+
 	/**
 	 * Abstract Method used to test whether or not the game is over.
 	 * 
@@ -300,14 +322,14 @@ public abstract class Game {
 	 * game is still in progress.
 	 */
 	public abstract boolean isOver();
-	
+
 	/**
 	 * Abstract Method used to calculate the player who has won the game.
 	 * 
 	 * @return Returns the PlayerTurn enumerator who won the game.
 	 */
 	public abstract Game.PlayerTurn isWinner();
-	
+
 	/**
 	 * Abstract method used to change which player's turn it currently is
 	 * depending on the game rules.
@@ -316,7 +338,7 @@ public abstract class Game {
 	 * which turn it is, PLAYER1 or PLAYER2.
 	 */
 	protected abstract PlayerTurn nextPlayer();
-	
+
 	/**
 	 * Abstract method used to check whether or not this move is valid
 	 * in relation to the game rules.
@@ -328,7 +350,7 @@ public abstract class Game {
 	 * valid and FALSE for not valid
 	 */
 	protected abstract boolean isValidMove(Coordinate move);
-	
+
 	/**
 	 * Absract method which is used to indicate all the pieces in a grid that
 	 * is to be changed due to the game rules.
@@ -340,13 +362,13 @@ public abstract class Game {
 	 * be changed.
 	 */
 	protected abstract ArrayList<Coordinate> takeMove(Coordinate move);
-	
+
 	/**
 	 * Abstract method which is used to empty the set that 
 	 * stores the winning piece coordinates for opening a new game
 	 */
 	protected abstract void emptyWin();
-	
+
 	/**
 	 * Abstract method which is used to return the set that 
 	 * stores the winning piece coordinates for showing the winning pieces graphically
@@ -354,7 +376,7 @@ public abstract class Game {
 	 * @return Returns the set containing the winning piece coordinates
 	 */
 	protected abstract Set<Coordinate> getWin();
-	
+
 	/*
 	 * Global Variables
 	 */
