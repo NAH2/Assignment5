@@ -60,13 +60,14 @@ public class Othello extends Game
 		setWindow(new GameWindow(this));
 		if (super.getPlayer1().getPlayerColour().equals(Color.BLACK))
 		{
-		grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER1));
-		grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER2));
-		grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER2));
-		grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER1));
-		getPlayer1().isYourMove();
-		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		System.out.println("P1 Black");
+		    super.setPlayerTurn(Game.PlayerTurn.PLAYER1);
+		    grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER1));
+		    grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER2));
+		    grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER2));
+		    grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER1));
+		    getPlayer1().isYourMove();
+		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
+		    System.out.println("P1 Black");
 		}
 		else 
 		{
@@ -92,12 +93,13 @@ public class Othello extends Game
 		// Initialise starting peices
 		if (super.getPlayer1().getPlayerColour().equals(Color.BLACK))
 		{
-		grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER1));
-		grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER2));
-		grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER2));
-		grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER1));
-		getPlayer1().isYourMove();
-		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
+		    super.setPlayerTurn(Game.PlayerTurn.PLAYER1);
+		    grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER1));
+		    grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER2));
+		    grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER2));
+		    grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER1));
+		    getPlayer1().isYourMove();
+		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
 		}
 		else 
 		{
