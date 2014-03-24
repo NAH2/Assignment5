@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.util.*;
-
 /*
  *  @file	-Othello.Java
  * 	@author	-B. Golightly
@@ -59,7 +58,7 @@ public class Othello extends Game
 		
 		if(m_Trace) { System.out.println("Game::Start() - Game has started");}
 		setWindow(new GameWindow(this));
-		if (super.getPlayer1().getPlayerColour() == Color.BLACK)
+		if (super.getPlayer1().getPlayerColour().equals(Color.BLACK))
 		{
 		grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER1));
 		grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER2));
@@ -80,6 +79,8 @@ public class Othello extends Game
 			getPlayer2().isYourMove();
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
 		}
+		
+		availableMove();
 	}
 	
 	/**
@@ -89,7 +90,7 @@ public class Othello extends Game
 		Grid grid = super.getGrid();
 		
 		// Initialise starting peices
-		if (super.getPlayer1().getPlayerColour() == Color.BLACK)
+		if (super.getPlayer1().getPlayerColour().equals(Color.BLACK))
 		{
 		grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER1));
 		grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER2));
@@ -97,12 +98,10 @@ public class Othello extends Game
 		grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER1));
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		System.out.println("P1 Black");
 		}
 		else 
 		{
 			super.setPlayerTurn(Game.PlayerTurn.PLAYER2);
-			System.out.println("P2 Black");
 			grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER2));
 			grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER1));
 			grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER1));
@@ -112,19 +111,48 @@ public class Othello extends Game
 		}
 	}
 
+	private void availableMove(){
+		for (int y = 0; y < GAME_HEIGHT; y++) {
+			for (int x = 0; x < GAME_WIDTH; x++) {
+				
+				//reset
+				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.PLAYER1_AM ||
+					getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.PLAYER2_AM)
+				{
+					getGrid().setCoordinate(new Coordinate(x, y, Game.PlayerTurn.NONE));
+				}
+				
+				if (getPlayerTurn().equals(Game.PlayerTurn.PLAYER1)){
+					Coordinate c1 = new Coordinate(x, y, Game.PlayerTurn.PLAYER1);
+				 if (isValidMove(c1)) {
+					 Coordinate P1avaiableMov = new Coordinate(x, y, Game.PlayerTurn.PLAYER1_AM);
+					 getGrid().setCoordinate(P1avaiableMov);
+				 }
+				}
+				else if (getPlayerTurn().equals(Game.PlayerTurn.PLAYER2)) {
+					System.out.println("P2 turn");
+				 Coordinate c2 = new Coordinate(x, y, Game.PlayerTurn.PLAYER2);
+				 if (isValidMove(c2)) { 
+					 Coordinate P2avaiableMov = new Coordinate(x, y, Game.PlayerTurn.PLAYER2_AM);
+					 getGrid().setCoordinate(P2avaiableMov);
+				 }
+				}
+			}
+		}
+	}
+	
+	
 	/**
 	 * (PRIVATE) Queries the game to see if there are any valid moves remaining
 	 * for either player.
 	 * @return	True if a move can be made, false otherwise.
 	 */
-	public boolean isAnyValidMove() {
+	private boolean isAnyValidMove() {
 		Grid grid = getGrid();
-		boolean isAvailableMove = false;
-		m_availableMov = new boolean[GAME_WIDTH][GAME_HEIGHT];
 		// The game may end when the board is completely filled
 		if (super.getTurnCount() == GAME_WIDTH * GAME_HEIGHT) {
 			debug("IsAnyValidMove()", "board filled");
-			isAvailableMove = false;
+			return false;
 		}
 		
 		// Or when no valid moves remain (which may happen BEFORE the board
@@ -135,25 +163,15 @@ public class Othello extends Game
 				 Coordinate c1 = new Coordinate(x, y, Game.PlayerTurn.PLAYER1);
 				 Coordinate c2 = new Coordinate(x, y, Game.PlayerTurn.PLAYER2);
 				 
-				 if (isValidMove(c1) && getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
-					 m_availableMov[x][y] = true;
-					 isAvailableMove = true;
-					  }
-				 else if (isValidMove(c2) && getPlayerTurn() == Game.PlayerTurn.PLAYER2) { 
-					 m_availableMov[x][y] = true;
-					 isAvailableMove = true;
-					 }
-				 else 
-					 m_availableMov[x][y]  = false;
+				 if (isValidMove(c1)) { return true; }
+				 if (isValidMove(c2)) { return true; }
 			}
 		}
 		m_Trace = true;
 		
 		// Otherwise...
-		System.out.println(isAvailableMove);
-		return isAvailableMove;
+		return false;
 	}
-
 	/**
 	 * Checks if a given player selecting a given coordinate is a valid move.
 	 * @param player A valid player object used by the current game.
@@ -172,8 +190,10 @@ public class Othello extends Game
 			throw new IllegalArgumentException("bad turn value"); }
 		
 		// Check that the space is empty. If not, the move cannot be made.
-		if (getGrid().getCoordinate(xy.getX(), xy.getY()).getValue() !=
-			Game.PlayerTurn.NONE) { return false; }
+		if (getGrid().getCoordinate(xy.getX(), xy.getY()).getValue() ==
+			Game.PlayerTurn.PLAYER1 || 
+			getGrid().getCoordinate(xy.getX(), xy.getY()).getValue() ==
+			Game.PlayerTurn.PLAYER2) { return false; }
 		
 		// A move is valid if it "traps" the other player's peices between
 		// itself and another of the same player's peice, along diagonals or
@@ -299,6 +319,59 @@ public class Othello extends Game
 		ArrayList <Coordinate> captured = takeMove(xy);
 		return captured.size();
 	}
+	
+	public void moveMade(Coordinate move) {
+		boolean m_Trace = false;
+		
+		if(m_Trace) System.out.println("Game::MoveMade() - Called");
+		if(validateMove(move)) {
+			if(m_Trace) System.out.println("Game::MoveMade() - Move is valid");
+			ArrayList<Coordinate> changes = takeMove(move);
+			for(int i = 0; i < changes.size(); i++) {
+				getGrid().setCoordinate(changes.get(i));
+			}	
+			getWindow().displayGrid(getGrid());
+			//**********************
+				System.out.println("othello----");
+				changes.remove(0);
+				getWindow().SetAnimation("flip", changes);
+			//**********************
+			setPlayer1Score(0);
+			setPlayer2Score(0);
+			for (int i = 0; i < getGrid().getGridWidth(); i++) {
+				for (int j = 0; j< getGrid().getGridHeight(); j++) {
+					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
+						setPlayer1Score(getPlayer1Score() + 1);
+					} else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
+						setPlayer2Score(getPlayer2Score() + 1);
+					}
+				}
+			}
+			
+			getWindow().updateScore(getPlayer1Score(), getPlayer2Score());
+			setPlayerTurn(nextPlayer());
+			 availableMove();
+			getWindow().displayPlayerTurn(getPlayerTurn());
+			setTurnCount(getTurnCount() + 1);
+		}
+		
+		if(isOver()) {
+			if(m_Trace) System.out.println("Game::MoveMade() - Game is finished");
+			new EndNewGame(this);
+			emptyWin();
+		} else {
+			if (getPlayerTurn() == PlayerTurn.PLAYER1) {
+				if(m_Trace) System.out.println("Game::MoveMade() - Player1 next");
+				getPlayer1().isYourMove();
+			} else if(getPlayerTurn() == PlayerTurn.PLAYER2){
+				if(m_Trace) System.out.println("Game::MoveMade() - Player2 next");
+				getPlayer2().isYourMove();
+			}
+		}
+		System.out.println("Grid:\n" + getGrid().toString() + "\n");
+	}
+	
+	
 	
 	/**
 	 * (PRIVATE) Captures peices in a direction.
