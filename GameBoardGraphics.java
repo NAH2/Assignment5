@@ -239,6 +239,18 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						g2.setColor(PLAYER2_COLOUR);
 						g2.fillOval(i + MID_DIFF, j + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 					}
+					 else if (getGrid().getCoordinate(i/getSquareWidth(),j/
+							getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER1_AM){
+					    	g2.setColor(Color.RED);
+					    	g2.setStroke(new BasicStroke(2));
+					    	g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+					}
+					else if (getGrid().getCoordinate(i/getSquareWidth(),j/
+							getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER2_AM){
+					    	g2.setColor(Color.BLUE);
+					    	g2.setStroke(new BasicStroke(2));
+					    	g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+				}
 				}
 			}
 		}
