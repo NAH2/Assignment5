@@ -187,7 +187,7 @@ public abstract class Game {
 	 * 
 	 * @return Returns TRUE if successful
 	 */
-	private boolean setPlayer1Score(int score) {
+	protected boolean setPlayer1Score(int score) {
 		if(score < 0) {
 			throw new IllegalArgumentException("Game::AddPlayer1Score - Invalid integer(" + score + ") to addition of score");
 		}
@@ -202,7 +202,7 @@ public abstract class Game {
 	 * 
 	 * @return Returns TRUE if successful
 	 */
-	private boolean setPlayer2Score(int score) {
+	protected boolean setPlayer2Score(int score) {
 		if(score < 0) {
 			throw new IllegalArgumentException("Game::AddPlayer2Score - Invalid integer(" + score + ") to addition of score");
 		}
@@ -252,7 +252,7 @@ public abstract class Game {
 	 * 
 	 * @return Returns TRUE if it is a valid move, FALSE otherwise.
 	 */
-	private boolean validateMove(Coordinate move) {
+	protected boolean validateMove(Coordinate move) {
 			
 		if (isValidMove(move)) {
 			return true;
