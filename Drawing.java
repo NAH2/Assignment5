@@ -6,6 +6,10 @@ import java.awt.GridBagLayout;
 import java.awt.image.BufferedImage;
 //******************
 import java.util.ArrayList;
+import javax.swing.JSlider;
+import java.awt.GridLayout;
+import java.awt.Dimension;
+import javax.swing.event.*;
 //******************
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -13,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 
 /**
  * @brief Creates and updates the side bar.
@@ -42,7 +47,15 @@ public class Drawing {
 
 	private JPanel m_barPlayer1 = new JPanel();
 	private JPanel m_barPlayer2 = new JPanel();
+	//******************************
+	private JPanel m_setting = new JPanel();
+	private JLabel m_speed = new JLabel("Animation speed", JLabel.CENTER);
+	private JSlider m_slider;
+	//******************************
 	
+	private void setSpeed(int speed){
+		gameBoardGraphics.SetSpeed(speed);
+	}
 	//******************************
 	/**
 	* Method responsible for passing animation data to GameBoardGraphics class
@@ -311,6 +324,9 @@ public class Drawing {
 		final int P2SCOREY = 1;
 		final int P2PIECEY = 2;
 		final int BAR2GRIDY = 1;
+		//******************************
+		final int BAR3GRIDY = 2;
+		//******************************
 
 		if(m_Trace) { System.out.println
 			("Drawing::Drawing() - drawing initalizing");}
@@ -337,6 +353,9 @@ public class Drawing {
 		GridBagConstraints c = new GridBagConstraints();
 		GridBagConstraints pc1 = new GridBagConstraints();
 		GridBagConstraints pc2 = new GridBagConstraints();
+		//************************
+		GridLayout setting = new GridLayout(2,1);
+		//************************
 		
 		SideBar = new JPanel(layout);
 		
@@ -377,7 +396,36 @@ public class Drawing {
 	    c.gridy = BAR2GRIDY;
 	    layout.setConstraints(getBarPlayer2(), c);
 	    SideBar.add(getBarPlayer2());
+	
+	    if(game instanceof ConnectFour){
+	    	m_speed.setText("Fall speed");
+	    	gameBoardGraphics.SetSpeed(20);
+			m_slider = new JSlider (0, 40, 20);
+	    } else {
+	    	m_speed.setText("Flip speed");
+	    	gameBoardGraphics.SetSpeed(10);
+	    	m_slider = new JSlider (0, 20, 10);
+	    }
+	    Dimension d = m_slider.getPreferredSize();
+	    d.width = 80;
+	    m_slider.setPreferredSize(d);
+	    m_setting.setLayout(setting);
+		m_setting.add(m_speed);
+		m_setting.add(m_slider);
+		c.gridy = BAR3GRIDY;
+		layout.setConstraints(m_setting, c);
+		SideBar.add(m_setting);
+		GUIEventHandler handler = new GUIEventHandler();
+		m_slider.addChangeListener(handler);
 	}
+	
+	private class GUIEventHandler implements ChangeListener {
+		
+		//Change handler (e.g. for sliders)
+        public void stateChanged(ChangeEvent e) {
+        setSpeed(m_slider.getValue());
+        }
+    }
 	
 	/**
 	 * This method shows an error if a player makes an invalid move.

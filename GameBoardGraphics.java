@@ -2,13 +2,10 @@ import java.awt.BasicStroke;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.File;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.util.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -23,7 +20,11 @@ import java.awt.event.*;
  * or needs to be repainted.
  */
 public class GameBoardGraphics extends JComponent implements MouseMotionListener{
-	
+	//******************************
+	public void SetSpeed(int speed){
+		m_speed = speed;
+	}
+	//******************************
 	/**
 	 * returns the variable m_grid to the caller of the method.
 	 * @return private member variable m_grid, a grid object.
@@ -106,7 +107,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 							//System.out.println("drop:"+m_y);
 							try{
 								repaint();
-								Thread.sleep(m_fallTime);
+								Thread.sleep(m_speed);
 							} catch (Exception e){e.printStackTrace();}	
 						}
 						m_changes.clear();
@@ -122,13 +123,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 							for(m_w = OTHELLO_CURSOR_SIZE; m_w > 0; m_w=m_w-EVEN){							
 								repaint();
 								m_x = m_x + 1;
-								Thread.sleep(m_flipTime);			
+								Thread.sleep(m_speed);			
 							}
 							m_flipSide = true;
 							for(m_w = 0; m_w < OTHELLO_CURSOR_SIZE; m_w=m_w+EVEN){
 								repaint();
 								m_x = m_x - 1;
-								Thread.sleep(m_flipTime);	
+								Thread.sleep(m_speed);	
 							} 		
 						} catch (Exception e){e.printStackTrace();}
 						m_changes.clear();
@@ -153,7 +154,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		PLAYER2_COLOUR = player2.getPlayerColour();
 		if(PLAYER1_COLOUR.equals(Color.WHITE)){
 			m_player = Game.PlayerTurn.PLAYER1;
-		} else {
+		} else if(PLAYER1_COLOUR.equals(Color.BLACK)){
 			m_player = Game.PlayerTurn.PLAYER2;
 		}
 		setGrid(grid);
@@ -355,11 +356,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			//System.out.println(m_next);
 			//g.fillOval((SQUARE_HEIGHT*m_next.getX()+MID_POSITION), (SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE);
 				if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
-					g.drawImage(WIN_STAR, (SQUARE_WIDTH*m_next.getX()+MID_POSITION), (SQUARE_HEIGHT*m_next.getY()+MID_POSITION), null);
+					g.drawImage(WIN_STAR, (SQUARE_WIDTH*m_next.getX()+MID_POSITION), (SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE, null);
 				} else {
 					m_starX = SQUARE_WIDTH*m_next.getX()+MID_POSITION - ADJUST_POINT - ADJUST_POINT;
 					m_starY = SQUARE_HEIGHT*m_next.getY()+MID_POSITION-ADJUST_POINT-ADJUST_POINT;
-					g.drawImage(WIN_STAR, m_starX, m_starY, null);
+					g.drawImage(WIN_STAR, m_starX, m_starY, WINMARK_SIZE, WINMARK_SIZE, null);
 				}
 		}
 		//m_win.clear();
@@ -408,8 +409,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private boolean m_flippingPiece;
 	private boolean m_flipSide = false;
 	private int m_dropPoint = -30;
-	private int m_fallTime = 20;
-	private int m_flipTime = 10;
+	//private int m_fallTime = 20;
+	//private int m_flipTime = 10;
+	//******************************
+	private int m_speed;
+	//******************************
 	private int m_fallDistance = 30;
 	private String m_type = "";
 	private ArrayList<Coordinate> m_changes;
@@ -438,5 +442,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final BufferedImage WIN_STAR;
 	private final BufferedImage GRID1;
 	private final BufferedImage GRID2;
+	private static final long serialVersionUID = 1L;
 	//********************
 }
