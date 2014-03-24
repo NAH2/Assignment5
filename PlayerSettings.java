@@ -439,7 +439,7 @@ public class PlayerSettings  extends JFrame{
                 m_game.setPlayer1(player1);
                 m_game.setPlayer2(player2);
                 setVisible(false);
-                m_game.start();
+                m_game.resumeGame();
             }else {
                 JOptionPane.showMessageDialog(player, "ERROR Laoding File",
                         "Load ERROR",JOptionPane.ERROR_MESSAGE);

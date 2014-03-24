@@ -334,6 +334,14 @@ public abstract class Game {
 		resetGame();
 	}
 	
+	public void resumeGame() {
+        boolean m_Trace = false;
+        
+        if(m_Trace) { System.out.println("Game::resumeGame() - Game has resumed");}
+        setWindow(new GameWindow(this));
+        getWindow().displayPlayerTurn(m_playerTurn);
+    }
+	
 	protected abstract void resetGame();
 	
 	/**
