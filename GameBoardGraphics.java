@@ -263,7 +263,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					g2.drawRect(m_colX, m_colY, getSquareWidth(), getSquareHeight());
 				}*/
 				//When available move***************
-					if(m_player == Game.PlayerTurn.PLAYER1) {
+					/*if(m_player == Game.PlayerTurn.PLAYER1) {
 						if (getGrid().getCoordinate(m_posX/getSquareWidth(),m_posY/
 								getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER2_AM){
 							g2.setColor(PLAYER2_COLOUR);
@@ -275,7 +275,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 							g2.setColor(PLAYER1_COLOUR);
 							g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 						}
-					}
+					}*/
 					//g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
 					
 				//When available move***************
@@ -307,22 +307,26 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	*/
 	private void paintAvailableMove(Graphics2D g2, int i, int j){
 		if(!m_flippingPiece){
-			if (getGrid().getCoordinate(i/getSquareWidth(),j/
-				getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER1_AM){
-				g2.drawImage(CROSS, getGrid().getCoordinate(i/getSquareWidth(),j/
-				getSquareHeight()).getX()*getSquareWidth() + MID_POSITION, getGrid().getCoordinate(i/getSquareWidth(),j/
-						getSquareHeight()).getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
+			Coordinate c = getGrid().getCoordinate(i/getSquareWidth(),j/
+					getSquareHeight());
+			if (c.getValue()== Game.PlayerTurn.PLAYER1_AM){
+				g2.drawImage(CROSS, c.getX()*getSquareWidth() + MID_POSITION, c.getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
+				if(c.getX()*getSquareWidth() == m_colX && c.getY()*getSquareHeight() == m_colY){
+					g2.setColor(PLAYER1_COLOUR);
+					g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+				}
 					    	//g2.setColor(Color.RED);
 					    	//g2.setStroke(new BasicStroke(2));
 					    	//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-			} else if (getGrid().getCoordinate(i/getSquareWidth(),j/
-				getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER2_AM){
-				g2.drawImage(CROSS, getGrid().getCoordinate(i/getSquareWidth(),j/
-				getSquareHeight()).getX()*getSquareWidth() + MID_POSITION, getGrid().getCoordinate(i/getSquareWidth(),j/
-					getSquareHeight()).getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
+			} else if (c.getValue()== Game.PlayerTurn.PLAYER2_AM){
+				g2.drawImage(CROSS, c.getX()*getSquareWidth() + MID_POSITION, c.getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
 					    	//g2.setColor(Color.BLUE);
 					    	//g2.setStroke(new BasicStroke(2));
 					    	//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+				if(c.getX()*getSquareWidth() == m_colX && c.getY()*getSquareHeight() == m_colY){
+					g2.setColor(PLAYER2_COLOUR);
+					g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+				}
 			}
 		}
 	}
