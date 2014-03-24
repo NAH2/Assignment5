@@ -14,7 +14,7 @@ import java.util.*;
 
 public abstract class Game {
 	
-	public enum PlayerTurn {PLAYER1, PLAYER2, NONE}
+	public enum PlayerTurn {PLAYER1, PLAYER2, NONE, PLAYER1_AM , PLAYER2_AM}
 	
 	/**
 	 * Retrieves the window class containing the program's GUI.
@@ -241,78 +241,7 @@ public abstract class Game {
 	 * 
 	 * @param move The move which the player has made as a Coordinate class.
 	 */
-	public void moveMade(Coordinate move) {
-		boolean m_Trace = false;
-		
-		if(m_Trace) System.out.println("Game::MoveMade() - Called");
-		if(validateMove(move)) {
-			if(m_Trace) System.out.println("Game::MoveMade() - Move is valid");
-			ArrayList<Coordinate> changes = takeMove(move);
-			for(int i = 0; i < changes.size(); i++) {
-				getGrid().setCoordinate(changes.get(i));
-			}	
-			getWindow().displayGrid(getGrid());
-			//**********************
-			if(this instanceof ConnectFour){
-				System.out.println("con4----");
-				getWindow().SetAnimation("fall", changes);
-			} else {
-				System.out.println("othello----");
-				changes.remove(0);
-				getWindow().SetAnimation("flip", changes);
-			}
-			//**********************
-			setPlayer1Score(0);
-			setPlayer2Score(0);
-			setScores();
-			/*for (int i = 0; i < getGrid().getGridWidth(); i++) {
-				for (int j = 0; j< getGrid().getGridHeight(); j++) {
-					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
-						setPlayer1Score(getPlayer1Score() + 1);
-					} else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
-						setPlayer2Score(getPlayer2Score() + 1);
-					}
-				}
-			}*/
-			
-			getWindow().updateScore(getPlayer1Score(), getPlayer2Score());
-			setPlayerTurn(nextPlayer());
-			getWindow().displayPlayerTurn(m_playerTurn);
-			setTurnCount(getTurnCount() + 1);
-		}
-		
-		if(isOver()) {
-			if(m_Trace) System.out.println("Game::MoveMade() - Game is finished");
-			new EndNewGame(this);
-			emptyWin();
-		} else {
-			if (getPlayerTurn() == PlayerTurn.PLAYER1) {
-				if(m_Trace) System.out.println("Game::MoveMade() - Player1 next");
-				getPlayer1().isYourMove();
-			} else if(getPlayerTurn() == PlayerTurn.PLAYER2){
-				if(m_Trace) System.out.println("Game::MoveMade() - Player2 next");
-				getPlayer2().isYourMove();
-			}
-		}
-		System.out.println("Grid:\n" + m_grid.toString() + "\n");
-	}
-	
-	public boolean setScores() {
-	    setPlayer1Score(0);
-	    setPlayer2Score(0);
-	    
-	    for (int i = 0; i < getGrid().getGridWidth(); i++) {
-            for (int j = 0; j< getGrid().getGridHeight(); j++) {
-                if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
-                    setPlayer1Score(getPlayer1Score() + 1);
-                } else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
-                    setPlayer2Score(getPlayer2Score() + 1);
-                }
-            }
-        }
-	    
-	    return true;
-	}
+	public abstract void moveMade(Coordinate move);
 	
 	/**
 	 * Used to check whether the move is valid within set game rules, and if not,
