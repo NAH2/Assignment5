@@ -111,7 +111,8 @@ public class Coordinate
 	 * @return True if it does.
 	 */
 	public boolean isEmpty() {
-		return (m_Value == Game.PlayerTurn.NONE);
+		return (m_Value != Game.PlayerTurn.PLAYER1&&
+				m_Value != Game.PlayerTurn.PLAYER2 );
 	}
 	
 	/**
@@ -119,7 +120,8 @@ public class Coordinate
 	 * @return True if it does.
 	 */
 	public boolean isFilled() {
-		return (m_Value != Game.PlayerTurn.NONE);
+		return (m_Value == Game.PlayerTurn.PLAYER1 ||
+				m_Value == Game.PlayerTurn.PLAYER2);
 	}
 	
 	/**
