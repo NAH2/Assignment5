@@ -133,13 +133,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					public void run() {
 						try{
 							m_x = 0;
-							for(m_w = OTHELLO_CURSOR_SIZE; m_w > 0; m_w=m_w-EVEN){							
+							for(m_w = OTHELLO_SIZE; m_w > 0; m_w=m_w-EVEN){							
 								repaint();
 								m_x = m_x + 1;
 								Thread.sleep(m_speed);			
 							}
 							m_flipSide = true;
-							for(m_w = 0; m_w < OTHELLO_CURSOR_SIZE; m_w=m_w+EVEN){
+							for(m_w = 0; m_w < OTHELLO_SIZE; m_w=m_w+EVEN){
 								repaint();
 								m_x = m_x - 1;
 								Thread.sleep(m_speed);	
@@ -232,12 +232,24 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				if(!m_flippingPiece){
 					if (getGrid().getCoordinate(i/getSquareWidth(),j/
 						getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER1) {
-						g2.setColor(PLAYER1_COLOUR);
-						g2.fillOval(i + MID_DIFF, j + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+						if(PLAYER1_COLOUR.equals(Color.white)){
+							g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE, null);
+						} else if(PLAYER1_COLOUR.equals(Color.black)){
+							g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE, null);
+						} else {
+							g2.setColor(PLAYER1_COLOUR);
+							g2.fillOval(i + MID_DIFF, j + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE);
+						}
 					} else if (getGrid().getCoordinate(i/getSquareWidth(),j/
 						getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER2) {
-						g2.setColor(PLAYER2_COLOUR);
-						g2.fillOval(i + MID_DIFF, j + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+						if(PLAYER2_COLOUR.equals(Color.white)){
+							g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE, null);
+						} else if(PLAYER2_COLOUR.equals(Color.black)){
+							g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE, null);
+						} else {
+							g2.setColor(PLAYER2_COLOUR);
+							g2.fillOval(i + MID_DIFF, j + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE);
+						}
 					}
 				}
 				paintAvailableMove(g2, i, j);
@@ -262,23 +274,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					g2.setStroke(new BasicStroke(2));
 					g2.drawRect(m_colX, m_colY, getSquareWidth(), getSquareHeight());
 				}*/
-				//When available move***************
-					/*if(m_player == Game.PlayerTurn.PLAYER1) {
-						if (getGrid().getCoordinate(m_posX/getSquareWidth(),m_posY/
-								getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER2_AM){
-							g2.setColor(PLAYER2_COLOUR);
-							g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
-						}
-					} else {
-						if (getGrid().getCoordinate(m_posX/getSquareWidth(),m_posY/
-								getSquareHeight()).getValue()== Game.PlayerTurn.PLAYER1_AM){
-							g2.setColor(PLAYER1_COLOUR);
-							g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
-						}
-					}*/
-					//g2.fillOval(m_posX , m_posY, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
-					
-				//When available move***************
 			} else {
 				m_d = this.getSize();
 				g2.setColor(Color.BLACK);
@@ -312,8 +307,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			if (c.getValue()== Game.PlayerTurn.PLAYER1_AM){
 				g2.drawImage(CROSS, c.getX()*getSquareWidth() + MID_POSITION, c.getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
 				if(c.getX()*getSquareWidth() == m_colX && c.getY()*getSquareHeight() == m_colY){
-					g2.setColor(PLAYER1_COLOUR);
-					g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+					if(PLAYER1_COLOUR.equals(Color.white)){
+						g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE, null);
+					} else if(PLAYER1_COLOUR.equals(Color.black)){
+						g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE, null);
+					}
+					//g2.setColor(PLAYER1_COLOUR);
+					//g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE);
 				}
 					    	//g2.setColor(Color.RED);
 					    	//g2.setStroke(new BasicStroke(2));
@@ -324,8 +324,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					    	//g2.setStroke(new BasicStroke(2));
 					    	//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 				if(c.getX()*getSquareWidth() == m_colX && c.getY()*getSquareHeight() == m_colY){
-					g2.setColor(PLAYER2_COLOUR);
-					g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+					if(PLAYER2_COLOUR.equals(Color.white)){
+						g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE, null);
+					} else if(PLAYER2_COLOUR.equals(Color.black)){
+						g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE, null);
+					}
+					//g2.setColor(PLAYER2_COLOUR);
+					//g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE);
 				}
 			}
 		}
@@ -346,7 +351,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				g2.setColor(PLAYER2_COLOUR);
 			}
 			//System.out.println(m_y);
-			g2.fillOval(m_x + MID_DIFF, m_y + MID_DIFF, OTHELLO_CURSOR_SIZE, OTHELLO_CURSOR_SIZE);
+			g2.fillOval(m_x + MID_DIFF, m_y + MID_DIFF, OTHELLO_SIZE, OTHELLO_SIZE);
 		}
 	}
 	
@@ -388,20 +393,36 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						m_player = Game.PlayerTurn.PLAYER1;
 						if (!m_flipSide){
 							//System.out.println("FLIPPING");
-							g2.setColor(PLAYER2_COLOUR);							
+							if(PLAYER2_COLOUR.equals(Color.white)){
+								g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+							} else if(PLAYER2_COLOUR.equals(Color.black)){
+								g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+							}						
 						} else {
-							g2.setColor(PLAYER1_COLOUR);
+							if(PLAYER1_COLOUR.equals(Color.white)){
+								g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+							} else if(PLAYER1_COLOUR.equals(Color.black)){
+								g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+							}
 						}
-						g2.fillOval(i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_CURSOR_SIZE);
+						//g2.fillOval(i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE);
 					} else {
 						m_player = Game.PlayerTurn.PLAYER2;
 						if (!m_flipSide){
 							//System.out.println("FLIPPING");
-							g2.setColor(PLAYER1_COLOUR);
+							if(PLAYER1_COLOUR.equals(Color.white)){
+								g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+							} else if(PLAYER1_COLOUR.equals(Color.black)){
+								g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+							}
 						} else {
-							g2.setColor(PLAYER2_COLOUR);
+							if(PLAYER2_COLOUR.equals(Color.white)){
+								g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+							} else if(PLAYER2_COLOUR.equals(Color.black)){
+								g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+							}
 						}
-						g2.fillOval(i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_CURSOR_SIZE);
+						//g2.fillOval(i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE);
 					}
 				}
 			}
@@ -506,7 +527,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	//private final int DARK_GREEN = 102;
 	//private final int DARK_BLUE = 0;
 	private final int MID_DIFF = 3;
-	private final int OTHELLO_CURSOR_SIZE = (getSquareWidth()+getSquareHeight())/2 - 2*MID_DIFF;
+	private final int OTHELLO_SIZE = (getSquareWidth()+getSquareHeight())/2 - 2*MID_DIFF;
 	private int m_nextColX;
 	private int m_colX;
 	private int m_colY;
@@ -525,6 +546,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final BufferedImage CONNECT4BOARD2 = ImageIO.read(getClass().getResource("connect4board2.png"));
 	private final BufferedImage CONNECT4BOARD3 = ImageIO.read(getClass().getResource("connect4board3.png"));
 	private final BufferedImage CROSS = ImageIO.read(getClass().getResource("cross.png"));
+	private final BufferedImage WHITE = ImageIO.read(getClass().getResource("white.png"));
+	private final BufferedImage BLACK = ImageIO.read(getClass().getResource("black.png"));
 	private String m_board;
 	//********************
 }
