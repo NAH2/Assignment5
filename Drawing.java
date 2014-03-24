@@ -10,9 +10,10 @@ import javax.swing.JSlider;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 import javax.swing.event.*;
+import javax.swing.JComboBox;
+import java.awt.event.*;
 //******************
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
@@ -59,7 +60,16 @@ public class Drawing {
 	private final int DEFAULT_FLIP_SPEED = 10;
 	private final int SLIDER_WIDTH = 80;
 	private final GUIEventHandler handler;
+	private String[] boards = {"board1","board2","board3"};
+	private JComboBox m_skin = new JComboBox(boards);
 	//******************************
+	/**
+	 * Method to set the connect4 game board
+	 * @param the board name
+	 */
+	private void setBoard(String board){
+		gameBoardGraphics.SetBoard(board);
+	}
 	/**
 	 * Method to set the animation speed
 	 * @param the animation speed ,an integer, represents millisecond time delay per movement
@@ -429,17 +439,29 @@ public class Drawing {
 		m_setting.add(m_speed);
 		m_setting.add(m_slider);
 		
-		m_setting .setBackground(Color.WHITE);
+		m_setting.setBackground(Color.WHITE);
 		c.gridy = BAR3GRIDY;
 		layout.setConstraints(m_setting, c);
 		SideBar.add(m_setting);
+		
+		if(game instanceof ConnectFour){
+			c.gridy = BAR3GRIDY + 1;
+			layout.setConstraints(m_skin, c);
+			m_skin.setSelectedIndex(0);
+			m_skin.addActionListener(handler);
+			SideBar.add(m_skin);
+	    }
 	}
 	
-	private class GUIEventHandler implements ChangeListener {
+	private class GUIEventHandler implements ActionListener, ChangeListener {
 		
 		//Change handler (e.g. for sliders)
         public void stateChanged(ChangeEvent e) {
-        setSpeed(m_slider.getValue());
+        	setSpeed(m_slider.getValue());
+        }
+        public void actionPerformed(ActionEvent event) {
+        	String m_board = (String)m_skin.getSelectedItem();
+        	setBoard(m_board);
         }
     }
 	

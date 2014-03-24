@@ -28,6 +28,15 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	public void SetSpeed(int speed){
 		m_speed = speed;
 	}
+	
+	/**
+	 * Method to set the connect4 game board
+	 * @param the board name
+	 */
+	public void SetBoard(String board){
+		repaint();
+		m_board = board;
+	}
 	//******************************
 	/**
 	 * returns the variable m_grid to the caller of the method.
@@ -167,7 +176,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		GRID_WIDTH = (getXSquares() * getSquareWidth());
 		GRID_HEIGHT = (getYSquares() * getSquareHeight());
 		setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));
-		CONNECT4BOARD = ImageIO.read(getClass().getResource("connect4board.png"));
+		//CONNECT4BOARD = ImageIO.read(getClass().getResource("connect4board.png"));
 		WIN_STAR = ImageIO.read(getClass().getResource("star.png"));
 		GRID1 = ImageIO.read(getClass().getResource("Oboard.png"));
 		GRID2 = ImageIO.read(getClass().getResource("Oboard1.png"));
@@ -228,7 +237,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		//*****************		
 		paintFall(g2);
 		if(PLAYER1_COLOUR.equals(Color.YELLOW) || PLAYER1_COLOUR.equals(Color.RED)){
-			g2.drawImage(CONNECT4BOARD, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+			if(m_board == "board2"){
+				g2.drawImage(CONNECT4BOARD2, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+			} else if(m_board == "board3"){
+				g2.drawImage(CONNECT4BOARD3, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+			} else {
+				g2.drawImage(CONNECT4BOARD, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+			}
 		}
 		//********************
 		if(!m_isOver){	
@@ -362,8 +377,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 					g.drawImage(WIN_STAR, (SQUARE_WIDTH*m_next.getX()+MID_POSITION), (SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE, null);
 				} else {
-					m_starX = SQUARE_WIDTH*m_next.getX()+MID_POSITION - ADJUST_POINT - ADJUST_POINT;
-					m_starY = SQUARE_HEIGHT*m_next.getY()+MID_POSITION-ADJUST_POINT-ADJUST_POINT;
+					m_starX = SQUARE_WIDTH*m_next.getX()+MID_POSITION - ADJUST_POINT;
+					m_starY = SQUARE_HEIGHT*m_next.getY()+MID_POSITION - ADJUST_POINT - ADJUST_POINT;
 					g.drawImage(WIN_STAR, m_starX, m_starY, WINMARK_SIZE, WINMARK_SIZE, null);
 				}
 		}
@@ -442,10 +457,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private int m_starX;
 	private int m_starY;
 	private Dimension m_d; 
-	private final BufferedImage CONNECT4BOARD;
+	private final BufferedImage CONNECT4BOARD = ImageIO.read(getClass().getResource("connect4board.png"));;
 	private final BufferedImage WIN_STAR;
 	private final BufferedImage GRID1;
 	private final BufferedImage GRID2;
 	private static final long serialVersionUID = 1L;
+	private final BufferedImage CONNECT4BOARD2 = ImageIO.read(getClass().getResource("connect4board2.png"));
+	private final BufferedImage CONNECT4BOARD3 = ImageIO.read(getClass().getResource("connect4board3.png"));
+	private String m_board;
 	//********************
 }
