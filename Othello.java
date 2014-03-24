@@ -109,6 +109,7 @@ public class Othello extends Game
 			getPlayer2().isYourMove();
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
 		}
+		availableMove();
 	}
 
 	private void availableMove(){
