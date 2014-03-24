@@ -8,6 +8,7 @@ import java.util.*;
 //***************************
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  * @file GameWindow.java
@@ -143,12 +144,41 @@ public class GameWindow extends JFrame {
 		c.gridx = 1;
 		layout.setConstraints(getDrawing().getSideBarPanel(), c);
 		add(getDrawing().getSideBarPanel());
+		
+		JMenuBar menubar;
+		JMenuItem exit;
+		JMenuItem save;
+		JMenuItem load;
+		JMenuItem newGame;
+			  
+		menubar = new JMenuBar();
+		add(menubar);
+		
+		newGame = new JMenu("New Game");
+		menubar.add(newGame);
+		
+		      
+		save = new JMenu("Save");
+		menubar.add(save);
+		      
+		load = new JMenu("Load");
+		menubar.add(load);
+		
+		
+		
+		exit = new JMenu ("Exit");
+		menubar.add(exit);
+	
+		setJMenuBar(menubar);
+
 
 		setTitle("Boardgame");
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    pack();
         setLocationRelativeTo(null);
 		setVisible(true);
+		setResizable(false);
 		if(m_Trace) { System.out.println("GameWindow::GameWindow() - window initialized");}
 		
 	}
