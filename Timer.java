@@ -1,17 +1,32 @@
 
 public class Timer extends Thread {
 	
-	private int hours = 0;
-	private int minutes = 0;
-	private int seconds = 0;
-	private final int SECOND = 1000;
-	private final int MINUTE = 60;
-	private final int HOUR = 60;
-	private Game game;
-	String s;
+	public void setHours(int h) {
+		m_hours = h;
+	}
+	
+	public void setMinutes(int m) {
+		m_minutes = m;
+	}
+	
+	public void setSeconds(int s) {
+		m_seconds = s;
+	}
+	
+	public int getHours() {
+		return m_hours;
+	}
+	
+	public int getMinutes() {
+		return m_minutes;
+	}
+	
+	public int getSeconds() {
+		return m_seconds;
+	}
 	
 	public Timer(Game g) {
-	    game = g;
+	    m_game = g;
 	}
 	
 	public void secondInterval() {
@@ -25,23 +40,37 @@ public class Timer extends Thread {
 	public void run() {
 		while (true) {
 			secondInterval();
-			++seconds;
-			if (seconds >= MINUTE) {
-				++minutes;
-				seconds = 0;
+			++m_seconds;
+			if (m_seconds >= MINUTE) {
+				++m_minutes;
+				m_seconds = 0;
 			}
-			if (minutes >= HOUR) {
-				++hours;
-				minutes = 0;
+			if (m_minutes >= HOUR) {
+				++m_hours;
+				m_minutes = 0;
 			}
-			s = String.format("%02d:%02d:%02d", hours, minutes, seconds);
-			game.getWindow().setTimerDisplay(s);
+			m_display = String.format("%02d:%02d:%02d", m_hours, m_minutes, m_seconds);
+			//m_game.getWindow().setTimerDisplay(m_display);
 			//System.out.println(s);
 		}
 	}
+	
+	public String toString() {
+		String timeString = getHours() + "," + getMinutes() + "," + getSeconds() + ",";
+		return timeString;
+	}
+	
 	public static void main(String[] args) {
 		//Timer timer = new Timer();
 		//timer.start();
 	}
+	private int m_hours = 0;
+	private int m_minutes = 0;
+	private int m_seconds = 0;
+	private final int SECOND = 1000;
+	private final int MINUTE = 60;
+	private final int HOUR = 60;
+	private Game m_game;
+	private String m_display;
 	
 }
