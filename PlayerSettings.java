@@ -367,11 +367,11 @@ public class PlayerSettings  extends JFrame{
 				}
 			}else if(e.getSource() == EASY){
 
-					//player1 = new AIEasy(m_game);
+					player1 = new AIEasy(m_game);
 
 			}else if(e.getSource() == EASY2){
 				
-					//player2 = new AIEasy(m_game);
+					player2 = new AIEasy(m_game);
 
 			} else if(e.getSource() == HARD2){
 				if(ISOTHELLO){
