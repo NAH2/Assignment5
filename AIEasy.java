@@ -29,7 +29,6 @@ class AIEasy extends Player {
 
 	public Coordinate setAIMove (){
 		Random rnd = new Random();
-
 	 
 		int x = 0;
 		x = rnd.nextInt(getAvailableMoves().size());
