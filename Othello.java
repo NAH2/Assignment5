@@ -98,8 +98,9 @@ public class Othello extends Game
 			if 	(getPlayer2() instanceof OthelloAI){
 				Thread.sleep(500);
 				getPlayer2().sendMove();
+			}
 		}
-		}
+	    startTimer();
 		availableMove();
 	}
 
@@ -453,6 +454,7 @@ public class Othello extends Game
 			} else if(m_p2.size() > m_p1.size()){
 				m_win = new HashSet<Coordinate>(m_p2);
 			}
+	        getTimer().setRunning();
 			m_p1.clear();
 			m_p2.clear();
 		}
