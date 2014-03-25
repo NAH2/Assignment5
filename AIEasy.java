@@ -50,7 +50,7 @@ class AIEasy extends Player {
 	}
 	
 	public String toString(){
-		String playerData = "OthelloAI," + getPlayerName() + ","
+		String playerData = "AIEasy," + getPlayerName() + ","
 				+ getPlayerColour().getRGB() + "," + getYourTurn() + ",";
 
 		return playerData;
