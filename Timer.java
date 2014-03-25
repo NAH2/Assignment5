@@ -25,8 +25,13 @@ public class Timer extends Thread {
 		return m_seconds;
 	}
 	
+	public void setRunning(){
+		m_running = false;
+	}
+	
 	public Timer(Game g) {
 	    m_game = g;
+	    m_running = true;
 	}
 	
 	public void secondInterval() {
@@ -38,7 +43,7 @@ public class Timer extends Thread {
 	}
 	
 	public void run() {
-		while (true) {
+		while (m_running) {
 			secondInterval();
 			++m_seconds;
 			if (m_seconds >= MINUTE) {
@@ -50,7 +55,7 @@ public class Timer extends Thread {
 				m_minutes = 0;
 			}
 			m_display = String.format("%02d:%02d:%02d", m_hours, m_minutes, m_seconds);
-			//m_game.getWindow().setTimerDisplay(m_display);
+			m_game.getWindow().getDrawing().setTimerDisplay(m_display);
 			//System.out.println(s);
 		}
 	}
@@ -72,5 +77,6 @@ public class Timer extends Thread {
 	private final int HOUR = 60;
 	private Game m_game;
 	private String m_display;
+	private boolean m_running;
 	
 }
