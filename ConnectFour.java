@@ -62,6 +62,7 @@ public class ConnectFour extends Game {
 		setWindow(new GameWindow(this));
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
+		startTimer();
 	}
 	
 	/**
@@ -217,6 +218,7 @@ public class ConnectFour extends Game {
 				getWinner() == Game.PlayerTurn.PLAYER2) {
 			if(m_Trace) System.out.println
 				("ConnectFour::IsOver() - A Player has won");
+			    getTimer().setRunning();
 				return true;
 		} else {
 			return (!validMove());
