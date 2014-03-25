@@ -306,6 +306,7 @@ public abstract class Game {
         
         if(m_Trace) { System.out.println("Game::resumeGame() - Game has resumed");}
         setWindow(new GameWindow(this));
+        setScores();
         getWindow().displayPlayerTurn(m_playerTurn);
         getWindow().updateScore(m_player1Score, m_player2Score);
         setTurnCount(m_player1Score + m_player2Score);

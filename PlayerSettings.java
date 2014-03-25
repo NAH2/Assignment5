@@ -466,6 +466,7 @@ public class PlayerSettings  extends JFrame{
 		}
 		public void checkValid(Loader l) {
 		    if (l.getValid()) {
+		        m_game.getGrid().setGrid(l.getGridArray());
                 m_game.setPlayer1(player1);
                 m_game.setPlayer2(player2);
                 setVisible(false);

@@ -76,9 +76,8 @@ public class Loader extends FileManager{
     
     public Player loadPlayer1(Player player1) {
         if (loadPlayer(getPlayer1File())) {
-            switch (playerInfo[0]) {
-                case "Human": player1 = new Human(getGame());
-            }
+            
+            player1 = createPlayerType(playerInfo[0],player1);
             
             player1.setPlayerName(playerInfo[1]); //FIX hardcode
             player1.setPlayerColour(new Color(Integer.parseInt(playerInfo[2])));
@@ -97,9 +96,7 @@ public class Loader extends FileManager{
     
     public Player loadPlayer2(Player player2) {
         if (loadPlayer(getPlayer2File())) {
-            switch (playerInfo[0]) {
-                case "Human": player2 = new Human(getGame());
-            }
+            player2 = createPlayerType(playerInfo[0],player2);
             
             player2.setPlayerName(playerInfo[1]); //FIX hardcode
             player2.setPlayerColour(new Color(Integer.parseInt(playerInfo[2])));
@@ -116,6 +113,20 @@ public class Loader extends FileManager{
         }
         
         return player2;
+    }
+    
+    public Player createPlayerType(String type, Player player) {
+        switch (playerInfo[0]) {
+            case "Human": player = new Human(getGame());
+                break;
+            case "AIEasy": player = new AIEasy(getGame());
+                break;
+            case "OthelloAI": player = new OthelloAI(getGame());
+            break;
+        }
+        
+        
+        return player;
     }
     
     public Boolean loadPlayer(String file) {
