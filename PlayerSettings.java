@@ -366,17 +366,13 @@ public class PlayerSettings  extends JFrame{
 					//HERE FOR CONNECT4
 				}
 			}else if(e.getSource() == EASY){
-				if(ISOTHELLO){
+
 					player1 = new AIEasy(m_game);
-				}else{
-					//HERE FOR CONNECT4
-				}
+
 			}else if(e.getSource() == EASY2){
-				if(ISOTHELLO){
+				
 					player2 = new AIEasy(m_game);
-				}else{
-					//HERE FOR CONNECT4
-				}
+
 			} else if(e.getSource() == HARD2){
 				if(ISOTHELLO){
 					player2 = new OthelloAI(m_game);
