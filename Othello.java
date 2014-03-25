@@ -144,6 +144,24 @@ public class Othello extends Game
 		}
 	}
 	
+	private boolean checkPassTurn(){
+		for (int y = 0; y < GAME_HEIGHT; y++) {
+			for (int x = 0; x < GAME_WIDTH; x++) {
+				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.PLAYER1_AM &&
+						getPlayerTurn().equals(Game.PlayerTurn.PLAYER1)){
+					return false;
+				}
+				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.PLAYER2_AM &&
+						getPlayerTurn().equals(Game.PlayerTurn.PLAYER2)){
+					return false;
+				}
+			}
+			}
+		
+		setPlayerTurn(nextPlayer());
+
+		return true;
+	}
 	
 	/**
 	 * (PRIVATE) Queries the game to see if there are any valid moves remaining
@@ -353,8 +371,14 @@ public class Othello extends Game
 			
 			getWindow().updateScore(getPlayer1Score(), getPlayer2Score());
 			setPlayerTurn(nextPlayer());
+			 getWindow().displayPlayerTurn(getPlayerTurn());
 			 availableMove();
-			getWindow().displayPlayerTurn(getPlayerTurn());
+			 if(checkPassTurn() && isAnyValidMove())
+			 {
+				 super.Getpassturnmessage();
+				 availableMove();
+				 getWindow().displayPlayerTurn(getPlayerTurn());
+			 }
 			setTurnCount(getTurnCount() + 1);
 		}
 		

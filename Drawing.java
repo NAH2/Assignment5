@@ -483,6 +483,12 @@ public class Drawing {
 			    JOptionPane.ERROR_MESSAGE);
 	}
 	
+	public void Passturnmessage() {
+		JOptionPane.showMessageDialog(null,
+			    "No any move can be made, pass turn to opponent.",
+			    "Pass",
+			    JOptionPane.INFORMATION_MESSAGE);
+	}
 	/**
 	 * This is the main method. It is used for testing purposes
 	 */

@@ -275,10 +275,11 @@ public abstract class Game {
 			getWindow().displayInvalidMove();
 			return false;
 		}
-
-
 	}
 
+	protected void Getpassturnmessage(){
+		getWindow().Displaypassmessage();
+	}
 	/**
 	 * Called whenever a game is to be reset to it's state at turn 0.
 	 */

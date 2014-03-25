@@ -213,7 +213,10 @@ public class GameWindow extends JFrame {
 		getDrawing().invalidMove();
 		return true;
 	}
-	
+
+	public void Displaypassmessage(){
+		getDrawing().Passturnmessage();
+	}
 	/**
 	 * Called to update the player's scores displayed on screen.
 	 * 
