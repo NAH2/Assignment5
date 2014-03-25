@@ -140,6 +140,7 @@ public class PlayerSettings  extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setLocationRelativeTo(null);
 		setVisible(true);
+		setResizable(false);
 	}
 	/**
 	 * Sets out everything on this panel using grid bag layout
@@ -237,24 +238,24 @@ public class PlayerSettings  extends JFrame{
 		JPanel options1 = new JPanel(new GridBagLayout());
 		GridBagConstraints d = new GridBagConstraints();
 		
-		HUMAN.setPreferredSize(new Dimension(70,20));
+		HUMAN.setPreferredSize(new Dimension(100,20));
 		d.gridx=XLINE1;
 		d.gridy=YLINE1;
 		options1.add(HUMAN,d);
 		d.gridx=XLINE2;
 		d.gridy=YLINE1;
 		
-		AI.setPreferredSize(new Dimension(70,20));
+		AI.setPreferredSize(new Dimension(100,20));
 		options1.add(AI,d);
 		d.gridx=XLINE1;
 		d.gridy=YLINE2;
 		
-		EASY.setPreferredSize(new Dimension(70,20));
+		EASY.setPreferredSize(new Dimension(100,20));
 		options1.add(EASY,d);
 		d.gridx=XLINE2;
 		d.gridy=YLINE2;
 		
-		HARD.setPreferredSize(new Dimension(70,20));
+		HARD.setPreferredSize(new Dimension(100,20));
 		options1.add(HARD,d);
 
 		HARD.setVisible(false);
@@ -271,24 +272,24 @@ public class PlayerSettings  extends JFrame{
 		GridBagConstraints e = new GridBagConstraints();
 		
 		
-		HUMAN2.setPreferredSize(new Dimension(70,20));
+		HUMAN2.setPreferredSize(new Dimension(100,20));
 		e.gridx=XLINE1;
 		e.gridy=YLINE1;
 		options2.add(HUMAN2,e);
 		e.gridx=XLINE2;
 		e.gridy=YLINE1;
 		
-		AI2.setPreferredSize(new Dimension(70,20));
+		AI2.setPreferredSize(new Dimension(100,20));
 		options2.add(AI2,e);
 		e.gridx=XLINE1;
 		e.gridy=YLINE2;
 		
-		EASY2.setPreferredSize(new Dimension(70,20));
+		EASY2.setPreferredSize(new Dimension(100,20));
 		options2.add(EASY2,e);
 		e.gridx=XLINE2;
 		e.gridy=YLINE2;
 		
-		HARD2.setPreferredSize(new Dimension(70,20));
+		HARD2.setPreferredSize(new Dimension(100,20));
 		options2.add(HARD2,e);
 		
 
@@ -406,6 +407,7 @@ public class PlayerSettings  extends JFrame{
 				player2 = new Easy();
 			*/
 			} else if(e.getSource() == STARTBUTTON) {
+			    //player2 = new OthelloAI(m_game);
 				player1.setPlayerName(PLAYERNAME1.getText());
 				player2.setPlayerName(PLAYERNAME2.getText());
 				player1.setPlayerColour(player1Color);
@@ -434,6 +436,7 @@ public class PlayerSettings  extends JFrame{
                     checkValid(loader);
                 }
 			}
+			pack();
 		}
 		public void checkValid(Loader l) {
 		    if (l.getValid()) {
