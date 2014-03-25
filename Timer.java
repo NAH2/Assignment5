@@ -32,6 +32,7 @@ public class Timer extends Thread {
 	public Timer(Game g) {
 	    m_game = g;
 	    m_running = true;
+	    start();
 	}
 	
 	public void secondInterval() {
