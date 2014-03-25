@@ -226,9 +226,10 @@ public abstract class Game {
 
 	/**
 	 * Main method which is called whenever the game is first started.
+	 * @throws InterruptedException 
 	 */
 
-	public abstract void start();
+	public abstract void start() throws InterruptedException;
 	//**********************
 	//private ArrayList<Coordinate> changes;
 	//public ArrayList<Coordinate> getMove(){
@@ -282,8 +283,9 @@ public abstract class Game {
 	}
 	/**
 	 * Called whenever a game is to be reset to it's state at turn 0.
+	 * @throws InterruptedException 
 	 */
-	public void reset() {
+	public void reset() throws InterruptedException {
 		int x = getGrid().getGridWidth();
 		int y = getGrid().getGridHeight();
 		setGrid(new Grid(x, y));
@@ -320,7 +322,7 @@ public abstract class Game {
 	    return m_timer;
 	}
 
-	protected abstract void resetGame();
+	protected abstract void resetGame() throws InterruptedException;
 
 	/**
 	 * Abstract Method used to test whether or not the game is over.
