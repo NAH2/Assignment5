@@ -116,11 +116,4 @@ public class OthelloAI extends Player {
 		new Thread(r).start();
 
 	}
-
-	public String toString() {
-		String playerData = "OthelloAI," + getPlayerName() + ","
-				+ getPlayerColour().getRGB() + "," + getYourTurn() + ",";
-
-		return playerData;
-	}
 }

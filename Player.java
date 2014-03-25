@@ -98,6 +98,11 @@ public abstract class Player {
 	
 	public abstract void sendMove() throws InterruptedException;
 	
-	public abstract String toString();
+	public String toString(){
+        String playerData = getClass().getSimpleName() + "," + getPlayerName() + ","
+                + getPlayerColour().getRGB() + "," + getYourTurn() + ",";
+        System.out.println(playerData);
+        return playerData;
+    }
 
 }

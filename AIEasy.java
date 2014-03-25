@@ -48,15 +48,14 @@ class AIEasy extends Player {
 		}
 	}
 	
-	public String toString(){
-		String playerData = "AIEasy," + getPlayerName() + ","
-				+ getPlayerColour().getRGB() + "," + getYourTurn() + ",";
-
-		return playerData;
-	}
-	
 	public static void main(String[] args) {
 
 	}
+
+    @Override
+    public void sendMove() throws InterruptedException {
+        // TODO Auto-generated method stub
+        
+    }
 
 }

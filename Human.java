@@ -54,12 +54,5 @@ public class Human extends Player {
 	public void sendMove(){
 		
 	}
-	
-	public String toString() {	    
-	    String playerData = "human," + getPlayerName() + "," + getPlayerColour().getRGB()
-	            + "," + getYourTurn() + ",";
-	    
-	    return playerData;
-	}
 }
 
