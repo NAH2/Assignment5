@@ -15,8 +15,8 @@ class AIEasy extends Player {
 	
 	public ArrayList<Coordinate> getAvailableMoves (){
 		ArrayList<Coordinate> a = new ArrayList();
-		for (int x=0; x<getGame().getHeight();x++){
-			for (int y=0; y<getGame().getWidth();y++){
+		for (int x=0; x<getGame().getGrid().getGridWidth();x++){
+			for (int y=0; y<getGame().getGrid().getGridHeight();y++){
 				Coordinate  c1 =	new Coordinate (x, y, getGame().getPlayerTurn());
 							
 				if (getGame().isValidMove(c1)==true){
