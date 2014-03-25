@@ -365,7 +365,19 @@ public class PlayerSettings  extends JFrame{
 				}else{
 					//HERE FOR CONNECT4
 				}
-			}else if(e.getSource() == HARD2){
+			}else if(e.getSource() == EASY){
+				if(ISOTHELLO){
+					player1 = new AIEasy(m_game);
+				}else{
+					//HERE FOR CONNECT4
+				}
+			}else if(e.getSource() == EASY2){
+				if(ISOTHELLO){
+					player2 = new AIEasy(m_game);
+				}else{
+					//HERE FOR CONNECT4
+				}
+			} else if(e.getSource() == HARD2){
 				if(ISOTHELLO){
 					player2 = new OthelloAI(m_game);
 				}else{
@@ -430,6 +442,8 @@ public class PlayerSettings  extends JFrame{
 				setVisible(false);
 				m_game.start();
 			}
+			
+
 			
 			if (e.getSource() == RESUME_BUTTON) {
 			    
