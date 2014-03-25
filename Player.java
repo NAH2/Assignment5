@@ -92,10 +92,11 @@ public abstract class Player {
 	/**
 	 * abstract method which is called whenever gamewindow receives a move
 	 * @param move that was made
+	 * @throws InterruptedException 
 	 */
-	public abstract void sendMove(Coordinate move);
+	public abstract void sendMove(Coordinate move) throws InterruptedException;
 	
-	public abstract void sendMove();
+	public abstract void sendMove() throws InterruptedException;
 	
 	public abstract String toString();
 
