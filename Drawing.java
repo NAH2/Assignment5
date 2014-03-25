@@ -76,6 +76,9 @@ public class Drawing {
 	private BufferedImage m_p1piece;
 	private BufferedImage m_p2piece;
 	private JLabel m_timerLabel = new JLabel("00:00:00");
+	private int m_responseTime;
+	private final int BASETIME = 1000;
+	private final int TIME_RATIO = 50;
 	//******************************
 	/**
 	 * Method to set the connect4 game board
@@ -90,6 +93,12 @@ public class Drawing {
 	 */
 	private void setSpeed(int speed){
 		gameBoardGraphics.SetSpeed(speed);
+		m_responseTime = BASETIME + speed*TIME_RATIO;
+		if(gameBoardGraphics.GetPlayer1() instanceof OthelloAI){
+			((OthelloAI)gameBoardGraphics.GetPlayer1()).SetTime(m_responseTime);
+		} else if(gameBoardGraphics.GetPlayer2() instanceof OthelloAI){		
+			((OthelloAI)gameBoardGraphics.GetPlayer2()).SetTime(m_responseTime);
+		}
 	}
 	//******************************
 	/**
@@ -464,12 +473,11 @@ public class Drawing {
 	    //layout.setConstraints(getBarPlayer2(), c);
 	    SideBar.add(getBarPlayer2(),c);
 	
-	    if(game instanceof ConnectFour){
-	    	m_speed.setText("Fall speed");
+	    m_speed.setText("Game speed");
+	    if(game instanceof ConnectFour){	
 	    	gameBoardGraphics.SetSpeed(DEFAULT_FALL_SPEED);
 			m_slider = new JSlider (MINSPEED, MAX_FALL_SPEED, DEFAULT_FALL_SPEED);
 	    } else {
-	    	m_speed.setText("Flip speed");
 	    	gameBoardGraphics.SetSpeed(DEFAULT_FLIP_SPEED);
 	    	m_slider = new JSlider (MINSPEED, MAX_FLIP_SPEED, DEFAULT_FLIP_SPEED);
 	    }

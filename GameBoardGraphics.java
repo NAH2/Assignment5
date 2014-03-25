@@ -39,6 +39,14 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		repaint();
 		m_board = board;
 	}
+	
+	public Player GetPlayer1(){
+		return m_player1;
+	}
+	
+	public Player GetPlayer2(){
+		return m_player2;
+	}
 	//******************************
 	/**
 	 * returns the variable m_grid to the caller of the method.
@@ -165,10 +173,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	*/
 	public GameBoardGraphics(Grid grid, Player player1, Player player2) throws IOException{
 		addMouseMotionListener(this);
-		this.player1 = player1;
-		this.player2 = player2;
-		PLAYER1_COLOUR = player1.getPlayerColour();
-		PLAYER2_COLOUR = player2.getPlayerColour();
+		m_player1 = player1;
+		m_player2 = player2;
+		PLAYER1_COLOUR = m_player1.getPlayerColour();
+		PLAYER2_COLOUR = m_player2.getPlayerColour();
 		/*if(PLAYER1_COLOUR.equals(Color.WHITE)){
 			m_player = Game.PlayerTurn.PLAYER1;
 		} else if(PLAYER1_COLOUR.equals(Color.BLACK)){
@@ -312,7 +320,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		if(!m_flippingPiece){
 			Coordinate c = getGrid().getCoordinate(i/getSquareWidth(),j/
 					getSquareHeight());
-			if (c.getValue()== Game.PlayerTurn.PLAYER1_AM && player1 instanceof Human  ){
+			if (c.getValue()== Game.PlayerTurn.PLAYER1_AM && m_player1 instanceof Human  ){
 				g2.drawImage(CROSS, c.getX()*getSquareWidth() + MID_POSITION, c.getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
 				if(c.getX()*getSquareWidth() == m_colX && c.getY()*getSquareHeight() == m_colY){
 					if(PLAYER1_COLOUR.equals(Color.white)){
@@ -326,7 +334,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					    	//g2.setColor(Color.RED);
 					    	//g2.setStroke(new BasicStroke(2));
 					    	//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-			} else if (c.getValue()== Game.PlayerTurn.PLAYER2_AM && player2 instanceof Human){
+			} else if (c.getValue()== Game.PlayerTurn.PLAYER2_AM && m_player2 instanceof Human){
 				g2.drawImage(CROSS, c.getX()*getSquareWidth() + MID_POSITION, c.getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
 					    	//g2.setColor(Color.BLUE);
 					    	//g2.setStroke(new BasicStroke(2));
@@ -472,8 +480,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	}
 	 
 	//private member variables
-	private Player player1;
-	private Player player2;
+	private Player m_player1;
+	private Player m_player2;
 	private Grid m_grid;
 	private final int Y_SQUARES;
 	private final int X_SQUARES;

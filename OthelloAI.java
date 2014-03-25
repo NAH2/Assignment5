@@ -5,7 +5,12 @@ public class OthelloAI extends Player {
 
 	private final static int GAME_WIDTH = 8;
 	private final static int GAME_HEIGHT = 8;
-
+	private int m_time = 1500;
+	
+	public void SetTime(int responseTime){
+		m_time = responseTime;
+	}
+	
 	public OthelloAI(Game game, String name, Color color) {
 		super(game, name, color);
 
@@ -66,7 +71,7 @@ public class OthelloAI extends Player {
 					public void run() {
 						try {
 							Coordinate move ;
-							Thread.sleep(1700);
+							Thread.sleep(m_time);
 							move =setAIMove();
 							if (getYourTurn()) {
 								
@@ -112,8 +117,15 @@ public class OthelloAI extends Player {
 			   }
 			}
 		Runnable r = new MyThread(move);
-		r.wait(1500);
+		r.wait(m_time);
 		new Thread(r).start();
 
+	}
+
+	public String toString() {
+		String playerData = "OthelloAI," + getPlayerName() + ","
+				+ getPlayerColour().getRGB() + "," + getYourTurn() + ",";
+
+		return playerData;
 	}
 }
