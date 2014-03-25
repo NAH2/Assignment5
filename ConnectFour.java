@@ -292,6 +292,10 @@ public class ConnectFour extends Game {
 		}
 	}
 	
+	public int moveScore(Coordinate xy) {
+		return 0;
+		
+	}
 	/**
 	 * Checks downwards in a diagonal direction from the last counter that
 	 * has been placed to check if there are 4 counter of the same colour
