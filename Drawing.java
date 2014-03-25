@@ -3,15 +3,21 @@ import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.image.BufferedImage;
 //******************
 import java.util.ArrayList;
+
 import javax.swing.JSlider;
+
 import java.awt.GridLayout;
 import java.awt.Dimension;
+
 import javax.swing.event.*;
 import javax.swing.JComboBox;
+
 import java.awt.event.*;
+
 //******************
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -53,6 +59,7 @@ public class Drawing {
 	private JLabel m_speed = new JLabel("Animation speed", JLabel.CENTER);
 	private JSlider m_slider;
 	private Dimension m_d;
+	private final int PADDING = 6;
 	private final int MINSPEED = 1;
 	private final int MAX_FALL_SPEED = 40;
 	private final int DEFAULT_FALL_SPEED = 20;
@@ -62,12 +69,13 @@ public class Drawing {
 	private final GUIEventHandler handler;
 	private JComboBox m_skin;
 	private final int V_GAP = 10;
-	private final int ROW = 4;
+	private final int ROW = 5;
 	private final int SPEED_ROW = 2;
 	private Color m_p1colour;
 	private Color m_p2colour;
 	private BufferedImage m_p1piece;
 	private BufferedImage m_p2piece;
+	private JLabel m_timerLabel = new JLabel("00:00:00");
 	//******************************
 	/**
 	 * Method to set the connect4 game board
@@ -405,10 +413,11 @@ public class Drawing {
 		setPlayer1(game.getPlayer1());
 		setPlayer2(game.getPlayer2());
 		
-		GridLayout layout = new GridLayout(ROW, 1, 0, V_GAP);
+		GridBagLayout layout = new GridBagLayout();
 		GridBagLayout layoutP1 = new GridBagLayout();
 		GridBagLayout layoutP2 = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
+		c.insets = new Insets(PADDING,PADDING,PADDING,PADDING);
 		GridBagConstraints pc1 = new GridBagConstraints();
 		GridBagConstraints pc2 = new GridBagConstraints();
 		//************************
@@ -448,12 +457,12 @@ public class Drawing {
 	    BarTurn.add(getTurnsTaken());
 	    
 	    
-	   // layout.setConstraints(getBarPlayer1(), c);
-	    SideBar.add(getBarPlayer1());
+	    //layout.setConstraints(getBarPlayer1(), c);
+	    SideBar.add(getBarPlayer1(),c);
 	    
 	    c.gridy = BAR2GRIDY;
 	    //layout.setConstraints(getBarPlayer2(), c);
-	    SideBar.add(getBarPlayer2());
+	    SideBar.add(getBarPlayer2(),c);
 	
 	    if(game instanceof ConnectFour){
 	    	m_speed.setText("Fall speed");
@@ -479,7 +488,7 @@ public class Drawing {
 		m_setting.setBackground(Color.WHITE);
 		c.gridy = BAR3GRIDY;
 		//layout.setConstraints(m_setting, c);
-		SideBar.add(m_setting);
+		SideBar.add(m_setting,c);
 		
 		if(game instanceof ConnectFour){
 			String m_boards[] = new String[]{"board1","board2","board3"};
@@ -493,8 +502,18 @@ public class Drawing {
 		
 		c.gridy = BAR3GRIDY + 1;
 		//layout.setConstraints(m_skin, c);
-		SideBar.add(m_skin);
+		SideBar.add(m_skin,c);
+		
+		c.gridy = BAR3GRIDY + 2;
+        //layout.setConstraints(m_skin, c);
+        SideBar.add(m_timerLabel,c);
 	}
+	
+	public boolean setTimerDisplay(String time) {
+	    m_timerLabel.setText(time);
+          
+        return true;
+    }
 	
 	private class GUIEventHandler implements ActionListener, ChangeListener {
 		
