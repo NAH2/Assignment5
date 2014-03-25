@@ -311,6 +311,8 @@ public abstract class Game {
         setTurnCount(m_player1Score + m_player2Score);
         getWindow().updateScore(m_player1Score, m_player2Score);
         setTurnCount(m_player1Score + m_player2Score);
+        
+        startTimer();
     }
 	
 	public void startTimer() {

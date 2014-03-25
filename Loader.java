@@ -77,7 +77,7 @@ public class Loader extends FileManager{
     public Player loadPlayer1(Player player1) {
         if (loadPlayer(getPlayer1File())) {
             switch (playerInfo[0]) {
-                case "human": player1 = new Human(getGame());
+                case "Human": player1 = new Human(getGame());
             }
             
             player1.setPlayerName(playerInfo[1]); //FIX hardcode
@@ -98,7 +98,7 @@ public class Loader extends FileManager{
     public Player loadPlayer2(Player player2) {
         if (loadPlayer(getPlayer2File())) {
             switch (playerInfo[0]) {
-                case "human": player2 = new Human(getGame());
+                case "Human": player2 = new Human(getGame());
             }
             
             player2.setPlayerName(playerInfo[1]); //FIX hardcode
