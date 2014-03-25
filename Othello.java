@@ -82,7 +82,7 @@ public class Othello extends Game
 		    getPlayer1().isYourMove();
 		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
 			if 	(getPlayer1() instanceof OthelloAI){
-				Thread.sleep(500);
+				//Thread.sleep(500);
 				getPlayer1().sendMove();
 			}
 		}
@@ -96,7 +96,7 @@ public class Othello extends Game
 			getPlayer2().isYourMove();
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
 			if 	(getPlayer2() instanceof OthelloAI){
-				Thread.sleep(500);
+				//Thread.sleep(500);
 				getPlayer2().sendMove();
 			}
 		}

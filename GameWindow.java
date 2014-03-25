@@ -246,14 +246,14 @@ public class GameWindow extends JFrame {
 			move.setValue(Game.PlayerTurn.PLAYER1);
 			getGame().getPlayer1().sendMove(move);
 			if 	(getGame().getPlayer2() instanceof OthelloAI){
-				Thread.sleep(500);
+				//Thread.sleep(500);
 				getGame().getPlayer2().sendMove();
 			}
 		} else {
 			move.setValue(Game.PlayerTurn.PLAYER2);
 			getGame().getPlayer2().sendMove(move);
 			if 	(getGame().getPlayer1() instanceof OthelloAI){
-				Thread.sleep(500);
+				//Thread.sleep(500);
 				getGame().getPlayer1().sendMove();
 				
 			}

@@ -1,5 +1,5 @@
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.*;
 
 public class OthelloAI extends Player {
 
@@ -33,7 +33,7 @@ public class OthelloAI extends Player {
 		return list;
 	}
 
-	public Coordinate setAIMove() throws IndexOutOfBoundsException {
+	public Coordinate setAIMove() throws IndexOutOfBoundsException, InterruptedException {
 		ArrayList<Coordinate> listTwo = new ArrayList<Coordinate>();
 		listTwo = getAvailableMoves();
 		for (Coordinate Cs : listTwo) {
@@ -60,21 +60,61 @@ public class OthelloAI extends Player {
 
 	}
 
-	public void sendMove() {
-		Coordinate move ;
-		move =setAIMove();
-		if (getYourTurn()) {
-			setYourTurn(false);
-			getGame().moveMade(move);
-		}
+	public void sendMove() throws InterruptedException {
+		new Thread(
+				new Runnable() {
+					public void run() {
+						try {
+							Coordinate move ;
+							Thread.sleep(1700);
+							move =setAIMove();
+							if (getYourTurn()) {
+								
+								getGame().moveMade(move);
+								
+								setYourTurn(false);
+								
+							}
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+		).start();
 	}
 	
-	public void sendMove(Coordinate move) {
-		move = setAIMove();
-		if (getYourTurn()) {
-			setYourTurn(false);
-			getGame().moveMade(move);
-		}
+	public void sendMove(Coordinate move) throws InterruptedException {
+		class MyThread implements Runnable {
+				Coordinate m_move;
+			   public MyThread(Coordinate move) {
+			       // store parameter for later user
+				   m_move = move;
+			   }
+
+			   public void run() {
+					try {
+						m_move = setAIMove();
+					} catch (IndexOutOfBoundsException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (getYourTurn()) {
+						
+						getGame().moveMade(m_move);
+						
+						setYourTurn(false);
+						
+					}
+			   }
+			}
+		Runnable r = new MyThread(move);
+		r.wait(1500);
+		new Thread(r).start();
+
 	}
 
 	public String toString() {
