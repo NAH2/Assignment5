@@ -294,6 +294,8 @@ public abstract class Game {
 		getWindow().updateScore(getPlayer1Score(), getPlayer2Score());
 		getWindow().displayPlayerTurn(getPlayerTurn());
 		getWindow().SetOver(false);
+		m_timer.setRunning();
+		startTimer();
 		resetGame();
 	}
 
@@ -308,6 +310,15 @@ public abstract class Game {
         getWindow().updateScore(m_player1Score, m_player2Score);
         setTurnCount(m_player1Score + m_player2Score);
     }
+	
+	public void startTimer() {
+	    m_timer = new Timer(this);
+	    //m_timer.start();
+	}
+	
+	public Timer getTimer() {
+	    return m_timer;
+	}
 
 	protected abstract void resetGame();
 
@@ -395,4 +406,5 @@ public abstract class Game {
 	private int m_player2Score = 0;
 	private int m_turnCount = 0;
 	private PlayerTurn m_playerTurn = PlayerTurn.PLAYER1;
+	private Timer m_timer;
 }
