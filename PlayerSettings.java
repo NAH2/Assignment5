@@ -436,7 +436,12 @@ public class PlayerSettings  extends JFrame{
 				m_game.setPlayer2(player2);
 				System.out.println("PlayerSettings.ButtonListener::ActionPerformed() - Player 2 = " + PLAYERNAME2.getText() + ":" + player2.getPlayerColour());
 				setVisible(false);
-				m_game.start();
+				try {
+					m_game.start();
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 
