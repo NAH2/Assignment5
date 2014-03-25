@@ -205,12 +205,16 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 							//g2.setColor(new Color(RED,GREEN,BLUE));
 							if(m_board == "board2"){
 								g2.drawImage(GRID4, i, j, null);
+							} else if(m_board == "board3"){
+								g2.drawImage(GRID6, i, j, null);
 							} else {
 								g2.drawImage(GRID2, i, j, null);
 							}
 						} else {
 							if(m_board == "board2"){
 								g2.drawImage(GRID3, i, j, null);
+							} else if(m_board == "board3"){
+								g2.drawImage(GRID5, i, j, null);
 							} else {
 								g2.drawImage(GRID1, i, j, null);
 							}
@@ -375,6 +379,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						//g2.setColor(new Color(RED,GREEN,BLUE));
 						if(m_board == "board2"){
 							g2.drawImage(GRID4, i, j, null);
+						} else if(m_board == "board3"){
+							g2.drawImage(GRID6, i, j, null);
 						} else {
 							g2.drawImage(GRID2, i, j, null);
 						}
@@ -382,6 +388,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						//g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
 						if(m_board == "board2"){
 							g2.drawImage(GRID3, i, j, null);
+						} else if(m_board == "board3"){
+							g2.drawImage(GRID5, i, j, null);
 						} else {
 							g2.drawImage(GRID1, i, j, null);
 						}
@@ -514,10 +522,12 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private Dimension m_d; 
 	private final BufferedImage CONNECT4BOARD = ImageIO.read(getClass().getResource("connect4board.png"));;
 	private final BufferedImage WIN_STAR;
-	private final BufferedImage GRID1 = ImageIO.read(getClass().getResource("Oboard.png"));
-	private final BufferedImage GRID2 = ImageIO.read(getClass().getResource("Oboard1.png"));
-	private final BufferedImage GRID3 = ImageIO.read(getClass().getResource("Oboard2.png"));
-	private final BufferedImage GRID4 = ImageIO.read(getClass().getResource("Oboard3.png"));
+	private final BufferedImage GRID1 = ImageIO.read(getClass().getResource("Oboard1.png"));
+	private final BufferedImage GRID2 = ImageIO.read(getClass().getResource("Oboard2.png"));
+	private final BufferedImage GRID3 = ImageIO.read(getClass().getResource("Oboard3.png"));
+	private final BufferedImage GRID4 = ImageIO.read(getClass().getResource("Oboard4.png"));
+	private final BufferedImage GRID5 = ImageIO.read(getClass().getResource("Oboard5.png"));
+	private final BufferedImage GRID6 = ImageIO.read(getClass().getResource("Oboard6.png"));
 	
 	private static final long serialVersionUID = 1L;
 	private final BufferedImage CONNECT4BOARD2 = ImageIO.read(getClass().getResource("connect4board2.png"));
