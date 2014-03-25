@@ -9,6 +9,8 @@ import java.awt.Graphics2D;
 import java.util.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ConcurrentModificationException;
+import java.lang.NullPointerException;
 /**
  * @file GameBoardGraphics.java
  * @author Daniel 709547
@@ -165,11 +167,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		addMouseMotionListener(this);
 		PLAYER1_COLOUR = player1.getPlayerColour();
 		PLAYER2_COLOUR = player2.getPlayerColour();
-		if(PLAYER1_COLOUR.equals(Color.WHITE)){
+		/*if(PLAYER1_COLOUR.equals(Color.WHITE)){
 			m_player = Game.PlayerTurn.PLAYER1;
 		} else if(PLAYER1_COLOUR.equals(Color.BLACK)){
 			m_player = Game.PlayerTurn.PLAYER2;
-		}
+		}*/
 		setGrid(grid);
 		Y_SQUARES = getGrid().getGridHeight();
 		X_SQUARES = getGrid().getGridWidth();
@@ -285,11 +287,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			}	
 		} else {
 			paintWin(g2);
-			if(PLAYER1_COLOUR.equals(Color.WHITE)){
+			/*if(PLAYER1_COLOUR.equals(Color.WHITE)){
 				m_player = Game.PlayerTurn.PLAYER1;
 			} else {
 				m_player = Game.PlayerTurn.PLAYER2;
-			}
+			}*/
 			//m_player = Game.PlayerTurn.PLAYER2;
 		}
 	}
@@ -344,10 +346,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		if(m_type.equals("fall") && m_start && m_changes.size() > 0){
 			int m_x = m_changes.get(0).getX()*getSquareWidth();
 			if (m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1){
-				m_player = Game.PlayerTurn.PLAYER1;
+				//m_player = Game.PlayerTurn.PLAYER1;
 				g2.setColor(PLAYER1_COLOUR);
 			} else {
-				m_player = Game.PlayerTurn.PLAYER2;
+				//m_player = Game.PlayerTurn.PLAYER2;
 				g2.setColor(PLAYER2_COLOUR);
 			}
 			//System.out.println(m_y);
@@ -361,7 +363,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* @param i - point X of the piece to be flipped
 	* @param j - point Y of the piece to be flipped
 	*/
-	private void paintFlip(Graphics2D g2, int i, int j){
+	private void paintFlip(Graphics2D g2, int i, int j) throws NullPointerException, ConcurrentModificationException{
 		m_flippingPiece = false;
 		if(m_type.equals("flip") && m_changes.size()>0 && m_start){
 			Iterator<Coordinate> s = m_changes.iterator();
@@ -389,40 +391,21 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					g2.setStroke(new BasicStroke(2));
 					g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
 					//System.out.println("FLIPPING");
-					if(item.getValue()==Game.PlayerTurn.PLAYER1){
-						m_player = Game.PlayerTurn.PLAYER1;
-						if (!m_flipSide){
-							//System.out.println("FLIPPING");
-							if(PLAYER2_COLOUR.equals(Color.white)){
-								g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-							} else if(PLAYER2_COLOUR.equals(Color.black)){
-								g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-							}						
-						} else {
-							if(PLAYER1_COLOUR.equals(Color.white)){
-								g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-							} else if(PLAYER1_COLOUR.equals(Color.black)){
-								g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-							}
-						}
-						//g2.fillOval(i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE);
+					//if(item.getValue()==Game.PlayerTurn.PLAYER1){
+						//m_player = Game.PlayerTurn.PLAYER1;
+					if (!m_flipSide){
+						//System.out.println("FLIPPING");
+						if(PLAYER2_COLOUR.equals(Color.white)){
+							g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+						} else if(PLAYER2_COLOUR.equals(Color.black)){
+							g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+						}						
 					} else {
-						m_player = Game.PlayerTurn.PLAYER2;
-						if (!m_flipSide){
-							//System.out.println("FLIPPING");
-							if(PLAYER1_COLOUR.equals(Color.white)){
-								g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-							} else if(PLAYER1_COLOUR.equals(Color.black)){
-								g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-							}
-						} else {
-							if(PLAYER2_COLOUR.equals(Color.white)){
-								g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-							} else if(PLAYER2_COLOUR.equals(Color.black)){
-								g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-							}
+						if(PLAYER1_COLOUR.equals(Color.white)){
+							g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
+						} else if(PLAYER1_COLOUR.equals(Color.black)){
+							g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
 						}
-						//g2.fillOval(i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE);
 					}
 				}
 			}
@@ -469,8 +452,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	*/
 	public void mouseMoved(MouseEvent e) {
 		//System.out.println("x:"+e.getX()+", y:"+e.getY());
-		m_posX = e.getX();
-		m_posY = e.getY();
+		//m_posX = e.getX();
+		//m_posY = e.getY();
 		m_colX = (e.getX()/getSquareWidth())*getSquareWidth();
 		m_colY = (e.getY()/getSquareHeight())*getSquareHeight();
 		m_nextColX = (e.getX()/getSquareWidth())*getSquareWidth()+getSquareWidth();
@@ -500,8 +483,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final int MID_POSITION = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	private final int WINMARK_SIZE = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	//********************
-	private int m_posX;
-	private int m_posY;
+	//private int m_posX;
+	//private int m_posY;
 	private int m_x = 0;
 	private boolean m_flippingPiece;
 	private boolean m_flipSide = false;
@@ -518,7 +501,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private int m_y = 0;
 	private boolean m_start = false;
 	private int m_lowestY;
-	private Game.PlayerTurn m_player;
+	//private Game.PlayerTurn m_player;
 	//private final int RED = 0;
 	//private final int GREEN = 153;
 	//private final int BLUE = 0;
