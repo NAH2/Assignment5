@@ -4,9 +4,15 @@ public class Timer extends Thread {
 	private int hours = 0;
 	private int minutes = 0;
 	private int seconds = 0;
-	public final int SECOND = 1000;
-	public final int MINUTE = 60;
-	public final int HOUR = 60;
+	private final int SECOND = 1000;
+	private final int MINUTE = 60;
+	private final int HOUR = 60;
+	private Game game;
+	String s;
+	
+	public Timer(Game g) {
+	    game = g;
+	}
 	
 	public void secondInterval() {
 		try {
@@ -28,13 +34,14 @@ public class Timer extends Thread {
 				++hours;
 				minutes = 0;
 			}
-			String s = String.format("%02d:%02d:%02d", hours, minutes, seconds);
-			System.out.println(s);
+			s = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+			game.getWindow().setTimerDisplay(s);
+			//System.out.println(s);
 		}
 	}
 	public static void main(String[] args) {
-		Timer timer = new Timer();
-		timer.start();
+		//Timer timer = new Timer();
+		//timer.start();
 	}
 	
 }
