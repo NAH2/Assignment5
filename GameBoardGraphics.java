@@ -393,19 +393,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					//System.out.println("FLIPPING");
 					//if(item.getValue()==Game.PlayerTurn.PLAYER1){
 						//m_player = Game.PlayerTurn.PLAYER1;
-					if (!m_flipSide){
-						//System.out.println("FLIPPING");
-						if(PLAYER2_COLOUR.equals(Color.white)){
-							g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-						} else if(PLAYER2_COLOUR.equals(Color.black)){
-							g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-						}						
+					if((item.getValue()==Game.PlayerTurn.PLAYER1 && !m_flipSide && PLAYER2_COLOUR.equals(Color.white))||
+							(item.getValue()==Game.PlayerTurn.PLAYER1 && m_flipSide && PLAYER1_COLOUR.equals(Color.white))||
+							(item.getValue()==Game.PlayerTurn.PLAYER2 && !m_flipSide && PLAYER1_COLOUR.equals(Color.white))||
+							(item.getValue()==Game.PlayerTurn.PLAYER2 && m_flipSide && PLAYER2_COLOUR.equals(Color.white))){
+						g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
 					} else {
-						if(PLAYER1_COLOUR.equals(Color.white)){
-							g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-						} else if(PLAYER1_COLOUR.equals(Color.black)){
-							g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
-						}
+						g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, OTHELLO_SIZE, null);
 					}
 				}
 			}
