@@ -4,9 +4,6 @@ import java.awt.Color;
 
 class AIEasy extends Player {
 	
-	private final static int GAME_WIDTH = 8;
-	private final static int GAME_HEIGHT = 8;
-	
 	public AIEasy(Game game, String name, Color color) {
 		super(game, name, color);
 
@@ -18,8 +15,8 @@ class AIEasy extends Player {
 	
 	public ArrayList<Coordinate> getAvailableMoves (){
 		ArrayList<Coordinate> a = new ArrayList();
-		for (int x=0; x<GAME_HEIGHT;x++){
-			for (int y=0; y<GAME_WIDTH;y++){
+		for (int x=0; x<getGame().getHeight();x++){
+			for (int y=0; y<getGame().getWidth();y++){
 				Coordinate  c1 =	new Coordinate (x, y, getGame().getPlayerTurn());
 							
 				if (getGame().isValidMove(c1)==true){
