@@ -122,9 +122,10 @@ public class Controls {
 	 * @return true when the method is completed
 	 * @param move - coordinate object to be sent to the move made 
 	 * method in game window
+	 * @throws InterruptedException 
 	*/
 
-	public boolean moveMade(Coordinate move) {
+	public boolean moveMade(Coordinate move) throws InterruptedException {
 		getGameWindow().moveMade(move);
 		
 		return true;

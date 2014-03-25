@@ -95,7 +95,12 @@ public class GameBoardControls extends MouseAdapter {
 		int gridX = e.getX() / getCellWidth();
 		int gridY = e.getY() / getCellHeight();
 		if(m_Trace) System.out.println("GameBoardControls::mouseClicked() - Mouse clicked at grid: " + gridX + ":" + gridY);
-		getControls().moveMade(new Coordinate(gridX, gridY));
+		try {
+			getControls().moveMade(new Coordinate(gridX, gridY));
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	private int m_cellWidth;
