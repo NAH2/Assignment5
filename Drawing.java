@@ -64,6 +64,10 @@ public class Drawing {
 	private final int V_GAP = 10;
 	private final int ROW = 4;
 	private final int SPEED_ROW = 2;
+	private Color m_p1colour;
+	private Color m_p2colour;
+	private BufferedImage m_p1piece;
+	private BufferedImage m_p2piece;
 	//******************************
 	/**
 	 * Method to set the connect4 game board
@@ -273,14 +277,15 @@ public class Drawing {
 		final int OVALSIZE = 60;
 		
 		getPlayer1Name().setText(Player1.getPlayerName());
-		BufferedImage Piece = new BufferedImage
+		m_p1piece = new BufferedImage
 				(OVALSIZE, OVALSIZE, BufferedImage.TYPE_3BYTE_BGR);
-		Graphics2D g2 = Piece.createGraphics();
-		g2.setColor(Player1.getPlayerColour());
+		Graphics2D g2 = m_p1piece.createGraphics();
+		m_p1colour = Player1.getPlayerColour();
+		g2.setColor(m_p1colour);
 		g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
 		if(m_Trace) System.out.println
 		("Drawing::SetPlayer1() - colour is " + Player1.getPlayerColour());
-		getPlayer1Piece().setIcon(new ImageIcon(Piece));
+		getPlayer1Piece().setIcon(new ImageIcon(m_p1piece));
 	}
 	
 	/**
@@ -293,14 +298,15 @@ public class Drawing {
 		final int OVALSIZE = 60;
 		
 		getPlayer2Name().setText(Player2.getPlayerName());
-		BufferedImage Piece = new BufferedImage
+		m_p2piece = new BufferedImage
 				(OVALSIZE, OVALSIZE, BufferedImage.TYPE_3BYTE_BGR);
-		Graphics2D g2 = Piece.createGraphics();
-		g2.setColor(Player2.getPlayerColour());
+		Graphics2D g2 = m_p2piece.createGraphics();
+		m_p2colour = Player2.getPlayerColour();
+		g2.setColor(m_p2colour);
 		g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
 		if(m_Trace) System.out.println
 		("Drawing::SetPlayer2() - colour is " + Player2.getPlayerColour());
-		getPlayer2Piece().setIcon(new ImageIcon(Piece));
+		getPlayer2Piece().setIcon(new ImageIcon(m_p2piece));
 	}
 	
 	/**
@@ -309,11 +315,40 @@ public class Drawing {
 	 * taken.
 	 */
 	public void setPlayerTurn(Game.PlayerTurn PlayerTurn){
+		final int OVALSIZE = 60;
+		final int X = 14;
+		final int YOUR_Y = 29;
+		final int TURN_Y = 39;
+		
 		if(PlayerTurn == Game.PlayerTurn.PLAYER1){
 			getBarPlayer1().setBackground(Color.GRAY);
+					
+			BufferedImage Piece = new BufferedImage
+					(OVALSIZE, OVALSIZE, BufferedImage.TYPE_3BYTE_BGR);
+			Graphics2D g2 = Piece.createGraphics();
+			g2.setColor(m_p1colour);
+			g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
+			g2.setColor(m_p2colour);
+			g2.drawString("YOUR", X, YOUR_Y);
+			g2.drawString("TURN", X, TURN_Y);
+			getPlayer1Piece().setIcon(new ImageIcon(Piece));
+			getPlayer2Piece().setIcon(new ImageIcon(m_p2piece));			
+			
 			getBarPlayer2().setBackground(Color.WHITE);
 		} else {
 			getBarPlayer2().setBackground(Color.GRAY);
+			
+			BufferedImage Piece = new BufferedImage
+					(OVALSIZE, OVALSIZE, BufferedImage.TYPE_3BYTE_BGR);
+			Graphics2D g2 = Piece.createGraphics();
+			g2.setColor(m_p2colour);
+			g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
+			g2.setColor(m_p1colour);
+			g2.drawString("YOUR", X, YOUR_Y);
+			g2.drawString("TURN", X, TURN_Y);
+			getPlayer2Piece().setIcon(new ImageIcon(Piece));
+			getPlayer1Piece().setIcon(new ImageIcon(m_p1piece));
+			
 			getBarPlayer1().setBackground(Color.WHITE);
 		}
 	}
