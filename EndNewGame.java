@@ -210,7 +210,12 @@ public class EndNewGame extends JFrame implements ActionListener {
 	    Object src = evt.getSource();
 	    if (src == YES_BUTTON) {
 	    	dispose();
-	    	getGame().reset();
+	    	try {
+				getGame().reset();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	    } 
 	    else if (src == NO_BUTTON) {
 	    	dispose();

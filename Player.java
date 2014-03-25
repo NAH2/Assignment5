@@ -95,6 +95,8 @@ public abstract class Player {
 	 */
 	public abstract void sendMove(Coordinate move);
 	
+	public abstract void sendMove();
+	
 	public abstract String toString();
 
 }

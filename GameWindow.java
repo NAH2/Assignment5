@@ -239,14 +239,24 @@ public class GameWindow extends JFrame {
 	 * @param move The move that the user has made as a Coordinate.
 	 * 
 	 * @return Returns TRUE if successful.
+	 * @throws InterruptedException 
 	 */
-	public boolean moveMade(Coordinate move) {
+	public boolean moveMade(Coordinate move) throws InterruptedException {
 		if(getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
 			move.setValue(Game.PlayerTurn.PLAYER1);
 			getGame().getPlayer1().sendMove(move);
+			if 	(getGame().getPlayer2() instanceof OthelloAI){
+				Thread.sleep(500);
+				getGame().getPlayer2().sendMove();
+			}
 		} else {
 			move.setValue(Game.PlayerTurn.PLAYER2);
 			getGame().getPlayer2().sendMove(move);
+			if 	(getGame().getPlayer1() instanceof OthelloAI){
+				Thread.sleep(500);
+				getGame().getPlayer1().sendMove();
+				
+			}
 		}
 		return true;
 	}
@@ -263,7 +273,12 @@ public class GameWindow extends JFrame {
             }
             
             if (e.getSource() == m_resetGame) {
-                getGame().reset();
+                try {
+					getGame().reset();
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
             
             if (e.getSource() == m_save) {

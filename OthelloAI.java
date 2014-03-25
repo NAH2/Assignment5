@@ -33,7 +33,7 @@ public class OthelloAI extends Player {
 		return list;
 	}
 
-	public Coordinate setAIMove() {
+	public Coordinate setAIMove() throws IndexOutOfBoundsException {
 		ArrayList<Coordinate> listTwo = new ArrayList<Coordinate>();
 		listTwo = getAvailableMoves();
 		for (Coordinate Cs : listTwo) {
@@ -60,6 +60,15 @@ public class OthelloAI extends Player {
 
 	}
 
+	public void sendMove() {
+		Coordinate move ;
+		move =setAIMove();
+		if (getYourTurn()) {
+			setYourTurn(false);
+			getGame().moveMade(move);
+		}
+	}
+	
 	public void sendMove(Coordinate move) {
 		move = setAIMove();
 		if (getYourTurn()) {

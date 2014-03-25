@@ -52,42 +52,23 @@ public class Othello extends Game
 		//resetGame();
 	}
 	
-	public void start() {
+	public void start() throws InterruptedException {
 		boolean m_Trace = false;
 		Grid grid = super.getGrid();
 		
 		if(m_Trace) { System.out.println("Game::Start() - Game has started");}
 		setWindow(new GameWindow(this));
-		if (super.getPlayer1().getPlayerColour().equals(Color.BLACK))
-		{
-		    super.setPlayerTurn(Game.PlayerTurn.PLAYER1);
-		    grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER1));
-		    grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER2));
-		    grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER2));
-		    grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER1));
-		    getPlayer1().isYourMove();
-		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		    System.out.println("P1 Black");
-		}
-		else 
-		{
-			super.setPlayerTurn(Game.PlayerTurn.PLAYER2);
-			System.out.println("P2 Black");
-			grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER2));
-			grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER1));
-			grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER1));
-			grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER2));
-			getPlayer2().isYourMove();
-			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
-		}
+		resetGame();
 		
 		availableMove();
 	}
 	
+	
 	/**
 	 * Resets the starting pieces.
+	 * @throws InterruptedException 
 	 */
-	public void resetGame() {
+	public void resetGame() throws InterruptedException {
 		Grid grid = super.getGrid();
 		
 		// Initialise starting peices
@@ -100,6 +81,10 @@ public class Othello extends Game
 		    grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER1));
 		    getPlayer1().isYourMove();
 		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
+			if 	(getPlayer1() instanceof OthelloAI){
+				Thread.sleep(500);
+				getPlayer1().sendMove();
+			}
 		}
 		else 
 		{
@@ -110,6 +95,10 @@ public class Othello extends Game
 			grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER2));
 			getPlayer2().isYourMove();
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
+			if 	(getPlayer2() instanceof OthelloAI){
+				Thread.sleep(500);
+				getPlayer2().sendMove();
+		}
 		}
 		availableMove();
 	}
