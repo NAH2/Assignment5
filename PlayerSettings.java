@@ -138,7 +138,6 @@ public class PlayerSettings  extends JFrame{
         a.gridy = YLINE2;
 		player.add(RESUME_BUTTON,a);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    setLocationRelativeTo(null);
 		setVisible(true);
 		setResizable(false);
 	}
@@ -360,7 +359,19 @@ public class PlayerSettings  extends JFrame{
 			} else if(e.getSource() == AI2) {
 				EASY2.setVisible(true);
 				HARD2.setVisible(true);
-			} else if(e.getSource() == PLAYERCOLOUR_A1) {
+			} else if(e.getSource() == HARD){
+				if(ISOTHELLO){
+					player1 = new OthelloAI(m_game);
+				}else{
+					//HERE FOR CONNECT4
+				}
+			}else if(e.getSource() == HARD2){
+				if(ISOTHELLO){
+					player2 = new OthelloAI(m_game);
+				}else{
+					//HERE FOR CONNECT4
+				}
+			}else if(e.getSource() == PLAYERCOLOUR_A1) {
 				if(ISOTHELLO) {
 					player1Color = Color.BLACK;
 				} else {
@@ -440,10 +451,8 @@ public class PlayerSettings  extends JFrame{
 		}
 		public void checkValid(Loader l) {
 		    if (l.getValid()) {
-                getGame().getGrid().setGrid(l.getGridArray());
                 m_game.setPlayer1(player1);
                 m_game.setPlayer2(player2);
-                m_game.setScores();
                 setVisible(false);
                 m_game.resumeGame();
             }else {
