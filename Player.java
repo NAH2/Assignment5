@@ -87,8 +87,9 @@ public abstract class Player {
 	/**
 	 * abstract method that can be implemented 
 	 * which gets called whenever it is players turn
+	 * @throws InterruptedException 
 	 */
-	public abstract void isYourMove();
+	public abstract void isYourMove() throws InterruptedException;
 	/**
 	 * abstract method which is called whenever gamewindow receives a move
 	 * @param move that was made

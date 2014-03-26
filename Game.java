@@ -241,8 +241,9 @@ public abstract class Game {
 	 * the GUI and storage classes to store the processed move's data.
 	 * 
 	 * @param move The move which the player has made as a Coordinate class.
+	 * @throws InterruptedException 
 	 */
-	public abstract void moveMade(Coordinate move);
+	public abstract void moveMade(Coordinate move) throws InterruptedException;
 
 	public boolean setScores() {
 		setPlayer1Score(0);

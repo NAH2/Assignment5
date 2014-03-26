@@ -67,7 +67,7 @@ public class ConnectFourAI extends Player{
 
 	}
 
-	public void sendMove(Coordinate move) {
+	public void sendMove(Coordinate move) throws InterruptedException {
 		move = setAIMove();
 		if (getYourTurn()) {
 			setYourTurn(false);

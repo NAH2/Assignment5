@@ -55,7 +55,7 @@ public class ConnectFour extends Game {
 		super(GAME_WIDTH, GAME_HEIGHT);
 	}
 	
-	public void start() {
+	public void start() throws InterruptedException {
 		boolean m_Trace = false;
 		
 		if(m_Trace) { System.out.println("Game::Start() - Game has started");}
@@ -67,8 +67,9 @@ public class ConnectFour extends Game {
 	
 	/**
 	 * Resets the starting pieces.
+	 * @throws InterruptedException 
 	 */
-	public void resetGame() {
+	public void resetGame() throws InterruptedException {
 		setWinner(Game.PlayerTurn.NONE);
 		setPlayerTurn(PlayerTurn.PLAYER1);
 		getPlayer1().isYourMove();
@@ -128,7 +129,7 @@ public class ConnectFour extends Game {
 		}
 	}
 	
-	public void moveMade(Coordinate move) {
+	public void moveMade(Coordinate move) throws InterruptedException {
 		boolean m_Trace = false;
 		
 		if(m_Trace) System.out.println("Game::MoveMade() - Called");

@@ -47,7 +47,12 @@ public class Human extends Player {
 	public void sendMove(Coordinate move) {
 		if(getYourTurn()) {
 			setYourTurn(false);
-			getGame().moveMade(move);
+			try {
+				getGame().moveMade(move);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
