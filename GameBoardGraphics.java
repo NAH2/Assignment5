@@ -348,8 +348,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 				//******************************
 				if(m_AImove != null && !m_changes.isEmpty() &&
-						((m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1 && m_player1 instanceof OthelloAI) ||
-							m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER2 && m_player2 instanceof OthelloAI)){
+						((m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1 && (m_player1 instanceof OthelloAI || m_player1 instanceof AIEasy)) ||
+							(m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER2 && (m_player2 instanceof OthelloAI || m_player2 instanceof AIEasy)))) {
+					
 					g2.setColor(Color.RED);
 					g2.setStroke(new BasicStroke(4));
 					g2.drawOval(m_AImove.getX()*getSquareWidth()+MID_POSITION, m_AImove.getY()*getSquareHeight()+MID_POSITION, WINMARK_SIZE, WINMARK_SIZE);
