@@ -55,8 +55,9 @@ class AIEasy extends Player {
 	}
 
     @Override
-    public void sendMove() throws InterruptedException {
-        // TODO Auto-generated method stub
+    public void sendMove() {
+		Coordinate  move =	new Coordinate (null);
+        sendMove(move);
         
     }
 
