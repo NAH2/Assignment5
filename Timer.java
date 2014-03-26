@@ -57,21 +57,22 @@ public class Timer extends Thread {
 				++m_hours;
 				m_minutes = 0;
 			}
-			m_display = String.format("%02d:%02d:%02d", m_hours, m_minutes, m_seconds);
-			m_game.getWindow().getDrawing().setTimerDisplay(m_display);
-			//System.out.println(s);
+			m_display = String.format("%02d:%02d:%02d", m_hours, m_minutes,
+			                                                         m_seconds);
+			try {
+		         m_game.getWindow().getDrawing().setTimerDisplay(m_display);
+			} catch (NullPointerException e){
+			    setRunning();
+			}
 		}
 	}
 	
 	public String toString() {
-		String timeString = getHours() + "," + getMinutes() + "," + getSeconds() + ",";
+		String timeString = getHours() + "," + getMinutes() 
+		                                             + "," + getSeconds() + ",";
 		return timeString;
 	}
 	
-	public static void main(String[] args) {
-		//Timer timer = new Timer();
-		//timer.start();
-	}
 	private int m_hours = 0;
 	private int m_minutes = 0;
 	private int m_seconds = 0;

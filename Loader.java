@@ -34,7 +34,7 @@ public class Loader extends FileManager{
                             } else if (player.equals(PLAYER2_AM)) {                                
                                 setGridArray(x,y,Game.PlayerTurn.PLAYER2_AM);
                             } else {
-                                System.out.println(INVALID);
+                                m_allValid = false;
                             }
                         }
                     }
