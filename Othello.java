@@ -59,7 +59,7 @@ public class Othello extends Game
 		if(m_Trace) { System.out.println("Game::Start() - Game has started");}
 		setWindow(new GameWindow(this));
 		resetGame();
-		
+		startTimer();
 		availableMove();
 	}
 	
@@ -100,7 +100,6 @@ public class Othello extends Game
 				getPlayer2().sendMove();
 			}
 		}
-	    startTimer();
 		availableMove();
 	}
 
