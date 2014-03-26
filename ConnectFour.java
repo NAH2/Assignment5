@@ -66,6 +66,10 @@ public class ConnectFour extends Game {
 		setWindow(new GameWindow(this));
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
+		if 	((getPlayer1() instanceof ConnectFourAI||
+				getPlayer1() instanceof AIEasy) && (getPlayer2() instanceof Human)){
+			getPlayer1().sendMove();
+		}
 		startTimer();
 	}
 
@@ -78,6 +82,10 @@ public class ConnectFour extends Game {
 		setPlayerTurn(PlayerTurn.PLAYER1);
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
+		if 	((getPlayer1() instanceof ConnectFourAI||
+				getPlayer1() instanceof AIEasy) && (getPlayer2() instanceof Human)){
+			getPlayer1().sendMove();
+		}
 	}
 
 	/**
