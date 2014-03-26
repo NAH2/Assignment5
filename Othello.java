@@ -84,8 +84,7 @@ public class Othello extends Game
 		    getPlayer1().isYourMove();
 		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
 			if 	(getPlayer1() instanceof OthelloAI||
-					getPlayer1() instanceof AIEasy ||
-					getPlayer1() instanceof ConnectFourAI){
+					getPlayer1() instanceof AIEasy ){
 				//Thread.sleep(500);
 				getPlayer1().sendMove();
 			}
@@ -100,8 +99,7 @@ public class Othello extends Game
 			getPlayer2().isYourMove();
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
 			if 	(getPlayer2() instanceof OthelloAI || 
-					getPlayer2() instanceof AIEasy ||
-					getPlayer2() instanceof ConnectFourAI ){
+					getPlayer2() instanceof AIEasy ){
 				//Thread.sleep(500);
 				getPlayer2().sendMove();
 			}
