@@ -18,6 +18,8 @@ public class Othello extends Game
 {
 	private final static int GAME_WIDTH  = 8;
 	private final static int GAME_HEIGHT = 8;
+	private final int coord1 = 3;
+	private final int coord2 = 4;
 
 	/* 
 	* Return the winning piece coordinates
@@ -75,10 +77,10 @@ public class Othello extends Game
 		if (super.getPlayer1().getPlayerColour().equals(Color.BLACK))
 		{
 		    super.setPlayerTurn(Game.PlayerTurn.PLAYER1);
-		    grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER1));
-		    grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER2));
-		    grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER2));
-		    grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER1));
+		    grid.setCoordinate(new Coordinate(coord1, coord1, Game.PlayerTurn.PLAYER1));
+		    grid.setCoordinate(new Coordinate(coord2, coord1, Game.PlayerTurn.PLAYER2));
+		    grid.setCoordinate(new Coordinate(coord1, coord2, Game.PlayerTurn.PLAYER2));
+		    grid.setCoordinate(new Coordinate(coord2, coord2, Game.PlayerTurn.PLAYER1));
 		    getPlayer1().isYourMove();
 		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
 			if 	(getPlayer1() instanceof OthelloAI){
@@ -89,10 +91,10 @@ public class Othello extends Game
 		else 
 		{
 			super.setPlayerTurn(Game.PlayerTurn.PLAYER2);
-			grid.setCoordinate(new Coordinate(3, 3, Game.PlayerTurn.PLAYER2));
-			grid.setCoordinate(new Coordinate(4, 3, Game.PlayerTurn.PLAYER1));
-			grid.setCoordinate(new Coordinate(3, 4, Game.PlayerTurn.PLAYER1));
-			grid.setCoordinate(new Coordinate(4, 4, Game.PlayerTurn.PLAYER2));
+			grid.setCoordinate(new Coordinate(coord1, coord1, Game.PlayerTurn.PLAYER2));
+			grid.setCoordinate(new Coordinate(coord2, coord1, Game.PlayerTurn.PLAYER1));
+			grid.setCoordinate(new Coordinate(coord1, coord2, Game.PlayerTurn.PLAYER1));
+			grid.setCoordinate(new Coordinate(coord2, coord2, Game.PlayerTurn.PLAYER2));
 			getPlayer2().isYourMove();
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
 			if 	(getPlayer2() instanceof OthelloAI){
