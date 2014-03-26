@@ -347,11 +347,9 @@ public class Othello extends Game
 			}	
 			getWindow().displayGrid(getGrid());
 			//**********************
-			if ((getPlayer1() instanceof OthelloAI && changes.get(0).getValue() == Game.PlayerTurn.PLAYER1) || 
-					(getPlayer2() instanceof OthelloAI && changes.get(0).getValue() == Game.PlayerTurn.PLAYER2)){
+			if (((getPlayer1() instanceof OthelloAI || getPlayer1() instanceof AIEasy) && changes.get(0).getValue() == Game.PlayerTurn.PLAYER1) || 
+					((getPlayer2() instanceof OthelloAI || getPlayer2() instanceof AIEasy) && changes.get(0).getValue() == Game.PlayerTurn.PLAYER2)){
 				getWindow().SetAImove(changes.get(0));
-			} else {
-			//changes.remove(0);
 			}
 			getWindow().SetAnimation("flip", changes);
 			//**********************
