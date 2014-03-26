@@ -523,7 +523,7 @@ public class Drawing {
 		SideBar.add(m_setting,c);
 		
 		String m_boards[] = new String[]{"board1","board2","board3"};
-		m_skin = new JComboBox(m_boards);
+		m_skin = new JComboBox<String>(m_boards);
 		m_skin.setSelectedIndex(0);
 		m_skin.addActionListener(handler);
 		
