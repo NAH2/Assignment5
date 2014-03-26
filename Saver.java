@@ -6,6 +6,8 @@ import java.io.PrintWriter;
  * \date -26th March 14
  * 
  * \see FileManager.java
+ * \see OthelloLoader.java
+ * \see ConnectFourLoader.java
  * 
  * \brief Class to handle saving data to files
  * 
@@ -13,16 +15,6 @@ import java.io.PrintWriter;
  * files.
  */
 public class Saver extends FileManager{
-    
-    /**
-     * Method only used in testing.
-     * Accessor method for m_saveTest.
-     * 
-     * @return String m_saveTest to test save methods
-     */
-    public String getSaveTestString() {
-        return m_saveTest;
-    }
     
     /**
      * Method to save the current state of the grid
@@ -142,14 +134,19 @@ public class Saver extends FileManager{
      * Test for save methods
      */
     public void saveTest() {
-        System.out.println(getClass().getSimpleName() + " :: saveGrid: " 
-                                               + saveGrid(getSaveTestString()));
+        if (getClass().getSimpleName().equals("OthelloSaver")) {
+            System.out.println(getClass().getSimpleName() + " :: saveGrid: " 
+                                              + saveGrid(OTH_GRID_TEST_STRING));
+        } else {
+            System.out.println(getClass().getSimpleName() + " :: saveGrid: " 
+                                               + saveGrid(C4_GRID_TEST_STRING));
+        }
         System.out.println(getClass().getSimpleName() + " :: savePlayer1: " 
-                                            + savePlayer1(getSaveTestString()));
+                                             + savePlayer1(PLAYER_TEST_STRING));
         System.out.println(getClass().getSimpleName() + " :: savePlayer2: " 
-                                            + savePlayer2(getSaveTestString()));
+                                             + savePlayer2(PLAYER_TEST_STRING));
         System.out.println(getClass().getSimpleName() + " :: saveTimer: " 
-                                              + saveTimer(getSaveTestString()));
+                                                + saveTimer(TIMER_TEST_STRING));
     }
     
     /**
@@ -163,8 +160,27 @@ public class Saver extends FileManager{
         othelloSaver.saveTest();
     }
     
-    /** String to save in tests */
-    private final String m_saveTest = "a,b,c,d,e,f,g,e,f,g,";
+    /** Strings to save in tests */
+    private final String OTH_GRID_TEST_STRING = "NONE,NONE,NONE,NONE,NONE,NONE,"
+            + "NONE,NONE,NONE,NONE,PLAYER1,PLAYER2,PLAYER1_AM,PLAYER1,NONE,NONE"
+            + ",NONE,PLAYER2,PLAYER1_AM,PLAYER2,NONE,PLAYER1,NONE,NONE,"
+            + "PLAYER1_AM,PLAYER2,PLAYER2,PLAYER2,PLAYER1,PLAYER1,NONE,NONE,"
+            + "NONE,PLAYER2,PLAYER1_AM,PLAYER2,PLAYER1,NONE,NONE,NONE,NONE,NONE"
+            + ",PLAYER1_AM,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,"
+            + "NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,";
+    
+    private final String C4_GRID_TEST_STRING = "NONE,NONE,NONE,NONE,NONE,NONE,"
+            + "NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE"
+            + ",NONE,NONE,NONE,NONE,NONE,PLAYER1,NONE,NONE,NONE,NONE,NONE,NONE,"
+            + "NONE,NONE,NONE,PLAYER2,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,"
+            + "NONE,PLAYER1,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,PLAYER1,"
+            + "PLAYER2,PLAYER2,NONE,NONE,NONE,NONE,NONE,PLAYER2,NONE,PLAYER1,"
+            + "PLAYER2,PLAYER1,NONE,NONE,NONE,NONE,";
+    
+    private final String PLAYER_TEST_STRING ="Human,Frank,-256,true,";
+
+    private final String TIMER_TEST_STRING ="0,0,19,";
+
     /** test variable */
     private boolean m_test = false;
 
