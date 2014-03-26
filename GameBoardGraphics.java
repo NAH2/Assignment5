@@ -126,7 +126,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* @param changes - the list stores the pieces which need the animation
 	*/
 	public void SetAnimation(String type, ArrayList<Coordinate> changes){
-		if(m_type.equals("flip")){
+		if(PLAYER1_COLOUR.equals(Color.BLACK)||PLAYER1_COLOUR.equals(Color.WHITE)){
 			changes.remove(0);
 		}
 		m_changes = changes;
@@ -166,7 +166,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 								Thread.sleep(m_speed);	
 							} 		
 						} catch (Exception e){e.printStackTrace();}
-						//m_changes.clear();
+						m_changes.clear();
 						m_flipSide = false;
 					}
 				}
