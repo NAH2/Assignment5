@@ -213,12 +213,25 @@ public class GameWindow extends JFrame {
 	}
 	
 	/**
-	 * Called to display an invalid move error message on screen.
+	 * Called to pass the invalid coordinate to gameboard graphics.
 	 * 
+	 * @param Coordinate -  the position of invalid move
 	 * @return Returns TRUE if successful.
 	 */
-	public boolean displayInvalidMove() {
-		getDrawing().invalidMove();
+	public boolean displayInvalidMove(Coordinate move) {
+		getDrawing().getGridPanel().SetValid(false, move);
+		getDrawing().getGridPanel().repaint();
+		return true;
+	}
+	
+	/**
+	 * Called to pass whether the move is valid to the gameboard graphics.
+	 * 
+	 * @param the boolean whether the move is valid or not
+	 * @return Returns TRUE if successful.
+	 */
+	public boolean displayInvalidMove(boolean valid) {
+		getDrawing().getGridPanel().SetValid(true);
 		return true;
 	}
 

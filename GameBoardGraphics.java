@@ -23,6 +23,31 @@ import java.lang.NullPointerException;
  */
 public class GameBoardGraphics extends JComponent implements MouseMotionListener{
 	//******************************
+	
+	/**
+	 * Store the coordinate to be displayed when the move is not valid
+	 * 
+	 * @param the boolean whether the move is valid or not
+	 * @param the Coordinate of invalid move
+	 * @return Returns TRUE if successful.
+	 */
+	public boolean SetValid(boolean valid, Coordinate xmove){
+		m_valid = valid;
+		m_xmove = xmove;
+		return true;
+	}
+	
+	/**
+	 * Set the boolean to true when the move is valid
+	 * 
+	 * @param the boolean whether the move is valid or not
+	 * @return Returns TRUE if successful.
+	 */
+	public boolean SetValid(boolean valid){
+		m_valid = valid;
+		return true;
+	}
+	
 	/**
 	* Method which returns if the piece is flipping at the moment
 	* @return true if the width of the piece is not equal to the original piece size, that means it is flipping
@@ -287,6 +312,22 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 							g2.fillOval(i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
 						}
 					}
+				}
+				if(!m_valid && (PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE))){
+					g2.drawImage(CROSS2, m_xmove.getX()*getSquareWidth() + MID_POSITION, m_xmove.getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
+					new Thread(
+							new Runnable() {
+								public void run() {
+									try {
+										Thread.sleep(200);
+										m_valid = true;
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+							}
+					).start();
 				}
 				paintAvailableMove(g2, i, j);
 			}
@@ -571,10 +612,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final BufferedImage CONNECT4BOARD2 = ImageIO.read(getClass().getResource("connect4board2.png"));
 	private final BufferedImage CONNECT4BOARD3 = ImageIO.read(getClass().getResource("connect4board3.png"));
 	private final BufferedImage CROSS = ImageIO.read(getClass().getResource("cross.png"));
+	private final BufferedImage CROSS2 = ImageIO.read(getClass().getResource("cross2.png"));
 	private final BufferedImage WHITE = ImageIO.read(getClass().getResource("white.png"));
 	private final BufferedImage BLACK = ImageIO.read(getClass().getResource("black.png"));
 	private String m_board;
 	private Coordinate m_AImove;
 	private boolean m_criticalSection;
+	private Coordinate m_xmove;
+	private boolean m_valid = true;
 	//********************
 }

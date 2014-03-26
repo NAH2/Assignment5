@@ -262,7 +262,7 @@ public abstract class Game {
 
 	/**
 	 * Used to check whether the move is valid within set game rules, and if not,
-	 * calls the GUI to display an error message.
+	 * calls the GUI to display the error.
 	 * 
 	 * @param move The move, as a Coordinate, which is to be validated under the
 	 * game rules.
@@ -271,9 +271,10 @@ public abstract class Game {
 	 */
 	protected boolean validateMove(Coordinate move) {
 		if (isValidMove(move)) {
+			getWindow().displayInvalidMove(false);
 			return true;
 		} else {
-			getWindow().displayInvalidMove();
+			getWindow().displayInvalidMove(move);
 			return false;
 		}
 	}
