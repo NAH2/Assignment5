@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class ConnectFourAI extends Player{
@@ -23,16 +24,16 @@ public class ConnectFourAI extends Player{
 		if (getYourTurn()) {
 			for(int x = 0;x<GAME_WIDTH;x++){
 				if(getGame().getGrid().getCoordinate(x, 0).getValue() == Game.PlayerTurn.NONE){
-					for(int y = GAME_HEIGHT;y>0;y--){
+					for(int y = GAME_HEIGHT - 1;y>-1;y--){
 						if(getGame().getGrid().getCoordinate(x,y).getValue() == Game.PlayerTurn.NONE){
 							Coordinate c1 = new Coordinate(x,y,getGame().getPlayerTurn());
 							list.add(c1);
 							y=0;
 						}
 					}
-				}else{
-					Coordinate c1 = new Coordinate(x,0,getGame().getPlayerTurn());
-					list.add(c1);
+				//}else{
+					//Coordinate c1 = new Coordinate(x,0,getGame().getPlayerTurn());
+					//list.add(c1);
 				}
 			}
 		}
@@ -43,21 +44,32 @@ public class ConnectFourAI extends Player{
 	public Coordinate setAIMove() {
 		ArrayList<Coordinate> listTwo = new ArrayList<Coordinate>();
 		listTwo = getAvailableMoves();
-		for (Coordinate Cs : listTwo) {
-			System.out.println(Cs.getX() + ", " + Cs.getY());
-		}
+		
 		int maximum = 0;
-		System.out.println(getGame());
+		int countCounter = 0;
 		Coordinate takeCoord = listTwo.get(0);
 		for (Coordinate coord : listTwo) {
-			System.out.println(coord.getX());
 			int move = getGame().moveScore(coord);
-			System.out.println("Max: " + maximum + "move: " + move);
-			if (move >= maximum) {
+			if (move == 0){
+				countCounter++;
+			}
+			if(move >= maximum) {
 				takeCoord = coord;
 				maximum = move;
 			}
 		}
+		for(Coordinate coord2 : listTwo){
+			if(getGame().blockOpponentChecker(coord2) == 3 && maximum != 3){
+				return takeCoord = coord2;
+			}
+		}
+		
+		if(countCounter == listTwo.size()){
+			Random rnd = new Random();
+			takeCoord = listTwo.get(rnd.nextInt(9));
+		
+		}
+		
 		maximum = 0;
 		return takeCoord;
 	}
