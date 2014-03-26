@@ -350,37 +350,45 @@ public class PlayerSettings  extends JFrame{
 				player1 = new Human(m_game);
 				EASY.setVisible(false);
 				HARD.setVisible(false);
-			} else if(e.getSource() == HUMAN2) {
+			} 
+			if(e.getSource() == HUMAN2) {
 				player2 = new Human(m_game);
 				EASY2.setVisible(false);
 				HARD2.setVisible(false);
-			} else if(e.getSource() == AI) {
+			}
+			if(e.getSource() == AI) {
 				EASY.setVisible(true);
 				HARD.setVisible(true);
-			} else if(e.getSource() == AI2) {
+			}
+			if(e.getSource() == AI2) {
 				EASY2.setVisible(true);
 				HARD2.setVisible(true);
-			} else if(e.getSource() == HARD){
+			}
+			if(e.getSource() == HARD){
 				if(ISOTHELLO){
 					player1 = new OthelloAI(m_game);
 				}else{
 				    //player2 = new ConnectFourAI(m_game);
 				}
-			}else if(e.getSource() == EASY){
+			}
+			if(e.getSource() == EASY){
 
 					player1 = new AIEasy(m_game);
 
-			}else if(e.getSource() == EASY2){
+			}
+			if(e.getSource() == EASY2){
 				
 					player2 = new AIEasy(m_game);
 
-			} else if(e.getSource() == HARD2){
+			}
+			if(e.getSource() == HARD2){
 				if(ISOTHELLO){
 					player2 = new OthelloAI(m_game);
 				}else{
 				    //player2 = new ConnectFourAI(m_game);
 				}
-			}else if(e.getSource() == PLAYERCOLOUR_A1) {
+			}
+			if(e.getSource() == PLAYERCOLOUR_A1) {
 				if(ISOTHELLO) {
 					player1Color = Color.BLACK;
 				} else {
@@ -389,7 +397,8 @@ public class PlayerSettings  extends JFrame{
 				if(!PLAYERCOLOUR_B2.isSelected()) {
 					PLAYERCOLOUR_B2.doClick();
 				}
-			} else if(e.getSource() == PLAYERCOLOUR_B1) {
+			}
+			if(e.getSource() == PLAYERCOLOUR_B1) {
 				if(ISOTHELLO) {
 					player1Color = Color.WHITE;
 				} else {
@@ -398,7 +407,8 @@ public class PlayerSettings  extends JFrame{
 				if(!PLAYERCOLOUR_A2.isSelected()) {
 					PLAYERCOLOUR_A2.doClick();
 				}
-			} else if(e.getSource() == PLAYERCOLOUR_A2) {
+			}
+			if(e.getSource() == PLAYERCOLOUR_A2) {
 				if(ISOTHELLO) {
 					player2Color = Color.BLACK;
 				} else {
@@ -407,7 +417,8 @@ public class PlayerSettings  extends JFrame{
 				if(!PLAYERCOLOUR_B1.isSelected()) {
 				PLAYERCOLOUR_B1.doClick();
 				}
-			} else if(e.getSource() == PLAYERCOLOUR_B2) {
+			} 
+			if(e.getSource() == PLAYERCOLOUR_B2) {
 				if(ISOTHELLO) {
 					player2Color = Color.WHITE;
 				} else {
@@ -426,7 +437,8 @@ public class PlayerSettings  extends JFrame{
 			} else if(e.getSource() == easy2) {
 				player2 = new Easy();
 			*/
-			} else if(e.getSource() == STARTBUTTON) {
+			}
+			if(e.getSource() == STARTBUTTON) {
 			    //player2 = new OthelloAI(m_game);
 				player1.setPlayerName(PLAYERNAME1.getText());
 				player2.setPlayerName(PLAYERNAME2.getText());
