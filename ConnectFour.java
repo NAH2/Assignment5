@@ -72,6 +72,7 @@ public class ConnectFour extends Game {
 		setWinner(Game.PlayerTurn.NONE);
 		setPlayerTurn(PlayerTurn.PLAYER1);
 		getPlayer1().isYourMove();
+		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
 	}
 	
 	/**
