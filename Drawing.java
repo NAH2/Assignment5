@@ -306,6 +306,10 @@ public class Drawing {
 				(OVALSIZE, OVALSIZE, BufferedImage.TYPE_3BYTE_BGR);
 		Graphics2D g2 = m_p1piece.createGraphics();
 		m_p1colour = Player1.getPlayerColour();
+		if(m_p1colour.equals(Color.BLACK)){
+			g2.setColor(Color.WHITE);
+			g2.fillRect(0, 0, OVALSIZE, OVALSIZE);
+		}
 		g2.setColor(m_p1colour);
 		g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
 		if(m_Trace) System.out.println
@@ -327,6 +331,10 @@ public class Drawing {
 				(OVALSIZE, OVALSIZE, BufferedImage.TYPE_3BYTE_BGR);
 		Graphics2D g2 = m_p2piece.createGraphics();
 		m_p2colour = Player2.getPlayerColour();
+		if(m_p2colour.equals(Color.BLACK)){
+			g2.setColor(Color.WHITE);
+			g2.fillRect(0, 0, OVALSIZE, OVALSIZE);
+		}
 		g2.setColor(m_p2colour);
 		g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
 		if(m_Trace) System.out.println
@@ -351,6 +359,10 @@ public class Drawing {
 			BufferedImage Piece = new BufferedImage
 					(OVALSIZE, OVALSIZE, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D g2 = Piece.createGraphics();
+			if(m_p1colour.equals(Color.BLACK)){
+				g2.setColor(Color.WHITE);
+				g2.fillRect(0, 0, OVALSIZE, OVALSIZE);
+			}
 			g2.setColor(m_p1colour);
 			g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
 			g2.setColor(m_p2colour);
@@ -366,6 +378,10 @@ public class Drawing {
 			BufferedImage Piece = new BufferedImage
 					(OVALSIZE, OVALSIZE, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D g2 = Piece.createGraphics();
+			if(m_p2colour.equals(Color.BLACK)){
+				g2.setColor(Color.WHITE);
+				g2.fillRect(0, 0, OVALSIZE, OVALSIZE);
+			}
 			g2.setColor(m_p2colour);
 			g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
 			g2.setColor(m_p1colour);
