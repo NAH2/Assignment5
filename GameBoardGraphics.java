@@ -166,7 +166,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 								Thread.sleep(m_speed);	
 							} 		
 						} catch (Exception e){e.printStackTrace();}
+						if(!m_criticalSection){
 						m_changes.clear();
+						}
 						m_flipSide = false;
 					}
 				}
@@ -396,6 +398,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		m_flippingPiece = false;
 		if(m_type.equals("flip") && m_changes.size()>0 && m_start){
 			Iterator<Coordinate> s = m_changes.iterator();
+			m_criticalSection = true;
 			for(s = m_changes.iterator(); s.hasNext(); ) {
 				Coordinate item = s.next();
 				if(item.getX()*getSquareWidth() == i && item.getY()*getSquareHeight() == j){
@@ -436,6 +439,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					}
 				}
 			}
+			m_criticalSection = false;
 		} 
 	}
 	
@@ -564,5 +568,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final BufferedImage BLACK = ImageIO.read(getClass().getResource("black.png"));
 	private String m_board;
 	private Coordinate m_AImove;
+	private boolean m_criticalSection;
 	//********************
 }

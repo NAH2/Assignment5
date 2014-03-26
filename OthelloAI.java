@@ -46,18 +46,22 @@ public class OthelloAI extends Player {
 		}
 		int maximum = 0;
 		System.out.println(getGame());
-		Coordinate takeCoord = listTwo.get(0);
-		for (Coordinate coord : listTwo) {
-			System.out.println(coord.getX());
-			int move = getGame().moveScore(coord);
-			System.out.println("Max: " + maximum + "move: " + move);
-			if (move >= maximum) {
-				takeCoord = coord;
-				maximum = move;
+		if(!listTwo.isEmpty()){
+			Coordinate takeCoord = listTwo.get(0);
+			for (Coordinate coord : listTwo) {
+				System.out.println(coord.getX());
+				int move = getGame().moveScore(coord);
+				System.out.println("Max: " + maximum + "move: " + move);
+				if (move >= maximum) {
+					takeCoord = coord;
+					maximum = move;
+				}
 			}
+			maximum = 0;
+			return takeCoord;
+		} else {
+			return null;
 		}
-		maximum = 0;
-		return takeCoord;
 	}
 
 	public void isYourMove() {
