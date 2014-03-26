@@ -404,8 +404,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private void paintFlip(Graphics2D g2, int i, int j) throws NullPointerException, ConcurrentModificationException{
 		m_flippingPiece = false;
 		if(m_type.equals("flip") && m_changes.size()>0 && m_start){
-			Iterator<Coordinate> s = m_changes.iterator();
 			m_criticalSection = true;
+			Iterator<Coordinate> s = m_changes.iterator();
 			for(s = m_changes.iterator(); s.hasNext(); ) {
 				Coordinate item = s.next();
 				if(item != null && item.getX()*getSquareWidth() == i && item.getY()*getSquareHeight() == j){
