@@ -13,7 +13,7 @@ public class Timer extends Thread {
 	
 	/**
 	 * Accessor method to set the hours of the timer
-	 * @param h an integer for the hours
+	 * \param h an integer for the hours
 	 */
 	public void setHours(int h) {
 		m_hours = h;
@@ -21,7 +21,7 @@ public class Timer extends Thread {
 	
 	/**
 	 * Accessor method to set the minutes of the timer
-	 * @param m an integer for the minutes
+	 * \param m an integer for the minutes
 	 */
 	public void setMinutes(int m) {
 		m_minutes = m;
@@ -29,7 +29,7 @@ public class Timer extends Thread {
 	
 	/**
 	 * Accessor method to set the seconds of the timer
-	 * @param s an integer for the seconds
+	 * \param s an integer for the seconds
 	 */
 	public void setSeconds(int s) {
 		m_seconds = s;
@@ -37,21 +37,21 @@ public class Timer extends Thread {
 	
 	/**
 	 * Accessor method to get the hours 
-	 * @return m_hours a integer of the current hours
+	 * \return m_hours a integer of the current hours
 	 */
 	public int getHours() {
 		return m_hours;
 	}
 	/**
 	 * Accessor method to get the minutes 
-	 * @return m_minutes a integer of the current minutes
+	 * \return m_minutes a integer of the current minutes
 	 */
 	public int getMinutes() {
 		return m_minutes;
 	}
 	/**
 	 * Accessor method to get the seconds
-	 * @return m_seconds a integer of the current seconds
+	 * \return m_seconds a integer of the current seconds
 	 */
 	public int getSeconds() {
 		return m_seconds;
@@ -68,7 +68,7 @@ public class Timer extends Thread {
 	
 	/**
 	 * Constructor of Timer, receives the game and sets running to true
- 	 * @param g the current game
+ 	 * \param g the current game
 	 */
 	public Timer(Game g) {
 	    m_game = g;
