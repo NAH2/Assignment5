@@ -83,8 +83,8 @@ public class Othello extends Game
 		    grid.setCoordinate(new Coordinate(coord2, coord2, Game.PlayerTurn.PLAYER1));
 		    getPlayer1().isYourMove();
 		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-			if 	(getPlayer1() instanceof OthelloAI||
-					getPlayer1() instanceof AIEasy ){
+			if 	((getPlayer1() instanceof OthelloAI||
+					getPlayer1() instanceof AIEasy) && (getPlayer2() instanceof Human)){
 				//Thread.sleep(500);
 				getPlayer1().sendMove();
 			}
@@ -98,8 +98,9 @@ public class Othello extends Game
 			grid.setCoordinate(new Coordinate(coord2, coord2, Game.PlayerTurn.PLAYER2));
 			getPlayer2().isYourMove();
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
-			if 	(getPlayer2() instanceof OthelloAI || 
-					getPlayer2() instanceof AIEasy ){
+			if 	((getPlayer2() instanceof OthelloAI || 
+					getPlayer2() instanceof AIEasy)&&
+					(getPlayer2() instanceof Human)){
 				//Thread.sleep(500);
 				getPlayer2().sendMove();
 			}
@@ -334,7 +335,7 @@ public class Othello extends Game
 		return captured.size();
 	}
 	
-	public void moveMade(Coordinate move) {
+	public void moveMade(Coordinate move) throws InterruptedException {
 		boolean m_Trace = false;
 		
 		if(m_Trace) System.out.println("Game::MoveMade() - Called");
@@ -346,7 +347,6 @@ public class Othello extends Game
 			}	
 			getWindow().displayGrid(getGrid());
 			//**********************
-			System.out.println("othello----");
 			if ((getPlayer1() instanceof OthelloAI && changes.get(0).getValue() == Game.PlayerTurn.PLAYER1) || 
 					(getPlayer2() instanceof OthelloAI && changes.get(0).getValue() == Game.PlayerTurn.PLAYER2)){
 				getWindow().SetAImove(changes.get(0));

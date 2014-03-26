@@ -43,8 +43,12 @@ class AIEasy extends Player {
 		
 	}
 	
-	public void isYourMove(){
+	public void isYourMove() throws InterruptedException {
 		setYourTurn(true);
+		if (!(getGame().getPlayer1() instanceof Human || 
+				getGame().getPlayer2() instanceof Human)){
+		sendMove();
+		}
 	}
 
 	public void sendMove() throws InterruptedException {
@@ -88,7 +92,12 @@ class AIEasy extends Player {
 					}
 					if (getYourTurn()) {
 						
-						getGame().moveMade(m_move);
+						try {
+							getGame().moveMade(m_move);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						
 						setYourTurn(false);
 						
