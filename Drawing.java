@@ -550,7 +550,7 @@ public class Drawing {
 	
 	public void Passturnmessage() {
 		JOptionPane.showMessageDialog(null,
-			    "No any move can be made, pass turn to opponent.",
+			    "There are no available moves, the turn has been passed to the opponent.",
 			    "Pass",
 			    JOptionPane.INFORMATION_MESSAGE);
 	}
