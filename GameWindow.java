@@ -250,20 +250,25 @@ public class GameWindow extends JFrame {
 	 * @throws InterruptedException 
 	 */
 	public boolean moveMade(Coordinate move) throws InterruptedException {
-		if(getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
+		System.out.println(getGame().getPlayerTurn());
+		if (getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
 			move.setValue(Game.PlayerTurn.PLAYER1);
 			getGame().getPlayer1().sendMove(move);
-			if 	(getGame().getPlayer2() instanceof OthelloAI){
-				//Thread.sleep(500);
+			if (getGame().getPlayer2() instanceof OthelloAI
+				|| getGame().getPlayer2() instanceof ConnectFourAI
+				|| getGame().getPlayer2() instanceof AIEasy) {
+				// Thread.sleep(500);
 				getGame().getPlayer2().sendMove();
 			}
 		} else {
 			move.setValue(Game.PlayerTurn.PLAYER2);
 			getGame().getPlayer2().sendMove(move);
-			if 	(getGame().getPlayer1() instanceof OthelloAI){
-				//Thread.sleep(500);
+			if (getGame().getPlayer1() instanceof OthelloAI
+					|| getGame().getPlayer1() instanceof ConnectFourAI
+					|| getGame().getPlayer1() instanceof AIEasy) {
+				// Thread.sleep(500);
 				getGame().getPlayer1().sendMove();
-				
+
 			}
 		}
 		return true;

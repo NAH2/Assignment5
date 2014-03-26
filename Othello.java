@@ -83,7 +83,9 @@ public class Othello extends Game
 		    grid.setCoordinate(new Coordinate(coord2, coord2, Game.PlayerTurn.PLAYER1));
 		    getPlayer1().isYourMove();
 		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-			if 	(getPlayer1() instanceof OthelloAI){
+			if 	(getPlayer1() instanceof OthelloAI||
+					getPlayer1() instanceof AIEasy ||
+					getPlayer1() instanceof ConnectFourAI){
 				//Thread.sleep(500);
 				getPlayer1().sendMove();
 			}
@@ -97,7 +99,9 @@ public class Othello extends Game
 			grid.setCoordinate(new Coordinate(coord2, coord2, Game.PlayerTurn.PLAYER2));
 			getPlayer2().isYourMove();
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
-			if 	(getPlayer2() instanceof OthelloAI){
+			if 	(getPlayer2() instanceof OthelloAI || 
+					getPlayer2() instanceof AIEasy ||
+					getPlayer2() instanceof ConnectFourAI ){
 				//Thread.sleep(500);
 				getPlayer2().sendMove();
 			}
@@ -233,7 +237,7 @@ public class Othello extends Game
 		Grid grid = getGrid();
 		boolean opponentFound = false;
 		
-		debug("checkBound", "" + start +", " + xdir +", " + ydir, "");
+		//debug("checkBound", "" + start +", " + xdir +", " + ydir, "");
 		
 		Coordinate current = new Coordinate(start);
 		current.move(xdir, ydir);

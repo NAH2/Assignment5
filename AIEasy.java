@@ -1,8 +1,9 @@
-import java.util.Random;
-import java.util.ArrayList;
+import java.util.*;
 import java.awt.Color;
 
 class AIEasy extends Player {
+	
+	private int m_time = 1500;
 	
 	public AIEasy(Game game, String name, Color color) {
 		super(game, name, color);
@@ -27,13 +28,17 @@ class AIEasy extends Player {
 		return a;
 	}
 
-	public Coordinate setAIMove (){
+	public Coordinate setAIMove () throws IndexOutOfBoundsException {
 		Random rnd = new Random();
 	 
 		int x = 0;
 		ArrayList<Coordinate> a = new ArrayList <Coordinate> ();
 		a=getAvailableMoves();
+		if (a.size() == 0){
+			return null;
+		}
 		x = rnd.nextInt(a.size());
+		
 		return a.get(x);
 		
 	}
@@ -42,23 +47,58 @@ class AIEasy extends Player {
 		setYourTurn(true);
 	}
 
-	public void sendMove(Coordinate move){
-		move = setAIMove();
-		if (getYourTurn()) {
-			setYourTurn(false);
-			getGame().moveMade(move);
-		}
+	public void sendMove() throws InterruptedException {
+		new Thread(
+				new Runnable() {
+					public void run() {
+						try {
+							Coordinate move ;
+							Thread.sleep(m_time);
+							move =setAIMove();
+							if (getYourTurn()) {
+								
+								getGame().moveMade(move);
+								
+								setYourTurn(false);
+								
+							}
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+		).start();
 	}
 	
-	public static void main(String[] args) {
+	public void sendMove(Coordinate move) throws InterruptedException {
+		class MyThread implements Runnable {
+				Coordinate m_move;
+			   public MyThread(Coordinate move) {
+			       // store parameter for later user
+				   m_move = move;
+			   }
+
+			   public void run() {
+					try {
+						m_move = setAIMove();
+					} catch (IndexOutOfBoundsException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (getYourTurn()) {
+						
+						getGame().moveMade(m_move);
+						
+						setYourTurn(false);
+						
+					}
+			   }
+			}
+		Runnable r = new MyThread(move);
+		r.wait(m_time);
+		new Thread(r).start();
 
 	}
-
-    @Override
-    public void sendMove() {
-		Coordinate  move =	new Coordinate (null);
-        sendMove(move);
-        
-    }
 
 }
