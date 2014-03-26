@@ -5,6 +5,8 @@ public class OthelloLoader extends Loader{
     public OthelloLoader(Game g) {
         setGame(g);
         setPath(OTHELLO_PATH);
+        
+        loadAll();
     }
     
     

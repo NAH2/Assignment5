@@ -270,10 +270,6 @@ public class GameWindow extends JFrame {
 	}
 	
 	private class Handler implements ActionListener {
-	    private Player player1;
-        private Player player2;
-        private Timer timer;
-
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == m_newGame) {
@@ -308,17 +304,9 @@ public class GameWindow extends JFrame {
             if (e.getSource() == m_load) {
                 if (getGame() instanceof Othello) {
                     OthelloLoader loader = new OthelloLoader(getGame());
-                    loader.loadGrid();
-                    player1 = loader.loadPlayer1(player1);
-                    player2 = loader.loadPlayer2(player2);
-                    timer = loader.loadTimer(timer);
                     checkValid(loader);
                 } else {
                     ConnectFourLoader loader = new ConnectFourLoader(getGame());
-                    loader.loadGrid();
-                    player1 = loader.loadPlayer1(player1);
-                    player2 = loader.loadPlayer2(player2);
-                    timer = loader.loadTimer(timer);
                     checkValid(loader);
                 }
             }
@@ -331,12 +319,12 @@ public class GameWindow extends JFrame {
         private void checkValid(Loader l) {
             if (l.getValid()) {   
                 getGame().getGrid().setGrid(l.getGridArray());
-                getGame().setPlayer1(player1);
-                getDrawing().setPlayer1(player1);
-                getGame().setPlayer2(player2);
-                getDrawing().setPlayer2(player2);
+                getGame().setPlayer1(l.getPlayer1());
+                getDrawing().setPlayer1(l.getPlayer1());
+                getGame().setPlayer2(l.getPlayer2());
+                getDrawing().setPlayer2(l.getPlayer2());
                 getGame().setScores();
-                getGame().startTimer(timer);
+                getGame().startTimer(l.getTimer());
                 
                 int p1Score = getGame().getPlayer1Score();
                 int p2Score = getGame().getPlayer2Score();

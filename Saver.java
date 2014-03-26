@@ -27,7 +27,6 @@ public class Saver extends FileManager{
     }
     
     public Boolean saveData(String data,String dataFile) {
-        //System.out.println(data.hashCode());
         try {
             setFile(dataFile);
             PrintWriter out = new PrintWriter(this.getFile());
@@ -36,7 +35,6 @@ public class Saver extends FileManager{
                 out.println(data + data.hashCode());
             }finally {
                 out.close();
-                System.out.println("Out Closed");
             }                 
         } catch (Exception exc) {
             System.err.println("Write Error");

@@ -4,6 +4,8 @@ public class ConnectFourLoader extends Loader{
     public ConnectFourLoader(Game g) {
         setGame(g);
         setPath(CONNECTFOUR_PATH);
+        
+        loadAll();
     }
     
     

@@ -66,17 +66,16 @@ public class Loader extends FileManager{
         }
     }
     
-    public Player loadPlayer1(Player player1) {
+    public Boolean loadPlayer1() {
         if (loadPlayer(getPlayer1File())) {
+            setPlayer1(createPlayerType(m_playerInfo[PLAYER_TYPE_INDEX]));
             
-            player1 = createPlayerType(m_playerInfo[PLAYER_TYPE_INDEX],player1);
-            
-            player1.setPlayerName(m_playerInfo[PLAYER_NAME_INDEX]);
-            player1.setPlayerColour(new Color(Integer.parseInt(
+            getPlayer1().setPlayerName(m_playerInfo[PLAYER_NAME_INDEX]);
+            getPlayer1().setPlayerColour(new Color(Integer.parseInt(
                                             m_playerInfo[PLAYER_COLOR_INDEX])));
-            player1.setYourTurn(Boolean.parseBoolean(
+            getPlayer1().setYourTurn(Boolean.parseBoolean(
                                               m_playerInfo[PLAYER_TURN_INDEX]));
-            System.out.println("Player 1 Colour: " + player1.getPlayerColour());
+
             
             if (Boolean.parseBoolean(m_playerInfo[PLAYER_TURN_INDEX])) {
                 getGame().setPlayerTurn(Game.PlayerTurn.PLAYER1);
@@ -86,19 +85,18 @@ public class Loader extends FileManager{
             System.err.println("Error with player 1");
         }
         
-        return player1;
+        return true;
     }
     
-    public Player loadPlayer2(Player player2) {
+    public Boolean loadPlayer2() {
         if (loadPlayer(getPlayer2File())) {
-            player2 = createPlayerType(m_playerInfo[PLAYER_TYPE_INDEX],player2);
+            setPlayer2(createPlayerType(m_playerInfo[PLAYER_TYPE_INDEX]));
             
-            player2.setPlayerName(m_playerInfo[PLAYER_NAME_INDEX]);
-            player2.setPlayerColour(new Color(Integer.parseInt(
+            getPlayer2().setPlayerName(m_playerInfo[PLAYER_NAME_INDEX]);
+            getPlayer2().setPlayerColour(new Color(Integer.parseInt(
                                             m_playerInfo[PLAYER_COLOR_INDEX])));
-            player2.setYourTurn(Boolean.parseBoolean(
+            getPlayer2().setYourTurn(Boolean.parseBoolean(
                                               m_playerInfo[PLAYER_TURN_INDEX]));
-            System.out.println("Player 2 Colour: " + player2.getPlayerColour());
 
             
             if (Boolean.parseBoolean(m_playerInfo[PLAYER_TURN_INDEX])) {
@@ -106,24 +104,20 @@ public class Loader extends FileManager{
             }
         } else {
             m_allValid = false;
-            System.err.println("Error with player 1");
+            System.err.println("Error with player 2");
         }
         
-        return player2;
+        return true;
     }
     
-    public Player createPlayerType(String type, Player player) {
+    public Player createPlayerType(String type) {
         switch (m_playerInfo[PLAYER_TYPE_INDEX]) {
-            case HUMAN_PLAYER: player = new Human(getGame());
-                break;
-            case EASY_AI_PLAYER: player = new AIEasy(getGame());
-                break;
-            case HARD_OTHELLO_PLAYER: player = new OthelloAI(getGame());
-            break;
+            case HUMAN_PLAYER: return new Human(getGame());
+            case EASY_AI_PLAYER: return new AIEasy(getGame());
+            case HARD_OTHELLO_PLAYER: return new OthelloAI(getGame());
+            case HARD_CONNECTFOUR_PLAYER: return new ConnectFourAI(getGame());
         }
-        
-        
-        return player;
+        return new Human(getGame());
     }
     
     public Boolean loadPlayer(String file) {
@@ -162,7 +156,7 @@ public class Loader extends FileManager{
         return m_valid;
     }
     
-    public Timer loadTimer(Timer timer) {        
+    public boolean loadTimer() {        
         m_valid = false;
         m_hashString = "";
         m_timerInfo = new int[TIMER_INFO_SIZE];
@@ -196,15 +190,24 @@ public class Loader extends FileManager{
             System.err.println("Error Reading File");
         }
         if(m_valid) {
-            timer = new Timer(getGame());
-            timer.setHours(m_timerInfo[HOURS]);
-            timer.setMinutes(m_timerInfo[MINUTES]);
-            timer.setSeconds(m_timerInfo[SECONDS]);
+            setTimer(new Timer(getGame()));
+            getTimer().setHours(m_timerInfo[HOURS]);
+            getTimer().setMinutes(m_timerInfo[MINUTES]);
+            getTimer().setSeconds(m_timerInfo[SECONDS]);
         } else {
             m_allValid = false;
         }
 
-        return timer;
+        return true;
+    }
+    
+    public boolean loadAll() {
+        loadGrid();
+        loadPlayer1();
+        loadPlayer2();
+        loadTimer();
+        
+        return true;
     }
     
     public Boolean getValid() {
@@ -230,8 +233,9 @@ public class Loader extends FileManager{
     private final int PLAYER_COLOR_INDEX = 2;
     private final int PLAYER_TURN_INDEX = 3;
     private final String HUMAN_PLAYER = "Human";
-    private final String EASY_AI_PLAYER = "AIEasy";
+    private final String EASY_AI_PLAYER = "AIEasy"; //will need to change
     private final String HARD_OTHELLO_PLAYER = "OthelloAI";
+    private final String HARD_CONNECTFOUR_PLAYER = "ConnectFourAI";
     private final int TIMER_INFO_SIZE = 3;
     private final int HOURS = 0;
     private final int MINUTES = 1;
