@@ -25,8 +25,10 @@ public class Timer extends Thread {
 		return m_seconds;
 	}
 	
-	public void setRunning(){
+	public boolean setRunning(){
 		m_running = false;
+		
+		return true;
 	}
 	
 	public Timer(Game g) {

@@ -272,6 +272,7 @@ public class GameWindow extends JFrame {
 	private class Handler implements ActionListener {
 	    private Player player1;
         private Player player2;
+        private Timer timer;
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -291,17 +292,17 @@ public class GameWindow extends JFrame {
             
             if (e.getSource() == m_save) {
                 System.out.println("Save");
+                Saver saver;
                 if (getGame() instanceof Othello) {
-                    OthelloSaver os = new OthelloSaver(getGame());
-                    os.saveGrid(getGame().getGrid().toString());
-                    os.savePlayer1(getGame().getPlayer1().toString());
-                    os.savePlayer2(getGame().getPlayer2().toString());
+                    saver = new OthelloSaver(getGame());
                 } else {
-                    ConnectFourSaver c4s = new ConnectFourSaver(getGame());
-                    c4s.saveGrid(getGame().getGrid().toString());
-                    c4s.savePlayer1(getGame().getPlayer1().toString());
-                    c4s.savePlayer2(getGame().getPlayer2().toString());
+                    saver = new ConnectFourSaver(getGame());
                 }
+                
+                saver.saveGrid(getGame().getGrid().toString());
+                saver.savePlayer1(getGame().getPlayer1().toString());
+                saver.savePlayer2(getGame().getPlayer2().toString());
+                saver.saveTimer(getGame().getTimer().toString());
             }
             
             if (e.getSource() == m_load) {
@@ -310,12 +311,14 @@ public class GameWindow extends JFrame {
                     loader.loadGrid();
                     player1 = loader.loadPlayer1(player1);
                     player2 = loader.loadPlayer2(player2);
+                    timer = loader.loadTimer(timer);
                     checkValid(loader);
                 } else {
                     ConnectFourLoader loader = new ConnectFourLoader(getGame());
                     loader.loadGrid();
                     player1 = loader.loadPlayer1(player1);
                     player2 = loader.loadPlayer2(player2);
+                    timer = loader.loadTimer(timer);
                     checkValid(loader);
                 }
             }
@@ -333,6 +336,7 @@ public class GameWindow extends JFrame {
                 getGame().setPlayer2(player2);
                 getDrawing().setPlayer2(player2);
                 getGame().setScores();
+                getGame().startTimer(timer);
                 
                 int p1Score = getGame().getPlayer1Score();
                 int p2Score = getGame().getPlayer2Score();

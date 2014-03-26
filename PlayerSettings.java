@@ -336,6 +336,7 @@ public class PlayerSettings  extends JFrame{
 
 		private Player player1;
 		private Player player2;
+        private Timer timer;
 		private Color player1Color = null;
 		private Color player2Color = null;
 		/**
@@ -363,7 +364,7 @@ public class PlayerSettings  extends JFrame{
 				if(ISOTHELLO){
 					player1 = new OthelloAI(m_game);
 				}else{
-					//HERE FOR CONNECT4
+				    player2 = new ConnectFourAI(m_game);
 				}
 			}else if(e.getSource() == EASY){
 
@@ -377,7 +378,7 @@ public class PlayerSettings  extends JFrame{
 				if(ISOTHELLO){
 					player2 = new OthelloAI(m_game);
 				}else{
-					//HERE FOR CONNECT4
+				    player2 = new ConnectFourAI(m_game);
 				}
 			}else if(e.getSource() == PLAYERCOLOUR_A1) {
 				if(ISOTHELLO) {
@@ -453,12 +454,14 @@ public class PlayerSettings  extends JFrame{
                     loader.loadGrid();
                     player1 = loader.loadPlayer1(player1);
                     player2 = loader.loadPlayer2(player2);
+                    timer = loader.loadTimer(timer);
                     checkValid(loader);
                 } else {
                     ConnectFourLoader loader = new ConnectFourLoader(m_game);
                     loader.loadGrid();
                     player1 = loader.loadPlayer1(player1);
                     player2 = loader.loadPlayer2(player2);
+                    timer = loader.loadTimer(timer);
                     checkValid(loader);
                 }
 			}
@@ -471,6 +474,7 @@ public class PlayerSettings  extends JFrame{
                 m_game.setPlayer2(player2);
                 setVisible(false);
                 m_game.resumeGame();
+                getGame().startTimer(timer);
             }else {
                 JOptionPane.showMessageDialog(player, "ERROR Laoding File",
                         "Load ERROR",JOptionPane.ERROR_MESSAGE);

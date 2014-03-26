@@ -8,9 +8,14 @@ public class FileManager {
     private final String GRID_FILE = "grid.txt";
     private final String PLAYER1_FILE = "player1.txt";
     private final String PLAYER2_FILE = "player2.txt";
+    private final String TIMER_FILE = "timer.txt";
     private Game.PlayerTurn[][] m_gridArray;
     private Game m_game;
     
+    
+    public String getTimerFile() {
+        return TIMER_FILE;
+    }
     public Boolean initialiseGrid() {
         m_gridArray = new Game.PlayerTurn[m_gridObj.getGridWidth()][m_gridObj.getGridHeight()];
         

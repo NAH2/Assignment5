@@ -321,6 +321,16 @@ public abstract class Game {
 	    //m_timer.start();
 	}
 	
+	public void startTimer(Timer t) {
+	    if(m_timer == null){
+	        //DO NOTHING
+	    } else {
+	        m_timer.setRunning();
+	    }
+        m_timer = t;
+        //m_timer.start();
+    }
+	
 	public Timer getTimer() {
 	    return m_timer;
 	}

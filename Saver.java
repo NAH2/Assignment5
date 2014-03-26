@@ -20,6 +20,12 @@ public class Saver extends FileManager{
         return true;
     }
     
+    public Boolean saveTimer(String data) {
+        saveData(data, getTimerFile());
+        
+        return true;
+    }
+    
     public Boolean saveData(String data,String dataFile) {
         //System.out.println(data.hashCode());
         try {
