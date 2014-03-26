@@ -144,7 +144,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 								Thread.sleep(m_speed);
 							} catch (Exception e){e.printStackTrace();}	
 						}
-						//m_changes.clear();
+						m_changes.clear();
 					}
 				}
 			).start();
@@ -166,7 +166,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 								Thread.sleep(m_speed);	
 							} 		
 						} catch (Exception e){e.printStackTrace();}
-						m_changes.clear();
+						//m_changes.clear();
 						m_flipSide = false;
 					}
 				}
