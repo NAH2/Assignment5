@@ -408,7 +408,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			m_criticalSection = true;
 			for(s = m_changes.iterator(); s.hasNext(); ) {
 				Coordinate item = s.next();
-				if(item.getX()*getSquareWidth() == i && item.getY()*getSquareHeight() == j){
+				if(item != null && item.getX()*getSquareWidth() == i && item.getY()*getSquareHeight() == j){
 				    m_flippingPiece = true;
 					if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
 						//g2.setColor(new Color(RED,GREEN,BLUE));
