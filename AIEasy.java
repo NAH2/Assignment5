@@ -14,7 +14,7 @@ class AIEasy extends Player {
 	}
 	
 	public ArrayList<Coordinate> getAvailableMoves (){
-		ArrayList<Coordinate> a = new ArrayList();
+		ArrayList<Coordinate> a = new ArrayList <Coordinate> ();
 		for (int x=0; x<getGame().getGrid().getGridWidth();x++){
 			for (int y=0; y<getGame().getGrid().getGridHeight();y++){
 				Coordinate  c1 =	new Coordinate (x, y, getGame().getPlayerTurn());
@@ -31,8 +31,10 @@ class AIEasy extends Player {
 		Random rnd = new Random();
 	 
 		int x = 0;
-		x = rnd.nextInt(getAvailableMoves().size());
-		return getAvailableMoves().get(x);
+		ArrayList<Coordinate> a = new ArrayList <Coordinate> ();
+		a=getAvailableMoves();
+		x = rnd.nextInt(a.size());
+		return a.get(x);
 		
 	}
 	
