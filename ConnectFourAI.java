@@ -7,6 +7,7 @@ public class ConnectFourAI extends Player{
 
 	private final static int GAME_WIDTH = 10;
 	private final static int GAME_HEIGHT = 7;
+	private int m_time = 1500;
 	
 	public ConnectFourAI(Game game, String name, Color color) {
 		super(game, name, color);
@@ -44,10 +45,11 @@ public class ConnectFourAI extends Player{
 	public Coordinate setAIMove() {
 		ArrayList<Coordinate> listTwo = new ArrayList<Coordinate>();
 		listTwo = getAvailableMoves();
-		
+		Coordinate takeCoord = null ;
 		int maximum = 0;
 		int countCounter = 0;
-		Coordinate takeCoord = listTwo.get(0);
+		if (!listTwo.isEmpty()){
+		 takeCoord = listTwo.get(0);
 		for (Coordinate coord : listTwo) {
 			int move = getGame().moveScore(coord);
 			if (move == 0){
@@ -71,22 +73,76 @@ public class ConnectFourAI extends Player{
 		}
 		
 		maximum = 0;
+		}
 		return takeCoord;
 	}
 
-	public void isYourMove() {
+	public void isYourMove() throws InterruptedException {
 		setYourTurn(true);
-
-	}
-
-	public void sendMove(Coordinate move) throws InterruptedException {
-		move = setAIMove();
-		if (getYourTurn()) {
-			setYourTurn(false);
-			getGame().moveMade(move);
+		if (!(getGame().getPlayer1() instanceof Human || 
+				getGame().getPlayer2() instanceof Human)){
+		sendMove();
 		}
 	}
 
+	public void sendMove() throws InterruptedException {
+		new Thread(
+				new Runnable() {
+					public void run() {
+						try {
+							Coordinate move ;
+							Thread.sleep(m_time);
+							move =setAIMove();
+							if (getYourTurn()) {
+								
+								getGame().moveMade(move);
+								
+								setYourTurn(false);
+								
+							}
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+		).start();
+	}
+	
+	public void sendMove(Coordinate move) throws InterruptedException {
+		class MyThread implements Runnable {
+				Coordinate m_move;
+			   public MyThread(Coordinate move) {
+			       // store parameter for later user
+				   m_move = move;
+			   }
+
+			   public void run() {
+					try {
+						m_move = setAIMove();
+					} catch (IndexOutOfBoundsException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (getYourTurn()) {
+						
+						try {
+							getGame().moveMade(m_move);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						setYourTurn(false);
+						
+					}
+			   }
+			}
+		Runnable r = new MyThread(move);
+		r.wait(m_time);
+		new Thread(r).start();
+
+	}
 	public String toString() {
 		String playerData = "OthelloAI," + getPlayerName() + ","
 				+ getPlayerColour().getRGB() + "," + getYourTurn() + ",";
@@ -94,10 +150,5 @@ public class ConnectFourAI extends Player{
 		return playerData;
 	}
 
-	@Override
-	public void sendMove() throws InterruptedException {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
+

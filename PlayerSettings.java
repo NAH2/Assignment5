@@ -359,16 +359,18 @@ public class PlayerSettings  extends JFrame{
 			if(e.getSource() == AI) {
 				EASY.setVisible(true);
 				HARD.setVisible(true);
+				EASY.doClick();
 			}
 			if(e.getSource() == AI2) {
 				EASY2.setVisible(true);
 				HARD2.setVisible(true);
+				EASY2.doClick();
 			}
 			if(e.getSource() == HARD){
 				if(ISOTHELLO){
 					player1 = new OthelloAI(m_game);
 				}else{
-				    //player2 = new ConnectFourAI(m_game);
+				    player1 = new ConnectFourAI(m_game);
 				}
 			}
 			if(e.getSource() == EASY){
@@ -385,7 +387,7 @@ public class PlayerSettings  extends JFrame{
 				if(ISOTHELLO){
 					player2 = new OthelloAI(m_game);
 				}else{
-				    //player2 = new ConnectFourAI(m_game);
+				    player2 = new ConnectFourAI(m_game);
 				}
 			}
 			if(e.getSource() == PLAYERCOLOUR_A1) {

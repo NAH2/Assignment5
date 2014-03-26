@@ -68,6 +68,7 @@ public class ConnectFour extends Game {
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
 		if 	((getPlayer1() instanceof ConnectFourAI||
 				getPlayer1() instanceof AIEasy) && (getPlayer2() instanceof Human)){
+			System.out.println("com first ");
 			getPlayer1().sendMove();
 		}
 		startTimer();
