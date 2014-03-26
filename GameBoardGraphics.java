@@ -234,7 +234,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		GRID_HEIGHT = (getYSquares() * getSquareHeight());
 		setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));
 		//CONNECT4BOARD = ImageIO.read(getClass().getResource("connect4board.png"));
-		WIN_STAR = ImageIO.read(getClass().getResource("star.png"));
 		//GRID1 = ImageIO.read(getClass().getResource("Oboard.png"));
 		//GRID2 = ImageIO.read(getClass().getResource("Oboard1.png"));
 	}
@@ -600,22 +599,22 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private int m_starX;
 	private int m_starY;
 	private Dimension m_d; 
-	private final BufferedImage CONNECT4BOARD = ImageIO.read(getClass().getResource("connect4board.png"));;
-	private final BufferedImage WIN_STAR;
-	private final BufferedImage GRID1 = ImageIO.read(getClass().getResource("Oboard1.png"));
-	private final BufferedImage GRID2 = ImageIO.read(getClass().getResource("Oboard2.png"));
-	private final BufferedImage GRID3 = ImageIO.read(getClass().getResource("Oboard3.png"));
-	private final BufferedImage GRID4 = ImageIO.read(getClass().getResource("Oboard4.png"));
-	private final BufferedImage GRID5 = ImageIO.read(getClass().getResource("Oboard5.png"));
-	private final BufferedImage GRID6 = ImageIO.read(getClass().getResource("Oboard6.png"));
+	private final BufferedImage CONNECT4BOARD = ImageIO.read(getClass().getResource("/resource/connect4board.png"));;
+	private final BufferedImage WIN_STAR = ImageIO.read(getClass().getResource("/resource/star.png"));;
+	private final BufferedImage GRID1 = ImageIO.read(getClass().getResource("/resource/Oboard1.png"));
+	private final BufferedImage GRID2 = ImageIO.read(getClass().getResource("/resource/Oboard2.png"));
+	private final BufferedImage GRID3 = ImageIO.read(getClass().getResource("/resource/Oboard3.png"));
+	private final BufferedImage GRID4 = ImageIO.read(getClass().getResource("/resource/Oboard4.png"));
+	private final BufferedImage GRID5 = ImageIO.read(getClass().getResource("/resource/Oboard5.png"));
+	private final BufferedImage GRID6 = ImageIO.read(getClass().getResource("/resource/Oboard6.png"));
 	
 	private static final long serialVersionUID = 1L;
-	private final BufferedImage CONNECT4BOARD2 = ImageIO.read(getClass().getResource("connect4board2.png"));
-	private final BufferedImage CONNECT4BOARD3 = ImageIO.read(getClass().getResource("connect4board3.png"));
-	private final BufferedImage CROSS = ImageIO.read(getClass().getResource("cross.png"));
-	private final BufferedImage CROSS2 = ImageIO.read(getClass().getResource("cross2.png"));
-	private final BufferedImage WHITE = ImageIO.read(getClass().getResource("white.png"));
-	private final BufferedImage BLACK = ImageIO.read(getClass().getResource("black.png"));
+	private final BufferedImage CONNECT4BOARD2 = ImageIO.read(getClass().getResource("/resource/connect4board2.png"));
+	private final BufferedImage CONNECT4BOARD3 = ImageIO.read(getClass().getResource("/resource/connect4board3.png"));
+	private final BufferedImage CROSS = ImageIO.read(getClass().getResource("/resource/cross.png"));
+	private final BufferedImage CROSS2 = ImageIO.read(getClass().getResource("/resource/cross2.png"));
+	private final BufferedImage WHITE = ImageIO.read(getClass().getResource("/resource/white.png"));
+	private final BufferedImage BLACK = ImageIO.read(getClass().getResource("/resource/black.png"));
 	private String m_board;
 	private Coordinate m_AImove;
 	private boolean m_criticalSection;

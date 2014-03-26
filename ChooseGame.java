@@ -85,8 +85,8 @@ public class ChooseGame {
 		ImageIcon connect4Image = null;
 		ImageIcon othelloImage = null;
 		try {
-			connect4Image = new ImageIcon(getClass().getResource("connect4.jpg"));
-			othelloImage = new ImageIcon(getClass().getResource("othello.jpg"));
+			connect4Image = new ImageIcon(getClass().getResource("/resource/connect4.jpg"));
+			othelloImage = new ImageIcon(getClass().getResource("/resource/othello.jpg"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
