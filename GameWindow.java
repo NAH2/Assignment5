@@ -57,6 +57,14 @@ public class GameWindow extends JFrame {
 	
 	//******************************
 	/**
+	* Method responsible for setting AI move to Drawing class
+	* @param move - coordinate of AI move
+	*/
+	public void SetAImove(Coordinate move){
+		getDrawing().SetAImove(move);
+	}
+	
+	/**
 	* Method responsible for passing animation data to Drawing class
 	* @param type - type of animation that is either flip or fall
 	* @param changes - the list stores the pieces which need the animation

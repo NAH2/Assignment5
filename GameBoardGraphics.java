@@ -24,6 +24,14 @@ import java.lang.NullPointerException;
 public class GameBoardGraphics extends JComponent implements MouseMotionListener{
 	//******************************
 	/**
+	* Method responsible for setting AI move
+	* @param move - coordinate of AI move
+	*/
+	public void SetAImove(Coordinate move){
+		m_AImove = move;
+	}
+	
+	/**
 	 * Method to set the animation speed
 	 * @param the animation speed ,an integer, represents millisecond time delay per movement
 	 */
@@ -118,8 +126,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* @param changes - the list stores the pieces which need the animation
 	*/
 	public void SetAnimation(String type, ArrayList<Coordinate> changes){
-		m_type = type;
+		if(m_type.equals("flip")){
+			changes.remove(0);
+		}
 		m_changes = changes;
+		m_type = type;
 		m_start = true;
 		m_lowestY = m_changes.get(0).getY()*getSquareHeight();
 		if(m_type.equals("fall")){
@@ -137,7 +148,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					}
 				}
 			).start();
-		} else {
+		} else {	
 			new Thread(
 				new Runnable() {
 					public void run() {
@@ -285,11 +296,15 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		//********************
 		if(!m_isOver){	
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
-				/*if(!m_flip){
-					g2.setColor(Color.BLACK);
-					g2.setStroke(new BasicStroke(2));
-					g2.drawRect(m_colX, m_colY, getSquareWidth(), getSquareHeight());
-				}*/
+				//******************************
+				if(m_AImove != null && !m_changes.isEmpty() &&
+						((m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1 && m_player1 instanceof OthelloAI) ||
+							m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER2 && m_player2 instanceof OthelloAI)){
+					g2.setColor(Color.RED);
+					g2.setStroke(new BasicStroke(4));
+					g2.drawOval(m_AImove.getX()*getSquareWidth()+MID_POSITION, m_AImove.getY()*getSquareHeight()+MID_POSITION, WINMARK_SIZE, WINMARK_SIZE);
+				}
+				//******************************
 			} else {
 				m_d = this.getSize();
 				g2.setColor(Color.BLACK);
@@ -298,7 +313,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				g2.drawLine(m_nextColX - ADJUST_POINT, 0, m_nextColX - ADJUST_POINT, m_d.height);
 				
 				//g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
-			}	
+			}
 		} else {
 			paintWin(g2);
 			/*if(PLAYER1_COLOUR.equals(Color.WHITE)){
@@ -548,5 +563,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private final BufferedImage WHITE = ImageIO.read(getClass().getResource("white.png"));
 	private final BufferedImage BLACK = ImageIO.read(getClass().getResource("black.png"));
 	private String m_board;
+	private Coordinate m_AImove;
 	//********************
 }

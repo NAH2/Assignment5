@@ -343,9 +343,14 @@ public class Othello extends Game
 			}	
 			getWindow().displayGrid(getGrid());
 			//**********************
-				System.out.println("othello----");
-				changes.remove(0);
-				getWindow().SetAnimation("flip", changes);
+			System.out.println("othello----");
+			if ((getPlayer1() instanceof OthelloAI && changes.get(0).getValue() == Game.PlayerTurn.PLAYER1) || 
+					(getPlayer2() instanceof OthelloAI && changes.get(0).getValue() == Game.PlayerTurn.PLAYER2)){
+				getWindow().SetAImove(changes.get(0));
+			} else {
+			//changes.remove(0);
+			}
+			getWindow().SetAnimation("flip", changes);
 			//**********************
 			setPlayer1Score(0);
 			setPlayer2Score(0);

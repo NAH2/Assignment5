@@ -102,6 +102,14 @@ public class Drawing {
 	}
 	//******************************
 	/**
+	* Method responsible for setting AI move to GameBoardGraphics class
+	* @param move - coordinate of AI move
+	*/
+	public void SetAImove(Coordinate move){
+		gameBoardGraphics.SetAImove(move);
+	}
+	
+	/**
 	* Method responsible for passing animation data to GameBoardGraphics class
 	* @param type - type of animation that is either flip or fall
 	* @param changes - the list stores the pieces which need the animation
