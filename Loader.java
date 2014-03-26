@@ -195,11 +195,14 @@ public class Loader extends FileManager{
         } catch (Exception exc) {
             System.err.println("Error Reading File");
         }
-        
-        timer = new Timer(getGame());
-        timer.setHours(m_timerInfo[HOURS]);
-        timer.setMinutes(m_timerInfo[MINUTES]);
-        timer.setSeconds(m_timerInfo[SECONDS]);
+        if(m_valid) {
+            timer = new Timer(getGame());
+            timer.setHours(m_timerInfo[HOURS]);
+            timer.setMinutes(m_timerInfo[MINUTES]);
+            timer.setSeconds(m_timerInfo[SECONDS]);
+        } else {
+            m_allValid = false;
+        }
 
         return timer;
     }
