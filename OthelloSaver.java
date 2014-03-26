@@ -5,5 +5,7 @@ public class OthelloSaver extends Saver{
     public OthelloSaver(Game g) {
         setGame(g);
         setPath(OTHELLO_PATH);
+        
+        createDirs();
     }
 }

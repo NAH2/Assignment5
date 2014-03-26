@@ -5,5 +5,7 @@ public class ConnectFourSaver extends Saver{
     public ConnectFourSaver(Game g) {
         setGame(g);
         setPath(CONNECTFOUR_PATH);
+        
+        createDirs();
     }
 }

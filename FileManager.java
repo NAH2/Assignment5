@@ -103,6 +103,12 @@ public class FileManager {
         return true;
     }
     
+    public boolean createDirs() {
+        new File(getPath()).mkdirs();
+        
+        return true;
+    }
+    
     private String PATH = "";
     private File inFile;
     private Grid m_gridObj;
