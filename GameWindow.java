@@ -11,11 +11,11 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- * @file GameWindow.java
- * @author Gavin Tsang 658679
- * @date 27/02/2014
+ * \file GameWindow.java
+ * \author Gavin Tsang 658679
+ * \date 27/02/2014
  * 
- * @brief This class is used to initialise the main GUI window.
+ * \brief This class is used to initialise the main GUI window.
  * 
  * The main GUI window contains all the graphical elements and user interfaces.
  * Also provides methods to manipulate the elements within the window such as
@@ -26,7 +26,7 @@ public class GameWindow extends JFrame {
 	/**
 	 * Returns the main game class which this window is taking commands from.
 	 * 
-	 * @return Returns the pointer towards the game class that is currently
+	 * \return Returns the pointer towards the game class that is currently
 	 * being used.
 	 */
 	public Game getGame() {
@@ -37,8 +37,8 @@ public class GameWindow extends JFrame {
 	 * Sets the game class with which this window is to take and send commands
 	 * from.
 	 * 
-	 * @param game The game class which should currently be used.
-	 * @return Returns TRUE if successful.
+	 * \param game The game class which should currently be used.
+	 * \return Returns TRUE if successful.
 	 */
 	private boolean setGame(Game game) {
 		m_gameControl = game;
@@ -49,7 +49,7 @@ public class GameWindow extends JFrame {
 	 * Returns the drawing class which controls all the graphical systems in the
 	 * window.
 	 * 
-	 * @return Returns a pointer towards the drawing class.
+	 * \return Returns a pointer towards the drawing class.
 	 */
 	public Drawing getDrawing() {
 		return m_drawingControl;
@@ -58,7 +58,7 @@ public class GameWindow extends JFrame {
 	//******************************
 	/**
 	* Method responsible for setting AI move to Drawing class
-	* @param move - coordinate of AI move
+	* \param move - coordinate of AI move
 	*/
 	public void SetAImove(Coordinate move){
 		getDrawing().SetAImove(move);
@@ -66,8 +66,8 @@ public class GameWindow extends JFrame {
 	
 	/**
 	* Method responsible for passing animation data to Drawing class
-	* @param type - type of animation that is either flip or fall
-	* @param changes - the list stores the pieces which need the animation
+	* \param type - type of animation that is either flip or fall
+	* \param changes - the list stores the pieces which need the animation
 	*/
 	public void SetAnimation(String type, ArrayList<Coordinate> changes){
 		getDrawing().SetAnimation(type, changes);
@@ -75,7 +75,7 @@ public class GameWindow extends JFrame {
 	
 	/**
 	 * Method to set the game is not over after the game restarts
-	 * @param isOver - the boolean true means the game is over
+	 * \param isOver - the boolean true means the game is over
 	 */
 	public void SetOver(boolean isOver){
 		getDrawing().SetOver(isOver);
@@ -89,9 +89,9 @@ public class GameWindow extends JFrame {
 	 * Sets the drawing class which controls all the graphical systems in the
 	 * window.
 	 * 
-	 * @param drawing The instance of the drawing class which is to be used.
+	 * \param drawing The instance of the drawing class which is to be used.
 	 * 
-	 * @return Returns TRUE if successful.
+	 * \return Returns TRUE if successful.
 	 */
 	private boolean setDrawing(Drawing drawing) {
 		m_drawingControl = drawing;
@@ -101,7 +101,7 @@ public class GameWindow extends JFrame {
 	/**
 	 * Returns the control class which processes the users inputs commands.
 	 * 
-	 * @return Returns a pointer towards the control class being used.
+	 * \return Returns a pointer towards the control class being used.
 	 */
 	public Controls getControls() {
 		return m_controlsControl;
@@ -111,9 +111,9 @@ public class GameWindow extends JFrame {
 	 * Sets the control class which is used to take in and process the user's
 	 * comands on the main GameWindow.
 	 * 
-	 * @param controls The instance of the controls class which is to be used.
+	 * \param controls The instance of the controls class which is to be used.
 	 * 
-	 * @return Returns TRUE if successful.
+	 * \return Returns TRUE if successful.
 	 */
 	private boolean setControls(Controls controls) {
 		m_controlsControl = controls;
@@ -125,7 +125,7 @@ public class GameWindow extends JFrame {
 	 * and Drawing and draws on the component panels provided by the
 	 * aforementioned classes.
 	 * 
-	 * @param game Pointer to indicate which game process is currently using
+	 * \param game Pointer to indicate which game process is currently using
 	 * this Gamewindow.
 	 */
 	public GameWindow(Game game) {
@@ -193,10 +193,10 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called whenever the player's turn changes.
 	 * 
-	 * @param player indicates which player's turn it is as the Enumerator
+	 * \param player indicates which player's turn it is as the Enumerator
 	 * "PlayerTurn".
 	 * 
-	 * @return Returns TRUE if successful.
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayPlayerTurn(Game.PlayerTurn player) {
 		if(player == Game.PlayerTurn.PLAYER1){
@@ -212,9 +212,9 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called whenever the displayed grid needs to be updated.
 	 * 
-	 * @param grid The grid class which is to be used to update the GUI.
+	 * \param grid The grid class which is to be used to update the GUI.
 	 * 
-	 * @return Returns TRUE if successful.
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayGrid(Grid grid) {
 		getDrawing().setGrid(grid, m_gameControl);
@@ -224,8 +224,8 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called to pass the invalid coordinate to gameboard graphics.
 	 * 
-	 * @param Coordinate -  the position of invalid move
-	 * @return Returns TRUE if successful.
+	 * \param Coordinate -  the position of invalid move
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayInvalidMove(Coordinate move) {
 		getDrawing().getGridPanel().SetValid(false, move);
@@ -236,8 +236,8 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called to pass whether the move is valid to the gameboard graphics.
 	 * 
-	 * @param the boolean whether the move is valid or not
-	 * @return Returns TRUE if successful.
+	 * \param the boolean whether the move is valid or not
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayInvalidMove(boolean valid) {
 		getDrawing().getGridPanel().SetValid(true);
@@ -250,11 +250,11 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called to update the player's scores displayed on screen.
 	 * 
-	 * @param player1Score The new score to be displayed for player 1.
+	 * \param player1Score The new score to be displayed for player 1.
 	 * 
-	 * @param player2Score The new score to be displayed for player 2.
+	 * \param player2Score The new score to be displayed for player 2.
 	 * 
-	 * @return Returns TRUE if successful.
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean updateScore(int player1Score, int player2Score) {
 		getDrawing().setPlayer1Score(player1Score);
@@ -266,10 +266,10 @@ public class GameWindow extends JFrame {
 	 * Called whenever the user has made a move on the grid UI and passes
 	 * it onto the correct Player class who's turn it currently is.
 	 * 
-	 * @param move The move that the user has made as a Coordinate.
+	 * \param move The move that the user has made as a Coordinate.
 	 * 
-	 * @return Returns TRUE if successful.
-	 * @throws InterruptedException 
+	 * \return Returns TRUE if successful.
+	 * \throws InterruptedException 
 	 */
 	public boolean moveMade(Coordinate move) throws InterruptedException {
 		System.out.println(getGame().getPlayerTurn());
@@ -334,36 +334,36 @@ public class GameWindow extends JFrame {
         		if(m_gameControl.getPlayer1() instanceof OthelloAI){
         			((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
         			m_player1 = new OthelloAI(m_game,m_gameControl.getPlayer1().getPlayerName(),
-        					m_gameControl.getPlayer1().getPlayerColour());
+        			m_gameControl.getPlayer1().getPlayerColour());
         		} else if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
         			((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
         			m_player1 = new ConnectFourAI(m_game,m_gameControl.getPlayer1().getPlayerName(),
-        					m_gameControl.getPlayer1().getPlayerColour());
+        			m_gameControl.getPlayer1().getPlayerColour());
         		} else if(m_gameControl.getPlayer1() instanceof AIEasy){
         			((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
         			m_player1 = new AIEasy(m_game,m_gameControl.getPlayer1().getPlayerName(),
-        					m_gameControl.getPlayer1().getPlayerColour());
+        			m_gameControl.getPlayer1().getPlayerColour());
         		} else {
         			m_player1 = new Human(m_game,m_gameControl.getPlayer1().getPlayerName(),
-        					m_gameControl.getPlayer1().getPlayerColour());
+        			m_gameControl.getPlayer1().getPlayerColour());
         		}
         		if(m_gameControl.getPlayer2() instanceof OthelloAI){
         			((OthelloAI)(m_gameControl.getPlayer2())).SetRun(false);
         			m_player2 = new OthelloAI(m_game,m_gameControl.getPlayer2().getPlayerName(),
-        					m_gameControl.getPlayer2().getPlayerColour());
+        			m_gameControl.getPlayer2().getPlayerColour());
         		} else if(m_gameControl.getPlayer2() instanceof ConnectFourAI){
         			((ConnectFourAI)(m_gameControl.getPlayer2())).SetRun(false);
         			m_player2 = new ConnectFourAI(m_game,m_gameControl.getPlayer2().getPlayerName(),
-        					m_gameControl.getPlayer2().getPlayerColour());
+        			m_gameControl.getPlayer2().getPlayerColour());
         		} else if(m_gameControl.getPlayer2() instanceof AIEasy){
         			((AIEasy)(m_gameControl.getPlayer2())).SetRun(false);
         			m_player2 = new AIEasy(m_game,m_gameControl.getPlayer2().getPlayerName(),
-        					m_gameControl.getPlayer2().getPlayerColour());
+        			m_gameControl.getPlayer2().getPlayerColour());
         		} else {
         			m_player2 = new Human(m_game,m_gameControl.getPlayer2().getPlayerName(),
-        					m_gameControl.getPlayer2().getPlayerColour());
+        			m_gameControl.getPlayer2().getPlayerColour());
         		}		      		
-        		
+        			
         		m_game.setPlayer1(m_player1);
         		m_game.setPlayer2(m_player2);				
     			try {
@@ -424,8 +424,8 @@ public class GameWindow extends JFrame {
                 m_drawingControl.getGridPanel().repaint();
             }else {
                 JOptionPane.showMessageDialog(null, "ERROR Laoding File",
-                        "Load ERROR",JOptionPane.ERROR_MESSAGE);
-                
+                "Load ERROR",JOptionPane.ERROR_MESSAGE);
+                				
                 // WHAT DO WE DO HERE??
             }
         }
@@ -434,7 +434,7 @@ public class GameWindow extends JFrame {
 	/**
 	 * Test method.
 	 * 
-	 * @param No arguments.
+	 * \param No arguments.
 	 */
 	public static void main(String args[]) {
 		ConnectFour game = new ConnectFour();
