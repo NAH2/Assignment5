@@ -281,14 +281,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					} else {
 					g2.drawImage(GRID1, i, j, null);
 					}
-					//g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
-				}
-					//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-					////g2.setColor(new Color(255,255,255,255));
-					////g2.fillOval(i+4 , j+4, getSquareWidth()-10, getSquareHeight()-10);
-					//g2.setColor(Color.WHITE);
-					//g2.setStroke(new BasicStroke(2));
-					//g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+					}
 				}
 			}
 				//**********************
@@ -469,8 +462,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		m_criticalSection = true;
 		Iterator<Coordinate> s = m_changes.iterator();
 		for(s = m_changes.iterator(); s.hasNext(); ) {
-			if(s.hasNext()){
-			Coordinate item = s.next();
+			try{
+				Coordinate item = s.next();		
 				if(item != null && item.getX()*getSquareWidth() == i 
 				&& item.getY()*getSquareHeight() == j){
 				m_flippingPiece = true;
@@ -492,7 +485,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					} else {
 					g2.drawImage(GRID1, i, j, null);
 					}
-				}
+					}
 					//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 					g2.setColor(Color.WHITE);
 					g2.setStroke(new BasicStroke(2));
@@ -513,7 +506,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, PIECE_SIZE, null);
 					}
 				}
-			}
+			} catch (NullPointerException e){}
 		}
 		m_criticalSection = false;
 	} 
