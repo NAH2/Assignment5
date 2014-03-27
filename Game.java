@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * \file Game.Java
+ * \\file Game.Java
  * \author G. Tsang
  * \date 11/02/2014
  * 
@@ -10,6 +10,7 @@ import java.util.*;
  * This class contains the main control logic which allows this class to receive
  * player interactions, process them before sending them to the corresponding 
  * classes. Also initialises the subControl classes.
+ * This class is tested through other classes
  */
 public abstract class Game {
     /**
@@ -267,12 +268,21 @@ public abstract class Game {
 	 * \return Returns true if successful
 	 */
 	public boolean setPlayer2(Player player) {
-
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: setPlayer2() BEGIN");
+        }
+        
 		if (player == null) {
 			throw new IllegalArgumentException(
 					"Game::SetPlayer2 - Invalid player type(null) for player2");
 		}
 		m_player2 = player;
+		
+        if (test || m_test) {
+            System.out.println("Game :: setPlayer2() END");
+        }
+        
 		return true;
 	}
 
@@ -282,6 +292,14 @@ public abstract class Game {
 	 * \return Returns an integer indicating the score of player 1.
 	 */
 	public int getPlayer1Score() {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: getPlayer1Score() BEGIN");
+        }
+        if (test || m_test) {
+            System.out.println("Game :: getPlayer1Score() END");
+        }
+        
 		return m_player1Score;
 	}
 
@@ -291,6 +309,14 @@ public abstract class Game {
 	 * \return Returns an integer indicating the score of player 2.
 	 */
 	public int getPlayer2Score() {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: getPlayer2Score() BEGIN");
+        }
+        if (test || m_test) {
+            System.out.println("Game :: getPlayer2Score() END");
+        }
+        
 		return m_player2Score;
 	}
 
@@ -302,12 +328,21 @@ public abstract class Game {
 	 * \return Returns TRUE if successful
 	 */
 	protected boolean setPlayer1Score(int score) {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: setPlayer1Score() BEGIN");
+        }
+        
 		if (score < 0) {
 			throw new IllegalArgumentException(
 					"Game::AddPlayer1Score - Invalid integer(" + score
 							+ ") to addition of score");
 		}
 		m_player1Score = score;
+		
+        if (test || m_test) {
+            System.out.println("Game :: setPlayer1Score() END");
+        }
 		return true;
 	}
 
@@ -319,12 +354,22 @@ public abstract class Game {
 	 * \return Returns TRUE if successful
 	 */
 	protected boolean setPlayer2Score(int score) {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: setPlayer2Score() BEGIN");
+        }
+        
 		if (score < 0) {
 			throw new IllegalArgumentException(
 					"Game::AddPlayer2Score - Invalid integer(" + score
 							+ ") to addition of score");
 		}
 		m_player2Score = score;
+		
+        if (test || m_test) {
+            System.out.println("Game :: setPlayer2Score() END");
+        }
+        
 		return true;
 	}
 
@@ -336,30 +381,17 @@ public abstract class Game {
 	 * \param y - The height of the grid for the game as an integer.
 	 */
 	public Game(int x, int y) {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: Game() BEGIN");
+        }
+        
 		setGrid(new Grid(x, y));
+		
+        if (test || m_test) {
+            System.out.println("Game :: Game() END");
+        }
 	}
-
-	/**
-	 * Main method which is called whenever the game is first started.
-	 * 
-	 * \throws InterruptedException
-	 */
-	public abstract void start() throws InterruptedException;
-
-	// **********************
-	// private ArrayList<Coordinate> changes;
-	// public ArrayList<Coordinate> getMove(){
-	// return changes;
-	// }
-	// **********************
-	/**
-	 * Called whenever a player has made a move. Processes the move and calls
-	 * the GUI and storage classes to store the processed move's data.
-	 * 
-	 * \param move - The move which the player has made as a Coordinate class.
-	 * \throws InterruptedException
-	 */
-	public abstract void moveMade(Coordinate move) throws InterruptedException;
 
 	/**
 	 * method to calculate the scores of both players 
@@ -367,6 +399,11 @@ public abstract class Game {
 	 * \return true on success
 	 */
 	public boolean setScores() {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: setScores() BEGIN");
+        }
+        
 		setPlayer1Score(0);
 		setPlayer2Score(0);
 		for (int i = 0; i < getGrid().getGridWidth(); i++) {
@@ -380,7 +417,11 @@ public abstract class Game {
 				}
 			}
 		}
-
+		
+        if (test || m_test) {
+            System.out.println("Game :: setScores() END");
+        }
+        
 		return true;
 	}
 
@@ -394,16 +435,36 @@ public abstract class Game {
 	 * \return Returns TRUE if it is a valid move, FALSE otherwise.
 	 */
 	protected boolean validateMove(Coordinate move) {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: validateMove() BEGIN");
+        }
+        
 		if (isValidMove(move)) {
 			getWindow().displayInvalidMove(false);
+			
+	        if (test || m_test) {
+	            System.out.println("Game :: validateMove() END");
+	        }
+	        
 			return true;
 		} else {
 			getWindow().displayInvalidMove(move);
+			
+	        if (test || m_test) {
+	            System.out.println("Game :: validateMove() END");
+	        }
+	        
 			return false;
 		}
 	}
 
 	protected void Getmessage(String msg) {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: Getmessage() BEGIN");
+        }
+        
 		if(getPlayer1() instanceof AIEasy){
 			((AIEasy)getPlayer1()).SetRun(false);
 		} else if(getPlayer1() instanceof OthelloAI) {
@@ -425,6 +486,10 @@ public abstract class Game {
 		} else if(getPlayer2() instanceof OthelloAI) {
 			((OthelloAI)getPlayer2()).SetRun(true);
 		}
+		
+        if (test || m_test) {
+            System.out.println("Game :: Getmessage() END");
+        }
 	}
 	
 	
@@ -435,6 +500,11 @@ public abstract class Game {
 	 * \throws InterruptedException
 	 */
 	public void reset() throws InterruptedException {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: reset() BEGIN");
+        }
+        
 		int x = getGrid().getGridWidth();
 		int y = getGrid().getGridHeight();
 		setGrid(new Grid(x, y));
@@ -448,6 +518,10 @@ public abstract class Game {
 		m_timer.setRunning();
 		startTimer();
 		resetGame();
+		
+        if (test || m_test) {
+            System.out.println("Game :: reset() END");
+        }
 	}
 
 	/**
@@ -456,7 +530,11 @@ public abstract class Game {
 	 * \throws InterruptedException
 	 */
 	public void resumeGame() throws InterruptedException {
-		
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: resumeGame() BEGIN");
+        }
+        
 		setWindow(new GameWindow(this));
 		setScores();
 		getWindow().displayPlayerTurn(m_playerTurn);
@@ -472,13 +550,26 @@ public abstract class Game {
 			getPlayer2().isYourMove();
 		}
 		startTimer();
+		
+        if (test || m_test) {
+            System.out.println("Game :: resumeGame() END");
+        }
 	}
 	
 	/**
 	 * method to create and start a timer for the game
 	 */
 	public void startTimer() {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: startTimer() BEGIN");
+        }
+        
 		m_timer = new Timer(this);
+		
+        if (test || m_test) {
+            System.out.println("Game :: startTimer() END");
+        }
 	}
 	
 	/**
@@ -487,12 +578,21 @@ public abstract class Game {
 	 * \param Timer t - timer loaded from file
 	 */
 	public void startTimer(Timer t) {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: startTimer() BEGIN");
+        }
+        
 		if (m_timer == null) {
 			// DO NOTHING
 		} else {
 			m_timer.setRunning();
 		}
 		m_timer = t;
+		
+        if (test || m_test) {
+            System.out.println("Game :: startTimer() END");
+        }
 	}
 	
 	/**
@@ -501,6 +601,14 @@ public abstract class Game {
 	 * \return Timer m_timer
 	 */
 	public Timer getTimer() {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("Game :: getTimer() BEGIN");
+        }
+        if (test || m_test) {
+            System.out.println("Game :: getTimer() END");
+        }
+        
 		return m_timer;
 	}
 	
@@ -581,6 +689,28 @@ public abstract class Game {
 	 * \return int of the score from all changes that would be made
 	 */
 	public abstract int moveScore(Coordinate xy);
+	
+	/**
+     * Main method which is called whenever the game is first started.
+     * 
+     * \throws InterruptedException
+     */
+    public abstract void start() throws InterruptedException;
+
+    // **********************
+    // private ArrayList<Coordinate> changes;
+    // public ArrayList<Coordinate> getMove(){
+    // return changes;
+    // }
+    // **********************
+    /**
+     * Called whenever a player has made a move. Processes the move and calls
+     * the GUI and storage classes to store the processed move's data.
+     * 
+     * \param move - The move which the player has made as a Coordinate class.
+     * \throws InterruptedException
+     */
+    public abstract void moveMade(Coordinate move) throws InterruptedException;
 	
 	/**
 	 * method os overridden by connectfour
