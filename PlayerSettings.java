@@ -610,6 +610,12 @@ public class PlayerSettings extends JFrame {
 	            		+ "actionPerformed() BEGIN");
 	            }
 			if (e.getSource() == STARTBUTTON) {
+				if (PLAYERNAME1.getText().length()>20){
+					PLAYERNAME1.setText(PLAYERNAME1.getText().substring(0, 20));
+				}
+				if (PLAYERNAME2.getText().length()>20){
+					PLAYERNAME2.setText(PLAYERNAME2.getText().substring(0, 20));
+				}
 				m_player1.setPlayerName(PLAYERNAME1.getText());
 				m_player2.setPlayerName(PLAYERNAME2.getText());
 				m_player1.setPlayerColour(m_player1Color);
