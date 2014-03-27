@@ -573,20 +573,11 @@ public class Drawing {
         }
     }
 	
-	/**
-	 * This method shows an error if a player makes an invalid move.
-	 */
-	public void invalidMove() {
+
+	public void Message(String msg) {
 		JOptionPane.showMessageDialog(null,
-			    "That move is not valid Please try again.",
-			    "Invalid Move",
-			    JOptionPane.ERROR_MESSAGE);
-	}
-	
-	public void Passturnmessage() {
-		JOptionPane.showMessageDialog(null,
-			    "There are no available moves, the turn has been passed to the opponent.",
-			    "Pass",
+			     msg,
+			    "Information",
 			    JOptionPane.INFORMATION_MESSAGE);
 	}
 	/**
