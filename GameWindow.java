@@ -294,33 +294,68 @@ public class GameWindow extends JFrame {
             	getDrawing().getGridPanel().SetRun(false);
         		if(m_gameControl.getPlayer1() instanceof OthelloAI){
         			((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
+        		} else if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
+        			((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
+        		} else if(m_gameControl.getPlayer1() instanceof AIEasy){
+        			((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
         		}
         		if(m_gameControl.getPlayer2() instanceof OthelloAI){
         			((OthelloAI)(m_gameControl.getPlayer2())).SetRun(false);
-        		}
-        		if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
-        			((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
-        		}
-        		if(m_gameControl.getPlayer2() instanceof ConnectFourAI){
+        		} else if(m_gameControl.getPlayer2() instanceof ConnectFourAI){
         			((ConnectFourAI)(m_gameControl.getPlayer2())).SetRun(false);
-        		}
-        		if(m_gameControl.getPlayer1() instanceof AIEasy){
-        			((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
-        		}
-        		if(m_gameControl.getPlayer2() instanceof AIEasy){
+        		} else if(m_gameControl.getPlayer2() instanceof AIEasy){
         			((AIEasy)(m_gameControl.getPlayer2())).SetRun(false);
-        		}
+        		}	
+        		
                 dispose();
                 new ChooseGame();
             }
             
             if (e.getSource() == m_resetGame) {
-                try {
-					getGame().reset();
+            	Game m_game;
+            	Player m_player1;
+            	Player m_player2;
+            	if(m_gameControl instanceof Othello){
+            		m_game = new Othello();
+            	} else {
+            		m_game = new ConnectFour();
+            	}
+            	
+            	getDrawing().getGridPanel().SetRun(false);
+        		if(m_gameControl.getPlayer1() instanceof OthelloAI){
+        			((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
+        			m_player1 = new OthelloAI(m_game,m_gameControl.getPlayer1().getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
+        		} else if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
+        			((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
+        			m_player1 = new ConnectFourAI(m_game,m_gameControl.getPlayer1().getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
+        		} else if(m_gameControl.getPlayer1() instanceof AIEasy){
+        			((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
+        			m_player1 = new AIEasy(m_game,m_gameControl.getPlayer1().getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
+        		} else {
+        			m_player1 = new Human(m_game,m_gameControl.getPlayer1().getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
+        		}
+        		if(m_gameControl.getPlayer2() instanceof OthelloAI){
+        			((OthelloAI)(m_gameControl.getPlayer2())).SetRun(false);
+        			m_player2 = new OthelloAI(m_game,m_gameControl.getPlayer2().getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
+        		} else if(m_gameControl.getPlayer2() instanceof ConnectFourAI){
+        			((ConnectFourAI)(m_gameControl.getPlayer2())).SetRun(false);
+        			m_player2 = new ConnectFourAI(m_game,m_gameControl.getPlayer2().getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
+        		} else if(m_gameControl.getPlayer2() instanceof AIEasy){
+        			((AIEasy)(m_gameControl.getPlayer2())).SetRun(false);
+        			m_player2 = new AIEasy(m_game,m_gameControl.getPlayer2().getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
+        		} else {
+        			m_player2 = new Human(m_game,m_gameControl.getPlayer2().getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
+        		}		      		
+        		
+        		m_game.setPlayer1(m_player1);
+        		m_game.setPlayer2(m_player2);				
+    			try {
+    				m_game.start();
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+    			setVisible(false);
             }
             
             if (e.getSource() == m_save) {
