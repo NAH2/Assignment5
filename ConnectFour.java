@@ -1,7 +1,6 @@
 import java.util.*;
-
 /**
- * \file -ConnectFour.java
+ * \\file -ConnectFour.java
  * \author -G. Howard
  * \date -14/02/2014
  * 

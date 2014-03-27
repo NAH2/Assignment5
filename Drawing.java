@@ -24,10 +24,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
 /**
- * \author 708830
+ * \\author 708830
  * \date 26 Feb 2014
  * \file Drawing.java
  * 

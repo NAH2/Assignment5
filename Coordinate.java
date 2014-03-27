@@ -1,5 +1,5 @@
 /**
- *  \file	-Coordinate.Java
+ *  \\file	-Coordinate.Java
  * 	\author	-B. Golightly (659715)
  * 	\date	-12/02/2014
  * 	
