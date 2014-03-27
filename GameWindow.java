@@ -377,7 +377,7 @@ public class GameWindow extends JFrame {
 		}	
 		getGame().getTimer().setRunning();
         dispose();
-        new ChooseGame();
+        new GameSelecter();
         return true;
 	}
 	
