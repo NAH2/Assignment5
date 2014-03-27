@@ -10,7 +10,7 @@ import java.awt.Color;
  * creates AI for othello and connectfour which randomly picks a valid move and 
  * performs the move.
  */
-class AIEasy extends Player {
+public class AIEasy extends Player {
     /**
     * Sets the variable m_running which is used to decide if the AIEasy runs 
     * or not
