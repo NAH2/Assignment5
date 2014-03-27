@@ -12,7 +12,7 @@ import java.awt.event.*;
 import java.util.ConcurrentModificationException;
 import java.lang.NullPointerException;
 /**
- * \file GameBoardGraphics.java
+ * \\file GameBoardGraphics.java
  * \author Daniel 709547
  * \date 25/02/2014
  * \brief Class which deals with the graphics of the game board

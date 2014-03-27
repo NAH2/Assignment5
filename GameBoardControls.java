@@ -2,7 +2,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * \file GameBoardControls.java
+ * \\file GameBoardControls.java
  * \author Gavin Tsang 658679
  * \date 20/02/2014
  * 
