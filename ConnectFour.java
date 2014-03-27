@@ -6,15 +6,13 @@ import java.util.*;
 import javax.swing.JFrame;
 
 /**
- * \\file -ConnectFour.java
- * \author -G. Howard
- * \date -14/02/2014
+ * \\file -ConnectFour.java \author -G. Howard \date -14/02/2014
  * 
- * \brief Class that extends Game by using the rules of ConnectFour. 
+ * \brief Class that extends Game by using the rules of ConnectFour.
  * 
- * 		Specifies the size of the board to be used. Sets the ways of winning ConnectFour
- *      and what happens once happens once the game has ended. Doesn't allow
- *      the user to click outside the grid.
+ * Specifies the size of the board to be used. Sets the ways of winning
+ * ConnectFour and what happens once happens once the game has ended. Doesn't
+ * allow the user to click outside the grid.
  */
 
 public class ConnectFour extends Game {
@@ -22,13 +20,12 @@ public class ConnectFour extends Game {
 	/**
 	 * Sets the winner of the game.
 	 * 
-	 * \param player
-	 *            The winner of the game as an enumerator Game.PlayerTurn.
+	 * \param player The winner of the game as an enumerator Game.PlayerTurn.
 	 */
 	public void setWinner(Game.PlayerTurn player) {
 		m_Winner = player;
 	}
-	
+
 	/**
 	 * Return the winning piece coordinates
 	 * 
@@ -37,7 +34,7 @@ public class ConnectFour extends Game {
 	public Set<Coordinate> getWin() {
 		return m_win;
 	}
-	
+
 	/**
 	 * Returns the winner of the game.
 	 * 
@@ -46,7 +43,7 @@ public class ConnectFour extends Game {
 	public Game.PlayerTurn getWinner() {
 		return m_Winner;
 	}
-	
+
 	/**
 	 * Empty the set which stores the winning piece coordinates
 	 */
@@ -62,7 +59,7 @@ public class ConnectFour extends Game {
 	}
 
 	/**
-	 *  Initialise ConnectFour 
+	 * Initialise ConnectFour
 	 */
 	public void start() throws InterruptedException {
 		boolean test = false;
@@ -73,16 +70,15 @@ public class ConnectFour extends Game {
 		setWindow(new GameWindow(this));
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if 	((getPlayer1() instanceof ConnectFourAI||
-				getPlayer1() instanceof AIEasy) && (getPlayer2() instanceof Human)){
+		if ((getPlayer1() instanceof ConnectFourAI || getPlayer1() instanceof AIEasy)
+				&& (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
 		startTimer();
 	}
 
 	/**
-	 * Resets the starting pieces.
-	 * \throws InterruptedException 
+	 * Resets the starting pieces. \throws InterruptedException
 	 */
 	public void resetGame() throws InterruptedException {
 		boolean test = false;
@@ -93,8 +89,8 @@ public class ConnectFour extends Game {
 		setPlayerTurn(PlayerTurn.PLAYER1);
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if 	((getPlayer1() instanceof ConnectFourAI||
-				getPlayer1() instanceof AIEasy) && (getPlayer2() instanceof Human)){
+		if ((getPlayer1() instanceof ConnectFourAI || getPlayer1() instanceof AIEasy)
+				&& (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
 		if (test || m_test) {
@@ -115,7 +111,7 @@ public class ConnectFour extends Game {
 		if (getTurnCount() == GAME_WIDTH * GAME_HEIGHT) {
 			if (test)
 				System.out
-					.println("ConnectFour::validMove() - No more valid moves");
+						.println("ConnectFour::validMove() - No more valid moves");
 			return false;
 		} else {
 			if (test || m_test) {
@@ -123,7 +119,7 @@ public class ConnectFour extends Game {
 			}
 			return true;
 		}
-		
+
 	}
 
 	/**
@@ -155,22 +151,21 @@ public class ConnectFour extends Game {
 		if (grid.getCoordinate(xy.getX(), 0).getValue() == Game.PlayerTurn.NONE) {
 			if (test || m_test)
 				System.out
-					.println("ConnectFour::isValidMove() - move is valid");
+						.println("ConnectFour::isValidMove() - move is valid");
 			return true;
 		} else {
 			if (test || m_test)
 				System.out
-					.println("ConnectFour::isValidMove() - move is not valid");
+						.println("ConnectFour::isValidMove() - move is not valid");
 			return false;
 		}
 	}
 
-	
 	/**
 	 * Called whenever a player has made a move. Processes the move and calls
 	 * the GUI and storage classes to store the processed move's data.
 	 * 
-	 * \param move  The move which the player has made as a Coordinate class.
+	 * \param move The move which the player has made as a Coordinate class.
 	 * 
 	 * \throws InterruptedException
 	 */
@@ -193,9 +188,9 @@ public class ConnectFour extends Game {
 			for (int i = 0; i < getGrid().getGridWidth(); i++) {
 				for (int j = 0; j < getGrid().getGridHeight(); j++) {
 					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
-					setPlayer1Score(getPlayer1Score() + 1);
+						setPlayer1Score(getPlayer1Score() + 1);
 					} else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
-					setPlayer2Score(getPlayer2Score() + 1);
+						setPlayer2Score(getPlayer2Score() + 1);
 					}
 				}
 			}
@@ -208,17 +203,20 @@ public class ConnectFour extends Game {
 
 		if (isOver()) {
 			if (test || m_test)
-				System.out.println("ConnectFour::MoveMade() - ConnectFour is finished");
+				System.out
+						.println("ConnectFour::MoveMade() - ConnectFour is finished");
 			new EndDisplay(this);
 			emptyWin();
 		} else {
 			if (getPlayerTurn() == PlayerTurn.PLAYER1) {
 				if (test || m_test)
-					System.out.println("ConnectFour::MoveMade() - Player1 next");
+					System.out
+							.println("ConnectFour::MoveMade() - Player1 next");
 				getPlayer1().isYourMove();
 			} else if (getPlayerTurn() == PlayerTurn.PLAYER2) {
 				if (test || m_test)
-					System.out.println("ConnectFour::MoveMade() - Player2 next");
+					System.out
+							.println("ConnectFour::MoveMade() - Player2 next");
 				getPlayer2().isYourMove();
 			}
 		}
@@ -275,7 +273,7 @@ public class ConnectFour extends Game {
 			return true;
 		} else {
 			if (test || m_test)
-			System.out.println("ConnectFour::IsOver() - Valid move");
+				System.out.println("ConnectFour::IsOver() - Valid move");
 			return (!validMove());
 		}
 	}
@@ -305,9 +303,9 @@ public class ConnectFour extends Game {
 	 * Checks right from the last counter that has been placed to check if there
 	 * are 4 counter of the same colour in a row
 	 * 
-	 * \param xy  the piece that has been placed 
-	 *       
-	 * \param Player  check if the square is empty 
+	 * \param xy the piece that has been placed
+	 * 
+	 * \param Player check if the square is empty
 	 */
 	private void checkRight(int x, int y) {
 		boolean test = false;
@@ -319,8 +317,8 @@ public class ConnectFour extends Game {
 		if (Player != Game.PlayerTurn.NONE) {
 			if (x < GAME_WIDTH - COUNT3) {
 				if ((grid.getCoordinate(x + 1, y).getValue() == Player)
-					&& (grid.getCoordinate(x + COUNT2, y).getValue() == Player)
-					&& (grid.getCoordinate(x + COUNT3, y).getValue() == Player)) {
+						&& (grid.getCoordinate(x + COUNT2, y).getValue() == Player)
+						&& (grid.getCoordinate(x + COUNT3, y).getValue() == Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x + 1, y));
 					m_win.add(new Coordinate(x + COUNT2, y));
@@ -334,13 +332,13 @@ public class ConnectFour extends Game {
 	}
 
 	/**
-	 * Count right pieces from the last counter that has been placed 
+	 * Count right pieces from the last counter that has been placed
 	 * 
-	 * \param xy   the piece that has been placed 
-	 *       
-	 * \param Player  check if the square is empty 
+	 * \param xy the piece that has been placed
 	 * 
-	 * \return count  number of pieces
+	 * \param Player check if the square is empty
+	 * 
+	 * \return count number of pieces
 	 */
 	private int countRight(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
@@ -363,7 +361,7 @@ public class ConnectFour extends Game {
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate((x + z), y)
-					.getValue();
+						.getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -377,15 +375,15 @@ public class ConnectFour extends Game {
 	}
 
 	/**
-	 * Count left pieces from the last counter that has been placed 
+	 * Count left pieces from the last counter that has been placed
 	 * 
-     * \param xy      the piece that has been placed 
-	 *      
-	 * \param Player   check if the square is empty 
-	 *            
-	 * \return count  number of pieces
+	 * \param xy the piece that has been placed
+	 * 
+	 * \param Player check if the square is empty
+	 * 
+	 * \return count number of pieces
 	 */
-	
+
 	private int countLeft(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
 		if (test || m_test)
@@ -407,7 +405,7 @@ public class ConnectFour extends Game {
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate((x - z), y)
-					.getValue();
+						.getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -424,10 +422,10 @@ public class ConnectFour extends Game {
 	 * Checks downwards from the last counter that has been placed to see if
 	 * there are 4 counter of the same colour in a row
 	 * 
-	 * \param x    the x value to check
-	 *          
-	 * \param y    the y value to check
-	 *         
+	 * \param x the x value to check
+	 * 
+	 * \param y the y value to check
+	 * 
 	 */
 	private void checkDown(int x, int y) {
 		boolean test = false;
@@ -439,8 +437,8 @@ public class ConnectFour extends Game {
 		if (Player != Game.PlayerTurn.NONE) {
 			if (y < GAME_HEIGHT - COUNT3) {
 				if ((grid.getCoordinate(x, y + 1).getValue() == Player)
-					&& (grid.getCoordinate(x, y + COUNT2).getValue() == Player)
-					&& (grid.getCoordinate(x, y + COUNT3).getValue() == Player)) {
+						&& (grid.getCoordinate(x, y + COUNT2).getValue() == Player)
+						&& (grid.getCoordinate(x, y + COUNT3).getValue() == Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x, y + 1));
 					m_win.add(new Coordinate(x, y + COUNT2));
@@ -454,13 +452,13 @@ public class ConnectFour extends Game {
 	}
 
 	/**
-	 * Count down pieces from the last counter that has been placed 
+	 * Count down pieces from the last counter that has been placed
 	 * 
-     * \param xy   the piece that has been placed 
-	 *           
-	 * \param Player  check if the square is empty 
+	 * \param xy the piece that has been placed
 	 * 
-	 * \return count  number of pieces
+	 * \param Player check if the square is empty
+	 * 
+	 * \return count number of pieces
 	 */
 	private int countDown(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
@@ -483,7 +481,7 @@ public class ConnectFour extends Game {
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate(x, (y + z))
-					.getValue();
+						.getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -495,14 +493,16 @@ public class ConnectFour extends Game {
 			System.out.println("ConnectFour::countDown() - END");
 		return count;
 	}
-  /**
-   * Find the longest chain on the gamebaord and return the length of the chain 
-   * 
-   * \param xy  the piece that has been placed 
-   * 
-   * \return count  the length of the chain 
-   * 
-   */
+
+	/**
+	 * Find the longest chain on the gamebaord and return the length of the
+	 * chain
+	 * 
+	 * \param xy the piece that has been placed
+	 * 
+	 * \return count the length of the chain
+	 * 
+	 */
 	public int moveScore(Coordinate xy) {
 		boolean test = false;
 		if (test || m_test)
@@ -520,7 +520,7 @@ public class ConnectFour extends Game {
 		list.add(countDiagUp);
 		list.add(countLeft);
 		list.add(countRight);
-		
+
 		int equalsCounter = 0;
 		for (Integer listIter : list) {
 			if (listIter == count) {
@@ -538,58 +538,59 @@ public class ConnectFour extends Game {
 		return count;
 
 	}
-	
+
 	/**
-	 *  block the opponent chain if the length of the chain  is 3
-	 *  
-	 * \param xy   the piece that has been placed from opponent 
+	 * block the opponent chain if the length of the chain is 3
 	 * 
-	 * \return count  if the length of the chain is 3 
+	 * \param xy the piece that has been placed from opponent
+	 * 
+	 * \return count if the length of the chain is 3
 	 */
-	public int blockOpponentChecker(Coordinate xy){
+	public int blockOpponentChecker(Coordinate xy) {
 		boolean test = false;
 		if (test || m_test)
 			System.out.println("ConnectFour::blockOpponentChecker() - BEGIN");
 		Game.PlayerTurn Player;
-		
-		if(getPlayerTurn() == Game.PlayerTurn.PLAYER1){
+
+		if (getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
 			Player = Game.PlayerTurn.PLAYER2;
-		}else{ Player = Game.PlayerTurn.PLAYER1;}
-		
+		} else {
+			Player = Game.PlayerTurn.PLAYER1;
+		}
 
-				Coordinate c1 = new Coordinate(xy.getX(),xy.getY());
-				int count = 0;
-				int countDown = countDown(c1,Player);
-				int countDiagDown = countDiagonalDown(c1,Player);
-				int countDiagUp = countDiagonalUp(c1,Player);
-				int countLeft = countLeft(c1,Player);
-				int countRight = countRight(c1,Player);
+		Coordinate c1 = new Coordinate(xy.getX(), xy.getY());
+		int count = 0;
+		int countDown = countDown(c1, Player);
+		int countDiagDown = countDiagonalDown(c1, Player);
+		int countDiagUp = countDiagonalUp(c1, Player);
+		int countLeft = countLeft(c1, Player);
+		int countRight = countRight(c1, Player);
 
-				ArrayList<Integer> list = new ArrayList<Integer>();
-				list.add(countDown);
-				list.add(countDiagDown);
-				list.add(countDiagUp);
-				list.add(countLeft);
-				list.add(countRight);
-				
-				for (Integer listIter : list) {
-					if (listIter == COUNT3){
-					return COUNT3;
-					}
-				}
-				if (test || m_test)
-					System.out.println("ConnectFour::blockOpponentChecker() - END");
-				return count;
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		list.add(countDown);
+		list.add(countDiagDown);
+		list.add(countDiagUp);
+		list.add(countLeft);
+		list.add(countRight);
+
+		for (Integer listIter : list) {
+			if (listIter == COUNT3) {
+				return COUNT3;
+			}
+		}
+		if (test || m_test)
+			System.out.println("ConnectFour::blockOpponentChecker() - END");
+		return count;
 	}
-	
+
 	/**
-	 * Count diagonal down pieces from the last counter that has been placed 
+	 * Count diagonal down pieces from the last counter that has been placed
 	 * 
-     * \param xy   the piece that has been placed 
-	 *           
-	 * \param Player  check if the square is empty 
-	 *
-	 * \return count  number of pieces
+	 * \param xy the piece that has been placed
+	 * 
+	 * \param Player check if the square is empty
+	 * 
+	 * \return count number of pieces
 	 */
 	private int countDiagonalDown(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
@@ -612,7 +613,7 @@ public class ConnectFour extends Game {
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate((x + z), (y + z))
-					.getValue();
+						.getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -629,9 +630,9 @@ public class ConnectFour extends Game {
 	 * Checks downwards in a diagonal direction from the last counter that has
 	 * been placed to check if there are 4 counter of the same colour in a row
 	 * 
-	 * \param x   the x value to check
+	 * \param x the x value to check
 	 * 
-	 * \param y   the y value to check
+	 * \param y the y value to check
 	 */
 	private void checkDiagonalDown(int x, int y) {
 		boolean test = false;
@@ -643,8 +644,10 @@ public class ConnectFour extends Game {
 		if (Player != Game.PlayerTurn.NONE) {
 			if (y < GAME_HEIGHT - COUNT3 && x < GAME_WIDTH - COUNT3) {
 				if ((grid.getCoordinate(x + 1, y + 1).getValue() == Player)
-					&& (grid.getCoordinate(x + COUNT2, y + COUNT2).getValue() == Player)
-					&& (grid.getCoordinate(x + COUNT3, y + COUNT3).getValue() == Player)) {
+						&& (grid.getCoordinate(x + COUNT2, y + COUNT2)
+								.getValue() == Player)
+						&& (grid.getCoordinate(x + COUNT3, y + COUNT3)
+								.getValue() == Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x + 1, y + 1));
 					m_win.add(new Coordinate(x + COUNT2, y + COUNT2));
@@ -661,8 +664,7 @@ public class ConnectFour extends Game {
 	 * Checks upwards in a diagonal direction from the last counter that has
 	 * been placed to check if there are 4 counters of the same colour in a row
 	 * 
-	 * \param x   the x value to check
-	 * \param y   the y value to check
+	 * \param x the x value to check \param y the y value to check
 	 */
 	private void checkDiagonalUp(int x, int y) {
 		boolean test = false;
@@ -674,8 +676,10 @@ public class ConnectFour extends Game {
 		if (Player != Game.PlayerTurn.NONE) {
 			if (y > COUNT2 && x < GAME_WIDTH - COUNT3) {
 				if ((grid.getCoordinate(x + 1, y - 1).getValue() == Player)
-					&& (grid.getCoordinate(x + COUNT2, y - COUNT2).getValue() == Player)
-					&& (grid.getCoordinate(x + COUNT3, y - COUNT3).getValue() == Player)) {
+						&& (grid.getCoordinate(x + COUNT2, y - COUNT2)
+								.getValue() == Player)
+						&& (grid.getCoordinate(x + COUNT3, y - COUNT3)
+								.getValue() == Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x + 1, y - 1));
 					m_win.add(new Coordinate(x + COUNT2, y - COUNT2));
@@ -689,14 +693,14 @@ public class ConnectFour extends Game {
 	}
 
 	/**
-	 * Count diagonal up pieces from the last counter that has been placed 
+	 * Count diagonal up pieces from the last counter that has been placed
 	 * 
-     * \param xy   the piece that has been placed 
-	 *           
-	 * \param Player  check if the square is empty 
+	 * \param xy the piece that has been placed
 	 * 
-	 * \return count  number of pieces
-	 *             
+	 * \param Player check if the square is empty
+	 * 
+	 * \return count number of pieces
+	 * 
 	 */
 	private int countDiagonalUp(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
@@ -719,7 +723,7 @@ public class ConnectFour extends Game {
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate((x + z), (y - z))
-					.getValue();
+						.getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -733,44 +737,45 @@ public class ConnectFour extends Game {
 	}
 
 	/**
-	 *  Pass the turn to next player 
-	 *  
+	 * Pass the turn to next player
+	 * 
 	 */
-	
+
 	protected PlayerTurn nextPlayer() {
 		boolean test = false;
 		if (test || m_test)
 			System.out.println("ConnectFour::PlayerTurn() - BEGIN");
 		if (getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
 			if (test || m_test)
-				System.out.println("ConnectFour::PlayerTurn() - PLAYER1 turn finished ");
+				System.out
+						.println("ConnectFour::PlayerTurn() - PLAYER1 turn finished ");
 			return Game.PlayerTurn.PLAYER2;
 		} else {
 			if (test || m_test)
-				System.out.println("ConnectFour::PlayerTurn() - PLAYER2 turn finished ");
+				System.out
+						.println("ConnectFour::PlayerTurn() - PLAYER2 turn finished ");
 			return Game.PlayerTurn.PLAYER1;
 		}
 	}
 
-	
 	/**
-	 *  calculate the player who has won the game.
-	 *  
-	 *  \return PlayTurn  the winner 
+	 * calculate the player who has won the game.
+	 * 
+	 * \return PlayTurn the winner
 	 */
 	public PlayerTurn isWinner() {
 		return getWinner();
 	}
-	
+
 	/**
-	* main used to run tests which create player and a game
+	 * main used to run tests which create player and a game
 	 * 
-	 * \throws IOException 
-	 * \throws InterruptedException
-	*/
-	public static void main(String[] args) throws InterruptedException, IOException {
+	 * \throws IOException \throws InterruptedException
+	 */
+	public static void main(String[] args) throws InterruptedException,
+			IOException {
 		boolean test = true;
-		if (test || m_test){
+		if (test || m_test) {
 			ConnectFour game = new ConnectFour();
 			Player player1 = new Human(game);
 			Player player2 = new ConnectFourAI(game);
@@ -780,33 +785,52 @@ public class ConnectFour extends Game {
 			player2.setPlayerColour(Color.YELLOW);
 			game.setPlayer1(player1);
 			game.setPlayer2(player2);
-			Coordinate testCooor	= new Coordinate(COUNT2,COUNT3, PlayerTurn.PLAYER1);
-			Coordinate testCooor2	= new Coordinate(COUNT2,COUNT3, PlayerTurn.PLAYER2);
+			if (player1.getPlayerName() == "Gavin")
+				System.out.println("Player Name Added");
+			if(player1.getGame() == game)
+				System.out.println("Game Added Correctly");
+			if(player1.getPlayerColour() == Color.RED)
+				System.out.println("Color Added Correctly");
+			if (player2.getPlayerName() == "So")
+				System.out.println("Player Name Added");
+			if(player2.getGame() == game)
+				System.out.println("Game Added Correctly");
+			if(player2.getPlayerColour() == Color.YELLOW)
+				System.out.println("Color Added Correctly");
+			Coordinate testCooor = new Coordinate(COUNT2, COUNT3,
+					PlayerTurn.PLAYER1);
+			Coordinate testCooor2 = new Coordinate(COUNT2, COUNT3,
+					PlayerTurn.PLAYER2);
 			game.start();
-			for (int i = 0 ; i <GAME_HEIGHT; i++){
-			game.moveMade(testCooor);
-			System.out.println("Player 1 valid move :" + game.validateMove(testCooor));
-			game.moveMade(testCooor2);
-			System.out.println("Player 2 valid move :" + game.validateMove(testCooor2));
+			for (int i = 0; i < GAME_HEIGHT; i++) {
+				game.moveMade(testCooor);
+				System.out.println("Player 1 valid move :"
+						+ game.validateMove(testCooor));
+				game.moveMade(testCooor2);
+				System.out.println("Player 2 valid move :"
+						+ game.validateMove(testCooor2));
 			}
 			
-			
+
 		}
 	}
-	/** m_test variable used for testing when methods are entered and left and prints
-	out into the console*/
+
+	/**
+	 * m_test variable used for testing when methods are entered and left and
+	 * prints out into the console
+	 */
 	private static boolean m_test = false;
 	/** Connect Four game board size */
 	private final static int GAME_WIDTH = 10;
 	/** Connect Four game board size */
 	private final static int GAME_HEIGHT = 7;
-	/** store the winner  */
+	/** store the winner */
 	private Game.PlayerTurn m_Winner;
-	/** store the winning pieces  */
+	/** store the winning pieces */
 	private Set<Coordinate> m_win = new HashSet<Coordinate>();
 	/** use to count the chain in different direction */
 	private final static int COUNT2 = 2;
 	/** use to count the chain in different direction */
 	private final static int COUNT3 = 3;
-	
+
 }

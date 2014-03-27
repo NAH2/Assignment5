@@ -314,6 +314,10 @@ public class ConnectFourAI extends Player{
 		return true;
 		}
 	
+	/**
+	 * Main method to initialise unit testing.
+	 * \param args not used
+	 */
 	public static void main(String args[]){
 		Game game = new ConnectFour();
 		ConnectFourAI C4AI;
@@ -321,18 +325,23 @@ public class ConnectFourAI extends Player{
 
 		C4AI2 = new ConnectFourAI(game, "test1",Color.blue);
 		C4AI = new ConnectFourAI(game,"test2",Color.red);
-		if(C4AI.getGame() == game){System.out.println("Set Game Success");}
-		if(C4AI.getPlayerName() == "test2")System.out.println("Name Set");
-		if(C4AI.getPlayerColour() == Color.red)System.out.println("Color Ok");
+		if(C4AI.getGame() == game)
+			System.out.println("Set Game Success");
+		if(C4AI.getPlayerName() == "test2")
+			System.out.println("Name Set");
+		if(C4AI.getPlayerColour() == Color.red)
+			System.out.println("Color Ok");
 		C4AI = new ConnectFourAI(game, "test3",Color.yellow);
 		C4AI = new ConnectFourAI(game);
 		System.out.println(C4AI.setAIMove());
 		Coordinate cord = new Coordinate(C4AI.GAME_WIDTH,C4AI.GAME_HEIGHT,
 				Game.PlayerTurn.PLAYER1);
 		C4AI.SetTime(C4AI.GAME_WIDTH);
-		if(C4AI.getTime() == C4AI.GAME_WIDTH)System.out.println("Time edited");
+		if(C4AI.getTime() == C4AI.GAME_WIDTH)
+			System.out.println("Time edited");
 		C4AI.SetRun(true);
-		if(C4AI.getRun() == true)System.out.println("Game Running");
+		if(C4AI.getRun() == true)
+			System.out.println("Game Running");
 	}
 	
 	
