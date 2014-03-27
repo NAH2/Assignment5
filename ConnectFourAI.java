@@ -8,18 +8,24 @@ public class ConnectFourAI extends Player{
 	private final static int GAME_WIDTH = 10;
 	private final static int GAME_HEIGHT = 7;
 	private int m_time = 1500;
+	private boolean m_running;
 	
 	public void SetTime(int responseTime){
 		m_time = responseTime;
 	}
 	
+	public void SetRun(boolean run){
+		m_running = run;
+	}
+	
 	public ConnectFourAI(Game game, String name, Color color) {
 		super(game, name, color);
-		
+		m_running = true;
 	}
 
 	public ConnectFourAI(Game game) {
 		super(game);
+		m_running = true;
 		
 	}
 
@@ -93,20 +99,22 @@ public class ConnectFourAI extends Player{
 		new Thread(
 				new Runnable() {
 					public void run() {
-						try {
-							Coordinate move ;
-							Thread.sleep(m_time);
-							move =setAIMove();
-							if (getYourTurn()) {
-								
-								getGame().moveMade(move);
-								
-								setYourTurn(false);
-								
+						if(m_running){
+							try {
+								Coordinate move ;
+								Thread.sleep(m_time);
+								move =setAIMove();
+								if (getYourTurn()) {
+									
+									getGame().moveMade(move);
+									
+									setYourTurn(false);
+									
+								}
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
 						}
 					}
 				}
@@ -122,24 +130,26 @@ public class ConnectFourAI extends Player{
 			   }
 
 			   public void run() {
-					try {
-						m_move = setAIMove();
-					} catch (IndexOutOfBoundsException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					if (getYourTurn()) {
-						
+				   if(m_running){
 						try {
-							getGame().moveMade(m_move);
-						} catch (InterruptedException e) {
+							m_move = setAIMove();
+						} catch (IndexOutOfBoundsException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						
-						setYourTurn(false);
-						
-					}
+						if (getYourTurn()) {
+							
+							try {
+								getGame().moveMade(m_move);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+							setYourTurn(false);
+							
+						}
+				   }
 			   }
 			}
 		Runnable r = new MyThread(move);

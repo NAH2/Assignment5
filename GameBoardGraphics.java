@@ -23,7 +23,9 @@ import java.lang.NullPointerException;
  */
 public class GameBoardGraphics extends JComponent implements MouseMotionListener{
 	//******************************
-	
+	public void SetRun(boolean run){
+		m_running = run;
+	}
 	/**
 	 * Store the coordinate to be displayed when the move is not valid
 	 * 
@@ -170,6 +172,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			new Thread(
 				new Runnable() {
 					public void run() {
+						if(m_running){
 						for(m_y = m_dropPoint; m_y <= m_lowestY ; m_y = m_y+m_fallDistance){
 							//System.out.println("drop:"+m_y);
 							try{
@@ -178,6 +181,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 							} catch (Exception e){e.printStackTrace();}	
 						}
 						m_changes.clear();
+						}
 					}
 				}
 			).start();
@@ -185,6 +189,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			new Thread(
 				new Runnable() {
 					public void run() {
+						if(m_running){
 						try{
 							m_x = 0;
 							for(m_w = PIECE_SIZE; m_w > 0; m_w=m_w-EVEN){							
@@ -203,6 +208,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 						m_changes.clear();
 						}
 						m_flipSide = false;
+						}
 					}
 				}
 			).start();
@@ -236,6 +242,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		//CONNECT4BOARD = ImageIO.read(getClass().getResource("connect4board.png"));
 		//GRID1 = ImageIO.read(getClass().getResource("Oboard.png"));
 		//GRID2 = ImageIO.read(getClass().getResource("Oboard1.png"));
+		m_running = true;
 	}
 	
 	/**
@@ -620,5 +627,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private boolean m_criticalSection;
 	private Coordinate m_xmove;
 	private boolean m_valid = true;
+	private boolean m_running;
 	//********************
 }

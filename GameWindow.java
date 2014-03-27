@@ -291,6 +291,25 @@ public class GameWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == m_newGame) {
+            	getDrawing().getGridPanel().SetRun(false);
+        		if(m_gameControl.getPlayer1() instanceof OthelloAI){
+        			((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
+        		}
+        		if(m_gameControl.getPlayer2() instanceof OthelloAI){
+        			((OthelloAI)(m_gameControl.getPlayer2())).SetRun(false);
+        		}
+        		if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
+        			((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
+        		}
+        		if(m_gameControl.getPlayer2() instanceof ConnectFourAI){
+        			((ConnectFourAI)(m_gameControl.getPlayer2())).SetRun(false);
+        		}
+        		if(m_gameControl.getPlayer1() instanceof AIEasy){
+        			((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
+        		}
+        		if(m_gameControl.getPlayer2() instanceof AIEasy){
+        			((AIEasy)(m_gameControl.getPlayer2())).SetRun(false);
+        		}
                 dispose();
                 new ChooseGame();
             }
