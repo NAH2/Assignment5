@@ -302,7 +302,27 @@ public abstract class Game {
 	}
 
 	protected void Getpassturnmessage() {
+		if(getPlayer1() instanceof AIEasy){
+			((AIEasy)getPlayer1()).SetRun(false);
+		} else if(getPlayer1() instanceof OthelloAI) {
+			((OthelloAI)getPlayer1()).SetRun(false);
+		}
+		if(getPlayer2() instanceof AIEasy){
+			((AIEasy)getPlayer2()).SetRun(false);
+		} else if(getPlayer2() instanceof OthelloAI) {
+			((OthelloAI)getPlayer2()).SetRun(false);
+		}
 		getWindow().Displaypassmessage();
+		if(getPlayer1() instanceof AIEasy){
+			((AIEasy)getPlayer1()).SetRun(true);
+		} else if(getPlayer1() instanceof OthelloAI) {
+			((OthelloAI)getPlayer1()).SetRun(true);
+		}
+		if(getPlayer2() instanceof AIEasy){
+			((AIEasy)getPlayer2()).SetRun(true);
+		} else if(getPlayer2() instanceof OthelloAI) {
+			((OthelloAI)getPlayer2()).SetRun(true);
+		}
 	}
 
 	/**
