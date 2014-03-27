@@ -61,7 +61,7 @@ public class Drawing {
 		}
 		
 	}
-	//******************************
+
 	/**
 	* Method responsible for setting AI move to GameBoardGraphics class
 	* \param move - coordinate of AI move
@@ -86,8 +86,6 @@ public class Drawing {
 	public void SetOver(boolean isOver){
 		gameBoardGraphics.SetOver(isOver);
 	}
-	
-	//******************************
 	
 	/**
 	 * This method sets the player 1 score on the side bar.
@@ -365,7 +363,6 @@ public class Drawing {
 		boolean m_Trace = false;
 		if(game.isOver()){
 			System.out.println("paintwin");
-			//System.out.println("win is empty?"+game.getWin().isEmpty());
 			gameBoardGraphics.setIsOver(true, game.getWin());
 		}
 		if(m_Trace) System.out.println
@@ -546,14 +543,11 @@ public class Drawing {
 	private JLabel m_player1Score = new JLabel("" + 0);
 	private JLabel m_player2Name = new JLabel();
 	private JLabel m_player2Score = new JLabel("" + 0);
-	private JLabel m_turnsTaken = new JLabel();
-	
+	private JLabel m_turnsTaken = new JLabel();	
 	private JLabel m_player1Piece = new JLabel();
 	private JLabel m_player2Piece = new JLabel();
-
 	private JPanel m_barPlayer1 = new JPanel();
 	private JPanel m_barPlayer2 = new JPanel();
-	//******************************
 	private JPanel m_setting = new JPanel();
 	private JLabel m_speed = new JLabel("", JLabel.CENTER);
 	private JSlider m_slider;
