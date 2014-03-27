@@ -10,60 +10,59 @@
 public class Grid {
 	
 	/**
-	 * Set the grid.
-	 * \param grid
+	 * method to set the grid.
+	 * \param grid the grid used for the games 
 	 */
 	public void setGrid(Game.PlayerTurn[][] grid) {
 		m_Grid = grid;
 	}
 	
 	/**
-	 * Get the height of the grid.
-	 * \return The height of the grid.
+	 * method to get the height of the grid
+	 * \return the height of the grid
 	 */
 	public int getGridHeight(){
 		return m_Grid[0].length;
 	}
 	
 	/**
-	 * Get the width of the grid.
-	 * \return The width of the grid.
+	 * method to get the width of the grid
+	 * \return The width of the grid
 	 */
 	public int getGridWidth(){
 		return m_Grid.length;
 	}
 	
 	/**
-	 * Set coordinate.
-	 * \param a The coordinate of the piece that has been put.
+	 * Method used to set the coordinate
+	 * \param a The coordinate of the piece that has been placed.
 	 */
 	public void setCoordinate(Coordinate a) {
 		m_Grid[a.getX()][a.getY()] = a.getValue();
 	}
 	
 	/**
-	 * Get coordinate.
+	 * Method used to get the coordinate
 	 * \param x The x coordinate of the piece.
 	 * \param y The y coordinate of the piece.
-	 * \return The coordinate
+	 * \return the coordinate
 	 */
 	public Coordinate getCoordinate(int x, int y) {
 		return new Coordinate(x,y,m_Grid[x][y]);
 	}
 	/**
-	 * Get coordinate.
-	 * \param The coordinate of the piece.
-	 * \return The coordinate
-	 * 
+	 * Method used to get the coordinate
+	 * \param c the c the c coordinate of the piece
+	 * \return the coordinate
 	 */
-	public Coordinate getCoordinate(Coordinate c) {
+	 public Coordinate getCoordinate(Coordinate c) {
 		return new Coordinate(c.getX(),c.getY(),m_Grid[c.getX()][c.getY()]);
 	}
 	
 	/**
-	 * Get the coordinate of the piece from Game class.
+	 * Constructor method, gets the coordinate of the piece from Game class.
 	 * \param x The x coordinate of the piece.
-	 * \param y The y coordinate of the piece,
+	 * \param y The y coordinate of the piece.
 	 */
 	public Grid(int x, int y){
 		setGrid(new Game.PlayerTurn[x][y]);
@@ -74,6 +73,10 @@ public class Grid {
 		}
 	}
 	
+	/**
+	 * method used to get a string of the grid width and height
+	 * \return gridString returns the string for the gridwidth and height
+	 */
 	public String toString() {
 	    String gridString = "";
 	    for (int y = 0; y < getGridHeight(); ++y) {
