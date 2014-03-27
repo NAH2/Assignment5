@@ -30,7 +30,14 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 * \return Returns TRUE if successful.
 	 */
 	public boolean SetRun(boolean run){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetRun() BEGIN");
+        }
 		m_running = run;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetRun() END");
+        }
 		return true;
 	}
 	
@@ -42,8 +49,15 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 * \return Returns TRUE if successful.
 	 */
 	public boolean SetValid(boolean valid, Coordinate xmove){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetValid() BEGIN");
+        }
 		m_valid = valid;
 		m_xmove = xmove;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetValid() END");
+        }
 		return true;
 	}
 	
@@ -54,7 +68,14 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 * \return Returns TRUE if successful.
 	 */
 	public boolean SetValid(boolean valid){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetValid(boolean) BEGIN");
+        }
 		m_valid = valid;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetValid(boolean) END");
+        }
 		return true;
 	}
 	
@@ -63,6 +84,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \return true if the width of the piece is not equal to the original piece size, that means it is flipping
 	*/
 	public boolean GetFlip(){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: GetFlip() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: GetFlip() END");
+        }
 		return m_w != PIECE_SIZE;
 	}
 	
@@ -71,7 +99,14 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \param move - coordinate of AI move
 	*/
 	public void SetAImove(Coordinate move){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetAImove() BEGIN");
+        }
 		m_AImove = move;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetAImove() END");
+        }
 	}
 	
 	/**
@@ -79,16 +114,30 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 * \param the animation speed ,an integer, represents millisecond time delay per movement
 	 */
 	public void SetSpeed(int speed){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetSpeed() BEGIN");
+        }
 		m_speed = speed;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetSpeed() END");
+        }
 	}
 	
 	/**
-	 * Method to set the connect4 game board
+	 * Method to set the game board
 	 * \param the board name
 	 */
 	public void SetBoard(String board){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetBoard() BEGIN");
+        }
 		repaint();
 		m_board = board;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetBoard() END");
+        }
 	}
 	
 	/**
@@ -96,6 +145,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 * \return the player object
 	 */
 	public Player GetPlayer1(){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: GetPlayer1() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: GetPlayer1() END");
+        }
 		return m_player1;
 	}
 	
@@ -104,6 +160,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 * \return the player object
 	 */
 	public Player GetPlayer2(){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: GetPlayer2() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: GetPlayer2() END");
+        }
 		return m_player2;
 	}
 
@@ -113,6 +176,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 */
 	
 	public Grid getGrid() {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: getGrid() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: getGrid() END");
+        }
 		return m_grid;
 	}
 	
@@ -121,9 +191,16 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \param grid - object storing data for the game grid 
 	*/
 	public void setGrid(Grid grid) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: setGrid() BEGIN");
+        }
 		m_grid = grid;
 		
 		repaint();
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: setGrid() END");
+        }
 	}
 	
 	/**
@@ -132,6 +209,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 */
 	
 	public int getSquareWidth() {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: getSquareWidth() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: getSquareWidth() END");
+        }
 		return SQUARE_WIDTH;
 	}
 	
@@ -141,6 +225,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 */
 	
 	public int getSquareHeight() {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: getSquareHeight() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: getSquareHeight() END");
+        }
 		return SQUARE_HEIGHT;
 	}
 	
@@ -150,6 +241,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 */
 	
 	public int getYSquares() {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: getYSquares() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: getYSquares() END");
+        }
 		return Y_SQUARES;
 	}
 	
@@ -159,6 +257,13 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 */
 	
 	public int getXSquares() {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: getXSquares() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: getXSquares() END");
+        }
 		return X_SQUARES;
 	}
 	
@@ -167,7 +272,32 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	 * \param isOver - the boolean true means the game is over
 	 */
 	public void SetOver(boolean isOver){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetOver() BEGIN");
+        }
 		m_isOver = isOver;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetOver() END");
+        }
+	}
+	
+	/**
+	* Method to get the winning piece coordinates for showing the winning pieces graphically,
+	* signal the game is over
+	* \param win - a set of winning piece coordinates without repetition
+	* \param over - a boolean, true when the game is over
+	*/
+	public void setIsOver(boolean over, Set<Coordinate> win){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: setIsOver() BEGIN");
+        }
+		m_isOver = over;
+		m_win = new HashSet<Coordinate>(win);
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: setIsOver() END");
+        }
 	}
 	
 	/**
@@ -176,6 +306,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \param changes - the list stores the pieces which need the animation
 	*/
 	public void SetAnimation(String type, ArrayList<Coordinate> changes){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: SetAnimation() BEGIN");
+        }
 		if(PLAYER1_COLOUR.equals(Color.BLACK)||PLAYER1_COLOUR.equals(Color.WHITE)){
 			changes.remove(0);
 		}
@@ -187,20 +321,20 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			new Thread(
 				new Runnable() {
 					public void run() {
-					if(m_running){
-					for(m_y = m_dropPoint; m_y <= m_lowestY ; m_y = m_y+m_fallDistance){
-					//System.out.println("drop:"+m_y);
-					try{
-					repaint();
-					Thread.sleep(m_speed);
-					} catch (Exception e){e.printStackTrace();}	
+						if(m_running){
+						for(m_y = m_dropPoint; m_y <= m_lowestY ; m_y = m_y+m_fallDistance){
+						//System.out.println("drop:"+m_y);
+						try{
+						repaint();
+						Thread.sleep(m_speed);
+						} catch (Exception e){e.printStackTrace();}	
+						}
+						m_changes.clear();
+						}
+					}
 				}
-				m_changes.clear();
-				}
-			}
-		}
-	).start();
-	} else {	
+			).start();
+		} else {	
 		new Thread(
 			new Runnable() {
 				public void run() {
@@ -227,7 +361,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				}
 			}
 		).start();
-	}
+	}		
+	if (test || m_test) {
+        System.out.println("GameBoardGraphics :: SetAnimation() END");
+    }
 	}
 	
 	/**
@@ -239,6 +376,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	*/
 	public GameBoardGraphics(Grid grid, Player player1, Player player2) 
 			throws IOException{
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: GameBoardGraphics() BEGIN");
+        }
 		addMouseMotionListener(this);
 		m_player1 = player1;
 		m_player2 = player2;
@@ -251,6 +392,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		GRID_HEIGHT = (getYSquares() * getSquareHeight());
 		setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));
 		m_running = true;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: GameBoardGraphics() END");
+        }
 	}
 	
 	/**
@@ -260,6 +404,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	*/
 	@Override
 	public void paintComponent(Graphics g) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintComponent() BEGIN");
+        }
 		Graphics2D g2 = (Graphics2D)g;
 		for (int i = 0; i < GRID_WIDTH; i+=getSquareWidth()) {
 		for (int j = 0; j < GRID_HEIGHT; j+=getSquareHeight()) {
@@ -321,6 +469,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		} else {
 			paintWin(g2);
 		}
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintComponent() END");
+        }
 	}
 	
 	/**
@@ -331,6 +482,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \return true when the method completes
 	*/
 	public boolean paintConnectFourBoard(Graphics2D g2){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintConnectFourBoard() BEGIN");
+        }
 		if(PLAYER1_COLOUR.equals(Color.YELLOW) || PLAYER1_COLOUR.equals(Color.RED)){
 			if(m_board == "board2"){
 				g2.drawImage(CONNECT4BOARD2, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
@@ -340,6 +495,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				g2.drawImage(CONNECT4BOARD, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
 			}
 		}
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintConnectFourBoard() END");
+        }
 	return true;
 	}
 	
@@ -351,6 +509,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \return true when the method completes
 	*/
 	public boolean paintOthelloBoard(Graphics2D g2, int i, int j){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintOthelloBoard() BEGIN");
+        }
 		if (!m_flippingPiece){
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 				if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
@@ -371,7 +533,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					}
 				}
 			}
-		}
+		}		
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintOthelloBoard() END");
+        }
 		return true;
 	}
 	
@@ -383,6 +548,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \return true when the method completes
 	*/
 	public boolean paintBoardPiece(Graphics2D g2, int i, int j){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintBoardPiece() BEGIN");
+        }
 		if(!m_flippingPiece){
 			if (getGrid().getCoordinate(i/getSquareWidth(),j/
 			getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER1) {
@@ -406,6 +575,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				}
 			}
 		}
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintBoardPiece() END");
+        }
 		return true;
 	}
 	
@@ -416,6 +588,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \param j - point Y of the board
 	*/
 	private void paintAvailableMove(Graphics2D g2, int i, int j){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintAvailableMove() BEGIN");
+        }
 		if(!m_flippingPiece){
 			Coordinate c = getGrid().getCoordinate(i/getSquareWidth(),j/
 			getSquareHeight());
@@ -442,6 +618,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				}
 			}
 		}
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintAvailableMove() END");
+        }
 	}
 
 	/**
@@ -449,6 +628,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \param g2 - graphics object to handle all the data for creating
 	*/
 	private void paintFall(Graphics2D g2){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintFall() BEGIN");
+        }
 		if(m_type.equals("fall") && m_start && m_changes.size() > 0){
 			int m_x = m_changes.get(0).getX()*getSquareWidth();
 			if (m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1){
@@ -458,6 +641,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			}
 			g2.fillOval(m_x + MID_DIFF, m_y + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
 		}
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintFall() END");
+        }
 	}
 	
 	/**
@@ -468,6 +654,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	*/
 	private void paintFlip(Graphics2D g2, int i, int j) 
 		throws NullPointerException, ConcurrentModificationException{
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintFlip() BEGIN");
+        }
 		m_flippingPiece = false;
 		if(m_type.equals("flip") && m_changes.size()>0 && m_start){
 		m_criticalSection = true;
@@ -516,18 +706,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			} catch (NullPointerException e){}
 		}
 		m_criticalSection = false;
-	} 
-}
-	
-	/**
-	* Method to get the winning piece coordinates for showing the winning pieces graphically,
-	* signal the game is over
-	* \param win - a set of winning piece coordinates without repetition
-	* \param over - a boolean, true when the game is over
-	*/
-	public void setIsOver(boolean over, Set<Coordinate> win){
-		m_isOver = over;
-		m_win = new HashSet<Coordinate>(win);
+		} 
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintFlip() END");
+        }
 	}
 	
 	/**
@@ -535,6 +717,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \param g - graphics object to handle all the data for creating
 	*/
 	private void paintWin(Graphics g){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintWin() BEGIN");
+        }
 		Iterator<Coordinate> iterator = m_win.iterator();
 		while (iterator.hasNext()){ 
 		m_next = iterator.next();
@@ -547,6 +733,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				g.drawImage(WIN_STAR, m_starX, m_starY, WINMARK_SIZE, WINMARK_SIZE, null);
 			}
 		}
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: paintWin() END");
+        }
 	}
 	
 	/**
@@ -554,10 +743,17 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \param e - An event which indicates that a mouse action occurred in a component
 	*/
 	public void mouseMoved(MouseEvent e) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: mouseMoved() BEGIN");
+        }
 		m_colX = (e.getX()/getSquareWidth())*getSquareWidth();
 		m_colY = (e.getY()/getSquareHeight())*getSquareHeight();
 		m_nextColX = (e.getX()/getSquareWidth())*getSquareWidth()+getSquareWidth();
 		repaint();
+		if (test || m_test) {
+            System.out.println("GameBoardGraphics :: mouseMoved() END");
+        }
 	}
 	
 	/**
@@ -567,6 +763,29 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	public void mouseDragged(MouseEvent e) {
 	}
 	 
+	/**
+	 * Test method.
+	 * 
+	 * \param No arguments.
+	 * @throws IOException 
+	 * @throws InterruptedException 
+	 */
+	public static void main(String args[]) throws IOException, InterruptedException {
+		Othello game = new Othello();
+		Player player1 = new OthelloAI(game);
+		Player player2 = new AIEasy(game);
+		player1.setPlayerName("Gavin");
+		player2.setPlayerName("Lucy");
+		player1.setPlayerColour(Color.BLACK);
+		player2.setPlayerColour(Color.WHITE);
+		game.setPlayer1(player1);
+		game.setPlayer2(player2);
+		game.start();
+		//game.getWindow().getDrawing().getGridPanel().SetRun(false);
+		int m_maxOthelloSpeed = 500;
+		game.getWindow().getDrawing().getGridPanel().SetSpeed(m_maxOthelloSpeed);
+	}
+	
 	//private member variables
 	private Player m_player1;
 	private Player m_player2;
@@ -642,4 +861,5 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private Coordinate m_xmove;
 	private boolean m_valid = true;
 	private boolean m_running;
+	private boolean m_test = false;
 }
