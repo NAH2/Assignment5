@@ -368,9 +368,10 @@ public class Drawing {
 	
 	/**
 	 * This method sets the grid.
-	 * \param grid  Holds information on the grid,.
+	 * \param grid  Holds information on the grid.
+	 * \return true if the method completes.
 	 */
-	public void setGrid(Grid grid, Game game){
+	public boolean setGrid(Grid grid, Game game){
 		boolean m_Trace = false;
 		if(game.isOver()){
 			System.out.println("paintwin");
@@ -380,8 +381,14 @@ public class Drawing {
 		if(m_Trace) System.out.println
 		("Drawing::SetGrid() - Grid has been updated");
 		getGridPanel().setGrid(grid);
+		return true;
 	}
 	
+	/**
+	 * This method sets the time to be displayed.
+	 * \param the time in text format.
+	 * \return true if the method completes.
+	 */
 	public boolean setTimerDisplay(String time) {
 	    m_timerLabel.setText(time);
           
@@ -503,7 +510,11 @@ public class Drawing {
 	
 	
 	private class GUIEventHandler implements ActionListener, ChangeListener {
-		
+    	/**
+    	 * Called when the the user moves slider.	 
+    	 * 
+    	 * \param A ChangeEvent from the user.
+    	 */
 		//Change handler (e.g. for sliders)
         public void stateChanged(ChangeEvent e) {
 	        	setSpeed(m_slider.getValue());
@@ -518,18 +529,29 @@ public class Drawing {
 	        		m_speed.setText("Normal");	
 	        	}
         }
+    	/**
+    	 * Called when a element in the combobox is chosen.	 
+    	 * 
+    	 * \param An ActionEvent from the user.
+    	 */
         public void actionPerformed(ActionEvent event) {
         	String m_board = (String)m_skin.getSelectedItem();
         	setBoard(m_board);
         }
     }
 	
-
-	public void Message(String msg) {
+	/**
+	 * Display the message in the dialog box.
+	 * 
+	 * \param the message string.
+	 * \return true if the method completes.
+	 */
+	public boolean Message(String msg) {
 		JOptionPane.showMessageDialog(null,
 			     msg,
 			    "Information",
 			    JOptionPane.INFORMATION_MESSAGE);
+		return true;
 	}
 	/**
 	 * This is the main method. It is used for testing purposes
