@@ -1,56 +1,52 @@
 import java.util.*;
 
 /**
- * @file -ConnectFour.java
- * @author -G. Howard
- * @date -14/02/2014
+ * \file -ConnectFour.java
+ * \author -G. Howard
+ * \date -14/02/2014
  * 
- * @brief Class that extends Game by using the rules of ConnectFour. Specifies
- *        the size of the board to be used. Sets the ways of winning ConnectFour
- *        and what happens once happens once the game has ended. Doesn't allow
- *        the user to click outside the grid.
+ * \brief Class that extends Game by using the rules of ConnectFour. 
+ * 
+ * 		Specifies the size of the board to be used. Sets the ways of winning ConnectFour
+ *      and what happens once happens once the game has ended. Doesn't allow
+ *      the user to click outside the grid.
  */
 
 public class ConnectFour extends Game {
 
-	private final static int GAME_WIDTH = 10;
-	private final static int GAME_HEIGHT = 7;
-	private Game.PlayerTurn m_Winner;
-	private Set<Coordinate> m_win = new HashSet<Coordinate>();
-
-	/*
-	 * Return the winning piece coordinates
-	 * 
-	 * @return the set which stores the winning piece coordinates
-	 */
-	public Set<Coordinate> getWin() {// should be GetWin()
-		return m_win;
-	}
-
-	/*
-	 * Empty the set which stores the winning piece coordinates
-	 */
-	protected void emptyWin() {
-		m_win.clear();
-	}
-
-	/**
-	 * Returns the winner of the game.
-	 * 
-	 * @return The winner of the game as a enumerator Game.PlayerTurn.
-	 */
-	public Game.PlayerTurn getWinner() {
-		return m_Winner;
-	}
-
 	/**
 	 * Sets the winner of the game.
 	 * 
-	 * @param player
+	 * \param player
 	 *            The winner of the game as an enumerator Game.PlayerTurn.
 	 */
 	public void setWinner(Game.PlayerTurn player) {
 		m_Winner = player;
+	}
+	
+	/**
+	 * Return the winning piece coordinates
+	 * 
+	 * \return the set which stores the winning piece coordinates
+	 */
+	public Set<Coordinate> getWin() {// should be GetWin()
+		return m_win;
+	}
+	
+	/**
+	 * Returns the winner of the game.
+	 * 
+	 * \return The winner of the game as a enumerator Game.PlayerTurn.
+	 */
+	public Game.PlayerTurn getWinner() {
+		return m_Winner;
+	}
+	
+	/**
+	 * Empty the set which stores the winning piece coordinates
+	 */
+	protected void emptyWin() {
+		m_win.clear();
 	}
 
 	public ConnectFour() {
@@ -76,7 +72,7 @@ public class ConnectFour extends Game {
 
 	/**
 	 * Resets the starting pieces.
-	 * @throws InterruptedException 
+	 * \throws InterruptedException 
 	 */
 	public void resetGame() throws InterruptedException {
 		setWinner(Game.PlayerTurn.NONE);
@@ -92,7 +88,7 @@ public class ConnectFour extends Game {
 	/**
 	 * If the board is full there are no more valid moves
 	 * 
-	 * @return true if there is a valid move
+	 * \return true if there is a valid move
 	 */
 	private boolean validMove() {
 		boolean m_Trace = true;
@@ -100,7 +96,7 @@ public class ConnectFour extends Game {
 		if (getTurnCount() == GAME_WIDTH * GAME_HEIGHT) {
 			if (m_Trace)
 				System.out
-						.println("ConnectFour::ValidMove() - No more valid moves");
+					.println("ConnectFour::ValidMove() - No more valid moves");
 			return false;
 		} else {
 			return true;
@@ -111,7 +107,7 @@ public class ConnectFour extends Game {
 	 * ConnectFour does not allow a move if the mouse is clicked outside the
 	 * grid
 	 * 
-	 * @return true if there is a move available
+	 * \return true if there is a move available
 	 */
 	protected boolean isValidMove(Coordinate xy) {
 		boolean m_Trace = false;
@@ -134,12 +130,12 @@ public class ConnectFour extends Game {
 		if (grid.getCoordinate(xy.getX(), 0).getValue() == Game.PlayerTurn.NONE) {
 			if (m_Trace)
 				System.out
-						.println("ConnectFour::isValidMove() - move is valid");
+					.println("ConnectFour::isValidMove() - move is valid");
 			return true;
 		} else {
 			if (m_Trace)
 				System.out
-						.println("ConnectFour::isValidMove() - move is not valid");
+					.println("ConnectFour::isValidMove() - move is not valid");
 			return false;
 		}
 	}
@@ -167,9 +163,9 @@ public class ConnectFour extends Game {
 			for (int i = 0; i < getGrid().getGridWidth(); i++) {
 				for (int j = 0; j < getGrid().getGridHeight(); j++) {
 					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
-						setPlayer1Score(getPlayer1Score() + 1);
+					setPlayer1Score(getPlayer1Score() + 1);
 					} else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
-						setPlayer2Score(getPlayer2Score() + 1);
+					setPlayer2Score(getPlayer2Score() + 1);
 					}
 				}
 			}
@@ -183,7 +179,7 @@ public class ConnectFour extends Game {
 		if (isOver()) {
 			if (m_Trace)
 				System.out.println("Game::MoveMade() - Game is finished");
-			new EndNewGame(this);
+			new EndDisplay(this);
 			emptyWin();
 		} else {
 			if (getPlayerTurn() == PlayerTurn.PLAYER1) {
@@ -204,7 +200,7 @@ public class ConnectFour extends Game {
 	 * placed in the lowest available place e.g. on the bottom or on top of
 	 * another counter
 	 * 
-	 * @return a list containing the taken move
+	 * \return a list containing the taken move
 	 */
 
 	protected ArrayList<Coordinate> takeMove(Coordinate xy) {
@@ -224,7 +220,7 @@ public class ConnectFour extends Game {
 	/**
 	 * Sets the ways in which a game can be ended
 	 * 
-	 * @return true if the game is over
+	 * \return true if the game is over
 	 */
 	public boolean isOver() {
 		boolean m_Trace = true;
@@ -265,9 +261,9 @@ public class ConnectFour extends Game {
 	 * Checks right from the last counter that has been placed to check if there
 	 * are 4 counter of the same colour in a row
 	 * 
-	 * @param x
+	 * \param x
 	 *            the x value to check
-	 * @param y
+	 * \param y
 	 *            the y value to check
 	 */
 	private void checkRight(int x, int y) {
@@ -277,14 +273,14 @@ public class ConnectFour extends Game {
 		// winner.
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
 		if (Player != Game.PlayerTurn.NONE) {
-			if (x < GAME_WIDTH - 3) {
+			if (x < GAME_WIDTH - COUNT3) {
 				if ((grid.getCoordinate(x + 1, y).getValue() == Player)
-						&& (grid.getCoordinate(x + 2, y).getValue() == Player)
-						&& (grid.getCoordinate(x + 3, y).getValue() == Player)) {
+					&& (grid.getCoordinate(x + COUNT2, y).getValue() == Player)
+					&& (grid.getCoordinate(x + COUNT3, y).getValue() == Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x + 1, y));
-					m_win.add(new Coordinate(x + 2, y));
-					m_win.add(new Coordinate(x + 3, y));
+					m_win.add(new Coordinate(x + COUNT2, y));
+					m_win.add(new Coordinate(x + COUNT3, y));
 					setWinner(Player);
 				}
 			}
@@ -301,15 +297,15 @@ public class ConnectFour extends Game {
 			if (x < GAME_WIDTH - 1) {
 				loopCount = 1;
 			}
-			if (x < GAME_WIDTH - 2) {
-				loopCount = 2;
+			if (x < GAME_WIDTH - COUNT2) {
+				loopCount = COUNT2;
 			}
-			if (x < GAME_WIDTH - 3) {
-				loopCount = 3;
+			if (x < GAME_WIDTH - COUNT3) {
+				loopCount = COUNT3;
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate((x + z), y)
-						.getValue();
+					.getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -331,14 +327,14 @@ public class ConnectFour extends Game {
 				loopCount = 1;
 			}
 			if (x > 1) {
-				loopCount = 2;
+				loopCount = COUNT2;
 			}
-			if (x > 2) {
-				loopCount = 3;
+			if (x > COUNT2) {
+				loopCount = COUNT3;
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate((x - z), y)
-						.getValue();
+					.getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -353,9 +349,9 @@ public class ConnectFour extends Game {
 	 * Checks downwards from the last counter that has been placed to see if
 	 * there are 4 counter of the same colour in a row
 	 * 
-	 * @param x
+	 * \param x
 	 *            the x value to check
-	 * @param y
+	 * \param y
 	 *            the y value to check
 	 */
 	private void checkDown(int x, int y) {
@@ -363,14 +359,14 @@ public class ConnectFour extends Game {
 
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
 		if (Player != Game.PlayerTurn.NONE) {
-			if (y < GAME_HEIGHT - 3) {
+			if (y < GAME_HEIGHT - COUNT3) {
 				if ((grid.getCoordinate(x, y + 1).getValue() == Player)
-						&& (grid.getCoordinate(x, y + 2).getValue() == Player)
-						&& (grid.getCoordinate(x, y + 3).getValue() == Player)) {
+					&& (grid.getCoordinate(x, y + COUNT2).getValue() == Player)
+					&& (grid.getCoordinate(x, y + COUNT3).getValue() == Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x, y + 1));
-					m_win.add(new Coordinate(x, y + 2));
-					m_win.add(new Coordinate(x, y + 3));
+					m_win.add(new Coordinate(x, y + COUNT2));
+					m_win.add(new Coordinate(x, y + COUNT3));
 					setWinner(Player);
 				}
 			}
@@ -387,15 +383,15 @@ public class ConnectFour extends Game {
 			if (y < GAME_HEIGHT - 1) {
 				loopCount = 1;
 			}
-			if (y < GAME_HEIGHT - 2) {
-				loopCount = 2;
+			if (y < GAME_HEIGHT - COUNT2) {
+				loopCount = COUNT2;
 			}
-			if (y < GAME_HEIGHT - 3) {
-				loopCount = 3;
+			if (y < GAME_HEIGHT - COUNT3) {
+				loopCount = COUNT3;
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate(x, (y + z))
-						.getValue();
+					.getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -462,8 +458,8 @@ public class ConnectFour extends Game {
 				list.add(countRight);
 				
 				for (Integer listIter : list) {
-					if (listIter == 3){
-						return 3;
+					if (listIter == COUNT3){
+					return COUNT3;
 					}
 				}
 				return count;
@@ -480,15 +476,15 @@ public class ConnectFour extends Game {
 			if (y < GAME_HEIGHT - 1 && x < GAME_WIDTH - 1) {
 				loopCount = 1;
 			}
-			if (y < GAME_HEIGHT - 2 && x < GAME_WIDTH - 2) {
-				loopCount = 2;
+			if (y < GAME_HEIGHT - COUNT2 && x < GAME_WIDTH - COUNT2) {
+				loopCount = COUNT2;
 			}
-			if (y < GAME_HEIGHT - 3 && x < GAME_WIDTH - 3) {
-				loopCount = 3;
+			if (y < GAME_HEIGHT - COUNT3 && x < GAME_WIDTH - COUNT3) {
+				loopCount = COUNT3;
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate((x + z), (y + z))
-						.getValue();
+					.getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -503,9 +499,9 @@ public class ConnectFour extends Game {
 	 * Checks downwards in a diagonal direction from the last counter that has
 	 * been placed to check if there are 4 counter of the same colour in a row
 	 * 
-	 * @param x
+	 * \param x
 	 *            the x value to check
-	 * @param y
+	 * \param y
 	 *            the y value to check
 	 */
 	private void checkDiagonalDown(int x, int y) {
@@ -513,14 +509,14 @@ public class ConnectFour extends Game {
 
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
 		if (Player != Game.PlayerTurn.NONE) {
-			if (y < GAME_HEIGHT - 3 && x < GAME_WIDTH - 3) {
+			if (y < GAME_HEIGHT - COUNT3 && x < GAME_WIDTH - COUNT3) {
 				if ((grid.getCoordinate(x + 1, y + 1).getValue() == Player)
-						&& (grid.getCoordinate(x + 2, y + 2).getValue() == Player)
-						&& (grid.getCoordinate(x + 3, y + 3).getValue() == Player)) {
+					&& (grid.getCoordinate(x + COUNT2, y + COUNT2).getValue() == Player)
+					&& (grid.getCoordinate(x + COUNT3, y + COUNT3).getValue() == Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x + 1, y + 1));
-					m_win.add(new Coordinate(x + 2, y + 2));
-					m_win.add(new Coordinate(x + 3, y + 3));
+					m_win.add(new Coordinate(x + COUNT2, y + COUNT2));
+					m_win.add(new Coordinate(x + COUNT3, y + COUNT3));
 					setWinner(Player);
 				}
 			}
@@ -531,9 +527,9 @@ public class ConnectFour extends Game {
 	 * Checks upwards in a diagonal direction from the last counter that has
 	 * been placed to check if there are 4 counters of the same colour in a row
 	 * 
-	 * @param x
+	 * \param x
 	 *            the x value to check
-	 * @param y
+	 * \param y
 	 *            the y value to check
 	 */
 	private void checkDiagonalUp(int x, int y) {
@@ -541,14 +537,14 @@ public class ConnectFour extends Game {
 
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
 		if (Player != Game.PlayerTurn.NONE) {
-			if (y > 2 && x < GAME_WIDTH - 3) {
+			if (y > COUNT2 && x < GAME_WIDTH - COUNT3) {
 				if ((grid.getCoordinate(x + 1, y - 1).getValue() == Player)
-						&& (grid.getCoordinate(x + 2, y - 2).getValue() == Player)
-						&& (grid.getCoordinate(x + 3, y - 3).getValue() == Player)) {
+					&& (grid.getCoordinate(x + COUNT2, y - COUNT2).getValue() == Player)
+					&& (grid.getCoordinate(x + COUNT3, y - COUNT3).getValue() == Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x + 1, y - 1));
-					m_win.add(new Coordinate(x + 2, y - 2));
-					m_win.add(new Coordinate(x + 3, y - 3));
+					m_win.add(new Coordinate(x + COUNT2, y - COUNT2));
+					m_win.add(new Coordinate(x + COUNT3, y - COUNT3));
 					setWinner(Player);
 				}
 			}
@@ -565,15 +561,15 @@ public class ConnectFour extends Game {
 			if (y > 1 && x < GAME_WIDTH - 1) {
 				loopCount = 1;
 			}
-			if (y > 2 && x < GAME_WIDTH - 2) {
-				loopCount = 2;
+			if (y > COUNT2 && x < GAME_WIDTH - COUNT2) {
+				loopCount = COUNT2;
 			}
-			if (y > 3 && x < GAME_WIDTH - 3) {
-				loopCount = 3;
+			if (y > COUNT3 && x < GAME_WIDTH - COUNT3) {
+				loopCount = COUNT3;
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate((x + z), (y - z))
-						.getValue();
+					.getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -597,4 +593,12 @@ public class ConnectFour extends Game {
 	public PlayerTurn isWinner() {
 		return getWinner();
 	}
+	
+	private final static int GAME_WIDTH = 10;
+	private final static int GAME_HEIGHT = 7;
+	private Game.PlayerTurn m_Winner;
+	private Set<Coordinate> m_win = new HashSet<Coordinate>();
+	private final static int COUNT2 = 2;
+	private final static int COUNT3 = 3;
+	
 }
