@@ -1,12 +1,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 /**
- * @file Controls.java
- * @author Daniel 709547
- * @date 20/02/2014
- * @brief Main controls class which controls all the game/user controls
+ * \\file Controls.java
+ * \author Daniel 709547
+ * \date 20/02/2014
+ * \brief Main controls class which controls all the game/user controls
  *
  * This class is the main controls class which handles all
  * the users controls and is called by any control
@@ -18,16 +17,15 @@ public class Controls {
 	
 	/**
 	* Called to return a JPanel which contains all the GUI control elements
-	* @return A JPanel which contains all the controls created in the class.
+	* \return A JPanel which contains all the controls created in the class.
 	*/
-
 	public JPanel returnPanel() {		
 		return m_controlsPanel;
 	}
 	
 	/**
 	 * Method to get the private save game button variable
-	 * @return JButton m_saveGameButton
+	 * \return JButton m_saveGameButton
 	 */
 	public JButton getSaveButton() {
 		return m_saveGameButton;
@@ -35,7 +33,7 @@ public class Controls {
 	
 	/**
 	 * Method to get the private load game button variable
-	 * @return JButton m_loadGameButton
+	 *\return JButton m_loadGameButton
 	 */
 	public JButton getLoadButton() {
 		return m_loadGameButton;
@@ -43,7 +41,7 @@ public class Controls {
 	
 	/**
 	 * Set m_saveGameButton to JButton parameter
-	 * @param button - instance of JButton to set m_saveGambeButton to.
+	 * \param button - instance of JButton to set m_saveGambeButton to.
 	 */
 	public void setSaveButton(JButton button) {
 		m_saveGameButton = button;
@@ -51,7 +49,7 @@ public class Controls {
 	
 	/**
 	 * Set m_loadGameButton to JButton parameter
-	 * @param button - instance of JButton to set m_loadGameButton to.
+	 * \param button - instance of JButton to set m_loadGameButton to.
 	 */
 	public void setLoadButton(JButton button) {
 		m_loadGameButton = button;
@@ -59,7 +57,7 @@ public class Controls {
 	
 	/**
 	 * Set m_controlsPanel to JPanel parameter
-	 * @param panel - instance of JPanel to set m_controlsPanel to.
+	 * \param panel - instance of JPanel to set m_controlsPanel to.
 	 */
 	public void setControlsPanel(JPanel panel) {
 		m_controlsPanel = panel;
@@ -67,7 +65,7 @@ public class Controls {
 	
 	/**
 	 * Set the m_gameWindow variable
-	 * @param gameWindow the gameWindow to instantiate m_gameWindow to
+	 * \param gameWindow the gameWindow to instantiate m_gameWindow to
 	 */
 	public void setGameWindow(GameWindow gameWindow) {
 		m_gameWindow = gameWindow;
@@ -75,20 +73,20 @@ public class Controls {
 	
 	/**
 	 * Get the m_gameWindow variable.
-	 * @return the m_gameWindow variable
+	 * \return the m_gameWindow variable
 	 */
 	public GameWindow getGameWindow() {
 		return m_gameWindow;
 	}
 	/**
 	 * Constructor method for the Controls Class.
-	 * @param gameWindow - an instance of GameWindow
+	 * \param gameWindow - an instance of GameWindow
 	 */
 	
 	/**
 	* Called when an instance of the class is created to initialise the 
 	* GUI elements and add the action listeners
-	* @param gameWindow - an object used to hold the data of the gameBoard
+	* \param gameWindow - an object used to hold the data of the gameBoard
 	*/
 	public Controls(GameWindow gameWindow) {
 
@@ -119,10 +117,10 @@ public class Controls {
 	
 	/**
 	 * Calls the overloaded method from the GameWindow Class and returns true.
-	 * @return true when the method is completed
-	 * @param move - coordinate object to be sent to the move made 
+	 * \return true when the method is completed
+	 * \param move - coordinate object to be sent to the move made 
 	 * method in game window
-	 * @throws InterruptedException 
+	 * \throws InterruptedException 
 	*/
 
 	public boolean moveMade(Coordinate move) throws InterruptedException {
@@ -135,7 +133,7 @@ public class Controls {
 
 		/**
 		* Deals with actions performed by GUI objects, namely the buttons.
-		* @param event - object which holds the data of the GUI event.
+		* \param event - object which holds the data of the GUI event.
 		*/
 
 		@Override
