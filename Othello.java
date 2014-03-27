@@ -1,11 +1,13 @@
 import java.awt.Color;
+import java.io.IOException;
 import java.util.*;
+
 /**
- * \\file	- Othello.Java
- * \author	- B. Golightly
- * \date	- 12/02/2014
+ *  \\file	-Othello.Java
+ * 	\author	-B. Golightly
+ * 	\date	-12/02/2014
  * 	
- * \brief Extends Game with the rules of Othello as specified. 
+ * 	\brief	Extends Game with the rules of Othello as specified. 
  * 
  * Methods are move so that the AI can know how good it is, and provides a way 
  * to take a move, return a list of changes after a move has been made. 
@@ -13,6 +15,7 @@ import java.util.*;
  * pieces; other classes that also extend game may only return a list 
  * of one item i.e. only the piece that is the result of the move.
  */
+
 public class Othello extends Game{
 	
 	/** 
@@ -24,44 +27,12 @@ public class Othello extends Game{
         if (test || m_test) {
             System.out.println("Othello :: getWin() BEGIN");
         }
-		// should be GetWin()
-		//System.out.println("win is empty?"+m_win.isEmpty());
         if (test || m_test) {
             System.out.println("Othello :: getWin() END");
         }
 		return m_win;
 	}
 	
-	/**
-	 * Method to return the available move coordinates 
-	 * \return a two dimensional array which stores available move
-	 */
-	public boolean[][] Getavailablemov(){
-		boolean test = false;
-        if (test || m_test) {
-            System.out.println("Othello :: Getavailablemov() BEGIN");
-        }
-        if (test || m_test) {
-            System.out.println("Othello :: Getavailablemov() END");
-        }
-		return m_availableMov;
-	}
-	
-	/**
-	 * Method to set available move coordinate
-	 * \param availableMov
-	 */
-	
-	public void Setavailablemov (boolean[][] availableMov){
-		boolean test = false;
-        if (test || m_test) {
-            System.out.println("Othello :: Setavailablemov() BEGIN");
-        }
-		m_availableMov = availableMov;
-		if (test || m_test) {
-            System.out.println("Othello :: Setavailablemov() END");
-        }
-	}
 	
 	/**
 	* Empty the set which stores the winning piece coordinates
@@ -82,15 +53,13 @@ public class Othello extends Game{
 	 */
 	public Othello() {
 	
-		// If the game class can initialise a grid of this size, that would be
-		// great :-)
 		super(GAME_WIDTH, GAME_HEIGHT);	
 		
 		boolean test = false;
         if (test || m_test) {
             System.out.println("Othello :: Othello() BEGIN");
         }
-		//resetGame();
+
         if (test || m_test) {
             System.out.println("Othello :: Othello() END");
         }
@@ -107,7 +76,6 @@ public class Othello extends Game{
         }
         
 		boolean m_Trace = false;
-		Grid grid = super.getGrid();
 		
 		if(m_Trace) { System.out.println("Game::Start() - Game has started");}
 		setWindow(new GameWindow(this));
@@ -143,7 +111,6 @@ public class Othello extends Game{
 		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
 			if 	((getPlayer1() instanceof OthelloAI||
 					getPlayer1() instanceof AIEasy) && (getPlayer2() instanceof Human)){
-				//Thread.sleep(500);
 				getPlayer1().sendMove();
 			}
 		}
@@ -159,7 +126,6 @@ public class Othello extends Game{
 			if 	((getPlayer2() instanceof OthelloAI || 
 					getPlayer2() instanceof AIEasy)&&
 					(getPlayer1() instanceof Human)){
-				//Thread.sleep(500);
 				getPlayer2().sendMove();
 			}
 		}
@@ -197,7 +163,6 @@ public class Othello extends Game{
 				 }
 				}
 				else if (getPlayerTurn().equals(Game.PlayerTurn.PLAYER2)) {
-					System.out.println("P2 turn");
 				 Coordinate c2 = new Coordinate(x, y, Game.PlayerTurn.PLAYER2);
 				 if (isValidMove(c2)) { 
 					 Coordinate P2avaiableMov = new Coordinate(x, y, Game.PlayerTurn.PLAYER2_AM);
@@ -270,7 +235,7 @@ public class Othello extends Game{
 		
 		// Or when no valid moves remain (which may happen BEFORE the board
 		// is fully filled (e.g. see Vlasakova 1 - 63 Schotte, European Grand Prix Prague 2011)
-		m_Trace = false;
+		test = false;
 		for (int y = 0; y < GAME_HEIGHT; y++) {
 			for (int x = 0; x < GAME_WIDTH; x++) {
 				 Coordinate c1 = new Coordinate(x, y, Game.PlayerTurn.PLAYER1);
@@ -290,7 +255,7 @@ public class Othello extends Game{
 					 }
 			}
 		}
-		m_Trace = true;
+		test = true;
 		
 		// Otherwise...
 		if (test || m_test) {
@@ -538,15 +503,14 @@ public class Othello extends Game{
         
 		boolean m_Trace = false;
 		
-		if(m_Trace) System.out.println("Game::MoveMade() - Called");
+		if(m_Trace) System.out.println("Othello::MoveMade() - Called");
 		if(validateMove(move)) {
-			if(m_Trace) System.out.println("Game::MoveMade() - Move is valid");
+			if(m_Trace) System.out.println("Othello::MoveMade() - Move is valid");
 			ArrayList<Coordinate> changes = takeMove(move);
 			for(int i = 0; i < changes.size(); i++) {
 				getGrid().setCoordinate(changes.get(i));
 			}	
 			getWindow().displayGrid(getGrid());
-			//**********************
 			if (((getPlayer1() instanceof OthelloAI || getPlayer1() instanceof AIEasy) 
 					&& changes.get(0).getValue() == Game.PlayerTurn.PLAYER1) 
 					|| ((getPlayer2() instanceof OthelloAI || getPlayer2() instanceof AIEasy)
@@ -554,7 +518,6 @@ public class Othello extends Game{
 				getWindow().SetAImove(changes.get(0));
 			}
 			getWindow().SetAnimation("flip", changes);
-			//**********************
 			setPlayer1Score(0);
 			setPlayer2Score(0);
 			for (int i = 0; i < getGrid().getGridWidth(); i++) {
@@ -581,19 +544,19 @@ public class Othello extends Game{
 		}
 		
 		if(isOver()) {
-			if(m_Trace) System.out.println("Game::MoveMade() - Game is finished");
+			if(m_Trace) System.out.println("Othello::MoveMade() - Game is finished");
 			new EndDisplay(this);
 			emptyWin();
 		} else {
 			if (getPlayerTurn() == PlayerTurn.PLAYER1) {
-				if(m_Trace) System.out.println("Game::MoveMade() - Player1 next");
+				if(m_Trace) System.out.println("Othello::MoveMade() - Player1 next");
 				getPlayer1().isYourMove();
 			} else if(getPlayerTurn() == PlayerTurn.PLAYER2){
-				if(m_Trace) System.out.println("Game::MoveMade() - Player2 next");
+				if(m_Trace) System.out.println("Othello::MoveMade() - Player2 next");
 				getPlayer2().isYourMove();
 			}
 		}
-		System.out.println("Grid:\n" + getGrid().toString() + "\n");
+		//System.out.println("Grid:\n" + getGrid().toString() + "\n");
 		if (test || m_test) {
             System.out.println("Othello :: moveMade() END");
         }
@@ -699,26 +662,8 @@ public class Othello extends Game{
         
 		if (!isOver())
 			{ throw new IllegalStateException("no winner before game is over"); }
-	
-		Grid grid = getGrid();
 		int score1 = getPlayer1Score();
 		int score2 = getPlayer2Score();
-		
-		/*
-		int score1 = 0; int score2 = 0;
-		
-		for (int y = 0; y < GAME_HEIGHT; y++) {
-			for (int x = 0; x < GAME_WIDTH; x++) {
-				Coordinate c = grid.getCoordinate(x, y);
-				
-				if (c.equals(Game.PlayerTurn.PLAYER1)) {
-					score1++;
-				}
-				else if (c.equals(Game.PlayerTurn.PLAYER2)) {
-    				score2++;
-				}
-			}
-		}*/
 		
 		if (score1 > score2) {
 			if (test || m_test) {
@@ -737,9 +682,12 @@ public class Othello extends Game{
 	            System.out.println("Othello :: isWinner() END");
 	        }
 			return Game.PlayerTurn.NONE; 
-		} // "Tie"
+		} 
 	}
-
+/**
+ * Used to change which player's turn it currently is depending on the game rules.
+ * \return Returns an enumerator of type PlayerTurn which indicates which turn it is, PLAYER1 or PLAYER2.
+ */
 	protected PlayerTurn nextPlayer() {
 		boolean test= false;
 		if (test || m_test) {
@@ -774,7 +722,7 @@ public class Othello extends Game{
             System.out.println("Othello :: debug() BEGIN");
         }
         
-		if (!m_Trace) { return; }
+		if (!test) { return; }
 		System.out.println("Othello::"+method+"("+args+") - "+msg);
 		if (test || m_test) {
             System.out.println("Othello :: debug() END");
@@ -797,17 +745,60 @@ public class Othello extends Game{
         }
 	}
 	
+	/**
+	* main used to run tests which create player and a game
+	 * 
+	 * \throws IOException 
+	 * \throws InterruptedException
+	*/
+	public static void main(String[] args) throws InterruptedException, IOException {
+		boolean test = true;
+		if (test || m_test){
+			Othello game = new Othello();
+			Player player1 = new Human(game);
+			Player player2 = new OthelloAI(game);
+			player1.setPlayerName("Gavin");
+			player2.setPlayerName("So");
+			player1.setPlayerColour(Color.BLACK);
+			player2.setPlayerColour(Color.WHITE);
+			game.setPlayer1(player1);
+			game.setPlayer2(player2);
+			Coordinate testCooor	= new Coordinate(COORD1,COORD2, PlayerTurn.PLAYER1);
+			Coordinate testCooor2	= new Coordinate(COORD1,COORD2, PlayerTurn.PLAYER2);
+			Coordinate testCooor3	= new Coordinate(COORD2,COORD1, PlayerTurn.PLAYER1);
+			Coordinate testCooor4	= new Coordinate(COORD2,COORD1, PlayerTurn.PLAYER2);
+			game.start();
+			
+			game.moveMade(testCooor);
+			System.out.println("Player 1 valid move :" + game.validateMove(testCooor));
+			game.moveMade(testCooor2);
+			System.out.println("Player 2 valid move :" + game.validateMove(testCooor2));
+			game.moveMade(testCooor3);
+			System.out.println("Player 1 valid move :" + game.validateMove(testCooor3));
+			game.moveMade(testCooor4);
+			System.out.println("Player 2 valid move :" + game.validateMove(testCooor4));
+			
+			
+			
+		}
+	}
+	/** Othello gameboard size */
 	private final static int GAME_WIDTH  = 8;
+	/** Othello gameboard size */
 	private final static int GAME_HEIGHT = 8;
-	private final int COORD1 = 3;
-	private final int COORD2 = 4;
+	/** starting position */
+	private final static int COORD1 = 3;
+	/** starting position */
+	private final static int COORD2 = 4;
+	/** store message  */
 	private String m_passmsg =
 			"There are no available moves, the turn has been passed to the opponent.";
+	/** store winning pieces  */
 	private Set<Coordinate> m_win = new HashSet<Coordinate>();
+	/** store the pieces that will be flipped   */
 	private Set<Coordinate> m_p1 = new HashSet<Coordinate>();
+	/** store the pieces that will be flipped   */
 	private Set<Coordinate> m_p2 = new HashSet<Coordinate>();
-	private boolean[][] m_availableMov; 
-	private boolean m_Trace = true;
 	/** test variable */
-    private boolean m_test = false;
+    private static boolean m_test = false;
 }
