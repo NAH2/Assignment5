@@ -9,6 +9,10 @@ public class ConnectFourAI extends Player{
 	private final static int GAME_HEIGHT = 7;
 	private int m_time = 1500;
 	
+	public void SetTime(int responseTime){
+		m_time = responseTime;
+	}
+	
 	public ConnectFourAI(Game game, String name, Color color) {
 		super(game, name, color);
 		

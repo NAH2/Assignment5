@@ -98,7 +98,16 @@ public class Drawing {
 			((OthelloAI)gameBoardGraphics.GetPlayer1()).SetTime(m_responseTime);
 		} else if(gameBoardGraphics.GetPlayer2() instanceof OthelloAI){		
 			((OthelloAI)gameBoardGraphics.GetPlayer2()).SetTime(m_responseTime);
+		} else if(gameBoardGraphics.GetPlayer1() instanceof ConnectFourAI){
+			((ConnectFourAI)gameBoardGraphics.GetPlayer1()).SetTime(m_responseTime);
+		} else if(gameBoardGraphics.GetPlayer2() instanceof ConnectFourAI){
+			((ConnectFourAI)gameBoardGraphics.GetPlayer2()).SetTime(m_responseTime);
+		} else if(gameBoardGraphics.GetPlayer1() instanceof AIEasy){
+			((AIEasy)gameBoardGraphics.GetPlayer1()).SetTime(m_responseTime);
+		} else if(gameBoardGraphics.GetPlayer2() instanceof AIEasy){
+			((AIEasy)gameBoardGraphics.GetPlayer2()).SetTime(m_responseTime);
 		}
+		
 	}
 	//******************************
 	/**

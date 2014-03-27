@@ -5,6 +5,10 @@ class AIEasy extends Player {
 	
 	private int m_time = 1500;
 	
+	public void SetTime(int responseTime){
+		m_time = responseTime;
+	}
+	
 	public AIEasy(Game game, String name, Color color) {
 		super(game, name, color);
 
