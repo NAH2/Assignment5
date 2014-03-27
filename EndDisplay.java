@@ -209,7 +209,8 @@ public class EndDisplay extends JFrame implements ActionListener {
         setGame(game);
         GridBagLayout layout = new GridBagLayout();
         GridBagConstraints c = new GridBagConstraints();
-        getContentPane().setPreferredSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT));
+        getContentPane().setPreferredSize(new Dimension(FRAME_WIDTH,
+                                                                 FRAME_HEIGHT));
         
         JLabel winner = new JLabel();
         
