@@ -107,14 +107,14 @@ class AIEasy extends Player {
 						if (getYourTurn()) {
 							
 							try {
+								
+								setYourTurn(false);
 								getGame().moveMade(m_move);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							
-							setYourTurn(false);
-							
+
 						}
 				   }
 			   }

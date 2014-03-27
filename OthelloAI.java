@@ -89,10 +89,9 @@ public class OthelloAI extends Player {
 								Thread.sleep(m_time);
 								move =setAIMove();
 								if (getYourTurn()) {
-									
-									getGame().moveMade(move);
-									
+
 									setYourTurn(false);
+									getGame().moveMade(move);
 									
 								}
 							} catch (InterruptedException e) {
