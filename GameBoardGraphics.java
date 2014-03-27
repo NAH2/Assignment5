@@ -12,10 +12,10 @@ import java.awt.event.*;
 import java.util.ConcurrentModificationException;
 import java.lang.NullPointerException;
 /**
- * @file GameBoardGraphics.java
- * @author Daniel 709547
- * @date 25/02/2014
- * @brief Class which deals with the graphics of the game board
+ * \file GameBoardGraphics.java
+ * \author Daniel 709547
+ * \date 25/02/2014
+ * \brief Class which deals with the graphics of the game board
  *
  * This class deals with all the graphics of the actual game board
  * itself, being called whenever the gameboard is updated
@@ -29,9 +29,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	/**
 	 * Store the coordinate to be displayed when the move is not valid
 	 * 
-	 * @param the boolean whether the move is valid or not
-	 * @param the Coordinate of invalid move
-	 * @return Returns TRUE if successful.
+	 * \param the boolean whether the move is valid or not
+	 * \param the Coordinate of invalid move
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean SetValid(boolean valid, Coordinate xmove){
 		m_valid = valid;
@@ -42,8 +42,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	/**
 	 * Set the boolean to true when the move is valid
 	 * 
-	 * @param the boolean whether the move is valid or not
-	 * @return Returns TRUE if successful.
+	 * \param the boolean whether the move is valid or not
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean SetValid(boolean valid){
 		m_valid = valid;
@@ -52,7 +52,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	* Method which returns if the piece is flipping at the moment
-	* @return true if the width of the piece is not equal to the original piece size, that means it is flipping
+	* \return true if the width of the piece is not equal to the original piece size, that means it is flipping
 	*/
 	public boolean GetFlip(){
 		return m_w != PIECE_SIZE;
@@ -60,7 +60,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	* Method responsible for setting AI move
-	* @param move - coordinate of AI move
+	* \param move - coordinate of AI move
 	*/
 	public void SetAImove(Coordinate move){
 		m_AImove = move;
@@ -68,7 +68,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	 * Method to set the animation speed
-	 * @param the animation speed ,an integer, represents millisecond time delay per movement
+	 * \param the animation speed ,an integer, represents millisecond time delay per movement
 	 */
 	public void SetSpeed(int speed){
 		m_speed = speed;
@@ -76,7 +76,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	 * Method to set the connect4 game board
-	 * @param the board name
+	 * \param the board name
 	 */
 	public void SetBoard(String board){
 		repaint();
@@ -93,7 +93,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	//******************************
 	/**
 	 * returns the variable m_grid to the caller of the method.
-	 * @return private member variable m_grid, a grid object.
+	 * \return private member variable m_grid, a grid object.
 	 */
 	
 	public Grid getGrid() {
@@ -102,7 +102,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	* Setter method to set the value of a private member variable grid
-	* @param grid - object storing data for the game grid 
+	* \param grid - object storing data for the game grid 
 	*/
 	public void setGrid(Grid grid) {
 		m_grid = grid;
@@ -112,7 +112,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	 * Method to get the constant SQUARE_WIDTH
-	 * @return constant variable SQUARE_WIDTH
+	 * \return constant variable SQUARE_WIDTH
 	 */
 	
 	public int getSquareWidth() {
@@ -121,7 +121,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	 * Method to get the constant SQUARE_HEIGHT
-	 * @return constant variable SQUARE_HEIGHT
+	 * \return constant variable SQUARE_HEIGHT
 	 */
 	
 	public int getSquareHeight() {
@@ -130,7 +130,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	 * Method to get the constant Y_SQUARES
-	 * @return constant variable Y_SQUARES
+	 * \return constant variable Y_SQUARES
 	 */
 	
 	public int getYSquares() {
@@ -139,7 +139,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	 * Method to get the constant X_SQUARES
-	 * @return constant variable X_SQUARES
+	 * \return constant variable X_SQUARES
 	 */
 	
 	public int getXSquares() {
@@ -149,7 +149,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	 * Method to set the game is not over after the game restarts
-	 * @param isOver - the boolean true means the game is over
+	 * \param isOver - the boolean true means the game is over
 	 */
 	public void SetOver(boolean isOver){
 		m_isOver = isOver;
@@ -157,8 +157,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	* Method responsible for generating animation of pieces in both game(Connect4 only atm)
-	* @param type - type of animation that is either flip or fall
-	* @param changes - the list stores the pieces which need the animation
+	* \param type - type of animation that is either flip or fall
+	* \param changes - the list stores the pieces which need the animation
 	*/
 	public void SetAnimation(String type, ArrayList<Coordinate> changes){
 		if(PLAYER1_COLOUR.equals(Color.BLACK)||PLAYER1_COLOUR.equals(Color.WHITE)){
@@ -218,9 +218,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	/**
 	* Class Constructor for GameBoardGraphics, initialises all 
 	* necessary variables.
-	* @param grid - object storing data for the game grid
-	* @param player1 - object containing the data for player 1
-	* @param player2 - object containing the data for player 2
+	* \param grid - object storing data for the game grid
+	* \param player1 - object containing the data for player 1
+	* \param player2 - object containing the data for player 2
 	*/
 	public GameBoardGraphics(Grid grid, Player player1, Player player2) 
 			throws IOException{
@@ -248,7 +248,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	* Method to update all the GUI elements and paint them to the screen.
-	* @param g - graphics object to handle all the data for creating
+	* \param g - graphics object to handle all the data for creating
 	* / repainting the gameboard
 	*/
 
@@ -394,9 +394,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	* Method to paint the available moves in othello
-	* @param g2 - graphics object to handle all the data for creating
-	* @param i - point X of the board
-	* @param j - point Y of the board
+	* \param g2 - graphics object to handle all the data for creating
+	* \param i - point X of the board
+	* \param j - point Y of the board
 	*/
 	private void paintAvailableMove(Graphics2D g2, int i, int j){
 		if(!m_flippingPiece){
@@ -439,7 +439,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 
 	/**
 	* Method to paint the animation of the falling connect four piece
-	* @param g2 - graphics object to handle all the data for creating
+	* \param g2 - graphics object to handle all the data for creating
 	*/
 	private void paintFall(Graphics2D g2){
 		if(m_type.equals("fall") && m_start && m_changes.size() > 0){
@@ -458,9 +458,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	* Method to paint the animation of the flipping othello piece
-	* @param g2 - graphics object to handle all the data for creating
-	* @param i - point X of the piece to be flipped
-	* @param j - point Y of the piece to be flipped
+	* \param g2 - graphics object to handle all the data for creating
+	* \param i - point X of the piece to be flipped
+	* \param j - point Y of the piece to be flipped
 	*/
 	private void paintFlip(Graphics2D g2, int i, int j) 
 		throws NullPointerException, ConcurrentModificationException{
@@ -522,8 +522,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	/**
 	* Method to get the winning piece coordinates for showing the winning pieces graphically,
 	* signal the game is over
-	* @param win - a set of winning piece coordinates without repetition
-	* @param over - a boolean, true when the game is over
+	* \param win - a set of winning piece coordinates without repetition
+	* \param over - a boolean, true when the game is over
 	*/
 	public void setIsOver(boolean over, Set<Coordinate> win){
 		m_isOver = over;
@@ -532,7 +532,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	* Method to show green dots on the winning pieces when the game ends
-	* @param g - graphics object to handle all the data for creating
+	* \param g - graphics object to handle all the data for creating
 	*/
 	private void paintWin(Graphics g){
 		Iterator<Coordinate> iterator = m_win.iterator();
@@ -557,7 +557,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	* Method to update the mouse position to draw a piece following the cursor
-	* @param e - An event which indicates that a mouse action occurred in a component
+	* \param e - An event which indicates that a mouse action occurred in a component
 	*/
 	public void mouseMoved(MouseEvent e) {
 		//System.out.println("x:"+e.getX()+", y:"+e.getY());
@@ -571,7 +571,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	
 	/**
 	* Method only for completing the implementation of MouseMotionListener
-	* @param e - An event which indicates that a mouse action occurred in a component
+	* \param e - An event which indicates that a mouse action occurred in a component
 	*/
 	public void mouseDragged(MouseEvent e) {
 	}
