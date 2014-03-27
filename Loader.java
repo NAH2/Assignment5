@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.util.Scanner;
-
 /**
  * \\file -Loader.java 
  * \author - ADDME
@@ -20,9 +19,14 @@ public class Loader extends FileManager{
      * This method handles the loading of the grid file into the grid array in
      * FileManager.java
      * 
-     * @return True on success
+     * \return True on success
      */
     public boolean loadGrid() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Loader :: loadGrid() BEGIN");
+        }
+        
         m_hashString = "";
         initialiseGrid();
         m_hash = 0;
@@ -78,10 +82,19 @@ public class Loader extends FileManager{
         // if the file is valid then return true
         // if not set flag that file file is invalid, so it will not load
         if (m_valid) {
+            if (test || m_test) {
+                System.out.println("Loader :: loadGrid() END");
+            }
+            
             return true;
         } else {
             System.err.println("File Corrupt");
             m_allValid = false;
+            
+            if (test || m_test) {
+                System.out.println("Loader :: loadGrid() END");
+            }
+            
             return false;
         }
     }
@@ -89,9 +102,14 @@ public class Loader extends FileManager{
     /**
      * method to load the information of player1
      * 
-     * @return True on seccess
+     * \return True on success
      */
     public Boolean loadPlayer1() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Loader :: loadPlayer1() BEGIN");
+        }
+        
         if (loadPlayer(getPlayer1File())) {
             setPlayer1(createPlayerType(m_playerInfo[PLAYER_TYPE_INDEX]));
             
@@ -110,15 +128,24 @@ public class Loader extends FileManager{
             System.err.println("Error with player 1");
         }
         
+        if (test || m_test) {
+            System.out.println("Loader :: loadPlayer1() END");
+        }
+        
         return true;
     }
     
     /**
      * method to load the information of player2
      * 
-     * @return True on seccess
+     * \return True on success
      */
     public Boolean loadPlayer2() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Loader :: loadPlayer2() BEGIN");
+        }
+        
         if (loadPlayer(getPlayer2File())) {
             setPlayer2(createPlayerType(m_playerInfo[PLAYER_TYPE_INDEX]));
             
@@ -137,23 +164,37 @@ public class Loader extends FileManager{
             System.err.println("Error with player 2");
         }
         
+        if (test || m_test) {
+            System.out.println("Loader :: loadPlayer2() END");
+        }
+        
         return true;
     }
     
     /**
      * method to create the type of player to be loaded
      * 
-     * @param String type - which is a string of what player type needs to 
+     * \param String type - which is a string of what player type needs to 
      * be created
-     * @return Player - depending on what type has been created
+     * \return Player - depending on what type has been created
      */
     public Player createPlayerType(String type) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Loader :: createPlayerType() BEGIN");
+        }
+        
         switch (m_playerInfo[PLAYER_TYPE_INDEX]) {
             case HUMAN_PLAYER: return new Human(getGame());
             case EASY_AI_PLAYER: return new AIEasy(getGame());
             case HARD_OTHELLO_PLAYER: return new OthelloAI(getGame());
             case HARD_CONNECTFOUR_PLAYER: return new ConnectFourAI(getGame());
         }
+        
+        if (test || m_test) {
+            System.out.println("Loader :: createPlayerType() END");
+        }
+        
         //needed this to shut up compiler
         return new Human(getGame());
     }
@@ -161,10 +202,15 @@ public class Loader extends FileManager{
     /**
      * Method to load the player information from file into an array
      * 
-     * @param String file - The file and its location to retrieve data from 
-     * @return True on success
+     * \param String file - The file and its location to retrieve data from 
+     * \return True on success
      */
     public Boolean loadPlayer(String file) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Loader :: loadPlayer() BEGIN");
+        }
+        
         m_valid = false;
         m_playerInfo = new String[PLAYER_INFO_SIZE];
         m_hashString = "";
@@ -197,15 +243,25 @@ public class Loader extends FileManager{
         } catch (Exception exc) {
             System.err.println("Error Reading File");
         }
+        
+        if (test || m_test) {
+            System.out.println("Loader :: loadPlayer() END");
+        }
+        
         return m_valid;
     }
     
     /**
      * Method to load the timer data from file 
      * 
-     * @return True on success
+     * \return True on success
      */
-    public boolean loadTimer() {        
+    public boolean loadTimer() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Loader :: loadTimer() BEGIN");
+        }
+        
         m_valid = false;
         m_hashString = "";
         m_timerInfo = new int[TIMER_INFO_SIZE];
@@ -246,20 +302,33 @@ public class Loader extends FileManager{
         } else {
             m_allValid = false;
         }
+        
+        if (test || m_test) {
+            System.out.println("Loader :: loadTimer() END");
+        }
 
-        return true;
+        return m_valid;
     }
     
     /**
      * This method calls all load methods to load all of the data from files
      * 
-     * @return True on success
+     * \return True on success
      */
     public boolean loadAll() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Loader :: loadAll() BEGIN");
+        }
+        
         loadGrid();
         loadPlayer1();
         loadPlayer2();
         loadTimer();
+        
+        if (test || m_test) {
+            System.out.println("Loader :: loadAll() END");
+        }
         
         return true;
     }
@@ -267,10 +336,18 @@ public class Loader extends FileManager{
     /**
      * accessor method for m_allValid 
      * 
-     * @return Boolean m_allValid - a flag to indicate if all files loaded 
+     * \return Boolean m_allValid - a flag to indicate if all files loaded 
      * are valid
      */
     public Boolean getValid() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Loader :: loadAll() BEGIN");
+        }
+        if (test || m_test) {
+            System.out.println("Loader :: loadAll() END");
+        }
+        
         return m_allValid;
     }
     
@@ -278,14 +355,23 @@ public class Loader extends FileManager{
      * Test for load methods
      */
     public void loadTest() {
-        System.out.println(getClass().getSimpleName() + " :: loadGrid: " 
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Loader :: loadTest() BEGIN");
+        }
+        
+        System.out.println(getClass().getSimpleName() + " :: loadGridTest: " 
                                                                   + loadGrid());
-        System.out.println(getClass().getSimpleName() + " :: loadPlayer1: " 
+        System.out.println(getClass().getSimpleName() + " :: loadPlayer1Test: " 
                                                                + loadPlayer1());
-        System.out.println(getClass().getSimpleName() + " :: LoadPlayer2: " 
+        System.out.println(getClass().getSimpleName() + " :: LoadPlayer2Test: " 
                                                                + loadPlayer2());
-        System.out.println(getClass().getSimpleName() + " :: saveTimer: " 
+        System.out.println(getClass().getSimpleName() + " :: saveTimerTest: " 
                                                                  + loadTimer());
+        
+        if (test || m_test) {
+            System.out.println("Loader :: loadTest() END");
+        }
     }
     
     /**
@@ -335,4 +421,6 @@ public class Loader extends FileManager{
     private final int HOURS = 0;
     private final int MINUTES = 1;
     private final int SECONDS = 2;
+    /** Test variable */
+    private boolean m_test = false;
 }

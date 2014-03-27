@@ -134,19 +134,28 @@ public class Saver extends FileManager{
      * Test for save methods
      */
     public void saveTest() {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Saver :: saveTest() BEGIN");
+        }
+        
         if (getClass().getSimpleName().equals("OthelloSaver")) {
-            System.out.println(getClass().getSimpleName() + " :: saveGrid: " 
+            System.out.println(getClass().getSimpleName() + " :: saveGridTest: " 
                                               + saveGrid(OTH_GRID_TEST_STRING));
         } else {
-            System.out.println(getClass().getSimpleName() + " :: saveGrid: " 
+            System.out.println(getClass().getSimpleName() + " :: saveGridTest: " 
                                                + saveGrid(C4_GRID_TEST_STRING));
         }
-        System.out.println(getClass().getSimpleName() + " :: savePlayer1: " 
+        System.out.println(getClass().getSimpleName() + " :: savePlayer1Test: " 
                                              + savePlayer1(PLAYER_TEST_STRING));
-        System.out.println(getClass().getSimpleName() + " :: savePlayer2: " 
+        System.out.println(getClass().getSimpleName() + " :: savePlayer2Test: " 
                                              + savePlayer2(PLAYER_TEST_STRING));
-        System.out.println(getClass().getSimpleName() + " :: saveTimer: " 
+        System.out.println(getClass().getSimpleName() + " :: saveTimerTest: " 
                                                 + saveTimer(TIMER_TEST_STRING));
+        
+        if (test || m_test) {
+            System.out.println("Saver :: saveTest() END");
+        }
     }
     
     /**

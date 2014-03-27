@@ -1,36 +1,57 @@
 /**
- * \\file - OthelloSaver.java
- * \author 
- * \date 26th March 14
+ * \\file -ConnectFourSaver.java 
+ * \author - ADDME
+ * \date -26th March 14
  * 
- * \see 
+ * \see FileManager.java
+ * \see Saver.java
  * 
- * \brief 
- *
- * The class 
+ * \brief Class to set file paths for the Saving of ConnectFour
+ * 
+ * This Class extends the Saver class to and controls the path of the save files
  */
 public class ConnectFourSaver extends Saver{
-	/**
-	 * Accessor 
-	 * \param 
-	 */
+    /**
+     * Constructor to initiate the saving of the files
+     * 
+     * \param Game game - A reference to the Game to be saved
+     */
     public ConnectFourSaver(Game g) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFourSaver :: ConnectFourSaver() BEGIN");
+        }
+        
         setGame(g);
         setPath(CONNECTFOUR_PATH);
-        
         createDirs();
+        
+        if (test || m_test) {
+            System.out.println("ConnectFourSaver :: ConnectFourSaver() END");
+        }
     }
+    
     /**
-	 * Accessor 
-	 * \param 
-	 */
+     * Test constructor
+     */
     public ConnectFourSaver() {
-        setPath(CONNECTFOUR_TEST_PATH);
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFourSaver :: ConnectFourSaver() BEGIN");
+        }
         
+        setPath(CONNECTFOUR_TEST_PATH);
         createDirs();
+        
+        if (test || m_test) {
+            System.out.println("ConnectFourSaver :: ConnectFourSaver() END");
+        }
     }
-    /**the  */
+    
+    /** file paths to load files */
     private final String CONNECTFOUR_PATH = "saveData/connectfour/";
-    /**the  */
+    /** file path to test loading */
     private final String CONNECTFOUR_TEST_PATH = "saveDataTest/connectfour/";
+    /** Test variable */
+    private boolean m_test = false;
 }

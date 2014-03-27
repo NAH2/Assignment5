@@ -1,38 +1,61 @@
 /**
- * \\file - OthelloSaver.java
- * \author 
- * \date 26th March 14
+ * \\file -OthelloLoader.java 
+ * \author - ADDME
+ * \date -26th March 14
  * 
- * \see 
+ * \see FileManager.java
+ * \see Loader.java
  * 
- * \brief 
- *
- * The class 
+ * \brief Class to set file paths for the Loading of Othello
+ * 
+ * This Class extends the Loader class to and controls the path of the save file
  */
 public class OthelloLoader extends Loader{
-
     /**
-	 * Accessor 
-	 * \param 
-	 */
+     * Constructor to initiate the loading of the files
+     * 
+     * \param Game game - A reference to the Game to be loaded
+     */
     public OthelloLoader(Game g) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("OthelloLoader :: OthelloLoader() BEGIN");
+        }
+        
         setGame(g);
         setPath(OTHELLO_PATH);
         
         loadAll();
+        
+        if (test || m_test) {
+            System.out.println("OthelloLoader :: OthelloLoader() END");
+        }
     }
     
     /**
-	 * Accessor 
-	 * \param 
-	 */
+     * Test constructor
+     * 
+     * \param Game game - reference to the game to be loaded
+     * \param String s - used to overload the constructor
+     */
     public OthelloLoader(Game g, String s) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("OthelloLoader :: OthelloLoader() BEGIN");
+        }
+        
         setGame(g);
         setPath(OTHELLO_TEST_PATH);
         
+        if (test || m_test) {
+            System.out.println("OthelloLoader :: OthelloLoader() END");
+        }
     }
-	/**the  */
+    
+    /** file paths to load files */
     private final String OTHELLO_PATH = "saveData/othello/";
-	/**the  */
+    /** file path to test loading */
     private final String OTHELLO_TEST_PATH = "saveDataTest/othello/";
+    /** Test variable */
+    private boolean m_test = false;
 }
