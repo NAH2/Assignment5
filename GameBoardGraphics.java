@@ -469,47 +469,49 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			m_criticalSection = true;
 			Iterator<Coordinate> s = m_changes.iterator();
 			for(s = m_changes.iterator(); s.hasNext(); ) {
-				Coordinate item = s.next();
-				if(item != null && item.getX()*getSquareWidth() == i 
-						&& item.getY()*getSquareHeight() == j){
-				    m_flippingPiece = true;
-					if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
-						//g2.setColor(new Color(RED,GREEN,BLUE));
-						if(m_board == "board2"){
-						g2.drawImage(GRID4, i, j, null);
-						} else if(m_board == "board3"){
-						g2.drawImage(GRID6, i, j, null);
+				if(s.hasNext()){
+					Coordinate item = s.next();
+					if(item != null && item.getX()*getSquareWidth() == i 
+							&& item.getY()*getSquareHeight() == j){
+					    m_flippingPiece = true;
+						if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
+							//g2.setColor(new Color(RED,GREEN,BLUE));
+							if(m_board == "board2"){
+							g2.drawImage(GRID4, i, j, null);
+							} else if(m_board == "board3"){
+							g2.drawImage(GRID6, i, j, null);
+							} else {
+							g2.drawImage(GRID2, i, j, null);
+							}
 						} else {
-						g2.drawImage(GRID2, i, j, null);
+							//g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
+							if(m_board == "board2"){
+							g2.drawImage(GRID3, i, j, null);
+							} else if(m_board == "board3"){
+							g2.drawImage(GRID5, i, j, null);
+							} else {
+							g2.drawImage(GRID1, i, j, null);
+							}
 						}
-					} else {
-						//g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
-						if(m_board == "board2"){
-						g2.drawImage(GRID3, i, j, null);
-						} else if(m_board == "board3"){
-						g2.drawImage(GRID5, i, j, null);
+						//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+						g2.setColor(Color.WHITE);
+						g2.setStroke(new BasicStroke(2));
+						g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+						//System.out.println("FLIPPING");
+						//if(item.getValue()==Game.PlayerTurn.PLAYER1){
+						//m_player = Game.PlayerTurn.PLAYER1;
+						if((item.getValue()==Game.PlayerTurn.PLAYER1 && !m_flipSide 
+							&& PLAYER2_COLOUR.equals(Color.white))||
+							(item.getValue()==Game.PlayerTurn.PLAYER1 && m_flipSide 
+							&& PLAYER1_COLOUR.equals(Color.white))||
+							(item.getValue()==Game.PlayerTurn.PLAYER2 && !m_flipSide 
+							&& PLAYER1_COLOUR.equals(Color.white))||
+							(item.getValue()==Game.PlayerTurn.PLAYER2 && m_flipSide 
+							&& PLAYER2_COLOUR.equals(Color.white))){
+							g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, PIECE_SIZE, null);
 						} else {
-						g2.drawImage(GRID1, i, j, null);
+							g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, PIECE_SIZE, null);
 						}
-					}
-					//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-					g2.setColor(Color.WHITE);
-					g2.setStroke(new BasicStroke(2));
-					g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
-					//System.out.println("FLIPPING");
-					//if(item.getValue()==Game.PlayerTurn.PLAYER1){
-					//m_player = Game.PlayerTurn.PLAYER1;
-					if((item.getValue()==Game.PlayerTurn.PLAYER1 && !m_flipSide 
-						&& PLAYER2_COLOUR.equals(Color.white))||
-						(item.getValue()==Game.PlayerTurn.PLAYER1 && m_flipSide 
-						&& PLAYER1_COLOUR.equals(Color.white))||
-						(item.getValue()==Game.PlayerTurn.PLAYER2 && !m_flipSide 
-						&& PLAYER1_COLOUR.equals(Color.white))||
-						(item.getValue()==Game.PlayerTurn.PLAYER2 && m_flipSide 
-						&& PLAYER2_COLOUR.equals(Color.white))){
-						g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, PIECE_SIZE, null);
-					} else {
-						g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, PIECE_SIZE, null);
 					}
 				}
 			}
