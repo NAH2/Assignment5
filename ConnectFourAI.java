@@ -23,8 +23,9 @@ public class ConnectFourAI extends Player{
 	 * move.
 	 * 
 	 * \param responseTime an integer value of which to set the response time to
+	 * \return true if the method completes
 	 */
-	public void SetTime(int responseTime){
+	public boolean SetTime(int responseTime){
 		boolean test = false;
 		if (test || m_test) {
             System.out.println("ConnectFourAI :: SetTime() BEGIN");
@@ -33,6 +34,7 @@ public class ConnectFourAI extends Player{
 		if (test || m_test) {
             System.out.println("ConnectFourAI :: SetTime() END");
             }
+		return true;
 		}
 	
 	/**
@@ -53,8 +55,9 @@ public class ConnectFourAI extends Player{
 	/**
 	 * The method sets when the thread is to be running, used for thread control
 	 * \param run true when game is running, false when not.
+	 * \return true if the method completes
 	 */
-	public void SetRun(boolean run){
+	public Boolean SetRun(boolean run){
 		boolean test = false;
 		if (test || m_test) {
             System.out.println("ConnectFourAI :: SetRun() BEGIN");
@@ -63,6 +66,7 @@ public class ConnectFourAI extends Player{
 		if (test || m_test) {
 			System.out.println("ConnectFourAI :: SetRun() END");
 		}
+		return true;
 	}
 	
 	/**
@@ -209,6 +213,7 @@ public class ConnectFourAI extends Player{
 	/**
 	 * method to make it set the turn of the AI to be it's move, then
 	 * calls for the move to be taken
+	 * \return true if the method completes
 	 */
 	public boolean isYourMove() throws InterruptedException {
 		boolean test = false;
@@ -233,6 +238,7 @@ public class ConnectFourAI extends Player{
 	 * Calls setAIMove to get the available Coordinate. method was created to 
 	 * allow AI to work.
 	 * \see GameWindow.java
+	 * \return true if the method completes
 	 */
 	public boolean sendMove() throws InterruptedException {
 		boolean test = false;
@@ -273,6 +279,7 @@ public class ConnectFourAI extends Player{
 	 * same as the sendMove() method above but is used in case it is called,
 	 * above method was created to allow AI to work.
 	 * \see Player.java
+	 * \return true if the method completes
 	 */
 	public boolean sendMove(Coordinate move) throws InterruptedException {
 		class MyThread implements Runnable {

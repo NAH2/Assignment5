@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.util.*;
 
 /**
- *  \file	OthelloAI.Java
+ *  \\file	OthelloAI.Java
  * 	\author	Mathew Lloyd 711293
  * 	\date	24/03/2014
  * 	
@@ -23,6 +23,7 @@ public class OthelloAI extends Player {
 	 * move.
 	 * 
 	 * \param responseTime an integer value of which to set the response time to
+	 * \return true if the method completes
 	 */
 	public boolean SetTime(int responseTime){
 		boolean test = false;
@@ -57,6 +58,7 @@ public class OthelloAI extends Player {
 	/**
 	 * The method sets when the thread is to be running, used for thread control
 	 * \param run true when game is running, false when not.
+	 * \return true if the method completes
 	 */
 	public boolean SetRun(boolean run){
 		boolean test = false;
@@ -203,6 +205,7 @@ public class OthelloAI extends Player {
 	/**
 	 * method to make it set the turn of the AI to be it's move, then
 	 * calls for the move to be taken
+	 * \return true if the method completes
 	 */
 	public boolean isYourMove() throws InterruptedException {
 		boolean test = false;
@@ -228,6 +231,7 @@ public class OthelloAI extends Player {
 	 * Calls setAIMove to get the available Coordinate. method was created to 
 	 * allow AI to work.
 	 * \see GameWindow.java
+	 * \return true if the method completes
 	 */
 	public boolean sendMove() throws InterruptedException {
 		new Thread(
@@ -261,6 +265,7 @@ public class OthelloAI extends Player {
 	 * same as the sendMove() method above but is used in case it is called,
 	 * above method was created to allow AI to work.
 	 * \see Player.java
+	 * \return true if the method completes
 	 */
 	public boolean sendMove(Coordinate move) throws InterruptedException {
 		boolean test = false;
