@@ -607,18 +607,21 @@ public class GameWindow extends JFrame {
 	 * Test method.
 	 * 
 	 * \param No arguments.
+	 * @throws InterruptedException 
 	 */
-	public static void main(String args[]) {
+	public static void main(String args[]) throws InterruptedException {
 		ConnectFour game = new ConnectFour();
-		Player player1 = new Human(game);
-		Player player2 = new Human(game);
+		Player player1 = new AIEasy(game);
+		Player player2 = new AIEasy(game);
 		player1.setPlayerName("Gavin");
 		player2.setPlayerName("Lucy");
 		player1.setPlayerColour(Color.RED);
 		player2.setPlayerColour(Color.YELLOW);
 		game.setPlayer1(player1);
 		game.setPlayer2(player2);
-		new GameWindow(game);
+		game.start();
+		game.getWindow().Displaymessage("HELLO");
+		game.getWindow().restart();
 	}
 	
 	private String m_saveMessage = "Game saved!";
