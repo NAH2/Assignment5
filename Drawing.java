@@ -25,9 +25,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 /**
- * \\author 708830
+ * \\file Drawing.java
+ * \author 708830
  * \date 26 Feb 2014
- * \file Drawing.java
  * 
  * 
  * \brief Creates and updates the side bar.
