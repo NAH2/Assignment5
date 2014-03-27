@@ -433,14 +433,15 @@ public class Drawing {
 	    m_sideBar.add(getBarPlayer1(),c);	    
 	    c.gridy = BAR2GRIDY;
 	    m_sideBar.add(getBarPlayer2(),c);
-	
 	    m_speed.setText("Game speed");
 	    if(game instanceof ConnectFour){	
 	    	gameBoardGraphics.SetSpeed(DEFAULT_FALL_SPEED);
 			m_slider = new JSlider (MINSPEED, MAX_FALL_SPEED, DEFAULT_FALL_SPEED);
+			m_isOthello = false;
 	    } else {
-	    	gameBoardGraphics.SetSpeed(DEFAULT_FLIP_SPEED);
-	    	m_slider = new JSlider (MINSPEED, MAX_FLIP_SPEED, DEFAULT_FLIP_SPEED);
+	  		gameBoardGraphics.SetSpeed(DEFAULT_FLIP_SPEED);
+	 		m_slider = new JSlider (MINSPEED, MAX_FLIP_SPEED, DEFAULT_FLIP_SPEED);
+			m_isOthello = true;
 	    }
 	    
 	    m_d = m_slider.getPreferredSize();
@@ -505,7 +506,17 @@ public class Drawing {
 		
 		//Change handler (e.g. for sliders)
         public void stateChanged(ChangeEvent e) {
-        	setSpeed(m_slider.getValue());
+	        	setSpeed(m_slider.getValue());
+	        	if((m_isOthello && (m_slider.getValue() < DEFAULT_FLIP_SPEED - (DEFAULT_FLIP_SPEED/SPEED_ROW))) ||
+	        			(!m_isOthello && (m_slider.getValue() < DEFAULT_FALL_SPEED - (DEFAULT_FALL_SPEED/SPEED_ROW)))){
+	        		System.out.println(!m_isOthello && (m_slider.getValue() > DEFAULT_FALL_SPEED + (DEFAULT_FALL_SPEED/SPEED_ROW)));
+	        		m_speed.setText("Fast");
+	        	} else if((m_isOthello && m_slider.getValue() > DEFAULT_FLIP_SPEED + (DEFAULT_FLIP_SPEED/SPEED_ROW)) ||
+	        			(!m_isOthello && m_slider.getValue() > DEFAULT_FALL_SPEED + (DEFAULT_FALL_SPEED/SPEED_ROW))){
+	        		m_speed.setText("Slow");
+	        	} else {
+	        		m_speed.setText("Normal");	
+	        	}
         }
         public void actionPerformed(ActionEvent event) {
         	String m_board = (String)m_skin.getSelectedItem();
@@ -562,7 +573,7 @@ public class Drawing {
 	private JPanel m_barPlayer2 = new JPanel();
 	//******************************
 	private JPanel m_setting = new JPanel();
-	private JLabel m_speed = new JLabel("Animation speed", JLabel.CENTER);
+	private JLabel m_speed = new JLabel("", JLabel.CENTER);
 	private JSlider m_slider;
 	private Dimension m_d;
 	private final int PADDING = 6;
@@ -595,4 +606,5 @@ public class Drawing {
 	private final int BAR2GRIDY = 1;
 	private final int BAR3GRIDY = 2;
 	private final int GRID2 = 2;
+	private boolean m_isOthello;
 }
