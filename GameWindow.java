@@ -395,25 +395,29 @@ public class GameWindow extends JFrame {
            if (e.getSource() == m_save) {
 				System.out.println("Save");
 				Saver saver;
-				if ((getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER1
-						&& getGame().getPlayer1() instanceof Human)
-						|| (getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER2
-						&& getGame().getPlayer2() instanceof Human)
-						|| (!(getGame().getPlayer1() instanceof Human)
-						&& !(getGame().getPlayer2() instanceof Human))) {
-					if (getGame() instanceof Othello) {
-						saver = new OthelloSaver(getGame());
-					} else {
-						saver = new ConnectFourSaver(getGame());
-					}
-
-					saver.saveGrid(getGame().getGrid().toString());
-					saver.savePlayer1(getGame().getPlayer1().toString());
-					saver.savePlayer2(getGame().getPlayer2().toString());
-					saver.saveTimer(getGame().getTimer().toString());
-					Displaymessage(m_saveMessage);
+				if (getGame().isOver()) {
+                    Displaymessage(m_gameOverSave);
 				} else {
-					Displaymessage(m_aiTurnsave);
+    				if ((getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER1
+    						&& getGame().getPlayer1() instanceof Human)
+    						|| (getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER2
+    						&& getGame().getPlayer2() instanceof Human)
+    						|| (!(getGame().getPlayer1() instanceof Human)
+    						&& !(getGame().getPlayer2() instanceof Human))) {
+    					if (getGame() instanceof Othello) {
+    						saver = new OthelloSaver(getGame());
+    					} else {
+    						saver = new ConnectFourSaver(getGame());
+    					}
+    
+    					saver.saveGrid(getGame().getGrid().toString());
+    					saver.savePlayer1(getGame().getPlayer1().toString());
+    					saver.savePlayer2(getGame().getPlayer2().toString());
+    					saver.saveTimer(getGame().getTimer().toString());
+    					Displaymessage(m_saveMessage);
+    				} else {
+    					Displaymessage(m_aiTurnsave);
+    				}
 				}
 			}
             
@@ -433,7 +437,14 @@ public class GameWindow extends JFrame {
         }
         
         private void checkValid(Loader l) {
-            if (l.getValid()) {   
+            if (l.getValid()) {
+                try {
+                    getGame().resetGame();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    System.err.println("Game did not Reset");
+                }
+                m_drawingControl.getGridPanel().SetOver(false);
                 getGame().getGrid().setGrid(l.getGridArray());
                 getGame().setPlayer1(l.getPlayer1());
                 getDrawing().setPlayer1(l.getPlayer1());
@@ -451,9 +462,7 @@ public class GameWindow extends JFrame {
                 m_drawingControl.getGridPanel().repaint();
             }else {
                 JOptionPane.showMessageDialog(null, "ERROR Laoding File",
-                "Load ERROR",JOptionPane.ERROR_MESSAGE);
-                				
-                // WHAT DO WE DO HERE??
+                "Load ERROR",JOptionPane.ERROR_MESSAGE);                				
             }
         }
 	}
@@ -478,6 +487,7 @@ public class GameWindow extends JFrame {
 	
 	private String m_saveMessage = "Game saved!";
 	private String m_aiTurnsave = "Can't save game while AI's trun!";
+	private String m_gameOverSave = "Can't save when game is over!";
 	private Game m_gameControl;
 	private Drawing m_drawingControl;
 	private Controls m_controlsControl;
