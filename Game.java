@@ -301,7 +301,7 @@ public abstract class Game {
 		}
 	}
 
-	protected void Getpassturnmessage() {
+	protected void Getmessage(String msg) {
 		if(getPlayer1() instanceof AIEasy){
 			((AIEasy)getPlayer1()).SetRun(false);
 		} else if(getPlayer1() instanceof OthelloAI) {
@@ -312,7 +312,7 @@ public abstract class Game {
 		} else if(getPlayer2() instanceof OthelloAI) {
 			((OthelloAI)getPlayer2()).SetRun(false);
 		}
-		getWindow().Displaypassmessage();
+		getWindow().Displaymessage(msg);
 		if(getPlayer1() instanceof AIEasy){
 			((AIEasy)getPlayer1()).SetRun(true);
 		} else if(getPlayer1() instanceof OthelloAI) {
@@ -324,6 +324,8 @@ public abstract class Game {
 			((OthelloAI)getPlayer2()).SetRun(true);
 		}
 	}
+	
+	
 
 	/**
 	 * Called whenever a game is to be reset to it's state at turn 0.
