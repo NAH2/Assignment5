@@ -244,9 +244,10 @@ public class GameWindow extends JFrame {
 		return true;
 	}
 
-	public void Displaypassmessage(){
-		getDrawing().Passturnmessage();
+	public void Displaymessage(String msg) {
+		getDrawing().Message(msg);
 	}
+
 	/**
 	 * Called to update the player's scores displayed on screen.
 	 * 
@@ -375,20 +376,30 @@ public class GameWindow extends JFrame {
 				}
             }
             
-            if (e.getSource() == m_save) {
-                System.out.println("Save");
-                Saver saver;
-                if (getGame() instanceof Othello) {
-                    saver = new OthelloSaver(getGame());
-                } else {
-                    saver = new ConnectFourSaver(getGame());
-                }
-                
-                saver.saveGrid(getGame().getGrid().toString());
-                saver.savePlayer1(getGame().getPlayer1().toString());
-                saver.savePlayer2(getGame().getPlayer2().toString());
-                saver.saveTimer(getGame().getTimer().toString());
-            }
+           if (e.getSource() == m_save) {
+				System.out.println("Save");
+				Saver saver;
+				if ((getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER1
+						&& getGame().getPlayer1() instanceof Human)
+						|| (getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER2
+						&& getGame().getPlayer2() instanceof Human)
+						|| (!(getGame().getPlayer1() instanceof Human)
+						&& !(getGame().getPlayer2() instanceof Human))) {
+					if (getGame() instanceof Othello) {
+						saver = new OthelloSaver(getGame());
+					} else {
+						saver = new ConnectFourSaver(getGame());
+					}
+
+					saver.saveGrid(getGame().getGrid().toString());
+					saver.savePlayer1(getGame().getPlayer1().toString());
+					saver.savePlayer2(getGame().getPlayer2().toString());
+					saver.saveTimer(getGame().getTimer().toString());
+					Displaymessage(m_saveMessage);
+				} else {
+					Displaymessage(m_aiTurnsave);
+				}
+			}
             
             if (e.getSource() == m_load) {
                 if (getGame() instanceof Othello) {
