@@ -371,7 +371,7 @@ public class Othello extends Game
 			 availableMove();
 			 if(checkPassTurn() && isAnyValidMove())
 			 {
-				 super.Getpassturnmessage();
+				  super.Getmessage(m_passmsg);
 				 availableMove();
 				 getWindow().displayPlayerTurn(getPlayerTurn());
 			 }
@@ -531,7 +531,8 @@ public class Othello extends Game
 	private void debug(String method, String msg) {
 		debug(method, "", msg);
 	}
-	
+
+	private String m_passmsg =   "There are no available moves, the turn has been passed to the opponent.";
 	private Set<Coordinate> m_win = new HashSet<Coordinate>();
 	private Set<Coordinate> m_p1 = new HashSet<Coordinate>();
 	private Set<Coordinate> m_p2 = new HashSet<Coordinate>();
