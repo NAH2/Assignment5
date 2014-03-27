@@ -14,8 +14,9 @@ public abstract class Player {
 	 * Sets the game that is going to be played
 	 * \param instance of the game class
 	 */
-	protected void setGame(Game game) {
+	protected Boolean setGame(Game game) {
 		m_game = game;
+		return true;
 	}
 	/**
 	 * Gets the game thats going to be played
@@ -35,23 +36,26 @@ public abstract class Player {
 	 * Sets whether the turn is each players'
 	 * \param set to true if it is players turn, otherwise false
 	 */
-	protected void setYourTurn(boolean turn) {
+	protected boolean setYourTurn(boolean turn) {
 		m_YourTurn = turn;
+		return true;
 	}
 	
 	/**
 	 * Sets the player name
 	 * \param m_playerName a string for the player name
 	 */
-	public void setPlayerName(String playerName){
+	public boolean setPlayerName(String playerName){
 		this.m_playerName=playerName;
+		return true;
 	}
 	/**
 	 * sets the player colour
 	 * \param m_playerColour for the players colour
 	 */
-	public void setPlayerColour(Color playerColour){
+	public boolean setPlayerColour(Color playerColour){
 		m_playerColour = playerColour;
+		return true;
 	}	
 	/**
 	 * gets the name of the player
@@ -93,19 +97,19 @@ public abstract class Player {
 	 * which gets called whenever it is players turn
 	 * \throws InterruptedException 
 	 */
-	public abstract void isYourMove() throws InterruptedException;
+	public abstract boolean isYourMove() throws InterruptedException;
 	/**
 	 * abstract method which is called whenever gamewindow receives a move
 	 * \param move that was made
 	 * \throws InterruptedException 
 	 */
-	public abstract void sendMove(Coordinate move) throws InterruptedException;
+	public abstract boolean sendMove(Coordinate move) throws InterruptedException;
 	
 	/**
 	 * method called when it recieves a move
 	 *\throws InterruptedException
 	 */
-	public abstract void sendMove() throws InterruptedException;
+	public abstract boolean sendMove() throws InterruptedException;
 	
 	/**
 	 * Method used to gather the player data

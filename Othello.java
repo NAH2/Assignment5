@@ -583,7 +583,7 @@ public class Othello extends Game{
 		
 		if(isOver()) {
 			if(m_Trace) System.out.println("Game::MoveMade() - Game is finished");
-			new EndNewGame(this);
+			new EndDisplay(this);
 			emptyWin();
 		} else {
 			if (getPlayerTurn() == PlayerTurn.PLAYER1) {

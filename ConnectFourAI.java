@@ -30,7 +30,10 @@ public class ConnectFourAI extends Player{
             System.out.println("ConnectFourAI :: SetTime() BEGIN");
             }
 		m_time = responseTime;
-	}
+		if (test || m_test) {
+            System.out.println("ConnectFourAI :: SetTime() END");
+            }
+		}
 	
 	/**
 	 * The method returns the response time for the AI.
@@ -40,6 +43,9 @@ public class ConnectFourAI extends Player{
 		boolean test = false;
 		if (test || m_test) {
             System.out.println("ConnectFourAI :: getTime() BEGIN");
+            }
+		if (test || m_test) {
+            System.out.println("ConnectFourAI :: getTime() END");
             }
 		return m_time;
 	}
@@ -204,7 +210,7 @@ public class ConnectFourAI extends Player{
 	 * method to make it set the turn of the AI to be it's move, then
 	 * calls for the move to be taken
 	 */
-	public void isYourMove() throws InterruptedException {
+	public boolean isYourMove() throws InterruptedException {
 		boolean test = false;
 		if (test || m_test) {
             System.out.println("ConnectFourAI :: isYourMove() BEGIN");
@@ -217,6 +223,7 @@ public class ConnectFourAI extends Player{
 		if (test || m_test) {
 			System.out.println("ConnectFourAI :: isYourMove() END");
 		}
+		return true;
 	}
 
 	/**
@@ -227,7 +234,7 @@ public class ConnectFourAI extends Player{
 	 * allow AI to work.
 	 * \see GameWindow.java
 	 */
-	public void sendMove() throws InterruptedException {
+	public boolean sendMove() throws InterruptedException {
 		boolean test = false;
 		if (test || m_test) {
             System.out.println("ConnectFourAI :: sendMove() BEGIN");
@@ -257,6 +264,7 @@ public class ConnectFourAI extends Player{
 		if (test || m_test) {
 			System.out.println("ConnectFourAI :: sendMove() END");
 		}
+		return true;
 	}
 	
 	/**
@@ -264,8 +272,9 @@ public class ConnectFourAI extends Player{
 	 * Gets the move that the AI will do from the setAIMove method. Does the
 	 * same as the sendMove() method above but is used in case it is called,
 	 * above method was created to allow AI to work.
+	 * \see Player.java
 	 */
-	public void sendMove(Coordinate move) throws InterruptedException {
+	public boolean sendMove(Coordinate move) throws InterruptedException {
 		class MyThread implements Runnable {
 			
 				Coordinate m_move;
@@ -295,6 +304,7 @@ public class ConnectFourAI extends Player{
 		Runnable r = new MyThread(move);
 		r.wait(getTime());
 		new Thread(r).start();
+		return true;
 		}
 	
 	public static void main(String args[]){
@@ -304,13 +314,18 @@ public class ConnectFourAI extends Player{
 
 		C4AI2 = new ConnectFourAI(game, "test1",Color.blue);
 		C4AI = new ConnectFourAI(game,"test2",Color.red);
-
+		if(C4AI.getGame() == game){System.out.println("Set Game Success");}
+		if(C4AI.getPlayerName() == "test2")System.out.println("Name Set");
+		if(C4AI.getPlayerColour() == Color.red)System.out.println("Color Ok");
 		C4AI = new ConnectFourAI(game, "test3",Color.yellow);
 		C4AI = new ConnectFourAI(game);
 		System.out.println(C4AI.setAIMove());
 		Coordinate cord = new Coordinate(C4AI.GAME_WIDTH,C4AI.GAME_HEIGHT,
 				Game.PlayerTurn.PLAYER1);
-
+		C4AI.SetTime(C4AI.GAME_WIDTH);
+		if(C4AI.getTime() == C4AI.GAME_WIDTH)System.out.println("Time edited");
+		C4AI.SetRun(true);
+		if(C4AI.getRun() == true)System.out.println("Game Running");
 	}
 	
 	
