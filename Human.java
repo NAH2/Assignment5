@@ -45,8 +45,9 @@ public class Human extends Player {
 
 	/**
 	 *  Sets which player's move it is
+	 *  \return true if the method completes
 	 */
-	public void isYourMove() {
+	public boolean isYourMove() {
 		boolean test = false;
         if (test || m_test) {
             System.out.println("Human :: isYourMove() BEGIN");
@@ -60,13 +61,15 @@ public class Human extends Player {
 		if (test || m_test) {
             System.out.println("Human :: isYourMove() END");
         }
+		return true;
 	}
 	
 	/**
 	 *  Sends the move to the game class
 	 * \param move a move to make
+	 * \return true if the method completes
 	 */
-	public void sendMove(Coordinate move) {
+	public boolean sendMove(Coordinate move) {
 		boolean test = false;
         if (test || m_test) {
             System.out.println("Human :: sendMove() BEGIN");
@@ -84,12 +87,14 @@ public class Human extends Player {
 		if (test || m_test) {
             System.out.println("Human :: sendMove() END");
         }
+		return true;
 	}
 	
 	/**
 	 * Empty method is required for Othello and Connect Four AI
+	 * \return true if the method completes
 	 */
-	public void sendMove(){
+	public boolean sendMove(){
 		boolean test = false;
         if (test || m_test) {
             System.out.println("Human :: sendMove() BEGIN");
@@ -97,6 +102,7 @@ public class Human extends Player {
         if (test || m_test) {
             System.out.println("Human :: sendMove() END");
         }
+        return true;
 	}
 	
 	 /** test variable */

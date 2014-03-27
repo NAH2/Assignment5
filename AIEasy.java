@@ -13,6 +13,7 @@ class AIEasy extends Player {
 	/**
 	* Sets the variable m_running which is used to decide if the AIEasy runs or not
 	*\param run a boolean which selects if the AI should run
+	*\return true if the method completes
 	*/
 	public boolean SetRun(boolean run){
 		if (m_test){
@@ -27,6 +28,7 @@ class AIEasy extends Player {
 	/**
 	* Sets the the wait time befor which the ai performs a move
 	*\param responseTime a integer for selecting the wait time
+	* \return true if the method completes
 	*/
 	public boolean SetTime(int responseTime){
 		if (m_test){
@@ -143,8 +145,9 @@ class AIEasy extends Player {
 	}
 	/**
 	* isYourMove used to run methods which are used to set it as the AI turn
+	* \return true if the method completes
 	*/
-	public void isYourMove() throws InterruptedException {
+	public boolean isYourMove() throws InterruptedException {
 		if (m_test){
 			System.out.println("AIEasy.isYourMove- begin");
 		}
@@ -156,12 +159,14 @@ class AIEasy extends Player {
 		if (m_test){
 			System.out.println("AIEasy.isYourMove- end");
 		}
+		return true;
 	}
 	/**
 	* sendMove() a method used to send a valid move to a game of othello or connect
 	 four.
+	* \return true if the method completes
 	*/
-	public void sendMove() throws InterruptedException {
+	public boolean sendMove() throws InterruptedException {
 		if (m_test){
 			System.out.println("AIEasy.sendMove() - begin");
 		}
@@ -189,13 +194,15 @@ class AIEasy extends Player {
 		if (m_test){
 			System.out.println("AIEasy.sendMove() - end");
 		}
+		return true;
 	}
 	/**
 	* sendMove a method used to send a valid move to a game of othello or 
 	connect four.
 	* \param move pass a coordinate object from the grid
+	* \return true if the method completes
 	*/
-	public void sendMove(Coordinate move) throws InterruptedException {
+	public boolean sendMove(Coordinate move) throws InterruptedException {
 		if (m_test){
 			System.out.println("AIEasy.sendMove(Coordinate move) - begin");
 		}
@@ -235,6 +242,7 @@ class AIEasy extends Player {
 		if (m_test){
 			System.out.println("AIEasy.sendMove(Coordinate move) - end");
 		}
+		return true;
 	}
 	
 	/**
