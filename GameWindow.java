@@ -406,7 +406,8 @@ public class GameWindow extends JFrame {
 	}
 	
 	/**
-	 * Called when the user clicks the restart game button on the menu bar	 * Stop all the threads and recreate the current game
+	 * Called when the user clicks the restart game button on the menu bar	 
+	 * Stop all the threads and recreate the current game
 	 */
 	private boolean restart(){
 		boolean test = false;
@@ -472,7 +473,8 @@ public class GameWindow extends JFrame {
 	}
 	
 	/**
-	 * Called when the user clicks the new game button on the menu bar	 * Stop all the threads and recreate the game chooser window
+	 * Called when the user clicks the new game button on the menu bar	 
+	 * Stop all the threads and recreate the game chooser window
 	 */
 	private boolean returnMainWindow(){
 		boolean test = false;
