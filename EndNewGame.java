@@ -1,5 +1,4 @@
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
@@ -7,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,10 +24,7 @@ import javax.swing.JPanel;
  */
 
 public class EndNewGame extends JFrame implements ActionListener {
-	private final JButton YES_BUTTON = new JButton("Yes");
-	private final JButton NO_BUTTON = new JButton("No");
-	private Game m_game;
-	
+
 	public void setGame(Game game){
 		m_game = game;
 	}
@@ -44,7 +39,6 @@ public class EndNewGame extends JFrame implements ActionListener {
 	 * @param game This is an instance of the game class.
 	 */
 	public EndNewGame(Game game) {
-		
 		final int YESGRIDX = 0;
 		final int YESGRIDY = 0;
 		final int YESPADY = 0;
@@ -57,12 +51,13 @@ public class EndNewGame extends JFrame implements ActionListener {
 		final int BUTTONPANELGRIDY = 3;
 		final int BUTTONSIZEX = 100;
 		final int BUTTONSIZEY = 30;
-		
+		final int FRAME_WIDTH = 250;
+		final int FRAME_HEIGHT = 150;
 		
 		setGame(game);
-		JLabel endGameLabel = new JLabel("Would you like to play again?");
 		GridBagLayout layout = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
+		getContentPane().setPreferredSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT));
 		
 		JLabel winner = new JLabel();
 		if (game.isWinner() == Game.PlayerTurn.PLAYER1) {
@@ -74,8 +69,7 @@ public class EndNewGame extends JFrame implements ActionListener {
 		else {
 			winner.setText("The game was a draw.");
 		}
-		YES_BUTTON.setPreferredSize(new Dimension(BUTTONSIZEX,BUTTONSIZEY));
-		NO_BUTTON.setPreferredSize(new Dimension(BUTTONSIZEX,BUTTONSIZEY));
+		OK_BUTTON.setPreferredSize(new Dimension(BUTTONSIZEX,BUTTONSIZEY));
 		getContentPane().setLayout(layout);
 		
 		c.gridy = YESGRIDY;
@@ -84,7 +78,6 @@ public class EndNewGame extends JFrame implements ActionListener {
 		c.ipady = YESPADY;
 		layout.setConstraints(winner, c);
 		getContentPane().add(winner);
-		
 		
 		JPanel stats1 = statsPlayer1(game);
 		c.weightx = STATP1WEIGHTX;
@@ -101,19 +94,15 @@ public class EndNewGame extends JFrame implements ActionListener {
 		c.gridwidth = GridBagConstraints.REMAINDER;
 		c.gridx = ENDLABELGRIDX;
 		c.gridy = ENDLABELGRIDY;
-		layout.setConstraints(endGameLabel, c);
-	    getContentPane().add(endGameLabel);
 	    
 	    JPanel buttonPanel = new JPanel();
-	    buttonPanel.add(YES_BUTTON);
-	    buttonPanel.add(NO_BUTTON);
+	    buttonPanel.add(OK_BUTTON);
 	    
 	    c.gridy = BUTTONPANELGRIDY;
 	    layout.setConstraints(buttonPanel, c);
 	    getContentPane().add(buttonPanel);
 	    
-	    YES_BUTTON.addActionListener(this);
-	    NO_BUTTON.addActionListener(this);
+	    OK_BUTTON.addActionListener(this);
 	    setVisible(true);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    pack();
@@ -131,7 +120,7 @@ public class EndNewGame extends JFrame implements ActionListener {
 		
 		final int P1SCOREGRIDY = 1;
 		final int P2SCOREGRIDY = 2;
-		final int OVALSIZE = 30;
+		final int OVALSIZE = 60;
 		
 		JPanel stats = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
@@ -160,6 +149,7 @@ public class EndNewGame extends JFrame implements ActionListener {
 		
 		return stats;
 	}
+	
 	/**
 	 * This method creates a new panel which hold the information on player 2.
 	 * This includes the name, score, turns taken and the colour of piece they
@@ -169,7 +159,7 @@ public class EndNewGame extends JFrame implements ActionListener {
 	 */
 	private JPanel statsPlayer2(Game game) {
 		
-		final int OVALSIZE = 30;
+		final int OVALSIZE = 60;
 		final int SCOREPOSITION = 1;
 		final int PIECEPOSITION = 2;
 		
@@ -208,19 +198,11 @@ public class EndNewGame extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent evt) {
 	    Object src = evt.getSource();
-	    if (src == YES_BUTTON) {
+	    if (src == OK_BUTTON) {
 	    	dispose();
-	    	try {
-				getGame().reset();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    } 
-	    else if (src == NO_BUTTON) {
-	    	dispose();
-	    	getGame().getWindow().dispose();
-	    	new ChooseGame();
 	    }
 	}
+	
+	private final JButton OK_BUTTON = new JButton("Ok");
+    private Game m_game;
 }
