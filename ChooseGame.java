@@ -9,11 +9,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 /**
- * @file ChooseGame.java
- * @author Daniel 709547
- * @date 20/02/2014
- * @brief Class which handles the choice of starting a new game
+ * \file ChooseGame.java
+ * \author Daniel 709547
+ * \date 20/02/2014
+ * \brief Class which handles the choice of starting a new game
  * 
  * This class deals with handling giving the user
  * the option of starting either a new othello or
@@ -24,7 +25,7 @@ import javax.swing.*;
 public class ChooseGame {	
 	/**
 	 * Setter method to set the JButton m_connect4
-	 * @param newConnect4
+	 * \param newConnect4
 	 */
 	public void setConnect4Button(JButton newConnect4) {
 		m_connect4 = newConnect4;
@@ -32,7 +33,7 @@ public class ChooseGame {
 	
 	/**
 	 * Setter method to set the JButton m_othello
-	 * @param newOthello
+	 * \param newOthello
 	 */
 	public void setOthelloButton(JButton newOthello) {
 		m_othello = newOthello;
@@ -40,7 +41,7 @@ public class ChooseGame {
 	
 	/**
 	 * Setter method to set the data for the JFrame m_choose
-	 * @param newChoose
+	 * \param newChoose
 	 */
 	public void setChooseFrame(JFrame newChoose) {
 		m_choose = newChoose;
@@ -48,7 +49,7 @@ public class ChooseGame {
 	
 	/**
 	 * Getter method to return the pointer for the JButton object m_connect4
-	 * @return JButton m_connect4
+	 * \return JButton m_connect4
 	 */
 	public JButton getConnect4Button() {
 		return m_connect4;
@@ -56,7 +57,7 @@ public class ChooseGame {
 	
 	/**
 	 * Getter method to return the JButton m_othello
-	 * @return JButton m_othello
+	 * \return JButton m_othello
 	 */
 	public JButton getOthelloButton() {
 		return m_othello;
@@ -64,7 +65,7 @@ public class ChooseGame {
 	
 	/**
 	 * Getter method to return the object, the JFrame m_choose.
-	 * @return JFrame m_choose
+	 * \return JFrame m_choose
 	 */
 	public JFrame getChooseFrame() {
 		return m_choose;
@@ -128,7 +129,7 @@ public class ChooseGame {
 
 		/**
 		*	Deals with actions performed by GUI objects, namley the buttons.
-		*	@param event - object which holds the data of the GUI event.
+		*	\param event - object which holds the data of the GUI event.
 		*/
 
 		@Override
