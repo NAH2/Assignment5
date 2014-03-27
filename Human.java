@@ -16,7 +16,9 @@ public class Human extends Player {
 	 * \param game a game to be initialised
 	 */
 	public Human(Game game) {
+		
 		super(game);
+		
 		boolean test = false;
         if (test || m_test) {
             System.out.println("Human :: Human() BEGIN");
