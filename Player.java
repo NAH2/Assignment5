@@ -1,7 +1,6 @@
 import java.awt.Color;
-
 /**
- *  \file	-Player.Java
+ *  \\file	-Player.Java
  * 	\author	-C. Hazelton
  * 	\date	-14/02/2014
  * 	
