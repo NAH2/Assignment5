@@ -41,28 +41,28 @@ public abstract class Player {
 	
 	/**
 	 * Sets the player name
-	 * \param playerName
+	 * \param m_playerName a string for the player name
 	 */
 	public void setPlayerName(String playerName){
 		this.m_playerName=playerName;
 	}
 	/**
 	 * sets the player colour
-	 * \param playerColour
+	 * \param m_playerColour for the players colour
 	 */
 	public void setPlayerColour(Color playerColour){
 		m_playerColour = playerColour;
 	}	
 	/**
 	 * gets the name of the player
-	 * \return player name
+	 * \return m_playerName returns a string of the players name
 	 */
 	public String getPlayerName(){
 		return m_playerName;
 	}
 	/**
 	 * 	gets the colour of the player
-	 * \return colour
+	 * \return m_playerColour returns the players colour
 	 */
 	public Color getPlayerColour(){
 	    //System.out.println(m_playerColour.getRGB());
@@ -70,13 +70,17 @@ public abstract class Player {
 	}	
 	
 	 /**
-	  * constructor
+	  * Constructor of Player, receives the type of game 
+	  * \param game the type of game to be played
 	  */
 	public Player(Game game) {
 		setGame(game);
 	}
 	 /**
-	  * constructor
+	  * Constructor of player, receive the type of game, name of player and colour
+	  * \param game a type of game for selecting the game
+	  * \param name a string for the player name
+	  * \param color a type colour for selecting colour
 	  */
 	public Player(Game game, String name, Color color) {
 		setGame(game);
@@ -97,8 +101,16 @@ public abstract class Player {
 	 */
 	public abstract void sendMove(Coordinate move) throws InterruptedException;
 	
+	/**
+	 * method called when it recieves a move
+	 *\throws InterruptedException
+	 */
 	public abstract void sendMove() throws InterruptedException;
 	
+	/**
+	 * Method used to gather the player data
+	 * \return playerData returns the player name,colour and turn
+	 */
 	public String toString(){
         String playerData = getClass().getSimpleName() + "," + getPlayerName() + ","
                 + getPlayerColour().getRGB() + "," + getYourTurn() + ",";
