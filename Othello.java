@@ -1,9 +1,9 @@
 import java.awt.Color;
 import java.util.*;
-/*
- *  @file	-Othello.Java
- * 	@author	-B. Golightly
- * 	@date	-12/02/2014
+/**
+ *  \\file	-Othello.Java
+ * 	\author	-B. Golightly
+ * 	\date	-12/02/2014
  * 	
  * 	/brief	Extends Game with the rules of Othello as specified. Methods are
  * 			provided to check if a move is valid, query the score of a potential
@@ -14,47 +14,85 @@ import java.util.*;
  * 			of one item i.e. only the peice that is the result of the move.
  */
 
-public class Othello extends Game
-{
-	private final static int GAME_WIDTH  = 8;
-	private final static int GAME_HEIGHT = 8;
-	private final int coord1 = 3;
-	private final int coord2 = 4;
-
-	/* 
+public class Othello extends Game{
+	
+	/** 
 	* Return the winning piece coordinates
-	* @return the set which stores the winning piece coordinates
+	* \return the set which stores the winning piece coordinates
 	*/
-	public Set<Coordinate> getWin(){// should be GetWin()
+	public Set<Coordinate> getWin(){
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: getWin() BEGIN");
+        }
+		// should be GetWin()
 		//System.out.println("win is empty?"+m_win.isEmpty());
+        if (test || m_test) {
+            System.out.println("Othello :: getWin() END");
+        }
 		return m_win;
 	}
 	
 	public boolean[][] Getavailablemov(){
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: Getavailablemov() BEGIN");
+        }
+        if (test || m_test) {
+            System.out.println("Othello :: Getavailablemov() END");
+        }
 		return m_availableMov;
 	}
 	
 	public void Setavailablemov (boolean[][] availableMov){
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: Setavailablemov() BEGIN");
+        }
 		m_availableMov = availableMov;
+		if (test || m_test) {
+            System.out.println("Othello :: Setavailablemov() END");
+        }
 	}
-	/* 
+	/**
 	* Empty the set which stores the winning piece coordinates
 	*/
 	protected void emptyWin(){
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: emptyWin() BEGIN");
+        }
 		m_win.clear();
+		if (test || m_test) {
+            System.out.println("Othello :: emptyWin() END");
+        }
 	}
 	
 	/**
 	 * Construtor for a game of Othello
 	 */
 	public Othello() {
+	
 		// If the game class can initialse a grid of this size, that would be
 		// great :-)
-		super(GAME_WIDTH, GAME_HEIGHT);
+		super(GAME_WIDTH, GAME_HEIGHT);	
+		
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: Othello() BEGIN");
+        }
 		//resetGame();
+        if (test || m_test) {
+            System.out.println("Othello :: Othello() END");
+        }
 	}
 	
 	public void start() throws InterruptedException {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: start() BEGIN");
+        }
+        
 		boolean m_Trace = false;
 		Grid grid = super.getGrid();
 		
@@ -63,24 +101,31 @@ public class Othello extends Game
 		resetGame();
 		startTimer();
 		availableMove();
+		if (test || m_test) {
+            System.out.println("Othello :: start() END");
+        }
 	}
 	
 	
 	/**
 	 * Resets the starting pieces.
-	 * @throws InterruptedException 
+	 * \throws InterruptedException 
 	 */
 	public void resetGame() throws InterruptedException {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: resetGame() BEGIN");
+        }
 		Grid grid = super.getGrid();
 		
 		// Initialise starting peices
 		if (super.getPlayer1().getPlayerColour().equals(Color.BLACK))
 		{
 		    super.setPlayerTurn(Game.PlayerTurn.PLAYER1);
-		    grid.setCoordinate(new Coordinate(coord1, coord1, Game.PlayerTurn.PLAYER1));
-		    grid.setCoordinate(new Coordinate(coord2, coord1, Game.PlayerTurn.PLAYER2));
-		    grid.setCoordinate(new Coordinate(coord1, coord2, Game.PlayerTurn.PLAYER2));
-		    grid.setCoordinate(new Coordinate(coord2, coord2, Game.PlayerTurn.PLAYER1));
+		    grid.setCoordinate(new Coordinate(COORD1, COORD1, Game.PlayerTurn.PLAYER1));
+		    grid.setCoordinate(new Coordinate(COORD2, COORD1, Game.PlayerTurn.PLAYER2));
+		    grid.setCoordinate(new Coordinate(COORD1, COORD2, Game.PlayerTurn.PLAYER2));
+		    grid.setCoordinate(new Coordinate(COORD2, COORD2, Game.PlayerTurn.PLAYER1));
 		    getPlayer1().isYourMove();
 		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
 			if 	((getPlayer1() instanceof OthelloAI||
@@ -92,10 +137,10 @@ public class Othello extends Game
 		else 
 		{
 			super.setPlayerTurn(Game.PlayerTurn.PLAYER2);
-			grid.setCoordinate(new Coordinate(coord1, coord1, Game.PlayerTurn.PLAYER2));
-			grid.setCoordinate(new Coordinate(coord2, coord1, Game.PlayerTurn.PLAYER1));
-			grid.setCoordinate(new Coordinate(coord1, coord2, Game.PlayerTurn.PLAYER1));
-			grid.setCoordinate(new Coordinate(coord2, coord2, Game.PlayerTurn.PLAYER2));
+			grid.setCoordinate(new Coordinate(COORD1, COORD1, Game.PlayerTurn.PLAYER2));
+			grid.setCoordinate(new Coordinate(COORD2, COORD1, Game.PlayerTurn.PLAYER1));
+			grid.setCoordinate(new Coordinate(COORD1, COORD2, Game.PlayerTurn.PLAYER1));
+			grid.setCoordinate(new Coordinate(COORD2, COORD2, Game.PlayerTurn.PLAYER2));
 			getPlayer2().isYourMove();
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
 			if 	((getPlayer2() instanceof OthelloAI || 
@@ -106,9 +151,18 @@ public class Othello extends Game
 			}
 		}
 		availableMove();
+		
+		if (test || m_test) {
+            System.out.println("Othello :: resetGame() END");
+        }
 	}
 
 	private void availableMove(){
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: availableMove() BEGIN");
+        }
+        
 		for (int y = 0; y < GAME_HEIGHT; y++) {
 			for (int x = 0; x < GAME_WIDTH; x++) {
 				
@@ -136,37 +190,62 @@ public class Othello extends Game
 				}
 			}
 		}
+		if (test || m_test) {
+            System.out.println("Othello :: availableMove() END");
+        }
 	}
 	
 	private boolean checkPassTurn(){
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: checkPassTurn() BEGIN");
+        }
+        
 		for (int y = 0; y < GAME_HEIGHT; y++) {
 			for (int x = 0; x < GAME_WIDTH; x++) {
 				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.PLAYER1_AM &&
 						getPlayerTurn().equals(Game.PlayerTurn.PLAYER1)){
+					if (test || m_test) {
+			            System.out.println("Othello :: checkPassTurn() END (False)");
+			        }
 					return false;
 				}
 				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.PLAYER2_AM &&
 						getPlayerTurn().equals(Game.PlayerTurn.PLAYER2)){
+					if (test || m_test) {
+			            System.out.println("Othello :: checkPassTurn() END (False)");
+			        }
 					return false;
 				}
 			}
 			}
 		
 		setPlayerTurn(nextPlayer());
-
+		if (test || m_test) {
+            System.out.println("Othello :: checkPassTurn() END (True)");
+        }
 		return true;
+		
 	}
 	
 	/**
 	 * (PRIVATE) Queries the game to see if there are any valid moves remaining
 	 * for either player.
-	 * @return	True if a move can be made, false otherwise.
+	 * \return	True if a move can be made, false otherwise.
 	 */
 	private boolean isAnyValidMove() {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: isAnyValidMove() BEGIN");
+        }
+        
 		Grid grid = getGrid();
 		// The game may end when the board is completely filled
 		if (super.getTurnCount() == GAME_WIDTH * GAME_HEIGHT) {
 			debug("IsAnyValidMove()", "board filled");
+			if (test || m_test) {
+	            System.out.println("Othello :: isAnyValidMove() END (False)");
+	        }
 			return false;
 		}
 		
@@ -178,31 +257,53 @@ public class Othello extends Game
 				 Coordinate c1 = new Coordinate(x, y, Game.PlayerTurn.PLAYER1);
 				 Coordinate c2 = new Coordinate(x, y, Game.PlayerTurn.PLAYER2);
 				 
-				 if (isValidMove(c1)) { return true; }
-				 if (isValidMove(c2)) { return true; }
+				 if (isValidMove(c1)) { 
+					 if (test || m_test) {
+				            System.out.println("Othello :: isAnyValidMove() END (True)");
+				     }
+					 return true;
+				 }
+				 if (isValidMove(c2)) {
+					 if (test || m_test) {
+				            System.out.println("Othello :: isAnyValidMove() END (True)");
+				     }
+					 return true; 
+					 }
 			}
 		}
 		m_Trace = true;
 		
 		// Otherwise...
+		if (test || m_test) {
+            System.out.println("Othello :: isAnyValidMove() END (False)");
+        }
 		return false;
 	}
 	/**
 	 * Checks if a given player selecting a given coordinate is a valid move.
-	 * @param player A valid player object used by the current game.
-	 * @param xy A coordinate specifying x and y values into the grid.
-	 * @return	True if the specified move can be made, false otherwise.
+	 * \param player A valid player object used by the current game.
+	 * \param xy A coordinate specifying x and y values into the grid.
+	 * \return	True if the specified move can be made, false otherwise.
 	 */
 	protected boolean isValidMove(Coordinate xy) {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: isValidMove() BEGIN");
+        }
 		debug("isValidMove", "" + xy, "");
 		
 		// Check that the move lies on the board somewhere vaugely sensible
 		if (xy.getX() < 0) { throw new IllegalArgumentException("bad x value"); }
 		if (xy.getY() < 0) { throw new IllegalArgumentException("bad y value"); }
-		if (xy.getX() >= GAME_WIDTH)  { throw new IllegalArgumentException("bad x value"); }
-		if (xy.getY() >= GAME_HEIGHT) { throw new IllegalArgumentException("bad y value"); }
+		if (xy.getX() >= GAME_WIDTH)  { 
+			throw new IllegalArgumentException("bad x value"); 
+		}
+		if (xy.getY() >= GAME_HEIGHT) {
+			throw new IllegalArgumentException("bad y value"); 
+		}
 		if (xy.getValue() == Game.PlayerTurn.NONE) {
-			throw new IllegalArgumentException("bad turn value"); }
+			throw new IllegalArgumentException("bad turn value"); 
+		}
 		
 		// Check that the space is empty. If not, the move cannot be made.
 		if (getGrid().getCoordinate(xy.getX(), xy.getY()).getValue() ==
@@ -213,18 +314,68 @@ public class Othello extends Game
 		// A move is valid if it "traps" the other player's peices between
 		// itself and another of the same player's peice, along diagonals or
 		// horizontally or vertically. This means checking in eight directions.
-		if (checkBound(xy, +1,  0)) { return true; } // right
-		if (checkBound(xy, -1,  0)) { return true; } // left
-		if (checkBound(xy,  0, +1)) { return true; } // down
-		if (checkBound(xy,  0, -1)) { return true; } // up
-		if (checkBound(xy, +1, +1)) { return true; } // bottom-right
-		if (checkBound(xy, -1, +1)) { return true; } // bottom-left
-		if (checkBound(xy, +1, -1)) { return true; } // top-right
-		if (checkBound(xy, -1, -1)) { return true; } // top-left
+		if (checkBound(xy, +1,  0)) { 
+			if (test || m_test) {
+            System.out.println("Othello :: isValidMove() END (True)");
+			}
+			return true; 
+		} // right
+		
+		if (checkBound(xy, -1,  0)) {
+			if (test || m_test) {
+	            System.out.println("Othello :: isValidMove() END (True)");
+	        }
+			return true; 
+		} // left
+		
+		if (checkBound(xy,  0, +1)) {
+			if (test || m_test) {
+	            System.out.println("Othello :: isValidMove() END (True)");
+	        }
+			return true; 
+		} // down
+		
+		if (checkBound(xy,  0, -1)) {
+			if (test || m_test) {
+	            System.out.println("Othello :: isValidMove() END (True)");
+	        }
+			return true; 
+		} // up
+		
+		if (checkBound(xy, +1, +1)) {
+			if (test || m_test) {
+	            System.out.println("Othello :: isValidMove() END (True)");
+	        }
+			return true; 
+		} // bottom-right
+		
+		if (checkBound(xy, -1, +1)) {
+			if (test || m_test) {
+	            System.out.println("Othello :: isValidMove() END (True)");
+	        }
+			return true;
+		} // bottom-left
+		
+		if (checkBound(xy, +1, -1)) {
+			if (test || m_test) {
+	            System.out.println("Othello :: isValidMove() END (True)");
+	        }
+			return true; 
+		} // top-right
+		
+		if (checkBound(xy, -1, -1)) {
+			if (test || m_test) {
+	            System.out.println("Othello :: isValidMove() END (True)");
+	        }
+			return true; 
+		} // top-left
 		
 		// otherrwise the move is invalid
 		debug("isValidMove", "" + xy, "no bound found");
-
+		
+		if (test || m_test) {
+            System.out.println("Othello :: isValidMove() END (False)");
+        }
 		return false;
 	}
 	
@@ -233,6 +384,10 @@ public class Othello extends Game
 	 * are bound/trapped in a given direction by the current player's peices.
 	 */
 	private boolean checkBound(Coordinate start, int xdir, int ydir) {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: checkBound() BEGIN");
+        }
 		Grid grid = getGrid();
 		boolean opponentFound = false;
 		
@@ -251,6 +406,9 @@ public class Othello extends Game
 				// trap.
 				debug("checkBound", "returns false due to check.isEmpty()");
 				
+				if (test || m_test) {
+		            System.out.println("Othello :: checkBound() END (False)");
+		        }
 				return false;
 			}
 			else if (check.notEquals(start.getValue())) {
@@ -271,6 +429,9 @@ public class Othello extends Game
 		}
 		
 		debug("checkBound", "returns false (edge of grid)");
+		if (test || m_test) {
+            System.out.println("Othello :: checkBound() END (False)");
+        }
 		return false;
 	}
 	
@@ -279,14 +440,18 @@ public class Othello extends Game
 	 * doesn't actually write to the grid itself; this means that you can use
 	 * this method to see how good a move is before you commit it to the grid -
 	 * which would be helpful for implementing the AI).
-	 * @param player A valid player object used by the current game.
-	 * @param xy A coordinate specifying x and y values into the grid specifying
+	 * \param player A valid player object used by the current game.
+	 * \param xy A coordinate specifying x and y values into the grid specifying
 	 * 			 a valid move.
-	 * @return	A list of captured peices, possibly of length zero,
+	 * \return	A list of captured peices, possibly of length zero,
 	 *          as an array of coordinates specifiying x, y, and
 	 *          owning player value.
 	 */
 	protected ArrayList<Coordinate> takeMove(Coordinate xy) {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: takeMove() BEGIN");
+        }
 	    /*
 		if (!isValidMove(xy)) {
 			throw new IllegalStateException(
@@ -313,17 +478,25 @@ public class Othello extends Game
 		capture.addAll(take(xy, +1, -1)); // top-right
 		capture.addAll(take(xy, -1, +1)); // bottom-left
 		capture.addAll(take(xy, +1, +1)); // bottom-right
+		if (test || m_test) {
+            System.out.println("Othello :: takeMove() END");
+        }
 		return capture;
 	}
 	
 	/**
 	 * Calculates the potential score of a move, for use by an AI player who
 	 * wants to pick the best move.
-	 * @param player A valid player object used by the current game.
-	 * @param xy A coordinate specifying x and y values into the grid.
-	 * @return	The score of the move.
+	 * \param player A valid player object used by the current game.
+	 * \param xy A coordinate specifying x and y values into the grid.
+	 * \return	The score of the move.
 	 */
 	public int moveScore(Coordinate xy) {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: moveScore() BEGIN");
+        }
+        
 		// Hint to whoever implements the Hard AI - just iterate over the
 		// grid, then pick the best moveScore result. Your AI doesn't need to
 		// know how to play Othello, it just needs to have a strategy that uses
@@ -332,10 +505,18 @@ public class Othello extends Game
 		if (!isValidMove(xy)) { return 0; }
 		
 		ArrayList <Coordinate> captured = takeMove(xy);
+		if (test || m_test) {
+            System.out.println("Othello :: moveScore() END");
+        }
 		return captured.size();
 	}
 	
 	public void moveMade(Coordinate move) throws InterruptedException {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: moveMade() BEGIN");
+        }
+        
 		boolean m_Trace = false;
 		
 		if(m_Trace) System.out.println("Game::MoveMade() - Called");
@@ -347,8 +528,10 @@ public class Othello extends Game
 			}	
 			getWindow().displayGrid(getGrid());
 			//**********************
-			if (((getPlayer1() instanceof OthelloAI || getPlayer1() instanceof AIEasy) && changes.get(0).getValue() == Game.PlayerTurn.PLAYER1) || 
-					((getPlayer2() instanceof OthelloAI || getPlayer2() instanceof AIEasy) && changes.get(0).getValue() == Game.PlayerTurn.PLAYER2)){
+			if (((getPlayer1() instanceof OthelloAI || getPlayer1() instanceof AIEasy) 
+					&& changes.get(0).getValue() == Game.PlayerTurn.PLAYER1) 
+					|| ((getPlayer2() instanceof OthelloAI || getPlayer2() instanceof AIEasy)
+					&& changes.get(0).getValue() == Game.PlayerTurn.PLAYER2)){
 				getWindow().SetAImove(changes.get(0));
 			}
 			getWindow().SetAnimation("flip", changes);
@@ -392,21 +575,28 @@ public class Othello extends Game
 			}
 		}
 		System.out.println("Grid:\n" + getGrid().toString() + "\n");
+		if (test || m_test) {
+            System.out.println("Othello :: moveMade() END");
+        }
 	}
 	
 	
 	
 	/**
 	 * (PRIVATE) Captures peices in a direction.
-	 * @param player A valid player object used by the current game.
-	 * @param xy A coordinate specifying x and y values into the grid.
-	 * @param xdir Horizontal direction value in which to capture.
-	 * @param ydir Vertical direction value in which to capture.
-	 * @return	A list of captured peices, possibly of length zero,
+	 * \param player A valid player object used by the current game.
+	 * \param xy A coordinate specifying x and y values into the grid.
+	 * \param xdir Horizontal direction value in which to capture.
+	 * \param ydir Vertical direction value in which to capture.
+	 * \return	A list of captured peices, possibly of length zero,
 	 *          as an array of coordinates specifiying x, y, and
 	 *          owning player value.
 	 */
 	private ArrayList<Coordinate> take(Coordinate xy, int xdir, int ydir) {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: take() BEGIN");
+        }
 	
 		if (!checkBound(xy, xdir, ydir)) { return new ArrayList<Coordinate>(); }
 		
@@ -436,14 +626,21 @@ public class Othello extends Game
 			
     		current.move(xdir, ydir);
 		}
+		if (test || m_test) {
+            System.out.println("Othello :: take() END");
+        }
 		return capture;
 	}
 	
 	/**
 	 * Checks to see if the game is over.
-	 * @return	True if the game is over, false otherwise.
+	 * \return	True if the game is over, false otherwise.
 	 */
 	public boolean isOver() {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: isOver() BEGIN");
+        }
 		// this concretely implements from the abstract game class
 		if(!isAnyValidMove()){
 			for (int i = 0; i < getGrid().getGridWidth(); i++) {
@@ -464,15 +661,23 @@ public class Othello extends Game
 			m_p1.clear();
 			m_p2.clear();
 		}
+		if (test || m_test) {
+            System.out.println("Othello :: isOver() END");
+        }
 		return (!isAnyValidMove());
 	}
 	
 	/**
 	 * Returns the winner (once the game has ended). The winner is the one with
 	 * the most captured peices.
-	 * @return The winning player, or null in the case of a tie.
+	 * \return The winning player, or null in the case of a tie.
 	 */
 	public Game.PlayerTurn isWinner() {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: isWinner() BEGIN");
+        }
+        
 		if (!isOver())
 			{ throw new IllegalStateException("no winner before game is over"); }
 	
@@ -496,15 +701,42 @@ public class Othello extends Game
 			}
 		}*/
 		
-		if (score1 > score2) { return Game.PlayerTurn.PLAYER1; }
-		else if (score2 > score1) { return Game.PlayerTurn.PLAYER2; }
-		else { return Game.PlayerTurn.NONE; } // "Tie"
+		if (score1 > score2) {
+			if (test || m_test) {
+	            System.out.println("Othello :: isWinner() END");
+	        }
+			return Game.PlayerTurn.PLAYER1; 
+		}
+		else if (score2 > score1) {
+			if (test || m_test) {
+	            System.out.println("Othello :: isWinner() END");
+	        }
+			return Game.PlayerTurn.PLAYER2;
+		}
+		else { 
+			if (test || m_test) {
+	            System.out.println("Othello :: isWinner() END");
+	        }
+			return Game.PlayerTurn.NONE; 
+		} // "Tie"
 	}
 
 	protected PlayerTurn nextPlayer() {
+		boolean test= false;
+		if (test || m_test) {
+            System.out.println("Othello :: isWinner() BEGIN");
+        }
+
 		if(getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
+			if (test || m_test) {
+	            System.out.println("Othello :: isWinner() END");
+	        }
 			return Game.PlayerTurn.PLAYER2;
-		} else {
+		} 
+		else {
+			if (test || m_test) {
+	            System.out.println("Othello :: isWinner() END");
+	        }
 			return Game.PlayerTurn.PLAYER1;
 		}
 	}
@@ -512,31 +744,51 @@ public class Othello extends Game
 	
 	/**
 	 * Prints a debug message.
-	 * @param method The name of the method printing the message.
-	 * @param args   A string representation arguments of the method printing
+	 * \param method The name of the method printing the message.
+	 * \param args   A string representation arguments of the method printing
 	 * 				 the message.
-	 * @param msg    A message to print.
+	 * \param msg    A message to print.
 	 */
 	private void debug(String method, String args, String msg) {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: debug() BEGIN");
+        }
+        
 		if (!m_Trace) { return; }
-		
 		System.out.println("Othello::"+method+"("+args+") - "+msg);
+		if (test || m_test) {
+            System.out.println("Othello :: debug() END");
+        }
 	}
 	
 	/**
 	 * Prints a debug message.
-	 * @param method The name of the method printing the message.
-	 * @param msg    A message to print.
+	 * \param method The name of the method printing the message.
+	 * \param msg    A message to print.
 	 */
 	private void debug(String method, String msg) {
+		boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: debug() BEGIN");
+        }
 		debug(method, "", msg);
+		if (test || m_test) {
+            System.out.println("Othello :: debug() END");
+        }
 	}
-
-	private String m_passmsg =   "There are no available moves, the turn has been passed to the opponent.";
+	
+	private final static int GAME_WIDTH  = 8;
+	private final static int GAME_HEIGHT = 8;
+	private final int COORD1 = 3;
+	private final int COORD2 = 4;
+	private String m_passmsg =
+			"There are no available moves, the turn has been passed to the opponent.";
 	private Set<Coordinate> m_win = new HashSet<Coordinate>();
 	private Set<Coordinate> m_p1 = new HashSet<Coordinate>();
 	private Set<Coordinate> m_p2 = new HashSet<Coordinate>();
 	private boolean[][] m_availableMov; 
-	
 	private boolean m_Trace = true;
+	/** test variable */
+    private boolean m_test = false;
 }
