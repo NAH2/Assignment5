@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
@@ -95,6 +96,10 @@ public class EndDisplay extends JFrame implements ActionListener {
 		BufferedImage piece = new BufferedImage
 				(OVALSIZE, OVALSIZE, BufferedImage.TYPE_3BYTE_BGR);
 		Graphics2D g2 = piece.createGraphics();
+		if(game.getPlayer1().getPlayerColour().equals(Color.BLACK)){
+			g2.setColor(Color.WHITE);
+			g2.fillRect(0, 0, OVALSIZE, OVALSIZE);
+		}
 		g2.setColor(game.getPlayer1().getPlayerColour());
 		g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
 		player1Piece.setIcon(new ImageIcon(piece));
@@ -145,6 +150,10 @@ public class EndDisplay extends JFrame implements ActionListener {
 		BufferedImage piece2 = new BufferedImage
 				(OVALSIZE, OVALSIZE, BufferedImage.TYPE_3BYTE_BGR);
 		Graphics2D g2 = piece2.createGraphics();
+		if(game.getPlayer2().getPlayerColour().equals(Color.BLACK)){
+			g2.setColor(Color.WHITE);
+			g2.fillRect(0, 0, OVALSIZE, OVALSIZE);
+		}
 		g2.setColor(game.getPlayer2().getPlayerColour());
 		g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
 		player2Piece.setIcon(new ImageIcon(piece2));
