@@ -1,17 +1,18 @@
+import java.util.*;
+import java.awt.Color;
 /**
  *  \\file -AIEasy.java
  * 	\author - Tyrone Bramwell
  *	\date	-20/03/2014
  *
- *	\brief This class contains methods to create and run a AI for othello and conect four
- *		  which randomly picks a a valid move and performs the move.
+ *	\brief This class contains methods to create and run a AI for othello and 
+ *conect four which randomly picks a a valid move and performs the move.
  */
-import java.util.*;
-import java.awt.Color;
-
 class AIEasy extends Player {
 	/**
-	* Sets the variable m_running which is used to decide if the AIEasy runs or not
+	* Sets the variable m_running which is used to decide if the AIEasy runs 
+	* or not
+	* 
 	*\param run a boolean which selects if the AI should run
 	*\return true if the method completes
 	*/
@@ -25,6 +26,7 @@ class AIEasy extends Player {
 		}
 		return true;
 	}
+	
 	/**
 	* Sets the the wait time befor which the ai performs a move
 	*\param responseTime a integer for selecting the wait time
@@ -40,8 +42,10 @@ class AIEasy extends Player {
 		}
 		return true;
 	}
+	
 	/**
-	* Sets the variable m_running which is used to decide if the AIEasy runs or not
+	* Sets the variable m_running which is used to decide if the AIEasy runs 
+	* or not
 	*\return returns variable m_time which is used for waiting
 	*/
 	public int getTime(){
@@ -53,9 +57,11 @@ class AIEasy extends Player {
 		}
 		return m_time ;
 	}
+	
 	/**
 	* Sets the the wait time befor which the ai performs a move
-	*\return returns variable m_running which is used for see if a turn is performed
+	* \return returns variable m_running which is used for see if a turn is 
+	* performed
 	*/
 	public boolean getRun(){
 		if (m_test){
@@ -67,6 +73,7 @@ class AIEasy extends Player {
 		return m_running;
 		
 	}
+	
 	/**
 	* Constructor to crate AIEasy with parameters for game type
 	* \param game a type of game for selecting the game
@@ -83,6 +90,7 @@ class AIEasy extends Player {
 			System.out.println("AIEasy.AIEasy( game,  name,  color)- end");
 		}
 	}
+	
 	/**
 	* Constructor to crate AIEasy with parameters for game type
 	* \param game a type of game for selecting the game
@@ -97,8 +105,10 @@ class AIEasy extends Player {
 			System.out.println("AIEasy.AIEasy(game)- end");
 		}
 	}
+	
 	/**
-	* getAvailableMoves creates an array list of valid possiable moves for the game
+	* getAvailableMoves creates an array list of valid possiable moves for the 
+	* game
 	*\return arraylist of all possiable valid moves
 	*/
 	public ArrayList<Coordinate> getAvailableMoves (){
@@ -108,7 +118,7 @@ class AIEasy extends Player {
 		ArrayList<Coordinate> a = new ArrayList <Coordinate> ();
 		for (int x=0; x<getGame().getGrid().getGridWidth();x++){
 			for (int y=0; y<getGame().getGrid().getGridHeight();y++){
-				Coordinate  c1 =	new Coordinate (x, y, getGame().getPlayerTurn());
+				Coordinate c1 = new Coordinate (x, y,getGame().getPlayerTurn());
 							
 				if (getGame().isValidMove(c1)==true){
 					a.add(c1);
@@ -120,6 +130,7 @@ class AIEasy extends Player {
 		}
 		return a;
 	}
+	
 	/**
 	* setAIMove picks a random move from the list and returns a coordinate 
 	*\return coordinate which is then placed into the grid
@@ -143,6 +154,7 @@ class AIEasy extends Player {
 		return a.get(x);
 
 	}
+	
 	/**
 	* isYourMove used to run methods which are used to set it as the AI turn
 	* \return true if the method completes
@@ -161,9 +173,10 @@ class AIEasy extends Player {
 		}
 		return true;
 	}
+	
 	/**
-	* sendMove() a method used to send a valid move to a game of othello or connect
-	 four.
+	* sendMove() a method used to send a valid move to a game of othello or 
+	* connect four.
 	* \return true if the method completes
 	*/
 	public boolean sendMove() throws InterruptedException {
@@ -196,6 +209,7 @@ class AIEasy extends Player {
 		}
 		return true;
 	}
+	
 	/**
 	* sendMove a method used to send a valid move to a game of othello or 
 	connect four.
@@ -264,7 +278,7 @@ class AIEasy extends Player {
 		C4AI = new AIEasy(game, "test3",Color.yellow);
 		C4AI = new AIEasy(game);
 		System.out.println(C4AI.setAIMove());
-		Coordinate cord = new Coordinate(C4AI.getGame().getGrid().getGridWidth(),
+		Coordinate cord =new Coordinate(C4AI.getGame().getGrid().getGridWidth(),
 				C4AI.getGame().getGrid().getGridHeight(),
 				Game.PlayerTurn.PLAYER1);
 		
@@ -278,15 +292,17 @@ class AIEasy extends Player {
 		OAI = new AIEasy(game, "test3",Color.yellow);
 		OAI = new AIEasy(game);
 		System.out.println(OAI.setAIMove());
-		Coordinate cord2 = new Coordinate(OAI.getGame().getGrid().getGridWidth(),
+		Coordinate cord2 =new Coordinate(OAI.getGame().getGrid().getGridWidth(),
 				OAI.getGame().getGrid().getGridHeight(),
 				Game.PlayerTurn.PLAYER1);
 		AIEasy a = new AIEasy(game,"test2",Color.red);
 		
-		System.out.println("Test: getRun " + a.getRun() + " getTime: " +a.getTime());
+		System.out.println("Test: getRun " + a.getRun() + " getTime: " 
+		                                                         + a.getTime());
 		a.SetRun(false);
 		a.SetTime(0);
-		System.out.println("Test: getRun " + a.getRun() + " getTime: " +a.getTime());
+		System.out.println("Test: getRun " + a.getRun() + " getTime: " 
+		                                                         + a.getTime());
 		
 		if (m_test){
 			System.out.println("AIEasy.main - end");
@@ -298,7 +314,7 @@ class AIEasy extends Player {
 	/** m_running variable is an boolean used to decided if the AIEasy should 
 	run or not*/
 	private boolean m_running;
-	/** m_test variable used for testing when methods are entered and left and prints
-	out into the console*/
+	/** m_test variable used for testing when methods are entered and left and 
+	 * prints out into the console*/
 	private static boolean m_test = false;
 }
