@@ -1,43 +1,17 @@
 /**
- *  @file -Grid.java
- * 	@author - J.Dong
- *	@date	-12/02/2014
+ *  \file -Grid.java
+ * 	\author - J.Dong
+ *	\date	-12/02/2014
  *
- *	@brief This class contains methods to store information on grid 
+ *	\brief This class contains methods to store information on grid 
  *		   and provides methods to set and get coordinates of the pieces.
  */
 
 public class Grid {
-	/**
-	 * Set coordinate.
-	 * @param coor The coordinate of the piece that has been put.
-	 */
-	public void setCoordinate(Coordinate a) {
-		m_Grid[a.getX()][a.getY()] = a.getValue();
-	}
-	
-	/**
-	 * Get coordinate.
-	 * @param x The x coordinate of the piece.
-	 * @param y The y coordinate of the piece.
-	 * @return The coordinate
-	 */
-	public Coordinate getCoordinate(int x, int y) {
-		return new Coordinate(x,y,m_Grid[x][y]);
-	}
-	/**
-	 * Get coordinate.
-	 * @param The coordinate of the piece.
-	 * @return The coordinate
-	 * 
-	 */
-	public Coordinate getCoordinate(Coordinate c) {
-		return new Coordinate(c.getX(),c.getY(),m_Grid[c.getX()][c.getY()]);
-	}
 	
 	/**
 	 * Set the grid.
-	 * @param grid
+	 * \param grid
 	 */
 	public void setGrid(Game.PlayerTurn[][] grid) {
 		m_Grid = grid;
@@ -45,7 +19,7 @@ public class Grid {
 	
 	/**
 	 * Get the height of the grid.
-	 * @return The height of the grid.
+	 * \return The height of the grid.
 	 */
 	public int getGridHeight(){
 		return m_Grid[0].length;
@@ -53,16 +27,43 @@ public class Grid {
 	
 	/**
 	 * Get the width of the grid.
-	 * @return The width of the grid.
+	 * \return The width of the grid.
 	 */
 	public int getGridWidth(){
 		return m_Grid.length;
 	}
 	
 	/**
+	 * Set coordinate.
+	 * \param a The coordinate of the piece that has been put.
+	 */
+	public void setCoordinate(Coordinate a) {
+		m_Grid[a.getX()][a.getY()] = a.getValue();
+	}
+	
+	/**
+	 * Get coordinate.
+	 * \param x The x coordinate of the piece.
+	 * \param y The y coordinate of the piece.
+	 * \return The coordinate
+	 */
+	public Coordinate getCoordinate(int x, int y) {
+		return new Coordinate(x,y,m_Grid[x][y]);
+	}
+	/**
+	 * Get coordinate.
+	 * \param The coordinate of the piece.
+	 * \return The coordinate
+	 * 
+	 */
+	public Coordinate getCoordinate(Coordinate c) {
+		return new Coordinate(c.getX(),c.getY(),m_Grid[c.getX()][c.getY()]);
+	}
+	
+	/**
 	 * Get the coordinate of the piece from Game class.
-	 * @param x The x coordinate of the piece.
-	 * @param y The y coordinate of the piece,
+	 * \param x The x coordinate of the piece.
+	 * \param y The y coordinate of the piece,
 	 */
 	public Grid(int x, int y){
 		setGrid(new Game.PlayerTurn[x][y]);
