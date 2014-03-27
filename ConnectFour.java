@@ -6,7 +6,9 @@ import java.util.*;
 import javax.swing.JFrame;
 
 /**
- * \\file -ConnectFour.java \author -G. Howard \date -14/02/2014
+ * \\file -ConnectFour.java 
+ * \author -G. Howard 
+ * \date -14/02/2014
  * 
  * \brief Class that extends Game by using the rules of ConnectFour.
  * 
@@ -70,8 +72,8 @@ public class ConnectFour extends Game {
 		setWindow(new GameWindow(this));
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if ((getPlayer1() instanceof ConnectFourAI || getPlayer1() instanceof AIEasy)
-				&& (getPlayer2() instanceof Human)) {
+		if ((getPlayer1() instanceof ConnectFourAI || getPlayer1() instanceof 
+		                           AIEasy) && (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
 		startTimer();
@@ -89,8 +91,8 @@ public class ConnectFour extends Game {
 		setPlayerTurn(PlayerTurn.PLAYER1);
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if ((getPlayer1() instanceof ConnectFourAI || getPlayer1() instanceof AIEasy)
-				&& (getPlayer2() instanceof Human)) {
+		if ((getPlayer1() instanceof ConnectFourAI || getPlayer1() instanceof 
+		                           AIEasy) && (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
 		if (test || m_test) {
@@ -110,8 +112,8 @@ public class ConnectFour extends Game {
 		}
 		if (getTurnCount() == GAME_WIDTH * GAME_HEIGHT) {
 			if (test)
-				System.out
-						.println("ConnectFour::validMove() - No more valid moves");
+				System.out.println("ConnectFour::validMove() - No more valid "
+				                                                     + "moves");
 			return false;
 		} else {
 			if (test || m_test) {
@@ -148,15 +150,16 @@ public class ConnectFour extends Game {
 			throw new IllegalArgumentException("bad y value");
 		}
 
-		if (grid.getCoordinate(xy.getX(), 0).getValue() == Game.PlayerTurn.NONE) {
+		if (grid.getCoordinate(xy.getX(), 0).getValue() == 
+		                                                 Game.PlayerTurn.NONE) {
 			if (test || m_test)
 				System.out
 						.println("ConnectFour::isValidMove() - move is valid");
 			return true;
 		} else {
 			if (test || m_test)
-				System.out
-						.println("ConnectFour::isValidMove() - move is not valid");
+				System.out.println("ConnectFour::isValidMove() - move is not "
+				                                                     + "valid");
 			return false;
 		}
 	}
@@ -187,9 +190,11 @@ public class ConnectFour extends Game {
 			setPlayer2Score(0);
 			for (int i = 0; i < getGrid().getGridWidth(); i++) {
 				for (int j = 0; j < getGrid().getGridHeight(); j++) {
-					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
+					if (getGrid().getCoordinate(i, j).getValue() == 
+					                                       PlayerTurn.PLAYER1) {
 						setPlayer1Score(getPlayer1Score() + 1);
-					} else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
+					} else if (getGrid().getCoordinate(i, j).getValue() == 
+					                                       PlayerTurn.PLAYER2) {
 						setPlayer2Score(getPlayer2Score() + 1);
 					}
 				}
@@ -203,8 +208,8 @@ public class ConnectFour extends Game {
 
 		if (isOver()) {
 			if (test || m_test)
-				System.out
-						.println("ConnectFour::MoveMade() - ConnectFour is finished");
+				System.out.println("ConnectFour::MoveMade() - ConnectFour is "
+				                                                  + "finished");
 			new EndDisplay(this);
 			emptyWin();
 		} else {
@@ -231,7 +236,6 @@ public class ConnectFour extends Game {
 	 * 
 	 * \return a list containing the taken move
 	 */
-
 	protected ArrayList<Coordinate> takeMove(Coordinate xy) {
 		boolean test = false;
 		if (test || m_test)
@@ -240,7 +244,8 @@ public class ConnectFour extends Game {
 		ArrayList<Coordinate> result = new ArrayList<Coordinate>();
 
 		for (int y = GAME_HEIGHT - 1; y >= 0; y--) {
-			if (grid.getCoordinate(xy.getX(), y).getValue() == Game.PlayerTurn.NONE) {
+			if (grid.getCoordinate(xy.getX(), y).getValue() == 
+			                                             Game.PlayerTurn.NONE) {
 				result = new ArrayList<Coordinate>();
 				result.add(new Coordinate(xy.getX(), y, xy.getValue()));
 				break;
@@ -266,7 +271,7 @@ public class ConnectFour extends Game {
 			System.out.println(iterator.next());
 		}
 		if (getWinner() == Game.PlayerTurn.PLAYER1
-				|| getWinner() == Game.PlayerTurn.PLAYER2) {
+				                    || getWinner() == Game.PlayerTurn.PLAYER2) {
 			if (test || m_test)
 				System.out.println("ConnectFour::IsOver() - A Player has won");
 			getTimer().setRunning();
@@ -316,9 +321,10 @@ public class ConnectFour extends Game {
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
 		if (Player != Game.PlayerTurn.NONE) {
 			if (x < GAME_WIDTH - COUNT3) {
-				if ((grid.getCoordinate(x + 1, y).getValue() == Player)
-						&& (grid.getCoordinate(x + COUNT2, y).getValue() == Player)
-						&& (grid.getCoordinate(x + COUNT3, y).getValue() == Player)) {
+				if ((grid.getCoordinate(x + 1, y).getValue() == Player) && 
+				        (grid.getCoordinate(x + COUNT2, y).getValue() == Player)
+				        && (grid.getCoordinate(x + COUNT3, y).getValue() == 
+				                                                      Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x + 1, y));
 					m_win.add(new Coordinate(x + COUNT2, y));
@@ -383,7 +389,6 @@ public class ConnectFour extends Game {
 	 * 
 	 * \return count number of pieces
 	 */
-
 	private int countLeft(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
 		if (test || m_test)
@@ -436,9 +441,10 @@ public class ConnectFour extends Game {
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
 		if (Player != Game.PlayerTurn.NONE) {
 			if (y < GAME_HEIGHT - COUNT3) {
-				if ((grid.getCoordinate(x, y + 1).getValue() == Player)
-						&& (grid.getCoordinate(x, y + COUNT2).getValue() == Player)
-						&& (grid.getCoordinate(x, y + COUNT3).getValue() == Player)) {
+				if ((grid.getCoordinate(x, y + 1).getValue() == Player) && 
+				        (grid.getCoordinate(x, y + COUNT2).getValue() == Player)
+						&& (grid.getCoordinate(x, y + COUNT3).getValue() == 
+						                                              Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x, y + 1));
 					m_win.add(new Coordinate(x, y + COUNT2));
@@ -481,7 +487,7 @@ public class ConnectFour extends Game {
 			}
 			for (int z = 1; z <= loopCount; z++) {
 				Game.PlayerTurn Player2 = grid.getCoordinate(x, (y + z))
-						.getValue();
+						                                            .getValue();
 				if (Player2.equals(Player)) {
 					count++;
 				} else {
@@ -643,11 +649,10 @@ public class ConnectFour extends Game {
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
 		if (Player != Game.PlayerTurn.NONE) {
 			if (y < GAME_HEIGHT - COUNT3 && x < GAME_WIDTH - COUNT3) {
-				if ((grid.getCoordinate(x + 1, y + 1).getValue() == Player)
-						&& (grid.getCoordinate(x + COUNT2, y + COUNT2)
-								.getValue() == Player)
-						&& (grid.getCoordinate(x + COUNT3, y + COUNT3)
-								.getValue() == Player)) {
+				if ((grid.getCoordinate(x + 1, y + 1).getValue() == Player) && 
+				       (grid.getCoordinate(x + COUNT2, y + COUNT2).getValue() ==
+				       Player) && (grid.getCoordinate(x + COUNT3, y + COUNT3)
+						                               .getValue() == Player)) {
 					m_win.add(new Coordinate(x, y));
 					m_win.add(new Coordinate(x + 1, y + 1));
 					m_win.add(new Coordinate(x + COUNT2, y + COUNT2));
@@ -747,13 +752,13 @@ public class ConnectFour extends Game {
 			System.out.println("ConnectFour::PlayerTurn() - BEGIN");
 		if (getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
 			if (test || m_test)
-				System.out
-						.println("ConnectFour::PlayerTurn() - PLAYER1 turn finished ");
+				System.out.println("ConnectFour::PlayerTurn() - PLAYER1 turn "
+				                                                 + "finished ");
 			return Game.PlayerTurn.PLAYER2;
 		} else {
 			if (test || m_test)
-				System.out
-						.println("ConnectFour::PlayerTurn() - PLAYER2 turn finished ");
+				System.out.println("ConnectFour::PlayerTurn() - PLAYER2 turn "
+				                                                 + "finished ");
 			return Game.PlayerTurn.PLAYER1;
 		}
 	}
@@ -798,17 +803,17 @@ public class ConnectFour extends Game {
 			if(player2.getPlayerColour() == Color.YELLOW)
 				System.out.println("Color Added Correctly");
 			Coordinate testCooor = new Coordinate(COUNT2, COUNT3,
-					PlayerTurn.PLAYER1);
+					                                        PlayerTurn.PLAYER1);
 			Coordinate testCooor2 = new Coordinate(COUNT2, COUNT3,
-					PlayerTurn.PLAYER2);
+					                                        PlayerTurn.PLAYER2);
 			game.start();
 			for (int i = 0; i < GAME_HEIGHT; i++) {
 				game.moveMade(testCooor);
 				System.out.println("Player 1 valid move :"
-						+ game.validateMove(testCooor));
+						                        + game.validateMove(testCooor));
 				game.moveMade(testCooor2);
 				System.out.println("Player 2 valid move :"
-						+ game.validateMove(testCooor2));
+						                       + game.validateMove(testCooor2));
 			}
 			
 
