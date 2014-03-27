@@ -196,7 +196,11 @@ public class GameWindow extends JFrame {
 	 * @return Returns TRUE if successful.
 	 */
 	public boolean displayPlayerTurn(Game.PlayerTurn player) {
-		getDrawing().setPlayerTurn(player);
+		if(player == Game.PlayerTurn.PLAYER1){
+			getDrawing().setPlayerTurn(player, !(m_gameControl.getPlayer1() instanceof Human));
+		} else {
+			getDrawing().setPlayerTurn(player, !(m_gameControl.getPlayer2() instanceof Human));
+		}
 		return true;
 	}
 
@@ -351,11 +355,11 @@ public class GameWindow extends JFrame {
         		m_game.setPlayer2(m_player2);				
     			try {
     				m_game.start();
+				dispose();
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-    			setVisible(false);
             }
             
             if (e.getSource() == m_save) {

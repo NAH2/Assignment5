@@ -355,10 +355,12 @@ public class Drawing {
 	 * This method sets the players turns, and highlights the in turn player.
 	 * @param PlayerTurn This holds information on the turns that have been
 	 * taken.
+	 * @param isAI indicates if the turn is an AI turn
 	 */
-	public void setPlayerTurn(Game.PlayerTurn PlayerTurn){
+	public void setPlayerTurn(Game.PlayerTurn PlayerTurn, boolean isAI){
 		final int OVALSIZE = 60;
 		final int X = 14;
+		final int AI_X = 24;
 		final int YOUR_Y = 29;
 		final int TURN_Y = 39;
 		
@@ -375,7 +377,11 @@ public class Drawing {
 			g2.setColor(m_p1colour);
 			g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
 			g2.setColor(m_p2colour);
-			g2.drawString("YOUR", X, YOUR_Y);
+			if(isAI){
+				g2.drawString("AI", AI_X, YOUR_Y);
+			} else {
+				g2.drawString("YOUR", X, YOUR_Y);
+			}
 			g2.drawString("TURN", X, TURN_Y);
 			getPlayer1Piece().setIcon(new ImageIcon(Piece));
 			getPlayer2Piece().setIcon(new ImageIcon(m_p2piece));			
@@ -394,7 +400,11 @@ public class Drawing {
 			g2.setColor(m_p2colour);
 			g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
 			g2.setColor(m_p1colour);
-			g2.drawString("YOUR", X, YOUR_Y);
+			if(isAI){
+				g2.drawString("AI", AI_X, YOUR_Y);
+			} else {
+				g2.drawString("YOUR", X, YOUR_Y);
+			}
 			g2.drawString("TURN", X, TURN_Y);
 			getPlayer2Piece().setIcon(new ImageIcon(Piece));
 			getPlayer1Piece().setIcon(new ImageIcon(m_p1piece));
@@ -600,7 +610,7 @@ public class Drawing {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(drawing.getGridPanel());
 		frame.add(drawing.getSideBarPanel());
-		drawing.setPlayerTurn(Game.PlayerTurn.PLAYER1);
+		drawing.setPlayerTurn(Game.PlayerTurn.PLAYER1, false);
 		frame.pack();
 	}
 }
