@@ -159,7 +159,7 @@ public class Othello extends Game{
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
 			if 	((getPlayer2() instanceof OthelloAI || 
 					getPlayer2() instanceof AIEasy)&&
-					(getPlayer2() instanceof Human)){
+					(getPlayer1() instanceof Human)){
 				//Thread.sleep(500);
 				getPlayer2().sendMove();
 			}
