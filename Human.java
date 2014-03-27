@@ -1,3 +1,4 @@
+import java.awt.Color;
 /**
  *	\\file    -Human.java
  *	\author  -G.Howard
@@ -6,9 +7,6 @@
  *  \brief   sets which player's move it is then sends this to
  *           the game class
  */
- 
-import java.awt.Color;
-
 public class Human extends Player {
 	
 	/**
