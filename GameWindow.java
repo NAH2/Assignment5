@@ -38,7 +38,7 @@ public class GameWindow extends JFrame {
 	 * from.
 	 * 
 	 * \param game The game class which should currently be used.
-	 * \return true if the method completes.
+	 * \return Returns TRUE if successful.
 	 */
 	private boolean setGame(Game game) {
 		m_gameControl = game;
@@ -57,25 +57,25 @@ public class GameWindow extends JFrame {
 	
 	//******************************
 	/**
-	* Method responsible for setting AI move to Drawing class.
-	* \param move - coordinate of AI move.
+	* Method responsible for setting AI move to Drawing class
+	* \param move - coordinate of AI move
 	*/
 	public void SetAImove(Coordinate move){
 		getDrawing().SetAImove(move);
 	}
 	
 	/**
-	* Method responsible for passing animation data to Drawing class.
-	* \param type - type of animation that is either flip or fall.
-	* \param changes - the list stores the pieces which need the animation.
+	* Method responsible for passing animation data to Drawing class
+	* \param type - type of animation that is either flip or fall
+	* \param changes - the list stores the pieces which need the animation
 	*/
 	public void SetAnimation(String type, ArrayList<Coordinate> changes){
 		getDrawing().SetAnimation(type, changes);
 	}
 	
 	/**
-	 * Method to set the game is not over after the game restarts.
-	 * \param isOver - the boolean true means the game is over.
+	 * Method to set the game is not over after the game restarts
+	 * \param isOver - the boolean true means the game is over
 	 */
 	public void SetOver(boolean isOver){
 		getDrawing().SetOver(isOver);
@@ -113,7 +113,7 @@ public class GameWindow extends JFrame {
 	 * 
 	 * \param controls The instance of the controls class which is to be used.
 	 * 
-	 * \return true if the method completes.
+	 * \return Returns TRUE if successful.
 	 */
 	private boolean setControls(Controls controls) {
 		m_controlsControl = controls;
@@ -196,7 +196,7 @@ public class GameWindow extends JFrame {
 	 * \param player indicates which player's turn it is as the Enumerator
 	 * "PlayerTurn".
 	 * 
-	 * \return true if the method completes.
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayPlayerTurn(Game.PlayerTurn player) {
 		if(player == Game.PlayerTurn.PLAYER1){
@@ -214,7 +214,7 @@ public class GameWindow extends JFrame {
 	 * 
 	 * \param grid The grid class which is to be used to update the GUI.
 	 * 
-	 * \return true if the method completes.
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayGrid(Grid grid) {
 		getDrawing().setGrid(grid, m_gameControl);
@@ -224,8 +224,8 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called to pass the invalid coordinate to gameboard graphics.
 	 * 
-	 * \param Coordinate -  the position of invalid move.
-	 * \return true if the method completes.
+	 * \param Coordinate -  the position of invalid move
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayInvalidMove(Coordinate move) {
 		getDrawing().getGridPanel().SetValid(false, move);
@@ -236,23 +236,16 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called to pass whether the move is valid to the gameboard graphics.
 	 * 
-	 * \param the boolean whether the move is valid or not.
-	 * \return true if the method completes.
+	 * \param the boolean whether the move is valid or not
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayInvalidMove(boolean valid) {
 		getDrawing().getGridPanel().SetValid(true);
 		return true;
 	}
 
-	/**
-	 * Display the message in the dialog box.
-	 * 
-	 * \param the message string.
-	 * \return true if the method completes.
-	 */
-	public boolean Displaymessage(String msg) {
+	public void Displaymessage(String msg) {
 		getDrawing().Message(msg);
-		return true;
 	}
 
 	/**
@@ -262,7 +255,7 @@ public class GameWindow extends JFrame {
 	 * 
 	 * \param player2Score The new score to be displayed for player 2.
 	 * 
-	 * \return true if the method completes.
+	 * \return Returns TRUE if successful.
 	 */
 	public boolean updateScore(int player1Score, int player2Score) {
 		getDrawing().setPlayer1Score(player1Score);
@@ -276,7 +269,7 @@ public class GameWindow extends JFrame {
 	 * 
 	 * \param move The move that the user has made as a Coordinate.
 	 * 
-	 * \return true if the method completes.
+	 * \return Returns TRUE if successful.
 	 * \throws InterruptedException 
 	 */
 	public boolean moveMade(Coordinate move) throws InterruptedException {
@@ -305,9 +298,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	/**
-	 * Called when the user clicks the restart game button on the menu bar.
-	 * Stop all the threads and recreate the current game.
-	 * \return true if the method completes.
+	 * Called when the user clicks the restart game button on the menu bar	 * Stop all the threads and recreate the current game
 	 */
 	private boolean restart(){
 		Game m_game;
@@ -366,10 +357,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	/**
-	 * Called when the user clicks the new game button on the menu bar.	 
-	 * Stop all the threads and recreate the game chooser window.
-	 * 
-	 * \return true if the method completes.
+	 * Called when the user clicks the new game button on the menu bar	 * Stop all the threads and recreate the game chooser window
 	 */
 	private boolean returnMainWindow(){
 		getDrawing().getGridPanel().SetRun(false);
@@ -389,17 +377,12 @@ public class GameWindow extends JFrame {
 		}	
 		getGame().getTimer().setRunning();
         dispose();
-        new ChooseGame();
+        new GameSelecter();
         return true;
 	}
 	
 	private class Handler implements ActionListener {
         @Override
-    	/**
-    	 * Called when the menu bar is clicked.	 
-    	 * 
-    	 * \param An ActionEvent from the user.
-    	 */
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == m_newGame) {
 				returnMainWindow();
@@ -453,13 +436,7 @@ public class GameWindow extends JFrame {
             }
         }
         
-    	/**
-    	 * Load the game when the load file is valid.	 
-    	 * 
-		 * \param the loader object which loads the data. 
-    	 * \return true if the method completes.
-    	 */
-        private boolean checkValid(Loader l) {
+        private void checkValid(Loader l) {
             if (l.getValid()) {
                 try {
                     getGame().resetGame();
@@ -484,10 +461,9 @@ public class GameWindow extends JFrame {
                 getGame().setTurnCount(p1Score + p2Score);
                 m_drawingControl.getGridPanel().repaint();
             }else {
-                JOptionPane.showMessageDialog(null, "ERROR Loading File",
+                JOptionPane.showMessageDialog(null, "ERROR Laoding File",
                 "Load ERROR",JOptionPane.ERROR_MESSAGE);                				
             }
-            return true;
         }
 	}
 	
