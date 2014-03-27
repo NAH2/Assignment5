@@ -25,6 +25,13 @@ public class GameWindow extends JFrame {
 	 * being used.
 	 */
 	public Game getGame() {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: getGame() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameWindow :: getGame() END");
+        }
 		return m_gameControl;
 	}
 	
@@ -36,7 +43,14 @@ public class GameWindow extends JFrame {
 	 * \return Returns TRUE if successful.
 	 */
 	private boolean setGame(Game game) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: setGame() BEGIN");
+        }
 		m_gameControl = game;
+		if (test || m_test) {
+            System.out.println("GameWindow :: setGame() END");
+        }
 		return true;
 	}
 	
@@ -47,16 +61,29 @@ public class GameWindow extends JFrame {
 	 * \return Returns a pointer towards the drawing class.
 	 */
 	public Drawing getDrawing() {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: getDrawing() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameWindow :: getDrawing() END");
+        }
 		return m_drawingControl;
 	}
 	
-	//******************************
 	/**
 	* Method responsible for setting AI move to Drawing class
 	* \param move - coordinate of AI move
 	*/
 	public void SetAImove(Coordinate move){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: SetAImove() BEGIN");
+        }
 		getDrawing().SetAImove(move);
+		if (test || m_test) {
+            System.out.println("GameWindow :: SetAImove() END");
+        }
 	}
 	
 	/**
@@ -65,7 +92,14 @@ public class GameWindow extends JFrame {
 	* \param changes - the list stores the pieces which need the animation
 	*/
 	public void SetAnimation(String type, ArrayList<Coordinate> changes){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: SetAnimation() BEGIN");
+        }
 		getDrawing().SetAnimation(type, changes);
+		if (test || m_test) {
+            System.out.println("GameWindow :: SetAnimation() END");
+        }
 	}
 	
 	/**
@@ -73,11 +107,15 @@ public class GameWindow extends JFrame {
 	 * \param isOver - the boolean true means the game is over
 	 */
 	public void SetOver(boolean isOver){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: SetOver() BEGIN");
+        }
 		getDrawing().SetOver(isOver);
-	}
-	//******************************
-	
-	
+		if (test || m_test) {
+            System.out.println("GameWindow :: SetOver() END");
+        }
+	}		
 	
 	
 	/**
@@ -89,7 +127,14 @@ public class GameWindow extends JFrame {
 	 * \return Returns TRUE if successful.
 	 */
 	private boolean setDrawing(Drawing drawing) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: SetDrawing() BEGIN");
+        }
 		m_drawingControl = drawing;
+		if (test || m_test) {
+            System.out.println("GameWindow :: SetDrawing() END");
+        }
 		return true;
 	}
 	
@@ -99,6 +144,13 @@ public class GameWindow extends JFrame {
 	 * \return Returns a pointer towards the control class being used.
 	 */
 	public Controls getControls() {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: getControls() BEGIN");
+        }
+		if (test || m_test) {
+            System.out.println("GameWindow :: getControls() END");
+        }
 		return m_controlsControl;
 	}
 	
@@ -111,7 +163,14 @@ public class GameWindow extends JFrame {
 	 * \return Returns TRUE if successful.
 	 */
 	private boolean setControls(Controls controls) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: setControls() BEGIN");
+        }
 		m_controlsControl = controls;
+		if (test || m_test) {
+            System.out.println("GameWindow :: setControls() END");
+        }
 		return true;
 	}
 	
@@ -124,6 +183,10 @@ public class GameWindow extends JFrame {
 	 * this Gamewindow.
 	 */
 	public GameWindow(Game game) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: GameWindow() BEGIN");
+        }
 		boolean m_Trace = false;
 		
 		if(m_Trace) System.out.println
@@ -183,6 +246,9 @@ public class GameWindow extends JFrame {
 		if(m_Trace) { System.out.println
 			("GameWindow::GameWindow() - window initialized");
 		}
+		if (test || m_test) {
+            System.out.println("GameWindow :: GameWindow() END");
+        }
 	}
 	
 	/**
@@ -194,6 +260,10 @@ public class GameWindow extends JFrame {
 	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayPlayerTurn(Game.PlayerTurn player) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: displayPlayerTurn() BEGIN");
+        }
 		if(player == Game.PlayerTurn.PLAYER1){
 			getDrawing().setPlayerTurn(player, 
 				!(m_gameControl.getPlayer1() instanceof Human));
@@ -201,6 +271,9 @@ public class GameWindow extends JFrame {
 			getDrawing().setPlayerTurn(player, 
 				!(m_gameControl.getPlayer2() instanceof Human));
 		}
+		if (test || m_test) {
+            System.out.println("GameWindow :: displayPlayerTurn() END");
+        }
 		return true;
 	}
 
@@ -212,7 +285,14 @@ public class GameWindow extends JFrame {
 	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayGrid(Grid grid) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: displayGrid() BEGIN");
+        }
 		getDrawing().setGrid(grid, m_gameControl);
+		if (test || m_test) {
+            System.out.println("GameWindow :: displayGrid() END");
+        }
 		return true;
 	}
 	
@@ -223,8 +303,15 @@ public class GameWindow extends JFrame {
 	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayInvalidMove(Coordinate move) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: displayInvalidMove() BEGIN");
+        }
 		getDrawing().getGridPanel().SetValid(false, move);
 		getDrawing().getGridPanel().repaint();
+		if (test || m_test) {
+            System.out.println("GameWindow :: displayInvalidMove() END");
+        }
 		return true;
 	}
 	
@@ -235,12 +322,26 @@ public class GameWindow extends JFrame {
 	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayInvalidMove(boolean valid) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: displayInvalidMove(boolean) BEGIN");
+        }
 		getDrawing().getGridPanel().SetValid(true);
+		if (test || m_test) {
+            System.out.println("GameWindow :: displayInvalidMove(boolean) END");
+        }
 		return true;
 	}
 
 	public void Displaymessage(String msg) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: Displaymessage() BEGIN");
+        }
 		getDrawing().Message(msg);
+		if (test || m_test) {
+            System.out.println("GameWindow :: Displaymessage() END");
+        }
 	}
 
 	/**
@@ -253,8 +354,15 @@ public class GameWindow extends JFrame {
 	 * \return Returns TRUE if successful.
 	 */
 	public boolean updateScore(int player1Score, int player2Score) {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: updateScore() BEGIN");
+        }
 		getDrawing().setPlayer1Score(player1Score);
 		getDrawing().setPlayer2Score(player2Score);
+		if (test || m_test) {
+            System.out.println("GameWindow :: updateScore() END");
+        }
 		return true;
 	}
 	
@@ -268,6 +376,10 @@ public class GameWindow extends JFrame {
 	 * \throws InterruptedException 
 	 */
 	public boolean moveMade(Coordinate move) throws InterruptedException {
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: moveMade() BEGIN");
+        }
 		System.out.println(getGame().getPlayerTurn());
 		if (getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
 			move.setValue(Game.PlayerTurn.PLAYER1);
@@ -275,7 +387,6 @@ public class GameWindow extends JFrame {
 			if (getGame().getPlayer2() instanceof OthelloAI
 				|| getGame().getPlayer2() instanceof ConnectFourAI
 				|| getGame().getPlayer2() instanceof AIEasy) {
-				// Thread.sleep(500);
 				getGame().getPlayer2().sendMove();
 			}
 		} else {
@@ -284,11 +395,13 @@ public class GameWindow extends JFrame {
 			if (getGame().getPlayer1() instanceof OthelloAI
 					|| getGame().getPlayer1() instanceof ConnectFourAI
 					|| getGame().getPlayer1() instanceof AIEasy) {
-				// Thread.sleep(500);
 				getGame().getPlayer1().sendMove();
 
 			}
 		}
+		if (test || m_test) {
+            System.out.println("GameWindow :: moveMade() END");
+        }
 		return true;
 	}
 	
@@ -296,6 +409,10 @@ public class GameWindow extends JFrame {
 	 * Called when the user clicks the restart game button on the menu bar	 * Stop all the threads and recreate the current game
 	 */
 	private boolean restart(){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: restart() BEGIN");
+        }
 		Game m_game;
 		Player m_player1;
 		Player m_player2;
@@ -348,6 +465,9 @@ public class GameWindow extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		if (test || m_test) {
+            System.out.println("GameWindow :: restart() END");
+        }
 		return true;
 	}
 	
@@ -355,6 +475,10 @@ public class GameWindow extends JFrame {
 	 * Called when the user clicks the new game button on the menu bar	 * Stop all the threads and recreate the game chooser window
 	 */
 	private boolean returnMainWindow(){
+		boolean test = false;
+		if (test || m_test) {
+            System.out.println("GameWindow :: returnMainWindow() BEGIN");
+        }
 		getDrawing().getGridPanel().SetRun(false);
 		if(m_gameControl.getPlayer1() instanceof OthelloAI){
 			((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
@@ -373,12 +497,19 @@ public class GameWindow extends JFrame {
 		getGame().getTimer().setRunning();
         dispose();
         new GameSelecter();
+		if (test || m_test) {
+            System.out.println("GameWindow :: returnMainWindow() END");
+        }
         return true;
 	}
 	
 	private class Handler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+    		boolean test = false;
+    		if (test || m_test) {
+                System.out.println("GameWindow-Handler :: actionPerformed() BEGIN");
+            }
             if (e.getSource() == m_newGame) {
 				returnMainWindow();
             }
@@ -429,9 +560,16 @@ public class GameWindow extends JFrame {
             if (e.getSource() == m_exit) {
                 System.exit(0);
             }
+    		if (test || m_test) {
+                System.out.println("GameWindow-Handler :: actionPerformed() END");
+            }
         }
         
         private void checkValid(Loader l) {
+    		boolean test = false;
+    		if (test || m_test) {
+                System.out.println("GameWindow-Handler :: checkValid() BEGIN");
+            }
             if (l.getValid()) {
                 try {
                     getGame().resetGame();
@@ -458,6 +596,9 @@ public class GameWindow extends JFrame {
             }else {
                 JOptionPane.showMessageDialog(null, "ERROR Laoding File",
                 "Load ERROR",JOptionPane.ERROR_MESSAGE);                				
+            }
+    		if (test || m_test) {
+                System.out.println("Handler :: checkValid() END");
             }
         }
 	}
@@ -492,4 +633,5 @@ public class GameWindow extends JFrame {
 	private JMenuItem m_load;
 	private JMenuItem m_newGame;
 	private JMenuItem m_resetGame;
+	private boolean m_test = false;
 }
