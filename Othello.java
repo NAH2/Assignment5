@@ -10,8 +10,8 @@ import java.util.*;
  * 			move so that the AI can know how good it is, and provides a way to
  * 			take a move, return a list of changes after a move has been made.
  * 			In the case of Othello this means returning a list of captured
- * 			peices; other classes that also extend game may only return a list
- * 			of one item i.e. only the peice that is the result of the move.
+ * 			pieces; other classes that also extend game may only return a list
+ * 			of one item i.e. only the piece that is the result of the move.
  */
 
 public class Othello extends Game{
@@ -33,6 +33,10 @@ public class Othello extends Game{
 		return m_win;
 	}
 	
+	/**
+	 * Method to return the available move coordinates 
+	 * \return a two dimensional array which stores available move
+	 */
 	public boolean[][] Getavailablemov(){
 		boolean test = false;
         if (test || m_test) {
@@ -44,6 +48,11 @@ public class Othello extends Game{
 		return m_availableMov;
 	}
 	
+	/**
+	 * Method to set available move coordinate
+	 * \param availableMov
+	 */
+	
 	public void Setavailablemov (boolean[][] availableMov){
 		boolean test = false;
         if (test || m_test) {
@@ -54,6 +63,7 @@ public class Othello extends Game{
             System.out.println("Othello :: Setavailablemov() END");
         }
 	}
+	
 	/**
 	* Empty the set which stores the winning piece coordinates
 	*/
@@ -69,11 +79,11 @@ public class Othello extends Game{
 	}
 	
 	/**
-	 * Construtor for a game of Othello
+	 * Constructor for a game of Othello
 	 */
 	public Othello() {
 	
-		// If the game class can initialse a grid of this size, that would be
+		// If the game class can initialise a grid of this size, that would be
 		// great :-)
 		super(GAME_WIDTH, GAME_HEIGHT);	
 		
@@ -87,6 +97,10 @@ public class Othello extends Game{
         }
 	}
 	
+	/**
+	 * Method to set up the grid, timer and window ready for a new game
+	 * \throws InterruptedException
+	 */
 	public void start() throws InterruptedException {
 		boolean test = false;
         if (test || m_test) {
@@ -118,7 +132,7 @@ public class Othello extends Game{
         }
 		Grid grid = super.getGrid();
 		
-		// Initialise starting peices
+		// Initialise starting pieces
 		if (super.getPlayer1().getPlayerColour().equals(Color.BLACK))
 		{
 		    super.setPlayerTurn(Game.PlayerTurn.PLAYER1);
@@ -156,7 +170,10 @@ public class Othello extends Game{
             System.out.println("Othello :: resetGame() END");
         }
 	}
-
+	
+	/**
+	 * (PRIVATE) Method to calculate possible moves for the player
+	 */
 	private void availableMove(){
 		boolean test = false;
         if (test || m_test) {
@@ -194,7 +211,10 @@ public class Othello extends Game{
             System.out.println("Othello :: availableMove() END");
         }
 	}
-	
+	/**
+	 * (PRIVATE) Method to check if a player can actually make a move.
+	 * \return if the player can make a move or not 
+	 */
 	private boolean checkPassTurn(){
 		boolean test = false;
         if (test || m_test) {
@@ -311,8 +331,8 @@ public class Othello extends Game{
 			getGrid().getCoordinate(xy.getX(), xy.getY()).getValue() ==
 			Game.PlayerTurn.PLAYER2) { return false; }
 		
-		// A move is valid if it "traps" the other player's peices between
-		// itself and another of the same player's peice, along diagonals or
+		// A move is valid if it "traps" the other player's pieces between
+		// itself and another of the same player's piece, along diagonals or
 		// horizontally or vertically. This means checking in eight directions.
 		if (checkBound(xy, +1,  0)) { 
 			if (test || m_test) {
@@ -380,8 +400,8 @@ public class Othello extends Game{
 	}
 	
 	/**
-	 * (PRIVATE) checkBound checks to see if the opposing player's peices
-	 * are bound/trapped in a given direction by the current player's peices.
+	 * (PRIVATE) checkBound checks to see if the opposing player's pieces
+	 * are bound/trapped in a given direction by the current player's pieces.
 	 */
 	private boolean checkBound(Coordinate start, int xdir, int ydir) {
 		boolean test = false;
@@ -412,13 +432,13 @@ public class Othello extends Game{
 				return false;
 			}
 			else if (check.notEquals(start.getValue())) {
-				// If the peice belongs to the opponent, then set a flag to
+				// If the piece belongs to the opponent, then set a flag to
 				// record this
 				opponentFound = true;
 			}
 			else if (check.equals(start.getValue())) {
-				// If the peice belonds to the current player, then it only
-				// counts as bounding an opponent's peice if the flag has been
+				// If the piece belongs to the current player, then it only
+				// counts as bounding an opponent's piece if the flag has been
 				// set.
 				debug("checkBound()", "returns opponentFound==" + opponentFound);
 				
@@ -443,8 +463,8 @@ public class Othello extends Game{
 	 * \param player A valid player object used by the current game.
 	 * \param xy A coordinate specifying x and y values into the grid specifying
 	 * 			 a valid move.
-	 * \return	A list of captured peices, possibly of length zero,
-	 *          as an array of coordinates specifiying x, y, and
+	 * \return	A list of captured pieces, possibly of length zero,
+	 *          as an array of coordinates specifying x, y, and
 	 *          owning player value.
 	 */
 	protected ArrayList<Coordinate> takeMove(Coordinate xy) {
@@ -458,18 +478,18 @@ public class Othello extends Game{
 				"Given move is invalid but should be valid");
 		}
 		*/
-		// In each direction, capture the opposing player's peices if it is
-		// bound by two of this player's peices.
+		// In each direction, capture the opposing player's pieces if it is
+		// bound by two of this player's pieces.
 		
-		// A list of changed/captured peices to return
+		// A list of changed/captured pieces to return
 		ArrayList<Coordinate> capture = new ArrayList<Coordinate>();
 		
 		Grid grid = getGrid();
 		
-		// "Capture" the current peice
+		// "Capture" the current piece
 		capture.add(xy);
 		
-		// Capture peices in each direction
+		// Capture pieces in each direction
 		capture.addAll(take(xy, -1,  0)); // left
 		capture.addAll(take(xy, +1,  0)); // right
 		capture.addAll(take(xy,  0, -1)); // up
@@ -583,13 +603,13 @@ public class Othello extends Game{
 	
 	
 	/**
-	 * (PRIVATE) Captures peices in a direction.
+	 * (PRIVATE) Captures pieces in a direction.
 	 * \param player A valid player object used by the current game.
 	 * \param xy A coordinate specifying x and y values into the grid.
 	 * \param xdir Horizontal direction value in which to capture.
 	 * \param ydir Vertical direction value in which to capture.
-	 * \return	A list of captured peices, possibly of length zero,
-	 *          as an array of coordinates specifiying x, y, and
+	 * \return	A list of captured pieces, possibly of length zero,
+	 *          as an array of coordinates specifying x, y, and
 	 *          owning player value.
 	 */
 	private ArrayList<Coordinate> take(Coordinate xy, int xdir, int ydir) {
@@ -608,19 +628,19 @@ public class Othello extends Game{
 		current.move(xdir, ydir);
 		
 		// The move is assumed to be valid at this point, so move over the
-		// grid capturing any peices belonging to the opponent
+		// grid capturing any pieces belonging to the opponent
 		while (current.within(0, 0, GAME_WIDTH, GAME_HEIGHT)) {
 			Coordinate check = grid.getCoordinate(current);
 			
 			if (check.isEmpty()) { break; }
 			
 			if (check.notEquals(current.getValue())) {
-				// If the peice belongs to the opponent, then capture it
+				// If the piece belongs to the opponent, then capture it
 				check.setValue(current.getValue());
 				capture.add(check);
 			}
 			else {
-				// If the peice belonds to the current player, then finish.
+				// If the piece belonds to the current player, then finish.
 				break;
 			}
 			
@@ -669,7 +689,7 @@ public class Othello extends Game{
 	
 	/**
 	 * Returns the winner (once the game has ended). The winner is the one with
-	 * the most captured peices.
+	 * the most captured pieces.
 	 * \return The winning player, or null in the case of a tie.
 	 */
 	public Game.PlayerTurn isWinner() {
