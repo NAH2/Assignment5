@@ -131,8 +131,10 @@ public class GameWindow extends JFrame {
 	public GameWindow(Game game) {
 		boolean m_Trace = false;
 		
-		if(m_Trace) System.out.println("GameWindow::GameWindow() - window initializing");
-		if(m_Trace) System.out.println("GameWindow::GameWindow() - Linked game is " + game.getClass());
+		if(m_Trace) System.out.println
+			("GameWindow::GameWindow() - window initializing");
+		if(m_Trace) System.out.println
+			("GameWindow::GameWindow() - Linked game is " + game.getClass());
 		GridBagConstraints c = new GridBagConstraints();
 		GridBagLayout layout = new GridBagLayout();
 		
@@ -183,8 +185,9 @@ public class GameWindow extends JFrame {
         setLocationRelativeTo(null);
 		setVisible(true);
 		setResizable(false);
-		if(m_Trace) { System.out.println("GameWindow::GameWindow() - window initialized");}
-		
+		if(m_Trace) { System.out.println
+			("GameWindow::GameWindow() - window initialized");
+		}
 	}
 	
 	/**
@@ -197,9 +200,11 @@ public class GameWindow extends JFrame {
 	 */
 	public boolean displayPlayerTurn(Game.PlayerTurn player) {
 		if(player == Game.PlayerTurn.PLAYER1){
-			getDrawing().setPlayerTurn(player, !(m_gameControl.getPlayer1() instanceof Human));
+			getDrawing().setPlayerTurn(player, 
+				!(m_gameControl.getPlayer1() instanceof Human));
 		} else {
-			getDrawing().setPlayerTurn(player, !(m_gameControl.getPlayer2() instanceof Human));
+			getDrawing().setPlayerTurn(player, 
+				!(m_gameControl.getPlayer2() instanceof Human));
 		}
 		return true;
 	}
@@ -328,27 +333,35 @@ public class GameWindow extends JFrame {
             	getDrawing().getGridPanel().SetRun(false);
         		if(m_gameControl.getPlayer1() instanceof OthelloAI){
         			((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
-        			m_player1 = new OthelloAI(m_game,m_gameControl.getPlayer1().getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
+        			m_player1 = new OthelloAI(m_game,m_gameControl.getPlayer1().getPlayerName(),
+        					m_gameControl.getPlayer1().getPlayerColour());
         		} else if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
         			((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
-        			m_player1 = new ConnectFourAI(m_game,m_gameControl.getPlayer1().getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
+        			m_player1 = new ConnectFourAI(m_game,m_gameControl.getPlayer1().getPlayerName(),
+        					m_gameControl.getPlayer1().getPlayerColour());
         		} else if(m_gameControl.getPlayer1() instanceof AIEasy){
         			((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
-        			m_player1 = new AIEasy(m_game,m_gameControl.getPlayer1().getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
+        			m_player1 = new AIEasy(m_game,m_gameControl.getPlayer1().getPlayerName(),
+        					m_gameControl.getPlayer1().getPlayerColour());
         		} else {
-        			m_player1 = new Human(m_game,m_gameControl.getPlayer1().getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
+        			m_player1 = new Human(m_game,m_gameControl.getPlayer1().getPlayerName(),
+        					m_gameControl.getPlayer1().getPlayerColour());
         		}
         		if(m_gameControl.getPlayer2() instanceof OthelloAI){
         			((OthelloAI)(m_gameControl.getPlayer2())).SetRun(false);
-        			m_player2 = new OthelloAI(m_game,m_gameControl.getPlayer2().getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
+        			m_player2 = new OthelloAI(m_game,m_gameControl.getPlayer2().getPlayerName(),
+        					m_gameControl.getPlayer2().getPlayerColour());
         		} else if(m_gameControl.getPlayer2() instanceof ConnectFourAI){
         			((ConnectFourAI)(m_gameControl.getPlayer2())).SetRun(false);
-        			m_player2 = new ConnectFourAI(m_game,m_gameControl.getPlayer2().getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
+        			m_player2 = new ConnectFourAI(m_game,m_gameControl.getPlayer2().getPlayerName(),
+        					m_gameControl.getPlayer2().getPlayerColour());
         		} else if(m_gameControl.getPlayer2() instanceof AIEasy){
         			((AIEasy)(m_gameControl.getPlayer2())).SetRun(false);
-        			m_player2 = new AIEasy(m_game,m_gameControl.getPlayer2().getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
+        			m_player2 = new AIEasy(m_game,m_gameControl.getPlayer2().getPlayerName(),
+        					m_gameControl.getPlayer2().getPlayerColour());
         		} else {
-        			m_player2 = new Human(m_game,m_gameControl.getPlayer2().getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
+        			m_player2 = new Human(m_game,m_gameControl.getPlayer2().getPlayerName(),
+        					m_gameControl.getPlayer2().getPlayerColour());
         		}		      		
         		
         		m_game.setPlayer1(m_player1);
