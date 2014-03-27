@@ -783,7 +783,14 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		game.start();
 		//game.getWindow().getDrawing().getGridPanel().SetRun(false);
 		int m_maxOthelloSpeed = 500;
+		int m_coord = 1;
+		int m_squareSize = 8;
+		System.out.println("Board Width =8:" + (game.getWindow().getDrawing().getGridPanel().getXSquares()==m_squareSize));
+		System.out.println("Board Length =8:" + (game.getWindow().getDrawing().getGridPanel().getXSquares()==m_squareSize));
 		game.getWindow().getDrawing().getGridPanel().SetSpeed(m_maxOthelloSpeed);
+		game.getWindow().getDrawing().getGridPanel().SetValid(false, new Coordinate(m_coord,m_coord+m_coord));
+		game.getWindow().getDrawing().getGridPanel().SetValid(false, new Coordinate(m_coord+m_coord,m_coord));
+		game.getWindow().getDrawing().getGridPanel().SetValid(false, new Coordinate(m_coord,m_coord));
 	}
 	
 	//private member variables
