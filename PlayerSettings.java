@@ -465,15 +465,25 @@ public class PlayerSettings  extends JFrame{
 			    
                 if (ISOTHELLO) {
                     OthelloLoader loader = new OthelloLoader(m_game);
-                    checkValid(loader);
+                    try {
+						checkValid(loader);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                 } else {
                     ConnectFourLoader loader = new ConnectFourLoader(m_game);
-                    checkValid(loader);
+                    try {
+						checkValid(loader);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                 }
 			}
 			pack();
 		}
-		public void checkValid(Loader l) {
+		public void checkValid(Loader l) throws InterruptedException {
 		    if (l.getValid()) {
 		        m_game.getGrid().setGrid(l.getGridArray());
                 m_game.setPlayer1(l.getPlayer1());

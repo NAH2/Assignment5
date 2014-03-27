@@ -326,7 +326,7 @@ public abstract class Game {
 		resetGame();
 	}
 
-	public void resumeGame() {
+	public void resumeGame() throws InterruptedException {
 		boolean m_Trace = false;
 
 		if (m_Trace) {
@@ -339,7 +339,13 @@ public abstract class Game {
 		setTurnCount(m_player1Score + m_player2Score);
 		getWindow().updateScore(m_player1Score, m_player2Score);
 		setTurnCount(m_player1Score + m_player2Score);
-
+		if (getPlayerTurn() == PlayerTurn.PLAYER1){
+			getPlayer1().isYourMove();
+		}
+		else 
+		{
+			getPlayer2().isYourMove();
+		}
 		startTimer();
 	}
 
