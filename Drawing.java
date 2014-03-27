@@ -33,7 +33,7 @@ import javax.swing.JPanel;
 public class Drawing {
 
 	/**
-	 * Method to set the connect4 game board
+	 * Method to set the game board
 	 * \param the board name
 	 */
 	private void setBoard(String board){
@@ -515,7 +515,6 @@ public class Drawing {
 	 */
 	public static void main(String args[]) {
 		ConnectFour game = new ConnectFour();
-		//Othello game = new Othello();
 		Player player1 = new Human(game);
 		Player player2 = new Human(game);
 		player1.setPlayerName("Gavin");
