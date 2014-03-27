@@ -1,5 +1,9 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 /**
- *  \file	PlayerSettings.Java
+ *  \\file	PlayerSettings.Java
  * 	\author	Callum Hazelton 709161, Gavin Bailey 711036
  * 	\date	14/02/2014
  * 	
@@ -11,12 +15,6 @@
  * code conventions. Other changes include adding the substance to the resume
  * game button to allow it load the file. 
  */
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.*;
-
 public class PlayerSettings extends JFrame {
 
 	/**
