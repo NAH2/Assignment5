@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- *  \file	PlayerSettings.Java
+ *  \\file	ConnectFourAI.Java
  * 	\author	Mathew Lloyd 711293
  * 	\date	24/03/2014
  * 	
