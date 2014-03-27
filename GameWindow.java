@@ -625,18 +625,21 @@ public class GameWindow extends JFrame {
 		game.getWindow().Displaymessage("HELLO");
 		game.getWindow().restart();
 	}
-	
+	/** store display message */
 	private String m_saveMessage = "Game saved!";
 	private String m_aiTurnsave = "Can't save game while AI's trun!";
 	private String m_gameOverSave = "Can't save when game is over!";
+	/** class object  */
 	private Game m_gameControl;
 	private Drawing m_drawingControl;
 	private Controls m_controlsControl;
+	/** GUI object*/
 	private JMenuBar m_menubar;
 	private JMenuItem m_exit;
 	private JMenuItem m_save;
 	private JMenuItem m_load;
 	private JMenuItem m_newGame;
 	private JMenuItem m_resetGame;
+	/** testing variables*/
 	private boolean m_test = false;
 }
