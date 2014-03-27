@@ -1,11 +1,11 @@
 import java.awt.Color;
 import java.util.*;
 /**
- *  \\file	-Othello.Java
- * 	\author	-B. Golightly
- * 	\date	-12/02/2014
+ * \\file	- Othello.Java
+ * \author	- B. Golightly
+ * \date	- 12/02/2014
  * 	
- * 	/brief	Extends Game with the rules of Othello as specified. 
+ * \brief Extends Game with the rules of Othello as specified. 
  * 
  * Methods are move so that the AI can know how good it is, and provides a way 
  * to take a move, return a list of changes after a move has been made. 
