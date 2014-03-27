@@ -172,47 +172,47 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 			new Thread(
 				new Runnable() {
 					public void run() {
-						if(m_running){
-						for(m_y = m_dropPoint; m_y <= m_lowestY ; m_y = m_y+m_fallDistance){
-						//System.out.println("drop:"+m_y);
-						try{
-						repaint();
-						Thread.sleep(m_speed);
-						} catch (Exception e){e.printStackTrace();}	
+					if(m_running){
+					for(m_y = m_dropPoint; m_y <= m_lowestY ; m_y = m_y+m_fallDistance){
+					//System.out.println("drop:"+m_y);
+					try{
+					repaint();
+					Thread.sleep(m_speed);
+					} catch (Exception e){e.printStackTrace();}	
+				}
+				m_changes.clear();
+				}
+			}
+		}
+	).start();
+	} else {	
+		new Thread(
+			new Runnable() {
+				public void run() {
+				if(m_running){
+					try{
+					m_x = 0;
+					for(m_w = PIECE_SIZE; m_w > 0; m_w=m_w-EVEN){							
+					repaint();
+					m_x = m_x + 1;
+					Thread.sleep(m_speed);			
 					}
+					m_flipSide = true;
+					for(m_w = 0; m_w < PIECE_SIZE; m_w=m_w+EVEN){
+					repaint();
+					m_x = m_x - 1;
+					Thread.sleep(m_speed);	
+					} 		
+					} catch (Exception e){e.printStackTrace();}
+					if(!m_criticalSection){
 					m_changes.clear();
+					}
+					m_flipSide = false;
 					}
 				}
 			}
 		).start();
-		} else {	
-			new Thread(
-				new Runnable() {
-					public void run() {
-						if(m_running){
-						try{
-						m_x = 0;
-						for(m_w = PIECE_SIZE; m_w > 0; m_w=m_w-EVEN){							
-						repaint();
-						m_x = m_x + 1;
-						Thread.sleep(m_speed);			
-						}
-						m_flipSide = true;
-						for(m_w = 0; m_w < PIECE_SIZE; m_w=m_w+EVEN){
-						repaint();
-						m_x = m_x - 1;
-						Thread.sleep(m_speed);	
-						} 		
-						} catch (Exception e){e.printStackTrace();}
-						if(!m_criticalSection){
-						m_changes.clear();
-						}
-						m_flipSide = false;
-						}
-					}
-				}
-			).start();
-		}
+	}
 	}
 	//*********
 	/**
@@ -256,39 +256,39 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
 		for (int i = 0; i < GRID_WIDTH; i+=getSquareWidth()) {
-			for (int j = 0; j < GRID_HEIGHT; j+=getSquareHeight()) {
-				//************************		
-				paintFlip(g2, i ,j);
-				//************************
-				if (!m_flippingPiece){
-					if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
-						//System.out.println(PLAYER1_COLOUR == Color.BLACK 
-						//|| PLAYER1_COLOUR == Color.WHITE);
-						if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
-						//g2.setColor(new Color(RED,GREEN,BLUE));
-						if(m_board == "board2"){
-						g2.drawImage(GRID4, i, j, null);
-						} else if(m_board == "board3"){
-						g2.drawImage(GRID6, i, j, null);
-						} else {
-						g2.drawImage(GRID2, i, j, null);
-						}
-						} else {
-						if(m_board == "board2"){
-						g2.drawImage(GRID3, i, j, null);
-						} else if(m_board == "board3"){
-						g2.drawImage(GRID5, i, j, null);
-						} else {
-						g2.drawImage(GRID1, i, j, null);
-						}
-						//g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
+		for (int j = 0; j < GRID_HEIGHT; j+=getSquareHeight()) {
+			//************************		
+			paintFlip(g2, i ,j);
+			//************************
+			if (!m_flippingPiece){
+				if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
+					//System.out.println(PLAYER1_COLOUR == Color.BLACK 
+					//|| PLAYER1_COLOUR == Color.WHITE);
+					if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
+					//g2.setColor(new Color(RED,GREEN,BLUE));
+					if(m_board == "board2"){
+					g2.drawImage(GRID4, i, j, null);
+					} else if(m_board == "board3"){
+					g2.drawImage(GRID6, i, j, null);
+					} else {
+					g2.drawImage(GRID2, i, j, null);
 					}
-						//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-						////g2.setColor(new Color(255,255,255,255));
-						////g2.fillOval(i+4 , j+4, getSquareWidth()-10, getSquareHeight()-10);
-						//g2.setColor(Color.WHITE);
-						//g2.setStroke(new BasicStroke(2));
-						//g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+					} else {
+					if(m_board == "board2"){
+					g2.drawImage(GRID3, i, j, null);
+					} else if(m_board == "board3"){
+					g2.drawImage(GRID5, i, j, null);
+					} else {
+					g2.drawImage(GRID1, i, j, null);
+					}
+					//g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
+				}
+					//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+					////g2.setColor(new Color(255,255,255,255));
+					////g2.fillOval(i+4 , j+4, getSquareWidth()-10, getSquareHeight()-10);
+					//g2.setColor(Color.WHITE);
+					//g2.setStroke(new BasicStroke(2));
+					//g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
 				}
 			}
 				//**********************
@@ -332,38 +332,38 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				public void run() {
 					try {
 					Thread.sleep(200);
-						m_valid = true;
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							}
-						}
+					m_valid = true;
+					} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 					}
-			).start();
-		}
-		paintAvailableMove(g2, i, j);
+				}
+			}
+		).start();
+	}
+	paintAvailableMove(g2, i, j);
 	}
 }
-		//*****************		
-		paintFall(g2);
-		if(PLAYER1_COLOUR.equals(Color.YELLOW) || PLAYER1_COLOUR.equals(Color.RED)){
-			if(m_board == "board2"){
-				g2.drawImage(CONNECT4BOARD2, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
-			} else if(m_board == "board3"){
-				g2.drawImage(CONNECT4BOARD3, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
-			} else {
-				g2.drawImage(CONNECT4BOARD, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
-			}
+	//*****************		
+	paintFall(g2);
+	if(PLAYER1_COLOUR.equals(Color.YELLOW) || PLAYER1_COLOUR.equals(Color.RED)){
+		if(m_board == "board2"){
+			g2.drawImage(CONNECT4BOARD2, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+		} else if(m_board == "board3"){
+			g2.drawImage(CONNECT4BOARD3, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+		} else {
+			g2.drawImage(CONNECT4BOARD, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
 		}
+	}
 		//********************
 		if(!m_isOver){	
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 				//******************************
 				if(m_AImove != null && !m_changes.isEmpty() &&
-						((m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1 && 
-						(m_player1 instanceof OthelloAI || m_player1 instanceof AIEasy)) ||
-						(m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER2 &&
-						(m_player2 instanceof OthelloAI || m_player2 instanceof AIEasy)))) {
+					((m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1 && 
+					(m_player1 instanceof OthelloAI || m_player1 instanceof AIEasy)) ||
+					(m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER2 &&
+					(m_player2 instanceof OthelloAI || m_player2 instanceof AIEasy)))) {
 					
 					g2.setColor(Color.RED);
 					g2.setStroke(new BasicStroke(4));
@@ -377,11 +377,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				g2.drawLine(m_colX - ADJUST_POINT, 0, m_colX - ADJUST_POINT, m_d.height);
 				g2.setColor(Color.BLACK);
 				g2.drawLine(m_nextColX - ADJUST_POINT, 0,
-						m_nextColX - ADJUST_POINT, m_d.height);
+					m_nextColX - ADJUST_POINT, m_d.height);
 				
 				//g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
 			}
-		} else {
+			} else {
 			paintWin(g2);
 			/*if(PLAYER1_COLOUR.equals(Color.WHITE)){
 				m_player = Game.PlayerTurn.PLAYER1;
@@ -401,34 +401,34 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private void paintAvailableMove(Graphics2D g2, int i, int j){
 		if(!m_flippingPiece){
 			Coordinate c = getGrid().getCoordinate(i/getSquareWidth(),j/
-				getSquareHeight());
+			getSquareHeight());
 			if (c.getValue()== Game.PlayerTurn.PLAYER1_AM && m_player1 instanceof Human){
-				g2.drawImage(CROSS, c.getX()*getSquareWidth() + MID_POSITION, 
+			g2.drawImage(CROSS, c.getX()*getSquareWidth() + MID_POSITION, 
+			c.getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
+			if(c.getX()*getSquareWidth() == m_colX && c.getY()*getSquareHeight() == m_colY){
+				if(PLAYER1_COLOUR.equals(Color.white)){
+					g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
+					} else if(PLAYER1_COLOUR.equals(Color.black)){
+					g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
+			}
+			//g2.setColor(PLAYER1_COLOUR);
+			//g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
+		}
+		//g2.setColor(Color.RED);
+		//g2.setStroke(new BasicStroke(2));
+		//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+		}else if (c.getValue()== Game.PlayerTurn.PLAYER2_AM && m_player2 
+			instanceof Human){
+			g2.drawImage(CROSS, c.getX()*getSquareWidth() + MID_POSITION, 
 				c.getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
-				if(c.getX()*getSquareWidth() == m_colX && c.getY()*getSquareHeight() == m_colY){
-					if(PLAYER1_COLOUR.equals(Color.white)){
-						g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
-						} else if(PLAYER1_COLOUR.equals(Color.black)){
-						g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
-				}
-				//g2.setColor(PLAYER1_COLOUR);
-				//g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
-				}
-					    //g2.setColor(Color.RED);
-					    //g2.setStroke(new BasicStroke(2));
-					    //g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-			}else if (c.getValue()== Game.PlayerTurn.PLAYER2_AM && m_player2 
-					instanceof Human){
-				g2.drawImage(CROSS, c.getX()*getSquareWidth() + MID_POSITION, 
-						c.getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
-					    //g2.setColor(Color.BLUE);
-					    //g2.setStroke(new BasicStroke(2));
-					    //g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-				if(c.getX()*getSquareWidth() == m_colX && c.getY()*getSquareHeight() == m_colY){
-					if(PLAYER2_COLOUR.equals(Color.white)){
-						g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
-					} else if(PLAYER2_COLOUR.equals(Color.black)){
-						g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
+					//g2.setColor(Color.BLUE);
+					//g2.setStroke(new BasicStroke(2));
+					//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+			if(c.getX()*getSquareWidth() == m_colX && c.getY()*getSquareHeight() == m_colY){
+				if(PLAYER2_COLOUR.equals(Color.white)){
+					g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
+				} else if(PLAYER2_COLOUR.equals(Color.black)){
+					g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
 					}
 					//g2.setColor(PLAYER2_COLOUR);
 					//g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
@@ -463,61 +463,61 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* @param j - point Y of the piece to be flipped
 	*/
 	private void paintFlip(Graphics2D g2, int i, int j) 
-			throws NullPointerException, ConcurrentModificationException{
+		throws NullPointerException, ConcurrentModificationException{
 		m_flippingPiece = false;
 		if(m_type.equals("flip") && m_changes.size()>0 && m_start){
-			m_criticalSection = true;
-			Iterator<Coordinate> s = m_changes.iterator();
-			for(s = m_changes.iterator(); s.hasNext(); ) {
-				if(s.hasNext()){
-					Coordinate item = s.next();
-					if(item != null && item.getX()*getSquareWidth() == i 
-							&& item.getY()*getSquareHeight() == j){
-					    m_flippingPiece = true;
-						if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
-							//g2.setColor(new Color(RED,GREEN,BLUE));
-							if(m_board == "board2"){
-							g2.drawImage(GRID4, i, j, null);
-							} else if(m_board == "board3"){
-							g2.drawImage(GRID6, i, j, null);
-							} else {
-							g2.drawImage(GRID2, i, j, null);
-							}
-						} else {
-							//g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
-							if(m_board == "board2"){
-							g2.drawImage(GRID3, i, j, null);
-							} else if(m_board == "board3"){
-							g2.drawImage(GRID5, i, j, null);
-							} else {
-							g2.drawImage(GRID1, i, j, null);
-							}
-						}
-						//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
-						g2.setColor(Color.WHITE);
-						g2.setStroke(new BasicStroke(2));
-						g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
-						//System.out.println("FLIPPING");
-						//if(item.getValue()==Game.PlayerTurn.PLAYER1){
-						//m_player = Game.PlayerTurn.PLAYER1;
-						if((item.getValue()==Game.PlayerTurn.PLAYER1 && !m_flipSide 
-							&& PLAYER2_COLOUR.equals(Color.white))||
-							(item.getValue()==Game.PlayerTurn.PLAYER1 && m_flipSide 
-							&& PLAYER1_COLOUR.equals(Color.white))||
-							(item.getValue()==Game.PlayerTurn.PLAYER2 && !m_flipSide 
-							&& PLAYER1_COLOUR.equals(Color.white))||
-							(item.getValue()==Game.PlayerTurn.PLAYER2 && m_flipSide 
-							&& PLAYER2_COLOUR.equals(Color.white))){
-							g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, PIECE_SIZE, null);
-						} else {
-							g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, PIECE_SIZE, null);
-						}
+		m_criticalSection = true;
+		Iterator<Coordinate> s = m_changes.iterator();
+		for(s = m_changes.iterator(); s.hasNext(); ) {
+			if(s.hasNext()){
+			Coordinate item = s.next();
+				if(item != null && item.getX()*getSquareWidth() == i 
+				&& item.getY()*getSquareHeight() == j){
+				m_flippingPiece = true;
+					if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
+					//g2.setColor(new Color(RED,GREEN,BLUE));
+					if(m_board == "board2"){
+					g2.drawImage(GRID4, i, j, null);
+					} else if(m_board == "board3"){
+					g2.drawImage(GRID6, i, j, null);
+					} else {
+					g2.drawImage(GRID2, i, j, null);
+					}
+					} else {
+					//g2.setColor(new Color(DARK_RED,DARK_GREEN,DARK_BLUE));
+					if(m_board == "board2"){
+					g2.drawImage(GRID3, i, j, null);
+					} else if(m_board == "board3"){
+					g2.drawImage(GRID5, i, j, null);
+					} else {
+					g2.drawImage(GRID1, i, j, null);
+					}
+				}
+					//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
+					g2.setColor(Color.WHITE);
+					g2.setStroke(new BasicStroke(2));
+					g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
+					//System.out.println("FLIPPING");
+					//if(item.getValue()==Game.PlayerTurn.PLAYER1){
+					//m_player = Game.PlayerTurn.PLAYER1;
+					if((item.getValue()==Game.PlayerTurn.PLAYER1 && !m_flipSide 
+					&& PLAYER2_COLOUR.equals(Color.white))||
+					(item.getValue()==Game.PlayerTurn.PLAYER1 && m_flipSide 
+					&& PLAYER1_COLOUR.equals(Color.white))||
+					(item.getValue()==Game.PlayerTurn.PLAYER2 && !m_flipSide 
+					&& PLAYER1_COLOUR.equals(Color.white))||
+					(item.getValue()==Game.PlayerTurn.PLAYER2 && m_flipSide 
+					&& PLAYER2_COLOUR.equals(Color.white))){
+					g2.drawImage(WHITE, i + m_x + MID_DIFF, j + MID_DIFF, m_w, PIECE_SIZE, null);
+					} else {
+					g2.drawImage(BLACK, i + m_x + MID_DIFF, j + MID_DIFF, m_w, PIECE_SIZE, null);
 					}
 				}
 			}
-			m_criticalSection = false;
-		} 
-	}
+		}
+		m_criticalSection = false;
+	} 
+}
 	
 	/**
 	* Method to get the winning piece coordinates for showing the winning pieces graphically,
@@ -537,20 +537,20 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private void paintWin(Graphics g){
 		Iterator<Coordinate> iterator = m_win.iterator();
 		while (iterator.hasNext()){
-			//System.out.println(iterator.next()+"SSS");
-			//g.setColor(Color.GREEN);  
-			m_next = iterator.next();
-			//System.out.println(m_next);
-			//g.fillOval((SQUARE_HEIGHT*m_next.getX()+MID_POSITION), 
-			//(SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE);
-				if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
-					g.drawImage(WIN_STAR, (SQUARE_WIDTH*m_next.getX()+MID_POSITION),
-					(SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE, null);
-				} else {
-					m_starX = SQUARE_WIDTH*m_next.getX()+MID_POSITION - ADJUST_POINT;
-					m_starY = SQUARE_HEIGHT*m_next.getY()+MID_POSITION-ADJUST_POINT-ADJUST_POINT;
-					g.drawImage(WIN_STAR, m_starX, m_starY, WINMARK_SIZE, WINMARK_SIZE, null);
-				}
+		//System.out.println(iterator.next()+"SSS");
+		//g.setColor(Color.GREEN);  
+		m_next = iterator.next();
+		//System.out.println(m_next);
+		//g.fillOval((SQUARE_HEIGHT*m_next.getX()+MID_POSITION), 
+		//(SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE);
+			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
+				g.drawImage(WIN_STAR, (SQUARE_WIDTH*m_next.getX()+MID_POSITION),
+				(SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE, null);
+			} else {
+				m_starX = SQUARE_WIDTH*m_next.getX()+MID_POSITION - ADJUST_POINT;
+				m_starY = SQUARE_HEIGHT*m_next.getY()+MID_POSITION-ADJUST_POINT-ADJUST_POINT;
+				g.drawImage(WIN_STAR, m_starX, m_starY, WINMARK_SIZE, WINMARK_SIZE, null);
+			}
 		}
 		//m_win.clear();
 	}
