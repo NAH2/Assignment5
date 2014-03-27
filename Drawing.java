@@ -389,6 +389,87 @@ public class Drawing {
     }
 	
 	/**
+	 * \param game This receives an instance of the Game class.
+	 * \param handler This receives the GUIEventHandler for the combobox and slider
+	 * This method creates layout of the sidebar
+	 */
+	private boolean setLayout(Game game, GUIEventHandler handler){
+		GridBagConstraints c = new GridBagConstraints();
+		c.insets = new Insets(PADDING,PADDING,PADDING,PADDING);
+		GridBagLayout layout = new GridBagLayout();
+		GridBagLayout layoutP1 = new GridBagLayout();
+		GridBagLayout layoutP2 = new GridBagLayout();
+		GridBagConstraints pc1 = new GridBagConstraints();
+		GridBagConstraints pc2 = new GridBagConstraints();
+		GridLayout setting = new GridLayout(SPEED_ROW,1);
+		
+		m_sideBar = new JPanel(layout);
+		JPanel BarTurn = new JPanel();
+		getBarPlayer1().setLayout(layoutP1);
+		getBarPlayer2().setLayout(layoutP2);
+		layoutP1.setConstraints(getPlayer1Name(), pc1);
+	    getBarPlayer1().add(getPlayer1Name());
+	    
+	    pc1.gridy = P1SCOREY;
+	    layoutP1.setConstraints(getPlayer1Score(), pc1);
+	    getBarPlayer1().add(getPlayer1Score());
+	    
+	    pc1.gridy = P1PIECEY;
+	    layoutP1.setConstraints(getPlayer1Piece(), pc1);
+	    getBarPlayer1().add(getPlayer1Piece());
+	        
+	    layoutP2.setConstraints(getPlayer2Name(), pc2);
+	    getBarPlayer2().add(getPlayer2Name());
+	    
+	    pc2.gridy = P2SCOREY;
+	    layoutP2.setConstraints(getPlayer2Score(), pc2);
+	    getBarPlayer2().add(getPlayer2Score());
+	    
+	    pc2.gridy = P2PIECEY;
+	    layoutP2.setConstraints(getPlayer2Piece(), pc2);
+	    getBarPlayer2().add(getPlayer2Piece());
+	    
+	    BarTurn.add(getTurnsTaken());	    
+	    m_sideBar.add(getBarPlayer1(),c);	    
+	    c.gridy = BAR2GRIDY;
+	    m_sideBar.add(getBarPlayer2(),c);
+	
+	    m_speed.setText("Game speed");
+	    if(game instanceof ConnectFour){	
+	    	gameBoardGraphics.SetSpeed(DEFAULT_FALL_SPEED);
+			m_slider = new JSlider (MINSPEED, MAX_FALL_SPEED, DEFAULT_FALL_SPEED);
+	    } else {
+	    	gameBoardGraphics.SetSpeed(DEFAULT_FLIP_SPEED);
+	    	m_slider = new JSlider (MINSPEED, MAX_FLIP_SPEED, DEFAULT_FLIP_SPEED);
+	    }
+	    
+	    m_d = m_slider.getPreferredSize();
+	    m_d.width = SLIDER_WIDTH;
+	    m_slider.setPreferredSize(m_d);
+		m_slider.addChangeListener(handler);
+		m_slider.setInverted(true);
+	    
+	    m_setting.setLayout(setting);
+		m_setting.add(m_speed);
+		m_setting.add(m_slider);
+		m_setting.setBackground(Color.WHITE);
+		c.gridy = BAR3GRIDY;
+		m_sideBar.add(m_setting,c);
+		
+		String m_boards[] = new String[]{"board1","board2","board3"};
+		m_skin = new JComboBox<String>(m_boards);
+		m_skin.setSelectedIndex(0);
+		m_skin.addActionListener(handler);
+		
+		c.gridy = BAR3GRIDY + 1;
+		m_sideBar.add(m_skin,c);
+		
+		c.gridy = BAR3GRIDY + GRID2;
+        m_sideBar.add(m_timerLabel,c);
+        return true;
+	}
+	
+	/**
 	 * \param game This creates an instance of the Game class.
 	 * This method creates the panel and layout for the game to be played
 	 * on, and adds the relevant information.
@@ -414,88 +495,8 @@ public class Drawing {
 		setPlayer1(game.getPlayer1());
 		setPlayer2(game.getPlayer2());
 		
-		GridBagLayout layout = new GridBagLayout();
-		GridBagLayout layoutP1 = new GridBagLayout();
-		GridBagLayout layoutP2 = new GridBagLayout();
-		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(PADDING,PADDING,PADDING,PADDING);
-		GridBagConstraints pc1 = new GridBagConstraints();
-		GridBagConstraints pc2 = new GridBagConstraints();
-		GridLayout setting = new GridLayout(SPEED_ROW,1);
-		
-		m_sideBar = new JPanel(layout);
-		JPanel BarTurn = new JPanel();
-		getBarPlayer1().setLayout(layoutP1);
-		getBarPlayer2().setLayout(layoutP2);
-		layoutP1.setConstraints(getPlayer1Name(), pc1);
-	    getBarPlayer1().add(getPlayer1Name());
-	    
-	    pc1.gridy = P1SCOREY;
-	    layoutP1.setConstraints(getPlayer1Score(), pc1);
-	    getBarPlayer1().add(getPlayer1Score());
-	    
-	    pc1.gridy = P1PIECEY;
-	    layoutP1.setConstraints(getPlayer1Piece(), pc1);
-	    getBarPlayer1().add(getPlayer1Piece());
-	    
-	    
-	    layoutP2.setConstraints(getPlayer2Name(), pc2);
-	    getBarPlayer2().add(getPlayer2Name());
-	    
-	    pc2.gridy = P2SCOREY;
-	    layoutP2.setConstraints(getPlayer2Score(), pc2);
-	    getBarPlayer2().add(getPlayer2Score());
-	    
-	    pc2.gridy = P2PIECEY;
-	    layoutP2.setConstraints(getPlayer2Piece(), pc2);
-	    getBarPlayer2().add(getPlayer2Piece());
-	    
-	    BarTurn.add(getTurnsTaken());
-	    
-	    //layout.setConstraints(getBarPlayer1(), c);
-	    m_sideBar.add(getBarPlayer1(),c);
-	    
-	    c.gridy = BAR2GRIDY;
-	    //layout.setConstraints(getBarPlayer2(), c);
-	    m_sideBar.add(getBarPlayer2(),c);
-	
-	    m_speed.setText("Game speed");
-	    if(game instanceof ConnectFour){	
-	    	gameBoardGraphics.SetSpeed(DEFAULT_FALL_SPEED);
-			m_slider = new JSlider (MINSPEED, MAX_FALL_SPEED, DEFAULT_FALL_SPEED);
-	    } else {
-	    	gameBoardGraphics.SetSpeed(DEFAULT_FLIP_SPEED);
-	    	m_slider = new JSlider (MINSPEED, MAX_FLIP_SPEED, DEFAULT_FLIP_SPEED);
-	    }
-	    
-	    m_d = m_slider.getPreferredSize();
-	    m_d.width = SLIDER_WIDTH;
-	    m_slider.setPreferredSize(m_d);
 		handler = new GUIEventHandler();
-		m_slider.addChangeListener(handler);
-		m_slider.setInverted(true);
-	    
-	    m_setting.setLayout(setting);
-		m_setting.add(m_speed);
-		m_setting.add(m_slider);
-		
-		m_setting.setBackground(Color.WHITE);
-		c.gridy = BAR3GRIDY;
-		//layout.setConstraints(m_setting, c);
-		m_sideBar.add(m_setting,c);
-		
-		String m_boards[] = new String[]{"board1","board2","board3"};
-		m_skin = new JComboBox<String>(m_boards);
-		m_skin.setSelectedIndex(0);
-		m_skin.addActionListener(handler);
-		
-		c.gridy = BAR3GRIDY + 1;
-		//layout.setConstraints(m_skin, c);
-		m_sideBar.add(m_skin,c);
-		
-		c.gridy = BAR3GRIDY + GRID2;
-        //layout.setConstraints(m_skin, c);
-        m_sideBar.add(m_timerLabel,c);
+		setLayout(game, handler);
 	}
 	
 	
@@ -573,8 +574,6 @@ public class Drawing {
 	private final int SLIDER_WIDTH = 80;
 	private final GUIEventHandler handler;
 	private JComboBox m_skin;
-	private final int V_GAP = 10;
-	private final int ROW = 5;
 	private final int SPEED_ROW = 2;
 	private Color m_p1colour;
 	private Color m_p2colour;
