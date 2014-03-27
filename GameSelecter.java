@@ -1,19 +1,15 @@
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
- * \file ChooseGame.java
+ * \\file GameSelecter.java
  * \author Daniel 709547
  * \date 20/02/2014
+ * 
  * \brief Class which handles the choice of starting a new game
  * 
  * This class deals with handling giving the user
@@ -21,60 +17,130 @@ import javax.swing.*;
  * connect 4 game at the start of the application
  * and if they choose to start a new game.
  */
-
-public class ChooseGame {	
+public class GameSelecter {
 	/**
 	 * Setter method to set the JButton m_connect4
+	 * 
 	 * \param newConnect4
+	 * \return true on success
 	 */
-	public void setConnect4Button(JButton newConnect4) {
+	public boolean setConnect4Button(JButton newConnect4) {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("GameSelecter :: setConnect4Button() BEGIN");
+        }
+        
 		m_connect4 = newConnect4;
+		
+        if (test || m_test) {
+            System.out.println("GameSelecter :: setConnect4Button() END");
+        }
+		
+		return true;
 	}
 	
 	/**
 	 * Setter method to set the JButton m_othello
+	 * 
 	 * \param newOthello
+	 * \return true on success
 	 */
-	public void setOthelloButton(JButton newOthello) {
+	public boolean setOthelloButton(JButton newOthello) {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("GameSelecter :: setOthelloButton() BEGIN");
+        }
+        
 		m_othello = newOthello;
+		
+        if (test || m_test) {
+            System.out.println("GameSelecter :: setOthelloButton() END");
+        }
+		
+		return true;
 	}
 	
 	/**
 	 * Setter method to set the data for the JFrame m_choose
+	 * 
 	 * \param newChoose
+	 * \return true on success
 	 */
-	public void setChooseFrame(JFrame newChoose) {
+	public boolean setChooseFrame(JFrame newChoose) {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("GameSelecter :: setChooseFrame() BEGIN");
+        }
+        
 		m_choose = newChoose;
+		
+        if (test || m_test) {
+            System.out.println("GameSelecter :: setChooseFrame() END");
+        }
+		
+		return true;
 	}
 	
 	/**
 	 * Getter method to return the pointer for the JButton object m_connect4
+	 * 
 	 * \return JButton m_connect4
 	 */
 	public JButton getConnect4Button() {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("GameSelecter :: getConnect4Button() BEGIN");
+        }
+        if (test || m_test) {
+            System.out.println("GameSelecter :: getConnect4Button() END");
+        }
+        
 		return m_connect4;
 	}
 	
 	/**
 	 * Getter method to return the JButton m_othello
+	 * 
 	 * \return JButton m_othello
 	 */
 	public JButton getOthelloButton() {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("GameSelecter :: getOthelloButton() BEGIN");
+        }
+        if (test || m_test) {
+            System.out.println("GameSelecter :: getOthelloButton() END");
+        }
+        
 		return m_othello;
 	}
 	
 	/**
 	 * Getter method to return the object, the JFrame m_choose.
+	 * 
 	 * \return JFrame m_choose
 	 */
 	public JFrame getChooseFrame() {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("GameSelecter :: getChooseFrame() BEGIN");
+        }
+        if (test || m_test) {
+            System.out.println("GameSelecter :: getChooseFrame() END");
+        }
+        
 		return m_choose;
 	}
 	
 	/**
-	* Constructor for the class ChooseGame 
+	* Constructor for the class GameSelecter 
 	*/
-	public ChooseGame() {		
+	public GameSelecter() {
+	    boolean test = false;
+        if (test || m_test) {
+            System.out.println("GameSelecter :: GameSelecter() BEGIN");
+        }
+        
 		JFrame newChoose = new JFrame();
 		setChooseFrame(newChoose);
 		getChooseFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,8 +152,10 @@ public class ChooseGame {
 		ImageIcon connect4Image = null;
 		ImageIcon othelloImage = null;
 		try {
-			connect4Image = new ImageIcon(getClass().getResource("/resource/connect4.jpg"));
-			othelloImage = new ImageIcon(getClass().getResource("/resource/othello.jpg"));
+			connect4Image = new ImageIcon(getClass().getResource(
+			                                         "/resource/connect4.jpg"));
+			othelloImage = new ImageIcon(getClass().getResource(
+			                                          "/resource/othello.jpg"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -123,16 +191,19 @@ public class ChooseGame {
 	    getChooseFrame().pack();
 		getChooseFrame().setLocationRelativeTo(null);
         getChooseFrame().setVisible(true);
+        
+        if (test || m_test) {
+            System.out.println("GameSelecter :: GameSelecter() END");
+        }
 	}
 	
 	class ChooseEventHandler implements ActionListener {
 
 		/**
 		*	Deals with actions performed by GUI objects, namley the buttons.
+		*
 		*	\param event - object which holds the data of the GUI event.
 		*/
-
-		@Override
 		public void actionPerformed(ActionEvent event) {
 			Game game;
 			if (event.getSource() == getOthelloButton()) {
@@ -147,12 +218,19 @@ public class ChooseGame {
 		}
 	}
 	
+	/**
+	 * MAIN method - this is were the application begins
+	 */
 	public static void main(String[] args) {
-		new ChooseGame();
+		new GameSelecter();
 	}
 	
-	//private variables
+	/** connect four button */
 	private JButton m_connect4;
+	/** othello button */
 	private JButton m_othello;
+	/** jframe reference */
 	private JFrame m_choose;
+	/** test variable */
+	private boolean m_test = false;
 }
