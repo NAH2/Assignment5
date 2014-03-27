@@ -316,7 +316,7 @@ public class GameWindow extends JFrame {
         		} else if(m_gameControl.getPlayer2() instanceof AIEasy){
         			((AIEasy)(m_gameControl.getPlayer2())).SetRun(false);
         		}	
-        		
+        		getGame().getTimer().setRunning();
                 dispose();
                 new ChooseGame();
             }
@@ -364,7 +364,7 @@ public class GameWindow extends JFrame {
         			m_player2 = new Human(m_game,m_gameControl.getPlayer2().getPlayerName(),
         			m_gameControl.getPlayer2().getPlayerColour());
         		}		      		
-        			
+        		getGame().getTimer().setRunning();
         		m_game.setPlayer1(m_player1);
         		m_game.setPlayer2(m_player2);				
     			try {
