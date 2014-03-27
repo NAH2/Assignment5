@@ -1,12 +1,12 @@
 import java.util.*;
 import java.awt.Color;
 /**
- *  \\file -AIEasy.java
- * 	\author - Tyrone Bramwell
- *	\date	-20/03/2014
+ * \\file -AIEasy.java
+ * \author - Tyrone Bramwell
+ * \date	-20/03/2014
  *
- *	\brief This class contains methods to create and run a AI for othello and 
- *conect four which randomly picks a a valid move and performs the move.
+ * \brief This class contains methods to create and run a AI for othello and 
+ * conect four which randomly picks a a valid move and performs the move.
  */
 class AIEasy extends Player {
 	/**
