@@ -22,10 +22,18 @@ import java.lang.NullPointerException;
  * or needs to be repainted.
  */
 public class GameBoardGraphics extends JComponent implements MouseMotionListener{
-	//******************************
-	public void SetRun(boolean run){
+	
+	/**
+	 * Methods to set whether the thread should be be running
+	 * 
+	 * \param the boolean false to stop the thread execution
+	 * \return Returns TRUE if successful.
+	 */
+	public boolean SetRun(boolean run){
 		m_running = run;
+		return true;
 	}
+	
 	/**
 	 * Store the coordinate to be displayed when the move is not valid
 	 * 
@@ -83,14 +91,22 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		m_board = board;
 	}
 	
+	/**
+	 * Method to return the player1 object
+	 * \return the player object
+	 */
 	public Player GetPlayer1(){
 		return m_player1;
 	}
 	
+	/**
+	 * Method to return the player2 object
+	 * \return the player object
+	 */
 	public Player GetPlayer2(){
 		return m_player2;
 	}
-	//******************************
+
 	/**
 	 * returns the variable m_grid to the caller of the method.
 	 * \return private member variable m_grid, a grid object.
@@ -145,7 +161,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	public int getXSquares() {
 		return X_SQUARES;
 	}
-	//********
 	
 	/**
 	 * Method to set the game is not over after the game restarts
@@ -156,7 +171,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	}
 	
 	/**
-	* Method responsible for generating animation of pieces in both game(Connect4 only atm)
+	* Method for generating animation of pieces in both game
 	* \param type - type of animation that is either flip or fall
 	* \param changes - the list stores the pieces which need the animation
 	*/
@@ -214,7 +229,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		).start();
 	}
 	}
-	//*********
+	
 	/**
 	* Class Constructor for GameBoardGraphics, initialises all 
 	* necessary variables.
@@ -229,20 +244,12 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		m_player2 = player2;
 		PLAYER1_COLOUR = m_player1.getPlayerColour();
 		PLAYER2_COLOUR = m_player2.getPlayerColour();
-		/*if(PLAYER1_COLOUR.equals(Color.WHITE)){
-			m_player = Game.PlayerTurn.PLAYER1;
-		} else if(PLAYER1_COLOUR.equals(Color.BLACK)){
-			m_player = Game.PlayerTurn.PLAYER2;
-		}*/
 		setGrid(grid);
 		Y_SQUARES = getGrid().getGridHeight();
 		X_SQUARES = getGrid().getGridWidth();
 		GRID_WIDTH = (getXSquares() * getSquareWidth());
 		GRID_HEIGHT = (getYSquares() * getSquareHeight());
 		setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));
-		//CONNECT4BOARD = ImageIO.read(getClass().getResource("connect4board.png"));
-		//GRID1 = ImageIO.read(getClass().getResource("Oboard.png"));
-		//GRID2 = ImageIO.read(getClass().getResource("Oboard1.png"));
 		m_running = true;
 	}
 	
@@ -251,107 +258,47 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \param g - graphics object to handle all the data for creating
 	* / repainting the gameboard
 	*/
-
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
 		for (int i = 0; i < GRID_WIDTH; i+=getSquareWidth()) {
 		for (int j = 0; j < GRID_HEIGHT; j+=getSquareHeight()) {
-			//************************		
 			paintFlip(g2, i ,j);
-			//************************
-			if (!m_flippingPiece){
-				if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
-					//System.out.println(PLAYER1_COLOUR == Color.BLACK 
-					//|| PLAYER1_COLOUR == Color.WHITE);
-					if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
-					//g2.setColor(new Color(RED,GREEN,BLUE));
-					if(m_board == "board2"){
-					g2.drawImage(GRID4, i, j, null);
-					} else if(m_board == "board3"){
-					g2.drawImage(GRID6, i, j, null);
-					} else {
-					g2.drawImage(GRID2, i, j, null);
-					}
-					} else {
-					if(m_board == "board2"){
-					g2.drawImage(GRID3, i, j, null);
-					} else if(m_board == "board3"){
-					g2.drawImage(GRID5, i, j, null);
-					} else {
-					g2.drawImage(GRID1, i, j, null);
-					}
-					}
-				}
-			}
-				//**********************
+			paintOthelloBoard(g2, i, j);
+
 			if(m_type.equals("fall") && m_changes.size() > 0){
 				if(i == m_changes.get(0).getX()*getSquareWidth()
 				&& j == m_changes.get(0).getY()*getSquareHeight()){
 				continue;
 				}
 			}
-			//**********************
-			if(!m_flippingPiece){
-				if (getGrid().getCoordinate(i/getSquareWidth(),j/
-				getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER1) {
-				if(PLAYER1_COLOUR.equals(Color.white)){
-				g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
-				} else if(PLAYER1_COLOUR.equals(Color.black)){
-				g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
-				} else {
-				g2.setColor(PLAYER1_COLOUR);
-				g2.fillOval(i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
-				}
-				} else if (getGrid().getCoordinate(i/getSquareWidth(),j/
-				getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER2) {
-				if(PLAYER2_COLOUR.equals(Color.white)){
-				g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
-				} else if(PLAYER2_COLOUR.equals(Color.black)){
-				g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
-				} else {
-				g2.setColor(PLAYER2_COLOUR);
-				g2.fillOval(i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
-				}
-			}
-		}
-		if(!m_valid && (PLAYER1_COLOUR.equals(Color.BLACK) 
-		|| PLAYER1_COLOUR.equals(Color.WHITE))){
-		g2.drawImage(CROSS2, m_xmove.getX()*getSquareWidth() + MID_POSITION, 
-		m_xmove.getY()*getSquareHeight() + MID_POSITION, 
-		WINMARK_SIZE, WINMARK_SIZE, null);
-			new Thread(
+			paintBoardPiece(g2, i, j);
+			if(!m_valid && (PLAYER1_COLOUR.equals(Color.BLACK) 
+					|| PLAYER1_COLOUR.equals(Color.WHITE))){
+				g2.drawImage(CROSS2, m_xmove.getX()*getSquareWidth() + MID_POSITION, 
+						m_xmove.getY()*getSquareHeight() + MID_POSITION, 
+						WINMARK_SIZE, WINMARK_SIZE, null);
+				new Thread(
 				new Runnable() {
 				public void run() {
 					try {
-					Thread.sleep(200);
-					m_valid = true;
-					} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+						Thread.sleep(200);
+						m_valid = true;
+						} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
+				}
+				).start();
 			}
-		).start();
-	}
-	paintAvailableMove(g2, i, j);
-	}
-}
-	//*****************		
-	paintFall(g2);
-	if(PLAYER1_COLOUR.equals(Color.YELLOW) || PLAYER1_COLOUR.equals(Color.RED)){
-		if(m_board == "board2"){
-			g2.drawImage(CONNECT4BOARD2, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
-		} else if(m_board == "board3"){
-			g2.drawImage(CONNECT4BOARD3, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
-		} else {
-			g2.drawImage(CONNECT4BOARD, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+			paintAvailableMove(g2, i, j);
 		}
-	}
-		//********************
+		}	
+		paintFall(g2);
+		paintConnectFourBoard(g2);
 		if(!m_isOver){	
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
-				//******************************
 				if(m_AImove != null && !m_changes.isEmpty() &&
 					((m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1 && 
 					(m_player1 instanceof OthelloAI || m_player1 instanceof AIEasy)) ||
@@ -363,7 +310,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					g2.drawOval(m_AImove.getX()*getSquareWidth()+MID_POSITION, 
 					m_AImove.getY()*getSquareHeight()+MID_POSITION, WINMARK_SIZE, WINMARK_SIZE);
 				}
-				//******************************
 			} else {
 				m_d = this.getSize();
 				g2.setColor(Color.BLACK);
@@ -371,18 +317,96 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				g2.setColor(Color.BLACK);
 				g2.drawLine(m_nextColX - ADJUST_POINT, 0,
 					m_nextColX - ADJUST_POINT, m_d.height);
-				
-				//g2.fillOval(m_posX , m_posY, CURSOR_SIZE, CURSOR_SIZE);
 			}
-			} else {
+		} else {
 			paintWin(g2);
-			/*if(PLAYER1_COLOUR.equals(Color.WHITE)){
-				m_player = Game.PlayerTurn.PLAYER1;
-			} else {
-				m_player = Game.PlayerTurn.PLAYER2;
-			}*/
-			//m_player = Game.PlayerTurn.PLAYER2;
 		}
+	}
+	
+	/**
+	* Method for drawing the Connect four game board
+	* \param g2 - graphics object to handle all the data for creating
+	* \param i - point X of the board
+	* \param j - point Y of the board
+	* \return true when the method completes
+	*/
+	public boolean paintConnectFourBoard(Graphics2D g2){
+		if(PLAYER1_COLOUR.equals(Color.YELLOW) || PLAYER1_COLOUR.equals(Color.RED)){
+			if(m_board == "board2"){
+				g2.drawImage(CONNECT4BOARD2, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+			} else if(m_board == "board3"){
+				g2.drawImage(CONNECT4BOARD3, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+			} else {
+				g2.drawImage(CONNECT4BOARD, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+			}
+		}
+	return true;
+	}
+	
+	/**
+	* Method for drawing the Othello game board
+	* \param g2 - graphics object to handle all the data for creating
+	* \param i - point X of the board
+	* \param j - point Y of the board
+	* \return true when the method completes
+	*/
+	public boolean paintOthelloBoard(Graphics2D g2, int i, int j){
+		if (!m_flippingPiece){
+			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
+				if((i/getSquareWidth()+j/getSquareWidth())%EVEN == 0){
+					if(m_board == "board2"){
+						g2.drawImage(GRID4, i, j, null);
+					} else if(m_board == "board3"){
+						g2.drawImage(GRID6, i, j, null);
+					} else {
+						g2.drawImage(GRID2, i, j, null);
+					}
+				} else {
+					if(m_board == "board2"){
+						g2.drawImage(GRID3, i, j, null);
+					} else if(m_board == "board3"){
+						g2.drawImage(GRID5, i, j, null);
+					} else {
+						g2.drawImage(GRID1, i, j, null);
+					}
+				}
+			}
+		}
+		return true;
+	}
+	
+	/**
+	* Method for drawing the pieces to the game board
+	* \param g2 - graphics object to handle all the data for creating
+	* \param i - point X of the board
+	* \param j - point Y of the board
+	* \return true when the method completes
+	*/
+	public boolean paintBoardPiece(Graphics2D g2, int i, int j){
+		if(!m_flippingPiece){
+			if (getGrid().getCoordinate(i/getSquareWidth(),j/
+			getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER1) {
+				if(PLAYER1_COLOUR.equals(Color.white)){
+						g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
+				} else if(PLAYER1_COLOUR.equals(Color.black)){
+					g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
+				} else {
+					g2.setColor(PLAYER1_COLOUR);
+					g2.fillOval(i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
+				}
+			} else if (getGrid().getCoordinate(i/getSquareWidth(),j/
+					getSquareHeight()).getValue()==Game.PlayerTurn.PLAYER2) {
+				if(PLAYER2_COLOUR.equals(Color.white)){
+					g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
+				} else if(PLAYER2_COLOUR.equals(Color.black)){
+					g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
+				} else {
+					g2.setColor(PLAYER2_COLOUR);
+					g2.fillOval(i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
+				}
+			}
+		}
+		return true;
 	}
 	
 	/**
@@ -404,27 +428,17 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					} else if(PLAYER1_COLOUR.equals(Color.black)){
 					g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
 			}
-			//g2.setColor(PLAYER1_COLOUR);
-			//g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
 		}
-		//g2.setColor(Color.RED);
-		//g2.setStroke(new BasicStroke(2));
-		//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 		}else if (c.getValue()== Game.PlayerTurn.PLAYER2_AM && m_player2 
 			instanceof Human){
 			g2.drawImage(CROSS, c.getX()*getSquareWidth() + MID_POSITION, 
 				c.getY()*getSquareHeight() + MID_POSITION, WINMARK_SIZE, WINMARK_SIZE, null);
-					//g2.setColor(Color.BLUE);
-					//g2.setStroke(new BasicStroke(2));
-					//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 			if(c.getX()*getSquareWidth() == m_colX && c.getY()*getSquareHeight() == m_colY){
 				if(PLAYER2_COLOUR.equals(Color.white)){
 					g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
 				} else if(PLAYER2_COLOUR.equals(Color.black)){
 					g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE, PIECE_SIZE, null);
 					}
-					//g2.setColor(PLAYER2_COLOUR);
-					//g2.fillOval(m_colX + MID_DIFF, m_colY + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
 				}
 			}
 		}
@@ -438,13 +452,10 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 		if(m_type.equals("fall") && m_start && m_changes.size() > 0){
 			int m_x = m_changes.get(0).getX()*getSquareWidth();
 			if (m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1){
-				//m_player = Game.PlayerTurn.PLAYER1;
 				g2.setColor(PLAYER1_COLOUR);
 			} else {
-				//m_player = Game.PlayerTurn.PLAYER2;
 				g2.setColor(PLAYER2_COLOUR);
 			}
-			//System.out.println(m_y);
 			g2.fillOval(m_x + MID_DIFF, m_y + MID_DIFF, PIECE_SIZE, PIECE_SIZE);
 		}
 	}
@@ -486,13 +497,9 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 					g2.drawImage(GRID1, i, j, null);
 					}
 					}
-					//g2.fillRect(i, j, getSquareWidth(), getSquareHeight());
 					g2.setColor(Color.WHITE);
 					g2.setStroke(new BasicStroke(2));
 					g2.drawRect(i, j, getSquareWidth(), getSquareHeight());
-					//System.out.println("FLIPPING");
-					//if(item.getValue()==Game.PlayerTurn.PLAYER1){
-					//m_player = Game.PlayerTurn.PLAYER1;
 					if((item.getValue()==Game.PlayerTurn.PLAYER1 && !m_flipSide 
 					&& PLAYER2_COLOUR.equals(Color.white))||
 					(item.getValue()==Game.PlayerTurn.PLAYER1 && m_flipSide 
@@ -529,13 +536,8 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	*/
 	private void paintWin(Graphics g){
 		Iterator<Coordinate> iterator = m_win.iterator();
-		while (iterator.hasNext()){
-		//System.out.println(iterator.next()+"SSS");
-		//g.setColor(Color.GREEN);  
+		while (iterator.hasNext()){ 
 		m_next = iterator.next();
-		//System.out.println(m_next);
-		//g.fillOval((SQUARE_HEIGHT*m_next.getX()+MID_POSITION), 
-		//(SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE);
 			if(PLAYER1_COLOUR.equals(Color.BLACK) || PLAYER1_COLOUR.equals(Color.WHITE)){
 				g.drawImage(WIN_STAR, (SQUARE_WIDTH*m_next.getX()+MID_POSITION),
 				(SQUARE_HEIGHT*m_next.getY()+MID_POSITION), WINMARK_SIZE, WINMARK_SIZE, null);
@@ -545,7 +547,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 				g.drawImage(WIN_STAR, m_starX, m_starY, WINMARK_SIZE, WINMARK_SIZE, null);
 			}
 		}
-		//m_win.clear();
 	}
 	
 	/**
@@ -553,9 +554,6 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	* \param e - An event which indicates that a mouse action occurred in a component
 	*/
 	public void mouseMoved(MouseEvent e) {
-		//System.out.println("x:"+e.getX()+", y:"+e.getY());
-		//m_posX = e.getX();
-		//m_posY = e.getY();
 		m_colX = (e.getX()/getSquareWidth())*getSquareWidth();
 		m_colY = (e.getY()/getSquareHeight())*getSquareHeight();
 		m_nextColX = (e.getX()/getSquareWidth())*getSquareWidth()+getSquareWidth();
@@ -586,18 +584,11 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private Coordinate m_next;
 	private final int MID_POSITION = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
 	private final int WINMARK_SIZE = (SQUARE_WIDTH + SQUARE_HEIGHT) / 6;
-	//********************
-	//private int m_posX;
-	//private int m_posY;
 	private int m_x = 0;
 	private boolean m_flippingPiece;
 	private boolean m_flipSide = false;
 	private int m_dropPoint = -30;
-	//private int m_fallTime = 20;
-	//private int m_flipTime = 10;
-	//******************************
 	private int m_speed;
-	//******************************
 	private int m_fallDistance = 30;
 	private String m_type = "";
 	private ArrayList<Coordinate> m_changes;
@@ -607,14 +598,7 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private int m_y = 0;
 	private boolean m_start = false;
 	private int m_lowestY;
-	//private Game.PlayerTurn m_player;
-	//private final int RED = 0;
-	//private final int GREEN = 153;
-	//private final int BLUE = 0;
 	private final int EVEN = 2;
-	//private final int DARK_RED = 0;
-	//private final int DARK_GREEN = 102;
-	//private final int DARK_BLUE = 0;
 	private int m_nextColX;
 	private int m_colX;
 	private int m_colY;
@@ -658,5 +642,4 @@ public class GameBoardGraphics extends JComponent implements MouseMotionListener
 	private Coordinate m_xmove;
 	private boolean m_valid = true;
 	private boolean m_running;
-	//********************
 }
