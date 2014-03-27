@@ -5,20 +5,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
-//******************
 import java.util.ArrayList;
-
 import javax.swing.JSlider;
-
 import java.awt.GridLayout;
 import java.awt.Dimension;
-
 import javax.swing.event.*;
 import javax.swing.JComboBox;
-
 import java.awt.event.*;
-
-//******************
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -399,35 +392,30 @@ public class Drawing {
 		GridBagLayout layoutP2 = new GridBagLayout();
 		GridBagConstraints pc1 = new GridBagConstraints();
 		GridBagConstraints pc2 = new GridBagConstraints();
-		GridLayout setting = new GridLayout(SPEED_ROW,1);
-		
+		GridLayout setting = new GridLayout(SPEED_ROW,1);		
 		m_sideBar = new JPanel(layout);
 		JPanel BarTurn = new JPanel();
 		getBarPlayer1().setLayout(layoutP1);
 		getBarPlayer2().setLayout(layoutP2);
 		layoutP1.setConstraints(getPlayer1Name(), pc1);
-	    getBarPlayer1().add(getPlayer1Name());
+	    getBarPlayer1().add(getPlayer1Name());    
 	    
 	    pc1.gridy = P1SCOREY;
 	    layoutP1.setConstraints(getPlayer1Score(), pc1);
-	    getBarPlayer1().add(getPlayer1Score());
-	    
+	    getBarPlayer1().add(getPlayer1Score());    
 	    pc1.gridy = P1PIECEY;
 	    layoutP1.setConstraints(getPlayer1Piece(), pc1);
-	    getBarPlayer1().add(getPlayer1Piece());
-	        
+	    getBarPlayer1().add(getPlayer1Piece());        
 	    layoutP2.setConstraints(getPlayer2Name(), pc2);
-	    getBarPlayer2().add(getPlayer2Name());
-	    
+	    getBarPlayer2().add(getPlayer2Name());   
 	    pc2.gridy = P2SCOREY;
 	    layoutP2.setConstraints(getPlayer2Score(), pc2);
-	    getBarPlayer2().add(getPlayer2Score());
-	    
+	    getBarPlayer2().add(getPlayer2Score());    
 	    pc2.gridy = P2PIECEY;
 	    layoutP2.setConstraints(getPlayer2Piece(), pc2);
-	    getBarPlayer2().add(getPlayer2Piece());
+	    getBarPlayer2().add(getPlayer2Piece());   
+	    BarTurn.add(getTurnsTaken());	  
 	    
-	    BarTurn.add(getTurnsTaken());	    
 	    m_sideBar.add(getBarPlayer1(),c);	    
 	    c.gridy = BAR2GRIDY;
 	    m_sideBar.add(getBarPlayer2(),c);
@@ -446,23 +434,19 @@ public class Drawing {
 	    m_d.width = SLIDER_WIDTH;
 	    m_slider.setPreferredSize(m_d);
 		m_slider.addChangeListener(handler);
-		m_slider.setInverted(true);
-	    
+		m_slider.setInverted(true);    
 	    m_setting.setLayout(setting);
 		m_setting.add(m_speed);
 		m_setting.add(m_slider);
 		m_setting.setBackground(Color.WHITE);
 		c.gridy = BAR3GRIDY;
-		m_sideBar.add(m_setting,c);
-		
+		m_sideBar.add(m_setting,c);		
 		String m_boards[] = new String[]{"board1","board2","board3"};
 		m_skin = new JComboBox<String>(m_boards);
 		m_skin.setSelectedIndex(0);
-		m_skin.addActionListener(handler);
-		
+		m_skin.addActionListener(handler);	
 		c.gridy = BAR3GRIDY + 1;
 		m_sideBar.add(m_skin,c);
-		
 		c.gridy = BAR3GRIDY + GRID2;
         m_sideBar.add(m_timerLabel,c);
         return true;
