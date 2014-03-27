@@ -460,6 +460,8 @@ public class GameWindow extends JFrame {
 		new GameWindow(game);
 	}
 	
+	private String m_saveMessage = "Game saved!";
+	private String m_aiTurnsave = "Can't save game while AI's trun!";
 	private Game m_gameControl;
 	private Drawing m_drawingControl;
 	private Controls m_controlsControl;
