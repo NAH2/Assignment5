@@ -689,7 +689,7 @@ public class PlayerSettings extends JFrame {
 				JOptionPane.showMessageDialog(player, "ERROR Laoding File",
 						"Load ERROR", JOptionPane.ERROR_MESSAGE);
 				dispose();
-				new ChooseGame();
+				new GameSelecter();
 			}
 			if (test || m_test) {
 				System.out.println("ControlsButtonListener :: "
