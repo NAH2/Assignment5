@@ -5,15 +5,14 @@ import java.util.*;
  * 	\author	-B. Golightly
  * 	\date	-12/02/2014
  * 	
- * 	/brief	Extends Game with the rules of Othello as specified. Methods are
- * 			provided to check if a move is valid, query the score of a potential
- * 			move so that the AI can know how good it is, and provides a way to
- * 			take a move, return a list of changes after a move has been made.
- * 			In the case of Othello this means returning a list of captured
- * 			pieces; other classes that also extend game may only return a list
- * 			of one item i.e. only the piece that is the result of the move.
+ * 	/brief	Extends Game with the rules of Othello as specified. 
+ * 
+ * Methods are move so that the AI can know how good it is, and provides a way 
+ * to take a move, return a list of changes after a move has been made. 
+ * In the case of Othello this means returning a list of captured 
+ * pieces; other classes that also extend game may only return a list 
+ * of one item i.e. only the piece that is the result of the move.
  */
-
 public class Othello extends Game{
 	
 	/** 
