@@ -324,7 +324,8 @@ public class GameWindow extends JFrame {
 	public boolean displayInvalidMove(boolean valid) {
 		boolean test = false;
 		if (test || m_test) {
-            System.out.println("GameWindow :: displayInvalidMove(boolean) BEGIN");
+            System.out.println("GameWindow :: displayInvalidMove(boolean) "
+                                                                     + "BEGIN");
         }
 		getDrawing().getGridPanel().SetValid(true);
 		if (test || m_test) {
@@ -406,7 +407,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	/**
-	 * Called when the user clicks the restart game button on the menu bar	 
+	 * Called when the user clicks the restart game button on the menu bar
 	 * Stop all the threads and recreate the current game
 	 */
 	private boolean restart(){
@@ -426,35 +427,35 @@ public class GameWindow extends JFrame {
 		getDrawing().getGridPanel().SetRun(false);
 		if(m_gameControl.getPlayer1() instanceof OthelloAI){
 			((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
-			m_player1 = new OthelloAI(m_game,m_gameControl.getPlayer1().getPlayerName(),
-			m_gameControl.getPlayer1().getPlayerColour());
+			m_player1 = new OthelloAI(m_game,m_gameControl.getPlayer1().
+			      getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
 		} else if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
 			((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
-			m_player1 = new ConnectFourAI(m_game,m_gameControl.getPlayer1().getPlayerName(),
-			m_gameControl.getPlayer1().getPlayerColour());
+			m_player1 = new ConnectFourAI(m_game,m_gameControl.getPlayer1().
+			      getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
 		} else if(m_gameControl.getPlayer1() instanceof AIEasy){
 			((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
-			m_player1 = new AIEasy(m_game,m_gameControl.getPlayer1().getPlayerName(),
-			m_gameControl.getPlayer1().getPlayerColour());
+			m_player1 = new AIEasy(m_game,m_gameControl.getPlayer1().
+			      getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
 		} else {
-			m_player1 = new Human(m_game,m_gameControl.getPlayer1().getPlayerName(),
-			m_gameControl.getPlayer1().getPlayerColour());
+			m_player1 = new Human(m_game,m_gameControl.getPlayer1().
+			      getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
 		}
 		if(m_gameControl.getPlayer2() instanceof OthelloAI){
 			((OthelloAI)(m_gameControl.getPlayer2())).SetRun(false);
-			m_player2 = new OthelloAI(m_game,m_gameControl.getPlayer2().getPlayerName(),
-			m_gameControl.getPlayer2().getPlayerColour());
+			m_player2 = new OthelloAI(m_game,m_gameControl.getPlayer2().
+			      getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
 		} else if(m_gameControl.getPlayer2() instanceof ConnectFourAI){
 			((ConnectFourAI)(m_gameControl.getPlayer2())).SetRun(false);
-			m_player2 = new ConnectFourAI(m_game,m_gameControl.getPlayer2().getPlayerName(),
-			m_gameControl.getPlayer2().getPlayerColour());
+			m_player2 = new ConnectFourAI(m_game,m_gameControl.getPlayer2().
+			      getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
 		} else if(m_gameControl.getPlayer2() instanceof AIEasy){
 			((AIEasy)(m_gameControl.getPlayer2())).SetRun(false);
-			m_player2 = new AIEasy(m_game,m_gameControl.getPlayer2().getPlayerName(),
-			m_gameControl.getPlayer2().getPlayerColour());
+			m_player2 = new AIEasy(m_game,m_gameControl.getPlayer2().
+			      getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
 		} else {
-			m_player2 = new Human(m_game,m_gameControl.getPlayer2().getPlayerName(),
-			m_gameControl.getPlayer2().getPlayerColour());
+			m_player2 = new Human(m_game,m_gameControl.getPlayer2().
+			      getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
 		}		      		
 		getGame().getTimer().setRunning();
 		m_game.setPlayer1(m_player1);
@@ -463,7 +464,6 @@ public class GameWindow extends JFrame {
 			m_game.start();
 		dispose();
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		if (test || m_test) {
@@ -473,7 +473,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	/**
-	 * Called when the user clicks the new game button on the menu bar	 
+	 * Called when the user clicks the new game button on the menu bar
 	 * Stop all the threads and recreate the game chooser window
 	 */
 	private boolean returnMainWindow(){
@@ -510,7 +510,8 @@ public class GameWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
     		boolean test = false;
     		if (test || m_test) {
-                System.out.println("GameWindow-Handler :: actionPerformed() BEGIN");
+                System.out.println("GameWindow-Handler :: actionPerformed() "
+                                                                     + "BEGIN");
             }
             if (e.getSource() == m_newGame) {
 				returnMainWindow();
@@ -528,7 +529,8 @@ public class GameWindow extends JFrame {
 				} else {
     				if ((getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER1
     						&& getGame().getPlayer1() instanceof Human)
-    						|| (getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER2
+    						|| (getGame().getPlayerTurn() == 
+    						                             Game.PlayerTurn.PLAYER2
     						&& getGame().getPlayer2() instanceof Human)
     						|| (!(getGame().getPlayer1() instanceof Human)
     						&& !(getGame().getPlayer2() instanceof Human))) {
@@ -550,6 +552,12 @@ public class GameWindow extends JFrame {
 			}
             
             if (e.getSource() == m_load) {
+                try {
+                    getGame().resetGame();
+                } catch (InterruptedException ex) {
+                    System.err.println("Game did not Reset");
+                }
+                
                 if (getGame() instanceof Othello) {
                     OthelloLoader loader = new OthelloLoader(getGame());
                     checkValid(loader);
@@ -563,7 +571,8 @@ public class GameWindow extends JFrame {
                 System.exit(0);
             }
     		if (test || m_test) {
-                System.out.println("GameWindow-Handler :: actionPerformed() END");
+                System.out.println("GameWindow-Handler :: actionPerformed() "
+                                                                       + "END");
             }
         }
         
@@ -573,12 +582,6 @@ public class GameWindow extends JFrame {
                 System.out.println("GameWindow-Handler :: checkValid() BEGIN");
             }
             if (l.getValid()) {
-                try {
-                    getGame().resetGame();
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    System.err.println("Game did not Reset");
-                }
                 m_drawingControl.getGridPanel().SetOver(false);
                 getGame().getGrid().setGrid(l.getGridArray());
                 getGame().setPlayer1(l.getPlayer1());
@@ -609,7 +612,7 @@ public class GameWindow extends JFrame {
 	 * Test method.
 	 * 
 	 * \param No arguments.
-	 * @throws InterruptedException 
+	 * \throws InterruptedException 
 	 */
 	public static void main(String args[]) throws InterruptedException {
 		ConnectFour game = new ConnectFour();
@@ -625,21 +628,25 @@ public class GameWindow extends JFrame {
 		game.getWindow().Displaymessage("HELLO");
 		game.getWindow().restart();
 	}
-	/** store display message */
+	
+	/** Strings for save game for message box */
 	private String m_saveMessage = "Game saved!";
 	private String m_aiTurnsave = "Can't save game while AI's trun!";
 	private String m_gameOverSave = "Can't save when game is over!";
-	/** class object  */
+	/** reference to current game object*/
 	private Game m_gameControl;
+	/** reference to drawing object */
 	private Drawing m_drawingControl;
+	/** reference to Controls object */
 	private Controls m_controlsControl;
-	/** GUI object*/
+	/** menu bar */
 	private JMenuBar m_menubar;
+	/** menu items */
 	private JMenuItem m_exit;
 	private JMenuItem m_save;
 	private JMenuItem m_load;
 	private JMenuItem m_newGame;
 	private JMenuItem m_resetGame;
-	/** testing variables*/
+	/** test variables */
 	private boolean m_test = false;
 }
