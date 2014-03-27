@@ -27,69 +27,30 @@ import javax.swing.JPanel;
 
 
 /**
- * @brief Creates and updates the side bar.
+ * \author 708830
+ * \date 26 Feb 2014
+ * \file Drawing.java
+ * 
+ * 
+ * \brief Creates and updates the side bar.
  * 
  * This class creates the side bar for the game which includes information
  * such as player name, score and piece colour. This is also updated as the 
  * game continues.
  * 
- * @author 708830
- * @date 26 Feb 2014
- * @file Drawing.java
  */
 public class Drawing {
 
-	JPanel SideBar;
-
-	GameBoardGraphics gameBoardGraphics;
-	
-	private JLabel m_player1Name = new JLabel();
-	private JLabel m_player1Score = new JLabel("" + 0);
-	private JLabel m_player2Name = new JLabel();
-	private JLabel m_player2Score = new JLabel("" + 0);
-	private JLabel m_turnsTaken = new JLabel();
-	
-	private JLabel m_player1Piece = new JLabel();
-	private JLabel m_player2Piece = new JLabel();
-
-	private JPanel m_barPlayer1 = new JPanel();
-	private JPanel m_barPlayer2 = new JPanel();
-	//******************************
-	private JPanel m_setting = new JPanel();
-	private JLabel m_speed = new JLabel("Animation speed", JLabel.CENTER);
-	private JSlider m_slider;
-	private Dimension m_d;
-	private final int PADDING = 6;
-	private final int MINSPEED = 1;
-	private final int MAX_FALL_SPEED = 40;
-	private final int DEFAULT_FALL_SPEED = 20;
-	private final int MAX_FLIP_SPEED = 20;
-	private final int DEFAULT_FLIP_SPEED = 10;
-	private final int SLIDER_WIDTH = 80;
-	private final GUIEventHandler handler;
-	private JComboBox m_skin;
-	private final int V_GAP = 10;
-	private final int ROW = 5;
-	private final int SPEED_ROW = 2;
-	private Color m_p1colour;
-	private Color m_p2colour;
-	private BufferedImage m_p1piece;
-	private BufferedImage m_p2piece;
-	private JLabel m_timerLabel = new JLabel("00:00:00");
-	private int m_responseTime;
-	private final int BASETIME = 1000;
-	private final int TIME_RATIO = 50;
-	//******************************
 	/**
 	 * Method to set the connect4 game board
-	 * @param the board name
+	 * \param the board name
 	 */
 	private void setBoard(String board){
 		gameBoardGraphics.SetBoard(board);
 	}
 	/**
 	 * Method to set the animation speed
-	 * @param the animation speed ,an integer, represents millisecond time delay per movement
+	 * \param the animation speed ,an integer, represents millisecond time delay per movement
 	 */
 	private void setSpeed(int speed){
 		gameBoardGraphics.SetSpeed(speed);
@@ -112,7 +73,7 @@ public class Drawing {
 	//******************************
 	/**
 	* Method responsible for setting AI move to GameBoardGraphics class
-	* @param move - coordinate of AI move
+	* \param move - coordinate of AI move
 	*/
 	public void SetAImove(Coordinate move){
 		gameBoardGraphics.SetAImove(move);
@@ -120,8 +81,8 @@ public class Drawing {
 	
 	/**
 	* Method responsible for passing animation data to GameBoardGraphics class
-	* @param type - type of animation that is either flip or fall
-	* @param changes - the list stores the pieces which need the animation
+	* \param type - type of animation that is either flip or fall
+	* \param changes - the list stores the pieces which need the animation
 	*/
 	public void SetAnimation(String type, ArrayList<Coordinate> changes){
 		gameBoardGraphics.SetAnimation(type, changes);
@@ -129,7 +90,7 @@ public class Drawing {
 	
 	/**
 	 * Method to set the game is not over after the game restarts
-	 * @param isOver - the boolean true means the game is over
+	 * \param isOver - the boolean true means the game is over
 	 */
 	public void SetOver(boolean isOver){
 		gameBoardGraphics.SetOver(isOver);
@@ -139,7 +100,7 @@ public class Drawing {
 	
 	/**
 	 * This method sets the player 1 score on the side bar.
-	 * @param Score This hold the score for player 1 in an integer form.
+	 * \param Score This hold the score for player 1 in an integer form.
 	 */
 	public void setPlayer1Score(int score){
 		m_player1Score.setText("" + score);	
@@ -147,7 +108,7 @@ public class Drawing {
 	
 	/**
 	 * This method sets the player 2 score on the side bar.
-	 * @param Score This hold the score for player 2 in an integer form.
+	 * \param Score This hold the score for player 2 in an integer form.
 	 */
 	public void setPlayer2Score(int score){
 		m_player2Score.setText("" + score);	
@@ -155,7 +116,7 @@ public class Drawing {
 	
 	/**
 	* This method returns the sidebar panel for player 1.
-	* @return This method retrives the score from the game for player 1
+	* \return This method retrives the score from the game for player 1
 	*/
 	public JLabel getPlayer1Score() {
 		return m_player1Score;
@@ -163,7 +124,7 @@ public class Drawing {
 	
 	/**
 	* This method returns the sidebar panel for player 2.
-	* @return This method retrives the score from the game for player 1
+	* \return This method retrives the score from the game for player 1
 	*/
 	public JLabel getPlayer2Score() {
 		return m_player2Score;
@@ -171,7 +132,7 @@ public class Drawing {
 	
 	/**
 	* This method sets the name of player 1.
-	* @param label This stores the name of player 1
+	* \param label This stores the name of player 1
 	*/
 	public void setPlayer1Name(JLabel label) {
 		m_player1Name = label;
@@ -179,7 +140,7 @@ public class Drawing {
 	
 	/**
 	* This method sets the name of player 2.
-	* @param label This stores the name of player 2
+	* \param label This stores the name of player 2
 	*/
 	public void setPlayer2Name(JLabel label) {
 		m_player2Name = label;
@@ -187,7 +148,7 @@ public class Drawing {
 	
 	/**
 	* This method returns the name of player 1.
-	* @return m_player1Name This returns the name of player 1 when called
+	* \return m_player1Name This returns the name of player 1 when called
 	*/
 	public JLabel getPlayer1Name() {
 		return m_player1Name;
@@ -195,7 +156,7 @@ public class Drawing {
 	
 	/**
 	* This method returns the name of player 2.
-	* @return m_player2Name This returns the name of player 2 when called
+	* \return m_player2Name This returns the name of player 2 when called
 	*/
 	public JLabel getPlayer2Name() {
 		return m_player2Name;
@@ -204,7 +165,7 @@ public class Drawing {
 	/**
 	* This method takes in information about the number of turns taken and
 	* stores it.
-	* @param label This stores the information on the amount of turns taken
+	* \param label This stores the information on the amount of turns taken
 	*/
 	public void setTurnsTaken(JLabel label) {
 		m_turnsTaken = label;
@@ -212,7 +173,7 @@ public class Drawing {
 	
 	/**
 	* This method returns the number of turns that has been made.
-	* @return m_turnsTaken This returns the amount of turns taken in the game
+	* \return m_turnsTaken This returns the amount of turns taken in the game
 	*/
 	public JLabel getTurnsTaken() {
 		return m_turnsTaken;
@@ -221,7 +182,7 @@ public class Drawing {
 	/**
 	* This method assigns the information on the colour of the piece chosen by
 	* player 1.
-	* @param label This stores the information on the piece colour of player 1
+	* \param label This stores the information on the piece colour of player 1
 	*/
 	public void setPlayer1Piece(JLabel label) {
 		m_player1Piece = label;
@@ -230,7 +191,7 @@ public class Drawing {
 	/**
 	* This method assigns the information on the colour of the piece chosen by
 	* player 2.
-	* @param label This stores the information on the piece colour of player 2
+	* \param label This stores the information on the piece colour of player 2
 	*/
 	public void setPlayer2Piece(JLabel label) {
 		m_player2Piece = label;
@@ -238,7 +199,7 @@ public class Drawing {
 	
 	/**
 	* This returns the colour of the piece chosen by player 1.
-	* @return m_player1Piece This returns the colour of the player 1 piece
+	* \return m_player1Piece This returns the colour of the player 1 piece
 	*/
 	public JLabel getPlayer1Piece() {
 		return m_player1Piece;
@@ -246,7 +207,7 @@ public class Drawing {
 	
 	/**
 	* This returns the colour of the piece chosen by player 2.
-	* @return m_player2Piece This returns the colour of the player 2 piece
+	* \return m_player2Piece This returns the colour of the player 2 piece
 	*/
 	public JLabel getPlayer2Piece() {
 		return m_player2Piece;
@@ -254,7 +215,7 @@ public class Drawing {
 
 	/**
 	* This method sets the the player 1 side bar.
-	* @param panel Instantiates m_barPlayer1 with JPanel
+	* \param panel Instantiates m_barPlayer1 with JPanel
 	*/
 	public void setBarPlayer1(JPanel panel) {
 		m_barPlayer1 = panel;
@@ -262,7 +223,7 @@ public class Drawing {
 	
 	/**
 	* This method sets the the player 2 side bar.
-	* @param panel Instantiates m_barPlayer2 with JPanel
+	* \param panel Instantiates m_barPlayer2 with JPanel
 	*/
 	public void setBarPlayer2(JPanel panel) {
 		m_barPlayer2 = panel;
@@ -271,7 +232,7 @@ public class Drawing {
 	/**
 	* This method returns the relevant iformation on the player 1
 	* game panel.
-	* @return m_barPlayer1 This returns the player 1 game info panel
+	* \return m_barPlayer1 This returns the player 1 game info panel
 	*/
 	public JPanel getBarPlayer1() {
 		return m_barPlayer1;
@@ -280,7 +241,7 @@ public class Drawing {
 	/**
 	* This method returns the relevant iformation on the player 2
 	* game panel.
-	* @return m_barPlayer2 This returns the player 2 game info panel
+	* \return m_barPlayer2 This returns the player 2 game info panel
 	*/
 	public JPanel getBarPlayer2() {
 		return m_barPlayer2;
@@ -288,7 +249,7 @@ public class Drawing {
 	
 	/**
 	 * This method returns the graphics that were created.
-	 * @return Returns the GameBoardGrpahics when it is called.
+	 * \return Returns the GameBoardGrpahics when it is called.
 	 */
 	public GameBoardGraphics getGridPanel() {
 		return gameBoardGraphics;
@@ -296,19 +257,18 @@ public class Drawing {
 	
 	/**
 	 * This method returns the side bar that was created.
-	 * @return Returns the side bar which holds the scores for the game.
+	 * \return Returns the side bar which holds the scores for the game.
 	 */
 	public JPanel getSideBarPanel() {
-		return SideBar;
+		return m_sideBar;
 	}
 	
 	/**
 	 * This method sets all relevent information for Player 1
-	 * @param Player1 This is an object which holds data for player 1.
+	 * \param Player1 This is an object which holds data for player 1.
 	 */
 	public void setPlayer1(Player Player1){
 		boolean m_Trace = false;
-		final int OVALSIZE = 60;
 		
 		getPlayer1Name().setText(Player1.getPlayerName());
 		m_p1piece = new BufferedImage
@@ -328,12 +288,10 @@ public class Drawing {
 	
 	/**
 	 * This method sets all relevent information for Player 2
-	 * @param Player2 This is an object which holds data for player 2.
+	 * \param Player2 This is an object which holds data for player 2.
 	 */
 	public void setPlayer2(Player Player2){
 		boolean m_Trace = false;
-		
-		final int OVALSIZE = 60;
 		
 		getPlayer2Name().setText(Player2.getPlayerName());
 		m_p2piece = new BufferedImage
@@ -353,16 +311,11 @@ public class Drawing {
 	
 	/**
 	 * This method sets the players turns, and highlights the in turn player.
-	 * @param PlayerTurn This holds information on the turns that have been
+	 * \param PlayerTurn This holds information on the turns that have been
 	 * taken.
-	 * @param isAI indicates if the turn is an AI turn
+	 * \param isAI indicates if the turn is an AI turn
 	 */
 	public void setPlayerTurn(Game.PlayerTurn PlayerTurn, boolean isAI){
-		final int OVALSIZE = 60;
-		final int X = 14;
-		final int AI_X = 24;
-		final int YOUR_Y = 29;
-		final int TURN_Y = 39;
 		
 		if(PlayerTurn == Game.PlayerTurn.PLAYER1){
 			getBarPlayer1().setBackground(Color.GRAY);
@@ -415,7 +368,7 @@ public class Drawing {
 	
 	/**
 	 * This method sets the grid.
-	 * @param grid  Holds information on the grid,.
+	 * \param grid  Holds information on the grid,.
 	 */
 	public void setGrid(Grid grid, Game game){
 		boolean m_Trace = false;
@@ -429,23 +382,20 @@ public class Drawing {
 		getGridPanel().setGrid(grid);
 	}
 	
+	public boolean setTimerDisplay(String time) {
+	    m_timerLabel.setText(time);
+          
+        return true;
+    }
+	
 	/**
-	 * @param game This creates an instance of the Game class.
+	 * \param game This creates an instance of the Game class.
 	 * This method creates the panel and layout for the game to be played
 	 * on, and adds the relevant information.
 	 */
 	public Drawing(Game game) {
 		boolean m_Trace = false;
 		
-		final int P1SCOREY = 1;
-		final int P1PIECEY = 2;
-		final int P2SCOREY = 1;
-		final int P2PIECEY = 2;
-		final int BAR2GRIDY = 1;
-		//******************************
-		final int BAR3GRIDY = 2;
-		//******************************
-
 		if(m_Trace) { System.out.println
 			("Drawing::Drawing() - drawing initalizing");}
 		
@@ -453,7 +403,6 @@ public class Drawing {
 			("Drawing::Drawing() - Grid size = " + 
 				game.getGrid().getGridWidth() + "X" + 
 					game.getGrid().getGridHeight());}
-		
 		if(m_Trace) { System.out.println("Drawing::Drawing() - Players = " +
 			game.getPlayer2().getPlayerName() + ":" + 
 				game.getPlayer1().getPlayerName());}
@@ -472,18 +421,13 @@ public class Drawing {
 		c.insets = new Insets(PADDING,PADDING,PADDING,PADDING);
 		GridBagConstraints pc1 = new GridBagConstraints();
 		GridBagConstraints pc2 = new GridBagConstraints();
-		//************************
 		GridLayout setting = new GridLayout(SPEED_ROW,1);
-		//************************
 		
-		SideBar = new JPanel(layout);
-		
+		m_sideBar = new JPanel(layout);
 		JPanel BarTurn = new JPanel();
-		
 		getBarPlayer1().setLayout(layoutP1);
 		getBarPlayer2().setLayout(layoutP2);
-		
-	    layoutP1.setConstraints(getPlayer1Name(), pc1);
+		layoutP1.setConstraints(getPlayer1Name(), pc1);
 	    getBarPlayer1().add(getPlayer1Name());
 	    
 	    pc1.gridy = P1SCOREY;
@@ -508,13 +452,12 @@ public class Drawing {
 	    
 	    BarTurn.add(getTurnsTaken());
 	    
-	    
 	    //layout.setConstraints(getBarPlayer1(), c);
-	    SideBar.add(getBarPlayer1(),c);
+	    m_sideBar.add(getBarPlayer1(),c);
 	    
 	    c.gridy = BAR2GRIDY;
 	    //layout.setConstraints(getBarPlayer2(), c);
-	    SideBar.add(getBarPlayer2(),c);
+	    m_sideBar.add(getBarPlayer2(),c);
 	
 	    m_speed.setText("Game speed");
 	    if(game instanceof ConnectFour){	
@@ -539,7 +482,7 @@ public class Drawing {
 		m_setting.setBackground(Color.WHITE);
 		c.gridy = BAR3GRIDY;
 		//layout.setConstraints(m_setting, c);
-		SideBar.add(m_setting,c);
+		m_sideBar.add(m_setting,c);
 		
 		String m_boards[] = new String[]{"board1","board2","board3"};
 		m_skin = new JComboBox<String>(m_boards);
@@ -548,18 +491,14 @@ public class Drawing {
 		
 		c.gridy = BAR3GRIDY + 1;
 		//layout.setConstraints(m_skin, c);
-		SideBar.add(m_skin,c);
+		m_sideBar.add(m_skin,c);
 		
-		c.gridy = BAR3GRIDY + 2;
+		c.gridy = BAR3GRIDY + GRID2;
         //layout.setConstraints(m_skin, c);
-        SideBar.add(m_timerLabel,c);
+        m_sideBar.add(m_timerLabel,c);
 	}
 	
-	public boolean setTimerDisplay(String time) {
-	    m_timerLabel.setText(time);
-          
-        return true;
-    }
+	
 	
 	private class GUIEventHandler implements ActionListener, ChangeListener {
 		
@@ -604,4 +543,57 @@ public class Drawing {
 		drawing.setPlayerTurn(Game.PlayerTurn.PLAYER1, false);
 		frame.pack();
 	}
+	
+	
+
+	GameBoardGraphics gameBoardGraphics;
+	private JPanel m_sideBar;
+	private JLabel m_player1Name = new JLabel();
+	private JLabel m_player1Score = new JLabel("" + 0);
+	private JLabel m_player2Name = new JLabel();
+	private JLabel m_player2Score = new JLabel("" + 0);
+	private JLabel m_turnsTaken = new JLabel();
+	
+	private JLabel m_player1Piece = new JLabel();
+	private JLabel m_player2Piece = new JLabel();
+
+	private JPanel m_barPlayer1 = new JPanel();
+	private JPanel m_barPlayer2 = new JPanel();
+	//******************************
+	private JPanel m_setting = new JPanel();
+	private JLabel m_speed = new JLabel("Animation speed", JLabel.CENTER);
+	private JSlider m_slider;
+	private Dimension m_d;
+	private final int PADDING = 6;
+	private final int MINSPEED = 1;
+	private final int MAX_FALL_SPEED = 40;
+	private final int DEFAULT_FALL_SPEED = 20;
+	private final int MAX_FLIP_SPEED = 20;
+	private final int DEFAULT_FLIP_SPEED = 10;
+	private final int SLIDER_WIDTH = 80;
+	private final GUIEventHandler handler;
+	private JComboBox m_skin;
+	private final int V_GAP = 10;
+	private final int ROW = 5;
+	private final int SPEED_ROW = 2;
+	private Color m_p1colour;
+	private Color m_p2colour;
+	private BufferedImage m_p1piece;
+	private BufferedImage m_p2piece;
+	private JLabel m_timerLabel = new JLabel("00:00:00");
+	private int m_responseTime;
+	private final int BASETIME = 1000;
+	private final int TIME_RATIO = 50;
+	private final int OVALSIZE = 60;
+	private final int X = 14;
+	private final int AI_X = 24;
+	private final int YOUR_Y = 29;
+	private final int TURN_Y = 39;
+	private final int P1SCOREY = 1;
+	private final int P1PIECEY = 2;
+	private final int P2SCOREY = 1;
+	private final int P2PIECEY = 2;
+	private final int BAR2GRIDY = 1;
+	private final int BAR3GRIDY = 2;
+	private final int GRID2 = 2;
 }
