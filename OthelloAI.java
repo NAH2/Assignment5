@@ -291,11 +291,11 @@ public class OthelloAI extends Player {
 						if (getYourTurn()) {
 							
 							try {
+								setYourTurn(false);
 								getGame().moveMade(m_move);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							setYourTurn(false);
 						}
 				   }
 			   }
