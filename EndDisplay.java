@@ -15,13 +15,15 @@ import javax.swing.JPanel;
 
 /**
  * \\file -EndDisplay.java 
- * \author - Lewis Edwards
+ * \author - Lewis Edwards 708830
  * \date -26th March 14
  * 
  * \brief Displays this window when the game ends
  * 
- * This Class displaye the score when the game ends
+ * This Class display the score when the game ends
  * This class is tested by running a game
+ * 
+ * Class tested through other classes
  */
 public class EndDisplay extends JFrame implements ActionListener {
     /**
