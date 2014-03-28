@@ -20,7 +20,7 @@ public class PlayerSettings extends JFrame {
 	/**
 	 * Sets the game class with which player settings is to send its player data
 	 * 
-	 * \param the instance of the game class
+	 * \param game - the instance of the game class
 	 */
 	public void setGame(Game game) {
 		boolean test = false;
@@ -37,7 +37,7 @@ public class PlayerSettings extends JFrame {
 	/**
 	 * Returns the game class which player settings is to send its player data
 	 * 
-	 * \return pointer to game class
+	 * \return m_game - pointer to game class
 	 */
 	public Game getGame() {
 		boolean test = false;
@@ -54,8 +54,8 @@ public class PlayerSettings extends JFrame {
 	 * Runs methods inside
 	 * 
 	 * \param game instance of game class
-	 * \param isOthelloboolean indicating whether or not to limit player colour
-	 *            choices in othello.
+	 * \param isOthello - boolean indicating whether or not to limit player 
+	 * colour choices in othello.
 	 */
 	public PlayerSettings(Game game, boolean isOthello) {
 		boolean test = false;

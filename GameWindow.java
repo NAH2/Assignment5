@@ -21,7 +21,7 @@ public class GameWindow extends JFrame {
 	/**
 	 * Returns the main game class which this window is taking commands from.
 	 * 
-	 * \return Returns the pointer towards the game class that is currently
+	 * \return m_gameControl - the pointer towards the game class that is currently
 	 * being used.
 	 */
 	public Game getGame() {
@@ -58,7 +58,7 @@ public class GameWindow extends JFrame {
 	 * Returns the drawing class which controls all the graphical systems in the
 	 * window.
 	 * 
-	 * \return Returns a pointer towards the drawing class.
+	 * \return m_drawingControl - a pointer towards the drawing class.
 	 */
 	public Drawing getDrawing() {
 		boolean test = false;
@@ -124,7 +124,7 @@ public class GameWindow extends JFrame {
 	 * 
 	 * \param drawing The instance of the drawing class which is to be used.
 	 * 
-	 * \return Returns TRUE if successful.
+	 * \return TRUE if successful.
 	 */
 	private boolean setDrawing(Drawing drawing) {
 		boolean test = false;
@@ -141,7 +141,8 @@ public class GameWindow extends JFrame {
 	/**
 	 * Returns the control class which processes the users inputs commands.
 	 * 
-	 * \return Returns a pointer towards the control class being used.
+	 * \return m_controlsControl -Returns a pointer towards the control class 
+	 * being used.
 	 */
 	public Controls getControls() {
 		boolean test = false;
@@ -160,7 +161,7 @@ public class GameWindow extends JFrame {
 	 * 
 	 * \param controls The instance of the controls class which is to be used.
 	 * 
-	 * \return Returns TRUE if successful.
+	 * \return TRUE if successful.
 	 */
 	private boolean setControls(Controls controls) {
 		boolean test = false;
@@ -299,7 +300,7 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called to pass the invalid coordinate to gameboard graphics.
 	 * 
-	 * \param Coordinate -  the position of invalid move
+	 * \param move -  the position of invalid move
 	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayInvalidMove(Coordinate move) {
@@ -318,7 +319,7 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called to pass whether the move is valid to the gameboard graphics.
 	 * 
-	 * \param the boolean whether the move is valid or not
+	 * \param valid -  boolean whether the move is valid or not
 	 * \return Returns TRUE if successful.
 	 */
 	public boolean displayInvalidMove(boolean valid) {
@@ -409,6 +410,7 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called when the user clicks the restart game button on the menu bar
 	 * Stop all the threads and recreate the current game
+	 * \returns true on success
 	 */
 	private boolean restart(){
 		boolean test = false;
@@ -475,6 +477,7 @@ public class GameWindow extends JFrame {
 	/**
 	 * Called when the user clicks the new game button on the menu bar
 	 * Stop all the threads and recreate the game chooser window
+	 * \return true on success
 	 */
 	private boolean returnMainWindow(){
 		boolean test = false;
@@ -573,7 +576,7 @@ public class GameWindow extends JFrame {
         /**
          * checks whether the load is valid, if so it loads the game
          * 
-         * @param Loader l - reference to the loader object
+         * \param l - reference to the loader object
          */
         private void checkValid(Loader l) {
     		boolean test = false;
@@ -623,7 +626,7 @@ public class GameWindow extends JFrame {
 	/**
 	 * Test method.
 	 * 
-	 * \param No arguments.
+	 * \param args
 	 * \throws InterruptedException 
 	 */
 	public static void main(String args[]) throws InterruptedException {

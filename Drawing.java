@@ -39,7 +39,7 @@ public class Drawing {
 
 	/**
 	 * Method to set the game board
-	 * \param the board name
+	 * \param board name
 	 */
 	private void setBoard(String board){
 		boolean test = false;
@@ -53,7 +53,7 @@ public class Drawing {
 	}
 	/**
 	 * Method to set the animation speed
-	 * \param the animation speed ,an integer, represents millisecond time 
+	 * \param speed ,an integer, represents millisecond time 
 	 * delay per movement
 	 */
 	private void setSpeed(int speed){
@@ -131,7 +131,7 @@ public class Drawing {
 	
 	/**
 	 * This method sets the player 1 score on the side bar.
-	 * \param Score This hold the score for player 1 in an integer form.
+	 * \param score This hold the score for player 1 in an integer form.
 	 */
 	public void setPlayer1Score(int score){
 		boolean test = false;
@@ -146,7 +146,7 @@ public class Drawing {
 	
 	/**
 	 * This method sets the player 2 score on the side bar.
-	 * \param Score This hold the score for player 2 in an integer form.
+	 * \param score This hold the score for player 2 in an integer form.
 	 */
 	public void setPlayer2Score(int score){
 		boolean test = false;
@@ -412,7 +412,7 @@ public class Drawing {
 	
 	/**
 	 * This method returns the graphics that were created.
-	 * \return Returns the GameBoardGrpahics when it is called.
+	 * \return gameBoardGraphics when it is called.
 	 */
 	public GameBoardGraphics getGridPanel() {
 		boolean test = false;
@@ -427,7 +427,7 @@ public class Drawing {
 	
 	/**
 	 * This method returns the side bar that was created.
-	 * \return Returns the side bar which holds the scores for the game.
+	 * \return m_sideBar - Returns the side bar which holds the scores for the game.
 	 */
 	public JPanel getSideBarPanel() {
 		boolean test = false;
@@ -545,7 +545,8 @@ public class Drawing {
 	
 	/**
 	 * This method sets the grid.
-	 * \param grid  Holds information on the grid,.
+	 * \param grid  Holds information on the grid
+	 * \param game - reference to game
 	 */
 	public void setGrid(Grid grid, Game game){
 		boolean m_Trace = false;

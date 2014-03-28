@@ -28,7 +28,9 @@ public class Human extends Player {
 
 	/**
 	 * initialises player with a game, name and a colour
-	 * \Param game, name, color a game, name and color to be initialised
+	 * \param game - game to be initialised 
+	 * \param name - name to be initialised 
+	 * \param color - color to be initialised 
 	 */
 	public Human(Game game, String name, Color color) {
 		super(game, name, color);

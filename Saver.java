@@ -19,7 +19,7 @@ public class Saver extends FileManager{
     /**
      * Method to save the current state of the grid
      * 
-     * \param String data - created by Grid.java toString() method 
+     * \param data - created by Grid.java toString() method 
      * \return Boolaean true on success
      */
     public boolean saveGrid(String data) {
@@ -40,7 +40,7 @@ public class Saver extends FileManager{
     /**
      * Method to save the current state of player 1
      * 
-     * \param String data - created by Player.java toString() method 
+     * \param data - created by Player.java toString() method 
      */
     public boolean savePlayer1(String data) {
         boolean test = false;
@@ -60,7 +60,7 @@ public class Saver extends FileManager{
     /**
      * Method to save the current state of the player 2
      * 
-     * \param String data - created by Player.java toString() method 
+     * \param data - created by Player.java toString() method 
      */
     public boolean savePlayer2(String data) {
         boolean test = false;
@@ -80,7 +80,7 @@ public class Saver extends FileManager{
     /**
      * Method to save the current state of the timer
      * 
-     * \param String data - created by Timer.java toString() method 
+     * \param data - created by Timer.java toString() method 
      */
     public boolean saveTimer(String data) {
         boolean test = false;
@@ -100,8 +100,8 @@ public class Saver extends FileManager{
     /**
      * Method to save the data to file
      * 
-     * \param String data - sent from save methods
-     * \param String dataFile - the file address of where to save data 
+     * \param data - sent from save methods
+     * \param dataFile - the file address of where to save data 
      */
     public boolean saveData(String data,String dataFile) {
         boolean test = false;

@@ -173,7 +173,7 @@ public abstract class Game {
 	/**
 	 * Set's a variable which indicates which player's turn it currently is.
 	 * 
-	 * \param Turn - An enumerator "PlayerTurn" which indicates which player's 
+	 * \param turn - An enumerator "PlayerTurn" which indicates which player's 
 	 * turn it currently is. Can either be PLAYER1, PLAYER2 or NONE.
 	 * 
 	 * \return Returns TRUE if successful.
@@ -575,7 +575,7 @@ public abstract class Game {
 	/**
 	 * method to load and start a timer from file
 	 * 
-	 * \param Timer t - timer loaded from file
+	 * \param t - timer loaded from file
 	 */
 	public void startTimer(Timer t) {
 	    boolean test = false;
@@ -598,7 +598,7 @@ public abstract class Game {
 	/**
 	 * Accessor method to get m_timer
 	 * 
-	 * \return Timer m_timer
+	 * \return m_timer
 	 */
 	public Timer getTimer() {
 	    boolean test = false;
@@ -622,7 +622,7 @@ public abstract class Game {
 	/**
      * Abstract method to reset the game to the begining
      * 
-     * \param Player p - player whos turn it is
+     * \param p - player whos turn it is
      * \throws InterruptedException
      */
 	protected abstract void resetGame(Player p) throws InterruptedException;
@@ -724,8 +724,8 @@ public abstract class Game {
 	/**
 	 * method os overridden by connectfour
 	 * 
-	 * \param Coordinate coord2
-	 * \return int 0
+	 * \param coord2
+	 * \return 0
 	 */
 	public int blockOpponentChecker(Coordinate coord2) {
 		return 0;

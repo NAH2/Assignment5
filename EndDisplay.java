@@ -29,7 +29,7 @@ public class EndDisplay extends JFrame implements ActionListener {
     /**
      * accessor method to set m_game
      * 
-     * \param Game game - reference to game object
+     * \param game - reference to game object
      */
 	public void setGame(Game game){
 	    boolean test = false;
@@ -47,7 +47,7 @@ public class EndDisplay extends JFrame implements ActionListener {
 	/**
 	 * Accessor method to get m_game
 	 * 
-	 * \return Game m_game - reference to game object
+	 * \return m_game - reference to game object
 	 */
 	public Game getGame(){
 	    boolean test = false;
@@ -67,7 +67,7 @@ public class EndDisplay extends JFrame implements ActionListener {
 	 * used.
 	 * 
 	 * \param game This is an instance of the Game class.
-	 * \return Returns the frame for the statistics of player 1.
+	 * \return stats -Returns the frame for the statistics of player 1.
 	 */
 	private JPanel statsPlayer1(Game game) {
 	    boolean test = false;
@@ -121,7 +121,7 @@ public class EndDisplay extends JFrame implements ActionListener {
 	 * used
 	 * 
 	 * \param game
-	 * \return Returns the frame for the statistics of player 1.
+	 * \return stats - Returns the frame for the statistics of player 1.
 	 */
 	private JPanel statsPlayer2(Game game) {
 	    boolean test = false;

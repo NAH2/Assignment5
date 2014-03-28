@@ -14,7 +14,7 @@ public class OthelloLoader extends Loader{
     /**
      * Constructor to initiate the loading of the files
      * 
-     * \param Game game - A reference to the Game to be loaded
+     * \param g - A reference to the Game to be loaded
      */
     public OthelloLoader(Game g) {
         boolean test = false;
@@ -35,8 +35,8 @@ public class OthelloLoader extends Loader{
     /**
      * Test constructor
      * 
-     * \param Game game - reference to the game to be loaded
-     * \param String s - used to overload the constructor
+     * \param g - reference to the game to be loaded
+     * \param s - used to overload the constructor
      */
     public OthelloLoader(Game g, String s) {
         boolean test = false;

@@ -30,9 +30,9 @@ public class FileManager {
     /**
      * Accessor method to set individual index of m_gridArray
      * 
-     * \param int x - x index of m_gridArray
-     * \param int y - y index of m_gridArray
-     * \param Game.PlayerTurn pt - to be stored in the m_gridArray
+     * \param x - x index of m_gridArray
+     * \param y - y index of m_gridArray
+     * \param pt - to be stored in the m_gridArray
      * \return true on success
      */
     public Boolean setGridArray(int x, int y, Game.PlayerTurn pt) {
@@ -68,7 +68,7 @@ public class FileManager {
     /**
      * Accessor method to set m_game
      * 
-     * \param Game g - reference to current game
+     * \param g - reference to current game
      * \return true on success
      */
     public Boolean setGame(Game g) {
@@ -106,7 +106,7 @@ public class FileManager {
     /**
      * Accessor method to set path
      * 
-     * \param String path - the location of files to be saved and loaded
+     * \param p - the location of files to be saved and loaded
      * \return true on success
      */
     public boolean setPath(String p) {
@@ -142,7 +142,7 @@ public class FileManager {
     /**
      * Accessor method to set inFile
      * 
-     * \param String file - current file to work on
+     * \param file - current file to work on
      * \return true on success
      */
     public boolean setFile(String file) {
@@ -212,7 +212,7 @@ public class FileManager {
     /**
      * Accessor method to get player2 file location
      * 
-     * \return String PLAYER2_FILE - location of player2 save
+     * \return PLAYER2_FILE - location of player2 save
      */
     public String getPlayer2File() {
     	boolean test = false;
@@ -250,7 +250,7 @@ public class FileManager {
     /**
      * Accessor method to get reference to m_gridObj
      * 
-     * \return Grid m_gridObj - reference to the grid object
+     * \return m_gridObj - reference to the grid object
      */
     public Grid getGridObj() {
     	boolean test = false;
@@ -267,7 +267,7 @@ public class FileManager {
     /**
      * Accessor method to set player1
      * 
-     * \param Plater p - player object
+     * \param p - player object
      * \return true on success
      */
     public boolean setPlayer1(Player p) {
@@ -287,7 +287,7 @@ public class FileManager {
     /**
      * Accessor method to set player2
      * 
-     * \param Plater p - player object
+     * \param p - player object
      * \return true on success
      */
     public boolean setPlayer2(Player p) {
@@ -307,7 +307,7 @@ public class FileManager {
     /**
      * Accessor method to get player1
      * 
-     * \return Player m_player1 - player1 loaded from file
+     * \return m_player1 - player1 loaded from file
      */
     public Player getPlayer1() {
     	boolean test = false;
@@ -324,7 +324,7 @@ public class FileManager {
     /**
      * Accessor method to get player2
      * 
-     * \return Player m_player2 - player2 loaded from file
+     * \return m_player2 - player2 loaded from file
      */
     public Player getPlayer2() {
     	boolean test = false;
@@ -341,7 +341,7 @@ public class FileManager {
     /**
      * Accessor method to set m_timer
      * 
-     * \param Timer t - timer loaded from file
+     * \param t - timer loaded from file
      * \return true on success
      */
     public boolean setTimer(Timer t) {
@@ -361,7 +361,7 @@ public class FileManager {
     /**
      * Accessor method to get m_timer
      * 
-     * \return Timer m_timer - timer loaded from file
+     * \return m_timer - timer loaded from file
      */
     public Timer getTimer() {
     	boolean test = false;

@@ -174,7 +174,7 @@ public class Loader extends FileManager{
     /**
      * method to create the type of player to be loaded
      * 
-     * \param String type - which is a string of what player type needs to 
+     * \param type - which is a string of what player type needs to 
      * be created
      * \return Player - depending on what type has been created
      */
@@ -212,7 +212,7 @@ public class Loader extends FileManager{
     /**
      * Method to load the player information from file into an array
      * 
-     * \param String file - The file and its location to retrieve data from 
+     * \param file - The file and its location to retrieve data from 
      * \return True on success
      */
     public Boolean loadPlayer(String file) {
@@ -346,7 +346,7 @@ public class Loader extends FileManager{
     /**
      * accessor method for m_allValid 
      * 
-     * \return Boolean m_allValid - a flag to indicate if all files loaded 
+     * \return m_allValid - a flag to indicate if all files loaded 
      * are valid
      */
     public Boolean getValid() {

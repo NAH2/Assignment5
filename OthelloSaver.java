@@ -14,7 +14,7 @@ public class OthelloSaver extends Saver{
     /**
      * Constructor to initiate the saving of the files
      * 
-     * \param Game game - A reference to the Game to be saved
+     * \param g - A reference to the Game to be saved
      */
     public OthelloSaver(Game g) {
         boolean test = false;

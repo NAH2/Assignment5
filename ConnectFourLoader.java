@@ -14,7 +14,7 @@ public class ConnectFourLoader extends Loader{
     /**
      * Constructor to initiate the loading of the files
      * 
-     * \param Game game - A reference to the Game to be loaded
+     * \param game - A reference to the Game to be loaded
      */
     public ConnectFourLoader(Game game) {
         boolean test = false;
@@ -36,8 +36,8 @@ public class ConnectFourLoader extends Loader{
     /**
      * Test constructor
      * 
-     * \param Game game - reference to the game to be loaded
-     * \param String s - used to overload the constructor
+     * \param game - reference to the game to be loaded
+     * \param s - used to overload the constructor
      */
     public ConnectFourLoader(Game game, String s) {
         boolean test = false;

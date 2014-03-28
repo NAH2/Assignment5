@@ -29,8 +29,8 @@ public class GameBoardGraphics extends JComponent implements
 	/**
 	 * Methods to set whether the thread should be be running
 	 * 
-	 * \param the boolean false to stop the thread execution \return Returns
-	 * TRUE if successful.
+	 * \param run - the boolean false to stop the thread execution 
+	 * \return TRUE if successful.
 	 */
 	public boolean SetRun(boolean run) {
 		boolean test = false;
@@ -47,8 +47,9 @@ public class GameBoardGraphics extends JComponent implements
 	/**
 	 * Store the coordinate to be displayed when the move is not valid
 	 * 
-	 * \param the boolean whether the move is valid or not \param the Coordinate
-	 * of invalid move \return Returns TRUE if successful.
+	 * \param valid - the boolean whether the move is valid or not 
+	 * \param xmove - the Coordinate of invalid move 
+	 * \return TRUE if successful.
 	 */
 	public boolean SetValid(boolean valid, Coordinate xmove) {
 		boolean test = false;
@@ -66,8 +67,8 @@ public class GameBoardGraphics extends JComponent implements
 	/**
 	 * Set the boolean to true when the move is valid
 	 * 
-	 * \param the boolean whether the move is valid or not \return Returns TRUE
-	 * if successful.
+	 * \param valid - the boolean whether the move is valid or not 
+	 * \return TRUE if successful.
 	 */
 	public boolean SetValid(boolean valid) {
 		boolean test = false;
@@ -82,9 +83,9 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method which returns if the piece is flipping at the moment \return true
-	 * if the width of the piece is not equal to the original piece size, that
-	 * means it is flipping
+	 * Method which returns if the piece is flipping at the moment 
+	 * \return true if the width of the piece is not equal to the original 
+	 * piece size, that means it is flipping
 	 */
 	public boolean GetFlip() {
 		boolean test = false;
@@ -98,8 +99,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method responsible for setting AI move \param move - coordinate of AI
-	 * move
+	 * Method responsible for setting AI move 
+	 * \param move - coordinate of AI move
 	 */
 	public void SetAImove(Coordinate move) {
 		boolean test = false;
@@ -113,8 +114,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to set the animation speed \param the animation speed ,an integer,
-	 * represents millisecond time delay per movement
+	 * Method to set the animation speed 
+	 * \param speed - an integer represents millisecond time delay per movement
 	 */
 	public void SetSpeed(int speed) {
 		boolean test = false;
@@ -128,7 +129,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to set the game board \param the board name
+	 * Method to set the game board 
+	 * \param board name
 	 */
 	public void SetBoard(String board) {
 		boolean test = false;
@@ -143,7 +145,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to return the player1 object \return the player object
+	 * Method to return the player1 object 
+	 * \return m_player1
 	 */
 	public Player GetPlayer1() {
 		boolean test = false;
@@ -158,7 +161,7 @@ public class GameBoardGraphics extends JComponent implements
 	
 	/**
      * Method to set the player1 object 
-     * \param the player object
+     * \param p1 the player object
      * \return true on success
      */
     public boolean setPlayer1(Player p1) {
@@ -191,7 +194,7 @@ public class GameBoardGraphics extends JComponent implements
 	
 	/**
      * Method to set the player2 object 
-     * \param the player object
+     * \param p2 the player object
      * \return true on success
      */
     public boolean setPlayer2(Player p2) {
@@ -225,8 +228,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Setter method to set the value of a private member variable grid \param
-	 * grid - object storing data for the game grid
+	 * Setter method to set the value of a private member variable grid 
+	 * \param grid - object storing data for the game grid
 	 */
 	public void setGrid(Grid grid) {
 		boolean test = false;
@@ -242,8 +245,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to get the constant SQUARE_WIDTH \return constant variable
-	 * SQUARE_WIDTH
+	 * Method to get the constant SQUARE_WIDTH 
+	 * \return SQUARE_WIDTH
 	 */
 
 	public int getSquareWidth() {
@@ -258,8 +261,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to get the constant SQUARE_HEIGHT \return constant variable
-	 * SQUARE_HEIGHT
+	 * Method to get the constant SQUARE_HEIGHT 
+	 * \return SQUARE_HEIGHT
 	 */
 
 	public int getSquareHeight() {
@@ -274,7 +277,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to get the constant Y_SQUARES \return constant variable Y_SQUARES
+	 * Method to get the constant Y_SQUARES 
+	 * \return Y_SQUARES
 	 */
 
 	public int getYSquares() {
@@ -289,7 +293,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to get the constant X_SQUARES \return constant variable X_SQUARES
+	 * Method to get the constant X_SQUARES 
+	 * \return X_SQUARES
 	 */
 
 	public int getXSquares() {
@@ -304,8 +309,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to set the game is not over after the game restarts \param isOver
-	 * - the boolean true means the game is over
+	 * Method to set the game is not over after the game restarts 
+	 * \param isOver - the boolean true means the game is over
 	 */
 	public void SetOver(boolean isOver) {
 		boolean test = false;
@@ -320,9 +325,9 @@ public class GameBoardGraphics extends JComponent implements
 
 	/**
 	 * Method to get the winning piece coordinates for showing the winning
-	 * pieces graphically, signal the game is over \param win - a set of winning
-	 * piece coordinates without repetition \param over - a boolean, true when
-	 * the game is over
+	 * pieces graphically, signal the game is over 
+	 * \param win - a set of winning piece coordinates without repetition 
+	 * \param over - a boolean, true when the game is over
 	 */
 	public void setIsOver(boolean over, Set<Coordinate> win) {
 		boolean test = false;
@@ -337,9 +342,9 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method for generating animation of pieces in both game \param type - type
-	 * of animation that is either flip or fall \param changes - the list stores
-	 * the pieces which need the animation
+	 * Method for generating animation of pieces in both game 
+	 * \param type - type of animation that is either flip or fall 
+	 * \param changes - the list stores the pieces which need the animation
 	 */
 	public void SetAnimation(String type, ArrayList<Coordinate> changes) {
 		boolean test = false;
@@ -407,9 +412,10 @@ public class GameBoardGraphics extends JComponent implements
 
 	/**
 	 * Class Constructor for GameBoardGraphics, initialises all necessary
-	 * variables. \param grid - object storing data for the game grid \param
-	 * player1 - object containing the data for player 1 \param player2 - object
-	 * containing the data for player 2
+	 * variables. 
+	 * \param grid - object storing data for the game grid 
+	 * \param player1 - object containing the data for player 1 
+	 * \param player2 - object containing the data for player 2
 	 */
 	public GameBoardGraphics(Grid grid, Player player1, Player player2)
 			throws IOException {
@@ -437,7 +443,7 @@ public class GameBoardGraphics extends JComponent implements
 
 	/**
 	 * Method to update all the GUI elements and paint them to the screen.
-	 * \param g - graphics object to handle all the data for creating /
+	 * \param g - graphics object to handle all the data for creating
 	 * repainting the gameboard
 	 */
 	@Override
@@ -515,10 +521,9 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method for drawing the Connect four game board \param g2 - graphics
-	 * object to handle all the data for creating \param i - point X of the
-	 * board \param j - point Y of the board \return true when the method
-	 * completes
+	 * Method for drawing the Connect four game board 
+	 * \param g2 - graphics object to handle all the data for creating 
+	 * \return true when the method completes
 	 */
 	public boolean paintConnectFourBoard(Graphics2D g2) {
 		boolean test = false;
@@ -546,9 +551,10 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method for drawing the Othello game board \param g2 - graphics object to
-	 * handle all the data for creating \param i - point X of the board \param j
-	 * - point Y of the board \return true when the method completes
+	 * Method for drawing the Othello game board 
+	 * \param g2 - graphics object to handle all the data for creating 
+	 * \param i - point X of the board 
+	 * \param j - point Y of the board \return true when the method completes
 	 */
 	public boolean paintOthelloBoard(Graphics2D g2, int i, int j) {
 		boolean test = false;
@@ -585,10 +591,11 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method for drawing the pieces to the game board \param g2 - graphics
-	 * object to handle all the data for creating \param i - point X of the
-	 * board \param j - point Y of the board \return true when the method
-	 * completes
+	 * Method for drawing the pieces to the game board 
+	 * \param g2 - graphics object to handle all the data for creating
+	 * \param i - point X of the board 
+	 * \param j - point Y of the board 
+	 * \return true when the method completes
 	 */
 	public boolean paintBoardPiece(Graphics2D g2, int i, int j) {
 		boolean test = false;
@@ -631,9 +638,10 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to paint the available moves in othello \param g2 - graphics
-	 * object to handle all the data for creating \param i - point X of the
-	 * board \param j - point Y of the board
+	 * Method to paint the available moves in othello 
+	 * \param g2 - graphics object to handle all the data for creating 
+	 * \param i - point X of the board 
+	 * \param j - point Y of the board
 	 */
 	private void paintAvailableMove(Graphics2D g2, int i, int j) {
 		boolean test = false;
@@ -682,8 +690,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to paint the animation of the falling connect four piece \param g2
-	 * - graphics object to handle all the data for creating
+	 * Method to paint the animation of the falling connect four piece 
+	 * \param g2 - graphics object to handle all the data for creating
 	 */
 	private void paintFall(Graphics2D g2) {
 		boolean test = false;
@@ -705,9 +713,10 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to paint the animation of the flipping othello piece \param g2 -
-	 * graphics object to handle all the data for creating \param i - point X of
-	 * the piece to be flipped \param j - point Y of the piece to be flipped
+	 * Method to paint the animation of the flipping othello piece 
+	 * \param g2 - graphics object to handle all the data for creating 
+	 * \param i - point X of the piece to be flipped 
+	 * \param j - point Y of the piece to be flipped
 	 */
 	private void paintFlip(Graphics2D g2, int i, int j)
 			throws NullPointerException, ConcurrentModificationException {
@@ -779,8 +788,8 @@ public class GameBoardGraphics extends JComponent implements
 	}
 
 	/**
-	 * Method to show green dots on the winning pieces when the game ends \param
-	 * g - graphics object to handle all the data for creating
+	 * Method to show green dots on the winning pieces when the game ends 
+	 * \param g - graphics object to handle all the data for creating
 	 */
 	private void paintWin(Graphics g) {
 		boolean test = false;
@@ -841,10 +850,10 @@ public class GameBoardGraphics extends JComponent implements
 	/**
 	 * Test method.
 	 * 
-	 * \param No arguments.
+	 * \param args
 	 * 
-	 * @throws IOException
-	 * @throws InterruptedException
+	 * \throws IOException
+	 * \throws InterruptedException
 	 */
 	public static void main(String args[]) throws IOException,
 			InterruptedException {

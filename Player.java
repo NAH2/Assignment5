@@ -12,7 +12,8 @@ public abstract class Player {
 	
 	/**
 	 * Sets the game that is going to be played
-	 * \param instance of the game class
+	 * \param game - instance of the game class
+	 * \return true on success
 	 */
 	protected Boolean setGame(Game game) {
 		m_game = game;
@@ -20,21 +21,21 @@ public abstract class Player {
 	}
 	/**
 	 * Gets the game thats going to be played
-	 * \return game being played
+	 * \return m_game being played
 	 */
 	protected Game getGame() {
 		return m_game;
 	}
 	/**
 	 * Gets whether the turn is each players'
-	 * \return true or false whether it is the players' turn
+	 * \return m_YourTurn or false whether it is the players' turn
 	 */
 	protected boolean getYourTurn() {
 		return m_YourTurn;
 	}
 	/**
 	 * Sets whether the turn is each players'
-	 * \param set to true if it is players turn, otherwise false
+	 * \param turn - set to true if it is players turn, otherwise false
 	 */
 	protected boolean setYourTurn(boolean turn) {
 		m_YourTurn = turn;
@@ -43,7 +44,8 @@ public abstract class Player {
 	
 	/**
 	 * Sets the player name
-	 * \param m_playerName a string for the player name
+	 * \param playerName a string for the player name
+	 * \return true on success
 	 */
 	public boolean setPlayerName(String playerName){
 		this.m_playerName=playerName;
@@ -51,7 +53,8 @@ public abstract class Player {
 	}
 	/**
 	 * sets the player colour
-	 * \param m_playerColour for the players colour
+	 * \param playerColour for the players colour
+	 * \return true on success
 	 */
 	public boolean setPlayerColour(Color playerColour){
 		m_playerColour = playerColour;

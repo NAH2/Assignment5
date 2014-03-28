@@ -20,7 +20,7 @@ public class Othello extends Game{
 	
 	/** 
 	* Return the winning piece coordinates
-	* \return the set which stores the winning piece coordinates
+	* \return m_win - the set which stores the winning piece coordinates
 	*/
 	public Set<Coordinate> getWin(){
 		boolean test = false;
@@ -147,7 +147,7 @@ public class Othello extends Game{
 	/**
 	 * resets the game so a game can be loaded from file
 	 * 
-	 * \param Player p - player whos turn it is 
+	 * \param p - player whos turn it is 
 	 * \throws InterruptedException
 	 */
 	public void resetGame(Player p) throws InterruptedException {
@@ -310,7 +310,6 @@ public class Othello extends Game{
 	}
 	/**
 	 * Checks if a given player selecting a given coordinate is a valid move.
-	 * \param player A valid player object used by the current game.
 	 * \param xy A coordinate specifying x and y values into the grid.
 	 * \return	True if the specified move can be made, false otherwise.
 	 */
@@ -411,6 +410,9 @@ public class Othello extends Game{
 	/**
 	 * (PRIVATE) checkBound checks to see if the opposing player's pieces
 	 * are bound/trapped in a given direction by the current player's pieces.
+	 * \param start - start coordinate
+	 * \param xdir  - x direction 
+	 * \param ydir - y direction
 	 */
 	private boolean checkBound(Coordinate start, int xdir, int ydir) {
 		boolean test = false;
@@ -469,10 +471,9 @@ public class Othello extends Game{
 	 * doesn't actually write to the grid itself; this means that you can use
 	 * this method to see how good a move is before you commit it to the grid -
 	 * which would be helpful for implementing the AI).
-	 * \param player A valid player object used by the current game.
 	 * \param xy A coordinate specifying x and y values into the grid specifying
 	 * 			 a valid move.
-	 * \return	A list of captured pieces, possibly of length zero,
+	 * \return	capture - A list of captured pieces, possibly of length zero,
 	 *          as an array of coordinates specifying x, y, and
 	 *          owning player value.
 	 */
@@ -514,7 +515,6 @@ public class Othello extends Game{
 	/**
 	 * Calculates the potential score of a move, for use by an AI player who
 	 * wants to pick the best move.
-	 * \param player A valid player object used by the current game.
 	 * \param xy A coordinate specifying x and y values into the grid.
 	 * \return	The score of the move.
 	 */
@@ -615,11 +615,10 @@ public class Othello extends Game{
 	
 	/**
 	 * (PRIVATE) Captures pieces in a direction.
-	 * \param player A valid player object used by the current game.
 	 * \param xy A coordinate specifying x and y values into the grid.
 	 * \param xdir Horizontal direction value in which to capture.
 	 * \param ydir Vertical direction value in which to capture.
-	 * \return	A list of captured pieces, possibly of length zero,
+	 * \return	capture - A list of captured pieces, possibly of length zero,
 	 *          as an array of coordinates specifying x, y, and
 	 *          owning player value.
 	 */
@@ -804,6 +803,7 @@ public class Othello extends Game{
 	 * 
 	 * \throws IOException 
 	 * \throws InterruptedException
+	 * \param args
 	*/
 	public static void main(String[] args) throws InterruptedException, 
 	                                                               IOException {

@@ -101,7 +101,7 @@ public class ConnectFour extends Game {
 	/**
      * resets the game so a game can be loaded from file
      * 
-     * \param Player p - player whos turn it is 
+     * \param p - player whos turn it is 
      * \throws InterruptedException
      */
     public void resetGame(Player p ) throws InterruptedException {
