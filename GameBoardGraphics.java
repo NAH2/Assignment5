@@ -433,7 +433,6 @@ public class GameBoardGraphics extends JComponent implements
 								Thread.sleep(200);
 								m_valid = true;
 							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
