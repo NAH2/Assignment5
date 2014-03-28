@@ -416,7 +416,7 @@ public class GameBoardGraphics extends JComponent implements
 
 				if (m_type.equals("fall") && m_changes.size() > 0) {
 					if (i == m_changes.get(0).getX() * getSquareWidth()
-							&& j == m_changes.get(0).getY() * getSquareHeight()) {
+						  && j == m_changes.get(0).getY() * getSquareHeight()) {
 						continue;
 					}
 				}
@@ -447,12 +447,12 @@ public class GameBoardGraphics extends JComponent implements
 		if (!m_isOver) {
 			if (PLAYER1_COLOUR.equals(Color.BLACK)
 					|| PLAYER1_COLOUR.equals(Color.WHITE)) {
-				if (m_AImove != null
-						&& !m_changes.isEmpty()
-						&& ((m_changes.get(0).getValue() == Game.PlayerTurn.PLAYER1 &&
-						(m_player1 instanceof OthelloAI || m_player1 instanceof AIEasy)) || (m_changes
-								.get(0).getValue() == Game.PlayerTurn.PLAYER2 &&
-								(m_player2 instanceof OthelloAI || m_player2 instanceof AIEasy)))) {
+				if (m_AImove != null && !m_changes.isEmpty() && ((m_changes.
+				        get(0).getValue() == Game.PlayerTurn.PLAYER1 &&
+						(m_player1 instanceof OthelloAI || m_player1 instanceof 
+						AIEasy)) || (m_changes.get(0).getValue() == Game.
+						PlayerTurn.PLAYER2 && (m_player2 instanceof OthelloAI 
+						                    || m_player2 instanceof AIEasy)))) {
 
 					g2.setColor(Color.RED);
 					g2.setStroke(new BasicStroke(4));
@@ -486,8 +486,8 @@ public class GameBoardGraphics extends JComponent implements
 	public boolean paintConnectFourBoard(Graphics2D g2) {
 		boolean test = false;
 		if (test || m_test) {
-			System.out
-					.println("GameBoardGraphics :: paintConnectFourBoard() BEGIN");
+			System.out.println("GameBoardGraphics :: paintConnectFourBoard() "
+			                                                         + "BEGIN");
 		}
 		if (PLAYER1_COLOUR.equals(Color.YELLOW)
 				|| PLAYER1_COLOUR.equals(Color.RED)) {
@@ -498,12 +498,12 @@ public class GameBoardGraphics extends JComponent implements
 				g2.drawImage(CONNECT4BOARD3, 0, 0, GRID_WIDTH, GRID_HEIGHT,
 						null);
 			} else {
-				g2.drawImage(CONNECT4BOARD, 0, 0, GRID_WIDTH, GRID_HEIGHT, null);
+				g2.drawImage(CONNECT4BOARD, 0, 0, GRID_WIDTH, GRID_HEIGHT,null);
 			}
 		}
 		if (test || m_test) {
-			System.out
-					.println("GameBoardGraphics :: paintConnectFourBoard() END");
+			System.out.println("GameBoardGraphics :: paintConnectFourBoard() "
+			                                                           + "END");
 		}
 		return true;
 	}
@@ -560,7 +560,7 @@ public class GameBoardGraphics extends JComponent implements
 		}
 		if (!m_flippingPiece) {
 			if (getGrid().getCoordinate(i / getSquareWidth(),
-					j / getSquareHeight()).getValue() == Game.PlayerTurn.PLAYER1) {
+			     j / getSquareHeight()).getValue() == Game.PlayerTurn.PLAYER1) {
 				if (PLAYER1_COLOUR.equals(Color.white)) {
 					g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE,
 							PIECE_SIZE, null);
@@ -573,7 +573,7 @@ public class GameBoardGraphics extends JComponent implements
 							PIECE_SIZE);
 				}
 			} else if (getGrid().getCoordinate(i / getSquareWidth(),
-					j / getSquareHeight()).getValue() == Game.PlayerTurn.PLAYER2) {
+				 j / getSquareHeight()).getValue() == Game.PlayerTurn.PLAYER2) {
 				if (PLAYER2_COLOUR.equals(Color.white)) {
 					g2.drawImage(WHITE, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE,
 							PIECE_SIZE, null);
