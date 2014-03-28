@@ -95,7 +95,7 @@ public class GameBoardGraphics extends JComponent implements
 		if (test || m_test) {
 			System.out.println("GameBoardGraphics :: GetFlip() END");
 		}
-		return m_w != PIECE_SIZE;
+		return m_w < PIECE_SIZE;
 	}
 
 	/**
