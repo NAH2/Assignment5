@@ -15,6 +15,15 @@ public class FileManager {
      * \return String TIMER_FILE - loacation of timer save file
      */
     public String getTimerFile() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getTimerFile() BEGIN");
+		}
+
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getTimerFile() END");
+		}
         return TIMER_FILE;
     }
     
@@ -27,7 +36,15 @@ public class FileManager {
      * \return true on success
      */
     public Boolean setGridArray(int x, int y, Game.PlayerTurn pt) {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: setGridArray() BEGIN");
+		}
         m_gridArray[x][y] = pt;
+        
+        if (test || m_test) {
+			System.out.println("FileManager :: setGridArray() END");
+		}
         return true;
     }
     
@@ -37,6 +54,14 @@ public class FileManager {
      * \return Game.Playerturn m_gridArray
      */
     public Game.PlayerTurn[][] getGridArray() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getGridArray() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getGridArray() END");
+		}
         return m_gridArray;
     }
     
@@ -47,8 +72,16 @@ public class FileManager {
      * \return true on success
      */
     public Boolean setGame(Game g) {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: setGame() BEGIN");
+		}
         m_game = g;
         setGridObj();
+        
+        if (test || m_test) {
+			System.out.println("FileManager :: setGame() END");
+		}
         
         return true;
     }
@@ -59,6 +92,14 @@ public class FileManager {
      * \return Game m_game - reference to game
      */
     public Game getGame() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getGame() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getGame() END");
+		}
         return m_game;
     }
     
@@ -69,8 +110,15 @@ public class FileManager {
      * \return true on success
      */
     public boolean setPath(String p) {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: setPath() BEGIN");
+		}
         m_path = p;
         
+        if (test || m_test) {
+			System.out.println("FileManager :: setPath() END");
+		}
         return true;
     }
     
@@ -80,6 +128,14 @@ public class FileManager {
      * \return String path
      */
     public String getPath() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getPath() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getPath() END");
+		}
         return m_path;
     }
     
@@ -90,7 +146,15 @@ public class FileManager {
      * \return true on success
      */
     public boolean setFile(String file) {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: setFile() BEGIN");
+		}
         m_inFile = new File(this.m_path + file);
+        
+        if (test || m_test) {
+			System.out.println("FileManager :: setFile() END");
+		}
         return true;
     }
     
@@ -100,6 +164,14 @@ public class FileManager {
      * \return File inFile
      */
     public File getFile() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getFile() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getFile() END");
+		}
         return m_inFile;
     }
     
@@ -109,6 +181,14 @@ public class FileManager {
      * \return String GRID_FILE - location of grid save
      */
     public String getGridFile() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getGridFile() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getGridFile() END");
+		}
         return GRID_FILE;
     }
     
@@ -118,6 +198,14 @@ public class FileManager {
      * \return String PLAYER1_FILE - location of player1 save
      */
     public String getPlayer1File() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getPlayer2File() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getPlayer2File() END");
+		}
         return PLAYER1_FILE;
     }
     
@@ -127,6 +215,14 @@ public class FileManager {
      * \return String PLAYER2_FILE - location of player2 save
      */
     public String getPlayer2File() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getPlayer2File() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getPlayer2File() END");
+		}
         return PLAYER2_FILE;
     }
     
@@ -136,8 +232,18 @@ public class FileManager {
      * \return true on success
      */
     public boolean setGridObj() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: setGridObj() BEGIN");
+		}
+		
+		
         m_gridObj = m_game.getGrid();
         
+        
+        if (test || m_test) {
+			System.out.println("FileManager :: setGridObj() END");
+		}
         return true;
     }
     
@@ -147,6 +253,14 @@ public class FileManager {
      * \return Grid m_gridObj - reference to the grid object
      */
     public Grid getGridObj() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getGridObj() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getGridObj() END");
+		}
         return m_gridObj;
     }
     
@@ -157,8 +271,16 @@ public class FileManager {
      * \return true on success
      */
     public boolean setPlayer1(Player p) {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: setPlayer1() BEGIN");
+		}
         m_player1 = p;
         
+        
+        if (test || m_test) {
+			System.out.println("FileManager :: setPlayer1() END");
+		}
         return true;
     }
     
@@ -169,8 +291,16 @@ public class FileManager {
      * \return true on success
      */
     public boolean setPlayer2(Player p) {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: setPlayer2() BEGIN");
+		}
         m_player2 = p;
         
+        
+        if (test || m_test) {
+			System.out.println("FileManager :: setPlayer2() END");
+		}
         return true;
     }
     
@@ -180,6 +310,14 @@ public class FileManager {
      * \return Player m_player1 - player1 loaded from file
      */
     public Player getPlayer1() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getPlayer1() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getPlayer1() END");
+		}
         return m_player1;
     }
     
@@ -189,6 +327,14 @@ public class FileManager {
      * \return Player m_player2 - player2 loaded from file
      */
     public Player getPlayer2() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getPlayer2() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getPlayer2() END");
+		}
         return m_player2;
     }
     
@@ -199,8 +345,16 @@ public class FileManager {
      * \return true on success
      */
     public boolean setTimer(Timer t) {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: setTimer() BEGIN");
+		}
         m_timer = t;
         
+        
+        if (test || m_test) {
+			System.out.println("FileManager :: setTimer() END");
+		}
         return true;
     }
     
@@ -210,6 +364,14 @@ public class FileManager {
      * \return Timer m_timer - timer loaded from file
      */
     public Timer getTimer() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: getTimer() BEGIN");
+		}
+		
+		if (test || m_test) {
+			System.out.println("FileManager :: getTimer() END");
+		}
         return m_timer;
     }
     
@@ -219,8 +381,16 @@ public class FileManager {
      * \return true on success
      */
     public Boolean initialiseGrid() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: initialiseGrid() BEGIN");
+		}
         m_gridArray = new Game.PlayerTurn[m_gridObj.getGridWidth()][m_gridObj.getGridHeight()];
         
+        
+        if (test || m_test) {
+			System.out.println("FileManager :: initialiseGrid() END");
+		}
         return true;
     }
     
@@ -230,8 +400,16 @@ public class FileManager {
      * \return true on success
      */
     public boolean createDirs() {
+    	boolean test = false;
+		if (test || m_test) {
+			System.out.println("FileManager :: createDirs() BEGIN");
+		}
         new File(getPath()).mkdirs();
         
+        
+        if (test || m_test) {
+			System.out.println("FileManager :: createDirs() END");
+		}
         return true;
     }
     
@@ -255,4 +433,6 @@ public class FileManager {
     private Timer m_timer;
     /** reference to the game object */
     private Game m_game;
+    /**Test boolean for testing*/
+    private boolean m_test = false;
 }
