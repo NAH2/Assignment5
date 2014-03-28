@@ -684,7 +684,7 @@ public class PlayerSettings extends JFrame {
 				m_game.resumeGame();
 				getGame().startTimer(l.getTimer());
 			} else {
-				JOptionPane.showMessageDialog(player, "ERROR Laoding File",
+				JOptionPane.showMessageDialog(player, "ERROR Loading File",
 						"Load ERROR", JOptionPane.ERROR_MESSAGE);
 				dispose();
 				new GameSelecter();

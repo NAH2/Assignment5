@@ -599,7 +599,7 @@ public class GameWindow extends JFrame {
                 getGame().setTurnCount(p1Score + p2Score);
                 m_drawingControl.getGridPanel().repaint();
             }else {
-                JOptionPane.showMessageDialog(null, "ERROR Laoding File",
+                JOptionPane.showMessageDialog(null, "ERROR Loading File",
                 "Load ERROR",JOptionPane.ERROR_MESSAGE);                				
             }
     		if (test || m_test) {
