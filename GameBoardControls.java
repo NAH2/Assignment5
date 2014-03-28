@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -84,6 +85,7 @@ public class GameBoardControls extends MouseAdapter {
 	}
 	
 	/**
+	 * Changed to accommodate the new AI classes
 	 * This method is called whenever the mouse is clicked and overwrites the
 	 * mouseClicked method within the MouseAdapter class that this extends.
 	 */
@@ -97,11 +99,14 @@ public class GameBoardControls extends MouseAdapter {
 		try {
 			if(((m_controls.getGameWindow().getGame().getPlayerTurn() 
 					== Game.PlayerTurn.PLAYER1 && 
-				m_controls.getGameWindow().getGame().getPlayer1() instanceof Human)||
+				m_controls.getGameWindow().getGame().getPlayer1() 
+				instanceof Human)||
 				(m_controls.getGameWindow().getGame().getPlayerTurn() 
 					== Game.PlayerTurn.PLAYER2 && 
-				m_controls.getGameWindow().getGame().getPlayer2() instanceof Human))&&
-				(!m_controls.getGameWindow().getDrawing().getGridPanel().GetFlip())){
+				m_controls.getGameWindow().getGame().getPlayer2() 
+				instanceof Human))&&
+				(!m_controls.getGameWindow().getDrawing().getGridPanel().
+						GetFlip())){
 					getControls().moveMade(new Coordinate(gridX, gridY));
 			}
 			//getControls().moveMade(new Coordinate(gridX, gridY));
@@ -110,8 +115,38 @@ public class GameBoardControls extends MouseAdapter {
 			e1.printStackTrace();
 		}
 	}
+	
+	public static void main(String args[]) throws InterruptedException{
+		int testWidth =30;
+		int testHeight = 30;
+		Game connect4 = new ConnectFour();
+		Player player1 = new Human(connect4);
+		Player player2 = new ConnectFourAI(connect4);
+		player1.setPlayerName("Gavin");
+		player2.setPlayerName("Lucy");
+		player1.setPlayerColour(Color.RED);
+		player2.setPlayerColour(Color.YELLOW);
+		connect4.setPlayer1(player1);
+		connect4.setPlayer2(player2);
+		connect4.start();
+		GameBoardControls controls = new GameBoardControls(
+				testWidth,testHeight,connect4.getWindow().getControls());
+		controls.setCellHeight(testHeight + 1);
+		controls.setCellWidth(testWidth + 1);
+		if(controls.getCellHeight() == testHeight+1)
+			System.out.println("Changed Height Success");
+		if(controls.getCellWidth() == testWidth + 1)
+			System.out.println("Changed Width Success");
+		controls.setControls(connect4.getWindow().getControls());
+		if(connect4.getWindow().getControls() == controls.getControls())
+			System.out.println("Controls are the same");
+		
+	}
 
+	/**The cell width*/
 	private int m_cellWidth;
+	/**The cell height*/
 	private int m_cellHeight;
+	/**The Controls reference stored here*/
 	private Controls m_controls;
 }
