@@ -585,6 +585,8 @@ public class GameWindow extends JFrame {
                 getGame().getGrid().setGrid(l.getGridArray());
                 getGame().setPlayer1(l.getPlayer1());
                 getDrawing().setPlayer1(l.getPlayer1());
+                getDrawing().getGridPanel().setPlayer1(l.getPlayer1());
+                getDrawing().getGridPanel().setPlayer2(l.getPlayer2());
                 getGame().setPlayer2(l.getPlayer2());
                 getDrawing().setPlayer2(l.getPlayer2());
                 

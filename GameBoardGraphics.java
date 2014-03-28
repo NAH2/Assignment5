@@ -155,6 +155,25 @@ public class GameBoardGraphics extends JComponent implements
 		}
 		return m_player1;
 	}
+	
+	/**
+     * Method to set the player1 object 
+     * \param the player object
+     * \return true on success
+     */
+    public boolean setPlayer1(Player p1) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("GameBoardGraphics :: setPlayer1() BEGIN");
+        }
+        
+        m_player1 = p1;
+        
+        if (test || m_test) {
+            System.out.println("GameBoardGraphics :: setPlayer1() END");
+        }
+        return true;
+    }
 
 	/**
 	 * Method to return the player2 object \return the player object
@@ -169,6 +188,25 @@ public class GameBoardGraphics extends JComponent implements
 		}
 		return m_player2;
 	}
+	
+	/**
+     * Method to set the player2 object 
+     * \param the player object
+     * \return true on success
+     */
+    public boolean setPlayer2(Player p2) {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("GameBoardGraphics :: setPlayer2() BEGIN");
+        }
+        
+        m_player2 = p2;
+        
+        if (test || m_test) {
+            System.out.println("GameBoardGraphics :: setPlayer2() END");
+        }
+        return true;
+    }
 
 	/**
 	 * returns the variable m_grid to the caller of the method. \return private
