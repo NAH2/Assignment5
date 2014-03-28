@@ -7,7 +7,7 @@ import java.util.*;
 import javax.swing.*;
 /**
  * \\file GameWindow.java
- * \author Gavin Tsang 658679
+ * \author Gavin Tsang 658679, Chun Kit So
  * \date 27/02/2014
  * 
  * \brief This class is used to initialise the main GUI window.

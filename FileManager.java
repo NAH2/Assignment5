@@ -1,7 +1,7 @@
 import java.io.File;
 /**
  * \\file -FileManager.java 
- * \author - ADDME
+ * \author -Tyrone Bramwell
  * \date -26th March 14
  * 
  * \brief Class to handle the locations of individual files

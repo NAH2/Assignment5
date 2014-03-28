@@ -2,7 +2,7 @@ import java.util.*;
 
 /**
  * \\file Game.Java
- * \author G. Tsang
+ * \author G. Tsang, Chun Kit So
  * \date 11/02/2014
  * 
  * \brief Main control class which processes the overall game logic.

@@ -1,6 +1,6 @@
 /**
  * \\file -OthelloLoader.java 
- * \author - ADDME
+ * \author - Chak Yak Lam, Chun Kit So
  * \date -26th March 14
  * 
  * \see FileManager.java

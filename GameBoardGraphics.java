@@ -14,7 +14,7 @@ import java.lang.NullPointerException;
 
 /**
  * \\file GameBoardGraphics.java 
- * \author Daniel 709547 
+ * \author Daniel 709547, Chak Yan Lam
  * \date 25/02/2014 
  * 
  * \brief

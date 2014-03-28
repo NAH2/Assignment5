@@ -1,6 +1,6 @@
 /**
  * \\file - Timer.java 
- * \author Thomas Letheby 
+ * \author Thomas Letheby 659204, Jake Plumley
  * \date 26th March 14
  * 
  * \see GameWindow.java

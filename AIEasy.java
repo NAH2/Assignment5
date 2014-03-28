@@ -2,7 +2,7 @@ import java.util.*;
 import java.awt.Color;
 /**
  * \\file -AIEasy.java 
- * \author -Tyrone Bramwell
+ * \author -Tyrone Bramwell, Chak Yak Lam
  * \date -26th March 14
  * 
  * \brief This class contains methods to create and run a AI 

@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * \\file GameBoardControls.java
- * \author Gavin Tsang 658679
+ * \author Gavin Tsang 658679, Chun	Kit So
  * \date 20/02/2014
  * 
  * \brief This class processes user interactions on the Grid Board.

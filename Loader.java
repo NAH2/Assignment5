@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.util.Scanner;
 /**
  * \\file -Loader.java 
- * \author - ADDME
+ * \author - Gavin Bailey 711036, Chun Kit So
  * \date -26th March 14
  * 
  * \see FileManager.java

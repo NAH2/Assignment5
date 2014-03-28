@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * \\file -ConnectFour.java 
- * \author -G. Howard 
+ * \author -G. Howard, Jake Plumley
  * \date -14/02/2014
  * 
  * \brief Class that extends Game by using the rules of ConnectFour.

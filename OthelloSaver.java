@@ -1,6 +1,6 @@
 /**
  * \\file -OthelloSaver.java 
- * \author - ADDME
+ * \author -Gavin Bailey 711036
  * \date -26th March 14
  * 
  * \see FileManager.java

@@ -3,7 +3,7 @@ import java.util.*;
 
 /**
  *  \\file	OthelloAI.Java
- * 	\author	Mathew Lloyd 711293
+ * 	\author	Mathew Lloyd 711293, Chak Yak Lam
  * 	\date	24/03/2014
  * 	
  * \brief The AI for Othello to make a move

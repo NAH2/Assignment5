@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  *  \\file	-Othello.Java
- * 	\author	-B. Golightly
+ * 	\author	-B. Golightly, Mathew Lloyd 711293
  * 	\date	-12/02/2014
  * 	
  * 	\brief	Extends Game with the rules of Othello as specified. 

@@ -24,7 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 /**
  * \\file Drawing.java
- * \author Lewis Edwards 708830
+ * \author Lewis Edwards 708830, Thomas Letheby
  * \date 26 Feb 2014
  * 
  * 

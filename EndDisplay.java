@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 /**
  * \\file -EndDisplay.java 
- * \author - Lewis Edwards 708830
+ * \author - Lewis Edwards 708830, Thomas Letherby
  * \date -26th March 14
  * 
  * \brief Displays this window when the game ends
