@@ -163,7 +163,8 @@ public class Grid {
 			Grid g2 = new Grid(GRIDTEST,GRIDTEST3);
 			Coordinate c1 = new Coordinate(1, COORD, Game.PlayerTurn.PLAYER1);
 			g2.setCoordinate(c1);
-			if (g.getCoordinate(1, COORD).getValue() == Game.PlayerTurn.PLAYER1) {
+			if (g.getCoordinate(1, COORD).getValue() == 
+			                                          Game.PlayerTurn.PLAYER1) {
 				System.out.println("coordinate is 1," + COORD);
 		}
 	}
