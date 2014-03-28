@@ -187,8 +187,18 @@ public class Loader extends FileManager{
         switch (m_playerInfo[PLAYER_TYPE_INDEX]) {
             case HUMAN_PLAYER: return new Human(getGame());
             case EASY_AI_PLAYER: return new AIEasy(getGame());
-            case HARD_OTHELLO_PLAYER: return new OthelloAI(getGame());
-            case HARD_CONNECTFOUR_PLAYER: return new ConnectFourAI(getGame());
+            case HARD_OTHELLO_PLAYER: 
+                if (getGame() instanceof Othello) {
+                    return new OthelloAI(getGame());
+                } else {
+                    m_allValid = false;
+                }
+            case HARD_CONNECTFOUR_PLAYER: 
+                if (getGame() instanceof ConnectFour) {
+                    return new ConnectFourAI(getGame());
+                } else {
+                    m_allValid = false;
+                }
         }
         
         if (test || m_test) {
