@@ -78,7 +78,6 @@ public class Human extends Player {
 			try {
 				getGame().moveMade(move);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
