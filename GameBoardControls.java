@@ -111,7 +111,6 @@ public class GameBoardControls extends MouseAdapter {
 			}
 			//getControls().moveMade(new Coordinate(gridX, gridY));
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
