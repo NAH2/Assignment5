@@ -4,7 +4,8 @@ import java.awt.Color;
  * 	\author	-C. Hazelton
  * 	\date	-14/02/2014
  * 	
- * 	\brief	Gets move that returns coordinates. Contains name and colour get/set methods.
+ * 	\brief	Gets move that returns coordinates. Contains name and colour 
+ *  get/set methods.
  */
 
 public abstract class Player {
@@ -80,7 +81,9 @@ public abstract class Player {
 		setGame(game);
 	}
 	 /**
-	  * Constructor of player, receive the type of game, name of player and colour
+	  * Constructor of player, receive the type of game, name of player and 
+	  * colour
+	  * 
 	  * \param game a type of game for selecting the game
 	  * \param name a string for the player name
 	  * \param color a type colour for selecting colour
@@ -102,7 +105,8 @@ public abstract class Player {
 	 * \param move that was made
 	 * \throws InterruptedException 
 	 */
-	public abstract boolean sendMove(Coordinate move) throws InterruptedException;
+	public abstract boolean sendMove(Coordinate move) throws 
+	                                                       InterruptedException;
 	
 	/**
 	 * method called when it recieves a move
@@ -115,15 +119,18 @@ public abstract class Player {
 	 * \return playerData returns the player name,colour and turn
 	 */
 	public String toString(){
-        String playerData = getClass().getSimpleName() + "," + getPlayerName() + ","
-                + getPlayerColour().getRGB() + "," + getYourTurn() + ",";
+        String playerData = getClass().getSimpleName() + "," + getPlayerName() +
+                   "," + getPlayerColour().getRGB() + "," + getYourTurn() + ",";
         System.out.println(playerData);
         return playerData;
     }
 	
+	/** stores player name */
 	private String m_playerName;
+	/** stores player colour */
 	private Color m_playerColour;
+	/** reference to game */
 	private Game m_game;
+	/** flag for players turn */
 	private boolean m_YourTurn = false;
-
 }
