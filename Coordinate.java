@@ -193,7 +193,8 @@ public class Coordinate {
 		if (test || m_test) {
 			System.out.println("Coordinate :: isEmpty() END");
 		}
-		return (m_Value != Game.PlayerTurn.PLAYER1 && m_Value != Game.PlayerTurn.PLAYER2);
+		return (m_Value != Game.PlayerTurn.PLAYER1 && m_Value != 
+		                                               Game.PlayerTurn.PLAYER2);
 	}
 
 	/**
@@ -209,7 +210,8 @@ public class Coordinate {
 		if (test || m_test) {
 			System.out.println("Coordinate :: isFilled() END");
 		}
-		return (m_Value == Game.PlayerTurn.PLAYER1 || m_Value == Game.PlayerTurn.PLAYER2);
+		return (m_Value == Game.PlayerTurn.PLAYER1 || m_Value == 
+		                                               Game.PlayerTurn.PLAYER2);
 	}
 
 	/**
