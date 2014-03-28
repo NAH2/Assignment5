@@ -239,7 +239,6 @@ public class Othello extends Game{
             System.out.println("Othello :: isAnyValidMove() BEGIN");
         }
         
-		Grid grid = getGrid();
 		// The game may end when the board is completely filled
 		if (super.getTurnCount() == GAME_WIDTH * GAME_HEIGHT) {
 			debug("IsAnyValidMove()", "board filled");
@@ -466,9 +465,7 @@ public class Othello extends Game{
 		
 		// A list of changed/captured pieces to return
 		ArrayList<Coordinate> capture = new ArrayList<Coordinate>();
-		
-		Grid grid = getGrid();
-		
+				
 		// "Capture" the current piece
 		capture.add(xy);
 		
