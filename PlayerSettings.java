@@ -695,7 +695,8 @@ public class PlayerSettings extends JFrame {
 				}
 		}		
 	}
-
+	
+	/** Input objects */
 	private final JRadioButton EASY = new JRadioButton("Easy");
 	private final JRadioButton EASY2 = new JRadioButton("Easy");
 	private final JRadioButton HARD = new JRadioButton("Hard");
@@ -712,21 +713,27 @@ public class PlayerSettings extends JFrame {
 	private final JRadioButton PLAYERCOLOUR_B1;
 	private final JRadioButton PLAYERCOLOUR_A2;
 	private final JRadioButton PLAYERCOLOUR_B2;
+	/** reference to game object */
 	private Game m_game;
+	/** positions within GridBagLayout */
 	private final int XLINE1 = 0;
 	private final int XLINE2 = 1;
 	private final int XLINE3 = 2;
-	private final int XLINE4 = 3;
 	private final int YLINE1 = 0;
 	private final int YLINE2 = 1;
 	private final int YLINE3 = 2;
 	private final int YLINE4 = 3;
+	/** flag for game type */
 	private final boolean ISOTHELLO;
+	/** container object */
 	private Container player;
+	/** reference to player 1 */
 	private Player m_player1;
+    /** reference to player 2 */
 	private Player m_player2;
-	private Timer m_timer;
+	/** player colour variables */
 	private Color m_player1Color = null;
 	private Color m_player2Color = null;
+	/** test variable */
 	private Boolean m_test = true;
 }
