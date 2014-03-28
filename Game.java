@@ -618,6 +618,15 @@ public abstract class Game {
 	 * \throws InterruptedException
 	 */
 	protected abstract void resetGame() throws InterruptedException;
+	
+	/**
+     * Abstract method to reset the game to the begining
+     * 
+     * \param Player p - player whos turn it is
+     * \throws InterruptedException
+     */
+	protected abstract void resetGame(Player p) throws InterruptedException;
+
 
 	/**
 	 * Abstract Method used to test whether or not the game is over.

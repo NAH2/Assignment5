@@ -552,12 +552,6 @@ public class GameWindow extends JFrame {
 			}
             
             if (e.getSource() == m_load) {
-                try {
-                    getGame().resetGame();
-                } catch (InterruptedException ex) {
-                    System.err.println("Game did not Reset");
-                }
-                
                 if (getGame() instanceof Othello) {
                     OthelloLoader loader = new OthelloLoader(getGame());
                     checkValid(loader);
@@ -576,6 +570,11 @@ public class GameWindow extends JFrame {
             }
         }
         
+        /**
+         * checks whether the load is valid, if so it loads the game
+         * 
+         * @param Loader l - reference to the loader object
+         */
         private void checkValid(Loader l) {
     		boolean test = false;
     		if (test || m_test) {
@@ -588,6 +587,17 @@ public class GameWindow extends JFrame {
                 getDrawing().setPlayer1(l.getPlayer1());
                 getGame().setPlayer2(l.getPlayer2());
                 getDrawing().setPlayer2(l.getPlayer2());
+                
+                try {
+                    if (getGame().getPlayer1().getYourTurn()) {
+                        getGame().resetGame(getGame().getPlayer1());
+                    } else {
+                        getGame().resetGame(getGame().getPlayer2());
+                    }
+                } catch (InterruptedException ex) {
+                    System.err.println("Game did not Reset");
+                }
+                
                 getGame().setScores();
                 getGame().startTimer(l.getTimer());
                 

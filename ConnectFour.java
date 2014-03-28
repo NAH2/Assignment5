@@ -77,7 +77,8 @@ public class ConnectFour extends Game {
 	}
 
 	/**
-	 * Resets the starting pieces. \throws InterruptedException
+	 * Resets the starting pieces. 
+	 * \throws InterruptedException
 	 */
 	public void resetGame() throws InterruptedException {
 		boolean test = false;
@@ -96,6 +97,28 @@ public class ConnectFour extends Game {
 			System.out.println("ConnectFour::resetGame() END");
 		}
 	}
+	
+	/**
+     * resets the game so a game can be loaded from file
+     * 
+     * \param Player p - player whos turn it is 
+     * \throws InterruptedException
+     */
+    public void resetGame(Player p ) throws InterruptedException {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("ConnectFour::resetGame() BEGIN");
+        }
+        setWinner(Game.PlayerTurn.NONE);
+        if ((p instanceof Human)) {
+            //DO NOTHING
+        } else {
+            p.sendMove();
+        }
+        if (test || m_test) {
+            System.out.println("ConnectFour::resetGame() END");
+        }
+    }
 
 	/**
 	 * If the board is full there are no more valid moves

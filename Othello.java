@@ -145,6 +145,33 @@ public class Othello extends Game{
 	}
 	
 	/**
+	 * resets the game so a game can be loaded from file
+	 * 
+	 * \param Player p - player whos turn it is 
+	 * \throws InterruptedException
+	 */
+	public void resetGame(Player p) throws InterruptedException {
+        boolean test = false;
+        if (test || m_test) {
+            System.out.println("Othello :: resetGame() BEGIN");
+        }
+        
+        if ((p instanceof Human)) {
+            //DO NOTHING
+        } else {
+            p.sendMove();
+        }
+        if (test || m_test) {
+            System.out.println("ConnectFour::resetGame() END");
+        }
+        availableMove();
+        
+        if (test || m_test) {
+            System.out.println("Othello :: resetGame() END");
+        }
+    }
+	
+	/**
 	 * (PRIVATE) Method to calculate possible moves for the player
 	 */
 	private void availableMove(){
