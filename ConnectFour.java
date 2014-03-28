@@ -1,9 +1,6 @@
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.io.IOException;
 import java.util.*;
-
-import javax.swing.JFrame;
 
 /**
  * \\file -ConnectFour.java 
