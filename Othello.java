@@ -103,24 +103,32 @@ public class Othello extends Game{
 		if (super.getPlayer1().getPlayerColour().equals(Color.BLACK))
 		{
 		    super.setPlayerTurn(Game.PlayerTurn.PLAYER1);
-		    grid.setCoordinate(new Coordinate(COORD1, COORD1, Game.PlayerTurn.PLAYER1));
-		    grid.setCoordinate(new Coordinate(COORD2, COORD1, Game.PlayerTurn.PLAYER2));
-		    grid.setCoordinate(new Coordinate(COORD1, COORD2, Game.PlayerTurn.PLAYER2));
-		    grid.setCoordinate(new Coordinate(COORD2, COORD2, Game.PlayerTurn.PLAYER1));
+		    grid.setCoordinate(new Coordinate(COORD1, COORD1, Game.PlayerTurn.
+		                                                              PLAYER1));
+		    grid.setCoordinate(new Coordinate(COORD2, COORD1, Game.PlayerTurn.
+		                                                              PLAYER2));
+		    grid.setCoordinate(new Coordinate(COORD1, COORD2, Game.PlayerTurn.
+		                                                              PLAYER2));
+		    grid.setCoordinate(new Coordinate(COORD2, COORD2, Game.PlayerTurn.
+		                                                              PLAYER1));
 		    getPlayer1().isYourMove();
 		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-			if 	((getPlayer1() instanceof OthelloAI||
-					getPlayer1() instanceof AIEasy) && (getPlayer2() instanceof Human)){
+			if 	((getPlayer1() instanceof OthelloAI||getPlayer1() instanceof 
+			                        AIEasy) && (getPlayer2() instanceof Human)){
 				getPlayer1().sendMove();
 			}
 		}
 		else 
 		{
 			super.setPlayerTurn(Game.PlayerTurn.PLAYER2);
-			grid.setCoordinate(new Coordinate(COORD1, COORD1, Game.PlayerTurn.PLAYER2));
-			grid.setCoordinate(new Coordinate(COORD2, COORD1, Game.PlayerTurn.PLAYER1));
-			grid.setCoordinate(new Coordinate(COORD1, COORD2, Game.PlayerTurn.PLAYER1));
-			grid.setCoordinate(new Coordinate(COORD2, COORD2, Game.PlayerTurn.PLAYER2));
+			grid.setCoordinate(new Coordinate(COORD1, COORD1, Game.PlayerTurn.
+			                                                          PLAYER2));
+			grid.setCoordinate(new Coordinate(COORD2, COORD1, Game.PlayerTurn.
+			                                                          PLAYER1));
+			grid.setCoordinate(new Coordinate(COORD1, COORD2, Game.PlayerTurn.
+			                                                          PLAYER1));
+			grid.setCoordinate(new Coordinate(COORD2, COORD2, Game.PlayerTurn.
+			                                                          PLAYER2));
 			getPlayer2().isYourMove();
 			getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER2);
 			if 	((getPlayer2() instanceof OthelloAI || 
@@ -149,25 +157,29 @@ public class Othello extends Game{
 			for (int x = 0; x < GAME_WIDTH; x++) {
 				
 				//reset
-				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.PLAYER1_AM ||
-					getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.PLAYER2_AM)
+				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.
+				          PLAYER1_AM || getGrid().getCoordinate(x, y).getValue() 
+				                                  == Game.PlayerTurn.PLAYER2_AM)
 				{
-					getGrid().setCoordinate(new Coordinate(x, y, Game.PlayerTurn.NONE));
+					getGrid().setCoordinate(new Coordinate(x, y, Game.PlayerTurn
+					                                                    .NONE));
 				}
 				
 				if (getPlayerTurn().equals(Game.PlayerTurn.PLAYER1)){
-					Coordinate c1 = new Coordinate(x, y, Game.PlayerTurn.PLAYER1);
-				 if (isValidMove(c1)) {
-					 Coordinate P1avaiableMov = new Coordinate(x, y, Game.PlayerTurn.PLAYER1_AM);
-					 getGrid().setCoordinate(P1avaiableMov);
-				 }
+				  Coordinate c1 = new Coordinate(x, y, Game.PlayerTurn.PLAYER1);
+				    if (isValidMove(c1)) {
+					   Coordinate P1avaiableMov = 
+					           new Coordinate(x, y, Game.PlayerTurn.PLAYER1_AM);
+					   getGrid().setCoordinate(P1avaiableMov);
+				   }
 				}
 				else if (getPlayerTurn().equals(Game.PlayerTurn.PLAYER2)) {
-				 Coordinate c2 = new Coordinate(x, y, Game.PlayerTurn.PLAYER2);
-				 if (isValidMove(c2)) { 
-					 Coordinate P2avaiableMov = new Coordinate(x, y, Game.PlayerTurn.PLAYER2_AM);
-					 getGrid().setCoordinate(P2avaiableMov);
-				 }
+				   Coordinate c2 = new Coordinate(x, y, Game.PlayerTurn.PLAYER2);
+				   if (isValidMove(c2)) { 
+					   Coordinate P2avaiableMov = 
+					           new Coordinate(x, y, Game.PlayerTurn.PLAYER2_AM);
+					   getGrid().setCoordinate(P2avaiableMov);
+				   }
 				}
 			}
 		}
@@ -187,17 +199,21 @@ public class Othello extends Game{
         
 		for (int y = 0; y < GAME_HEIGHT; y++) {
 			for (int x = 0; x < GAME_WIDTH; x++) {
-				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.PLAYER1_AM &&
-						getPlayerTurn().equals(Game.PlayerTurn.PLAYER1)){
+				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.
+				           PLAYER1_AM && getPlayerTurn().equals(Game.PlayerTurn.
+				                                                      PLAYER1)){
 					if (test || m_test) {
-			            System.out.println("Othello :: checkPassTurn() END (False)");
+			            System.out.println("Othello :: checkPassTurn() END "
+			                                                       + "(False)");
 			        }
 					return false;
 				}
-				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.PLAYER2_AM &&
-						getPlayerTurn().equals(Game.PlayerTurn.PLAYER2)){
+				if (getGrid().getCoordinate(x, y).getValue() == Game.PlayerTurn.
+				           PLAYER2_AM && getPlayerTurn().equals(Game.PlayerTurn.
+				                                                      PLAYER2)){
 					if (test || m_test) {
-			            System.out.println("Othello :: checkPassTurn() END (False)");
+			            System.out.println("Othello :: checkPassTurn() END "
+			                                                       + "(False)");
 			        }
 					return false;
 				}
@@ -234,7 +250,8 @@ public class Othello extends Game{
 		}
 		
 		// Or when no valid moves remain (which may happen BEFORE the board
-		// is fully filled (e.g. see Vlasakova 1 - 63 Schotte, European Grand Prix Prague 2011)
+		// is fully filled (e.g. see Vlasakova 1 - 63 Schotte, European Grand 
+		// Prix Prague 2011)
 		test = false;
 		for (int y = 0; y < GAME_HEIGHT; y++) {
 			for (int x = 0; x < GAME_WIDTH; x++) {
@@ -243,13 +260,15 @@ public class Othello extends Game{
 				 
 				 if (isValidMove(c1)) { 
 					 if (test || m_test) {
-				            System.out.println("Othello :: isAnyValidMove() END (True)");
+				            System.out.println("Othello :: isAnyValidMove() END"
+				                                                   + " (True)");
 				     }
 					 return true;
 				 }
 				 if (isValidMove(c2)) {
 					 if (test || m_test) {
-				            System.out.println("Othello :: isAnyValidMove() END (True)");
+				            System.out.println("Othello :: isAnyValidMove() END"
+				                                                   + " (True)");
 				     }
 					 return true; 
 					 }
@@ -277,8 +296,8 @@ public class Othello extends Game{
 		debug("isValidMove", "" + xy, "");
 		
 		// Check that the move lies on the board somewhere vaugely sensible
-		if (xy.getX() < 0) { throw new IllegalArgumentException("bad x value"); }
-		if (xy.getY() < 0) { throw new IllegalArgumentException("bad y value"); }
+		if (xy.getX() < 0) { throw new IllegalArgumentException("bad x value");}
+		if (xy.getY() < 0) { throw new IllegalArgumentException("bad y value");}
 		if (xy.getX() >= GAME_WIDTH)  { 
 			throw new IllegalArgumentException("bad x value"); 
 		}
@@ -404,7 +423,7 @@ public class Othello extends Game{
 				// If the piece belongs to the current player, then it only
 				// counts as bounding an opponent's piece if the flag has been
 				// set.
-				debug("checkBound()", "returns opponentFound==" + opponentFound);
+				debug("checkBound()", "returns opponentFound==" +opponentFound);
 				
 				return opponentFound;
 			}
@@ -505,16 +524,17 @@ public class Othello extends Game{
 		
 		if(m_Trace) System.out.println("Othello::MoveMade() - Called");
 		if(validateMove(move)) {
-			if(m_Trace) System.out.println("Othello::MoveMade() - Move is valid");
+			if(m_Trace)System.out.println("Othello::MoveMade() -Move is valid");
 			ArrayList<Coordinate> changes = takeMove(move);
 			for(int i = 0; i < changes.size(); i++) {
 				getGrid().setCoordinate(changes.get(i));
 			}	
 			getWindow().displayGrid(getGrid());
-			if (((getPlayer1() instanceof OthelloAI || getPlayer1() instanceof AIEasy) 
-					&& changes.get(0).getValue() == Game.PlayerTurn.PLAYER1) 
-					|| ((getPlayer2() instanceof OthelloAI || getPlayer2() instanceof AIEasy)
-					&& changes.get(0).getValue() == Game.PlayerTurn.PLAYER2)){
+			if (((getPlayer1() instanceof OthelloAI || getPlayer1() instanceof 
+			            AIEasy) && changes.get(0).getValue() == Game.PlayerTurn.
+			            PLAYER1)|| ((getPlayer2() instanceof OthelloAI || 
+			            getPlayer2() instanceof AIEasy) && changes.get(0).
+			                            getValue() == Game.PlayerTurn.PLAYER2)){
 				getWindow().SetAImove(changes.get(0));
 			}
 			getWindow().SetAnimation("flip", changes);
@@ -522,9 +542,11 @@ public class Othello extends Game{
 			setPlayer2Score(0);
 			for (int i = 0; i < getGrid().getGridWidth(); i++) {
 				for (int j = 0; j< getGrid().getGridHeight(); j++) {
-					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
+					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.
+					                                                  PLAYER1) {
 						setPlayer1Score(getPlayer1Score() + 1);
-					} else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
+					} else if (getGrid().getCoordinate(i, j).getValue() == 
+					                                       PlayerTurn.PLAYER2) {
 						setPlayer2Score(getPlayer2Score() + 1);
 					}
 				}
@@ -544,15 +566,18 @@ public class Othello extends Game{
 		}
 		
 		if(isOver()) {
-			if(m_Trace) System.out.println("Othello::MoveMade() - Game is finished");
+			if(m_Trace) System.out.println("Othello::MoveMade() - Game is "
+			                                                      + "finished");
 			new EndDisplay(this);
 			emptyWin();
 		} else {
 			if (getPlayerTurn() == PlayerTurn.PLAYER1) {
-				if(m_Trace) System.out.println("Othello::MoveMade() - Player1 next");
+				if(m_Trace) System.out.println("Othello::MoveMade() - "
+				                                              + "Player1 next");
 				getPlayer1().isYourMove();
 			} else if(getPlayerTurn() == PlayerTurn.PLAYER2){
-				if(m_Trace) System.out.println("Othello::MoveMade() - Player2 next");
+				if(m_Trace) System.out.println("Othello::MoveMade() - "
+				                                              + "Player2 next");
 				getPlayer2().isYourMove();
 			}
 		}
@@ -627,9 +652,11 @@ public class Othello extends Game{
 		if(!isAnyValidMove()){
 			for (int i = 0; i < getGrid().getGridWidth(); i++) {
 				for (int j = 0; j< getGrid().getGridHeight(); j++) {
-					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER1) {
+					if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.
+					                                                  PLAYER1) {
 						m_p1.add(new Coordinate(i, j));
-					} else if (getGrid().getCoordinate(i, j).getValue() == PlayerTurn.PLAYER2) {
+					} else if (getGrid().getCoordinate(i, j).getValue() == 
+					                                       PlayerTurn.PLAYER2) {
 						m_p2.add(new Coordinate(i, j));
 					}
 				}
@@ -661,7 +688,7 @@ public class Othello extends Game{
         }
         
 		if (!isOver())
-			{ throw new IllegalStateException("no winner before game is over"); }
+			{ throw new IllegalStateException("no winner before game is over");}
 		int score1 = getPlayer1Score();
 		int score2 = getPlayer2Score();
 		
@@ -685,8 +712,11 @@ public class Othello extends Game{
 		} 
 	}
 /**
- * Used to change which player's turn it currently is depending on the game rules.
- * \return Returns an enumerator of type PlayerTurn which indicates which turn it is, PLAYER1 or PLAYER2.
+ * Used to change which player's turn it currently is depending on the game 
+ * rules.
+ * 
+ * \return Returns an enumerator of type PlayerTurn which indicates which turn 
+ * it is, PLAYER1 or PLAYER2.
  */
 	protected PlayerTurn nextPlayer() {
 		boolean test= false;
@@ -751,7 +781,8 @@ public class Othello extends Game{
 	 * \throws IOException 
 	 * \throws InterruptedException
 	*/
-	public static void main(String[] args) throws InterruptedException, IOException {
+	public static void main(String[] args) throws InterruptedException, 
+	                                                               IOException {
 		boolean test = true;
 		if (test || m_test){
 			Othello game = new Othello();
@@ -763,20 +794,28 @@ public class Othello extends Game{
 			player2.setPlayerColour(Color.WHITE);
 			game.setPlayer1(player1);
 			game.setPlayer2(player2);
-			Coordinate testCooor	= new Coordinate(COORD1,COORD2, PlayerTurn.PLAYER1);
-			Coordinate testCooor2	= new Coordinate(COORD1,COORD2, PlayerTurn.PLAYER2);
-			Coordinate testCooor3	= new Coordinate(COORD2,COORD1, PlayerTurn.PLAYER1);
-			Coordinate testCooor4	= new Coordinate(COORD2,COORD1, PlayerTurn.PLAYER2);
+			Coordinate testCooor	= new Coordinate(COORD1,COORD2, PlayerTurn.
+			                                                           PLAYER1);
+			Coordinate testCooor2	= new Coordinate(COORD1,COORD2, PlayerTurn.
+			                                                           PLAYER2);
+			Coordinate testCooor3	= new Coordinate(COORD2,COORD1, PlayerTurn.
+			                                                           PLAYER1);
+			Coordinate testCooor4	= new Coordinate(COORD2,COORD1, PlayerTurn.
+			                                                           PLAYER2);
 			game.start();
 			
 			game.moveMade(testCooor);
-			System.out.println("Player 1 valid move :" + game.validateMove(testCooor));
+			System.out.println("Player 1 valid move :" + game.validateMove(
+			                                                        testCooor));
 			game.moveMade(testCooor2);
-			System.out.println("Player 2 valid move :" + game.validateMove(testCooor2));
+			System.out.println("Player 2 valid move :" + game.validateMove(
+			                                                       testCooor2));
 			game.moveMade(testCooor3);
-			System.out.println("Player 1 valid move :" + game.validateMove(testCooor3));
+			System.out.println("Player 1 valid move :" + game.validateMove(
+			                                                       testCooor3));
 			game.moveMade(testCooor4);
-			System.out.println("Player 2 valid move :" + game.validateMove(testCooor4));
+			System.out.println("Player 2 valid move :" + game.validateMove(
+			                                                       testCooor4));
 			
 			
 			
@@ -791,8 +830,8 @@ public class Othello extends Game{
 	/** starting position */
 	private final static int COORD2 = 4;
 	/** store message  */
-	private String m_passmsg =
-			"There are no available moves, the turn has been passed to the opponent.";
+	private String m_passmsg = "There are no available moves, the turn has been"
+	                                               + " passed to the opponent.";
 	/** store winning pieces  */
 	private Set<Coordinate> m_win = new HashSet<Coordinate>();
 	/** store the pieces that will be flipped   */
