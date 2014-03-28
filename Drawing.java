@@ -68,9 +68,11 @@ public class Drawing {
 		} else if(gameBoardGraphics.GetPlayer2() instanceof OthelloAI){		
 			((OthelloAI)gameBoardGraphics.GetPlayer2()).SetTime(m_responseTime);
 		} else if(gameBoardGraphics.GetPlayer1() instanceof ConnectFourAI){
-			((ConnectFourAI)gameBoardGraphics.GetPlayer1()).SetTime(m_responseTime);
+			((ConnectFourAI)gameBoardGraphics.GetPlayer1()).
+			                                            SetTime(m_responseTime);
 		} else if(gameBoardGraphics.GetPlayer2() instanceof ConnectFourAI){
-			((ConnectFourAI)gameBoardGraphics.GetPlayer2()).SetTime(m_responseTime);
+			((ConnectFourAI)gameBoardGraphics.GetPlayer2()).
+			                                            SetTime(m_responseTime);
 		} else if(gameBoardGraphics.GetPlayer1() instanceof AIEasy){
 			((AIEasy)gameBoardGraphics.GetPlayer1()).SetTime(m_responseTime);
 		} else if(gameBoardGraphics.GetPlayer2() instanceof AIEasy){
@@ -564,7 +566,9 @@ public class Drawing {
 	
 	/**
 	 * \param game This receives an instance of the Game class.
-	 * \param handler This receives the GUIEventHandler for the combobox and slider
+	 * \param handler This receives the GUIEventHandler for the combobox 
+	 * and slider
+	 * 
 	 * This method creates layout of the sidebar
 	 */
 	private boolean setLayout(Game game, GUIEventHandler handler){
@@ -605,11 +609,13 @@ public class Drawing {
 	    m_speed.setText("Game speed");
 	    if(game instanceof ConnectFour){	
 	    	gameBoardGraphics.SetSpeed(DEFAULT_FALL_SPEED);
-			m_slider = new JSlider (MINSPEED, MAX_FALL_SPEED, DEFAULT_FALL_SPEED);
+			m_slider = new JSlider (MINSPEED, MAX_FALL_SPEED, 
+			                                                DEFAULT_FALL_SPEED);
 			m_isOthello = false;
 	    } else {
 	  		gameBoardGraphics.SetSpeed(DEFAULT_FLIP_SPEED);
-	 		m_slider = new JSlider (MINSPEED, MAX_FLIP_SPEED, DEFAULT_FLIP_SPEED);
+	 		m_slider = new JSlider (MINSPEED, MAX_FLIP_SPEED, 
+	 		                                                DEFAULT_FLIP_SPEED);
 			m_isOthello = true;
 	    }
 	    
@@ -650,7 +656,7 @@ public class Drawing {
 				game.getGrid().getGridWidth() + "X" + 
 					game.getGrid().getGridHeight());}
 		if(m_Trace) { System.out.println("Drawing::Drawing() - Players = " +
-			game.getPlayer2().getPlayerName() + ":" + 
+		        game.getPlayer2().getPlayerName() + ":" + 
 				game.getPlayer1().getPlayerName());}
 		try {
 			gameBoardGraphics = new GameBoardGraphics
@@ -674,12 +680,17 @@ public class Drawing {
 		//Change handler (e.g. for sliders)
         public void stateChanged(ChangeEvent e) {
 	        	setSpeed(m_slider.getValue());
-	        	if((m_isOthello && (m_slider.getValue() < DEFAULT_FLIP_SPEED - (DEFAULT_FLIP_SPEED/SPEED_ROW))) ||
-	        			(!m_isOthello && (m_slider.getValue() < DEFAULT_FALL_SPEED - (DEFAULT_FALL_SPEED/SPEED_ROW)))){
-	        		System.out.println(!m_isOthello && (m_slider.getValue() > DEFAULT_FALL_SPEED + (DEFAULT_FALL_SPEED/SPEED_ROW)));
+	        	if((m_isOthello && (m_slider.getValue() < DEFAULT_FLIP_SPEED - 
+	        	        (DEFAULT_FLIP_SPEED/SPEED_ROW))) || (!m_isOthello && 
+	        	        (m_slider.getValue() < DEFAULT_FALL_SPEED - 
+	        	                              (DEFAULT_FALL_SPEED/SPEED_ROW)))){
+	        		System.out.println(!m_isOthello && (m_slider.getValue() > 
+	        		      DEFAULT_FALL_SPEED + (DEFAULT_FALL_SPEED/SPEED_ROW)));
 	        		m_speed.setText("Fast");
-	        	} else if((m_isOthello && m_slider.getValue() > DEFAULT_FLIP_SPEED + (DEFAULT_FLIP_SPEED/SPEED_ROW)) ||
-	        			(!m_isOthello && m_slider.getValue() > DEFAULT_FALL_SPEED + (DEFAULT_FALL_SPEED/SPEED_ROW))){
+	        	} else if((m_isOthello && m_slider.getValue() > 
+	        	       DEFAULT_FLIP_SPEED + (DEFAULT_FLIP_SPEED/SPEED_ROW)) ||
+	        		   (!m_isOthello && m_slider.getValue() > DEFAULT_FALL_SPEED
+	        		                         + (DEFAULT_FALL_SPEED/SPEED_ROW))){
 	        		m_speed.setText("Slow");
 	        	} else {
 	        		m_speed.setText("Normal");	
