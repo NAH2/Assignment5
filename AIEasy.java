@@ -222,7 +222,6 @@ public class AIEasy extends Player {
                                 getGame().moveMade(move);							
                             }
                         } catch (InterruptedException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                     }
@@ -257,7 +256,6 @@ public class AIEasy extends Player {
                     try {
                         m_move = setAIMove();
                     } catch (IndexOutOfBoundsException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                     if (getYourTurn()) {
@@ -265,7 +263,6 @@ public class AIEasy extends Player {
                             setYourTurn(false);
                             getGame().moveMade(m_move);
                         } catch (InterruptedException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                     }
