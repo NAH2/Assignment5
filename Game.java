@@ -542,14 +542,14 @@ public abstract class Game {
 		setTurnCount(m_player1Score + m_player2Score);
 		getWindow().updateScore(m_player1Score, m_player2Score);
 		setTurnCount(m_player1Score + m_player2Score);
-		if (getPlayerTurn() == PlayerTurn.PLAYER1){
+		if (getPlayerTurn().equals(PlayerTurn.PLAYER1)){
 			getPlayer1().isYourMove();
 		}
 		else 
 		{
 			getPlayer2().isYourMove();
 		}
-		startTimer();
+		//startTimer();
 		
         if (test || m_test) {
             System.out.println("Game :: resumeGame() END");

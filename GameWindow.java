@@ -596,6 +596,17 @@ public class GameWindow extends JFrame {
             }
             getGame().getTimer().setRunning();
             getDrawing().getGridPanel().SetRun(false);
+            getGame().getPlayer1().SetRun(false);
+            getGame().getPlayer2().SetRun(false);
+
+            
+            if(m_gameControl.getPlayer1() instanceof OthelloAI){
+                ((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
+            } else if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
+                ((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
+            } else if(m_gameControl.getPlayer1() instanceof AIEasy){
+                ((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
+            }
             
             if (l.getValid()) {
                 g.getGrid().setGrid(l.getGridArray());

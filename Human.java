@@ -106,5 +106,11 @@ public class Human extends Player {
 	
 	 /** test variable */
     private boolean m_test = false;
+
+    @Override
+    public boolean SetRun(boolean run) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }
 

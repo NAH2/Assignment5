@@ -117,6 +117,8 @@ public abstract class Player {
 	 */
 	public abstract boolean sendMove() throws InterruptedException;
 	
+	public abstract boolean SetRun(boolean run);
+	
 	/**
 	 * Method used to gather the player data
 	 * \return playerData returns the player name,colour and turn
@@ -124,7 +126,7 @@ public abstract class Player {
 	public String toString(){
         String playerData = getClass().getSimpleName() + "," + getPlayerName() +
                    "," + getPlayerColour().getRGB() + "," + getYourTurn() + ",";
-        System.out.println(playerData);
+        //System.out.println(playerData);
         return playerData;
     }
 	

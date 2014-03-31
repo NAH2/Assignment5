@@ -57,7 +57,7 @@ public class ConnectFourAI extends Player{
 	 * \param run true when game is running, false when not.
 	 * \return true if the method completes
 	 */
-	public Boolean SetRun(boolean run){
+	public boolean SetRun(boolean run){
 		boolean test = false;
 		if (test || m_test) {
             System.out.println("ConnectFourAI :: SetRun() BEGIN");
@@ -358,6 +358,6 @@ public class ConnectFourAI extends Player{
 	/**If the thread should be running or not*/
 	private boolean m_running;
 	/**For testing purposes*/
-	private boolean m_test = true;
+	private boolean m_test = false;
 }
 
