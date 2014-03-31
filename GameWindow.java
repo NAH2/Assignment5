@@ -382,7 +382,7 @@ public class GameWindow extends JFrame {
 		if (test || m_test) {
             System.out.println("GameWindow :: moveMade() BEGIN");
         }
-		//System.out.println(getGame().getPlayerTurn());
+		System.out.println(getGame().getPlayerTurn());
 		if (getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
 			move.setValue(Game.PlayerTurn.PLAYER1);
 			getGame().getPlayer1().sendMove(move);
@@ -525,7 +525,7 @@ public class GameWindow extends JFrame {
             }
             
            if (e.getSource() == m_save) {
-				//System.out.println("Save");
+				System.out.println("Save");
 				Saver saver;
 				if (getGame().isOver()) {
                     Displaymessage(m_gameOverSave);
@@ -555,28 +555,18 @@ public class GameWindow extends JFrame {
 			}
             
             if (e.getSource() == m_load) {
-                Game gameToLoad;
-                Loader loader;
-                
                 if (getGame() instanceof Othello) {
-                    gameToLoad = new Othello();
-                    loader = new OthelloLoader(gameToLoad);
+                    OthelloLoader loader = new OthelloLoader(getGame());
+                    checkValid(loader);
                 } else {
-                    gameToLoad = new ConnectFour();
-                    loader = new ConnectFourLoader(getGame());
-                }
-                
-                if (checkValid(loader, gameToLoad)) {
-                    //DO NOTHING
-                } else {
-                    returnMainWindow();
+                    ConnectFourLoader loader = new ConnectFourLoader(getGame());
+                    checkValid(loader);
                 }
             }
             
             if (e.getSource() == m_exit) {
                 System.exit(0);
             }
-            
     		if (test || m_test) {
                 System.out.println("GameWindow-Handler :: actionPerformed() "
                                                                        + "END");
@@ -587,42 +577,48 @@ public class GameWindow extends JFrame {
          * checks whether the load is valid, if so it loads the game
          * 
          * \param l - reference to the loader object
-         * \param g - reference to new game object
          */
-        private boolean checkValid(Loader l, Game g) {
-            boolean test = false;
-            if (test || m_test) {
+        private void checkValid(Loader l) {
+    		boolean test = false;
+    		if (test || m_test) {
                 System.out.println("GameWindow-Handler :: checkValid() BEGIN");
             }
-            getGame().getTimer().setRunning();
-            getDrawing().getGridPanel().SetRun(false);
             if (l.getValid()) {
-                g.getGrid().setGrid(l.getGridArray());
-                g.setPlayer1(l.getPlayer1());
-                g.setPlayer2(l.getPlayer2());
+                m_drawingControl.getGridPanel().SetOver(false);
+                getGame().getGrid().setGrid(l.getGridArray());
+                getGame().setPlayer1(l.getPlayer1());
+                getDrawing().setPlayer1(l.getPlayer1());
+                getDrawing().getGridPanel().setPlayer1(l.getPlayer1());
+                getDrawing().getGridPanel().setPlayer2(l.getPlayer2());
+                getGame().setPlayer2(l.getPlayer2());
+                getDrawing().setPlayer2(l.getPlayer2());
                 
                 try {
-                    g.resumeGame();
-                    dispose();
-                    g.startTimer(l.getTimer());
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
+                    if (getGame().getPlayer1().getYourTurn()) {
+                        getGame().resetGame(getGame().getPlayer1());
+                    } else {
+                        getGame().resetGame(getGame().getPlayer2());
+                    }
+                } catch (InterruptedException ex) {
+                    System.err.println("Game did not Reset");
                 }
                 
-                if (test || m_test) {
-                    System.out.println("GameWindow :: checkValid() END");
-                }
+                getGame().setScores();
+                getGame().startTimer(l.getTimer());
                 
-                return true;  
+                int p1Score = getGame().getPlayer1Score();
+                int p2Score = getGame().getPlayer2Score();
+                
+                displayPlayerTurn(getGame().getPlayerTurn());
+                updateScore(p1Score, p2Score);
+                getGame().setTurnCount(p1Score + p2Score);
+                m_drawingControl.getGridPanel().repaint();
             }else {
                 JOptionPane.showMessageDialog(null, "ERROR Loading File",
-                "Load ERROR",JOptionPane.ERROR_MESSAGE);
-                
-                if (test || m_test) {
-                    System.out.println("Handler :: checkValid() END");
-                }
-                
-                return false;
+                "Load ERROR",JOptionPane.ERROR_MESSAGE);                				
+            }
+    		if (test || m_test) {
+                System.out.println("Handler :: checkValid() END");
             }
         }
 	}
